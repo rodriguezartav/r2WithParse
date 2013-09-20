@@ -1,0 +1,58 @@
+.post{
+  margin-top: @line-height-block/2;
+  margin-bottom: @line-height-block;
+  &:first-child{
+    margin-top: 0px;
+  }
+}
+
+img{
+  width: @line-height-block;
+  height: @line-height-block * 0.96;
+}
+
+.post-image-wrapper{
+  padding-left: 0px;
+}
+
+.title{
+  display: inline-block;
+  margin-right: 7px;
+  color: darken(@brand-success,10%);
+  font-weight: 400;
+}
+
+.post-area{
+  
+}
+
+
+.post-actions{
+  margin: 6px;
+  a.labels{
+    display: inline-block;
+    margin-right: 6px;
+    &.after{
+      content: "`";
+    }
+  }
+}
+
+.post-comments{
+  margin-bottom: 8px;
+  background-color: @gray-lighter;
+
+  .inner-wrapper{
+    padding: 4px;
+  }
+  
+  a.comment{ display: none; }
+  
+}
+
+.post-new-comment{
+
+  textarea{
+    width: 100%;
+  }
+}  

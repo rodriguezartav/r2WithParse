@@ -1,0 +1,28 @@
+jsdom = require("jsdom").jsdom
+sandboxedModule = require("sandboxed-module")
+should = require("should")
+grunt = require('grunt');
+
+describe "Selecting the actual Page in Header", ->
+    document = null
+    $ = null
+
+    beforeEach ->
+        window = jsdom(null, null, features: QuerySelector: true).createWindow()
+        document = window.document
+        globals = { window, document }
+        requires = { "jquery-browserify": $ }
+
+        document.body.innerHTML = grunt.file.read('./test/unit/fixtures/headerLink.html');
+
+        $ = sandboxedModule.require("jquery-browserify", globals: globals)
+
+        Headerlink = sandboxedModule.require("../../app/blue/headerlink",globals: globals,requires: requires)
+        
+        new Headerlink( "/p/gettingstarted" , ".header a")
+
+
+    it "it set active class to current link", ->
+      document.body.innerHTML.indexOf("active").should.be.above(-1)
+
+   
