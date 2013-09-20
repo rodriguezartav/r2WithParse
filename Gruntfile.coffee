@@ -27,25 +27,17 @@ module.exports = (grunt) ->
         files:
           "./public/devBuild/application.css" : "./css/index.less"
 
-    appbot_scout: {
-      dev: {
-        options: {
-        },
-        build: "script",
-        path: "",
-        destination: "./public/scout.js",
-        template: "./public/scoutTemplate.eco"
-      },
-    },
+
 
     grunt_appbot_compiler: {
       oneApp: {
         appPaths: ['./app/web'],
         dependencyPaths: ["jqueryify","spine"],
         destination: "./public/devBuild/web.js"
-      },
+      },      
       contentBox:{
-        appPaths: ['./app/components/contentBox'],
+        appPaths: ['./app/components/contentBox','./app/components/newsFeed'],
+        lessVariables: "./css/base/variables.css",
         destination: "./public/devBuild/contentBox.js"
       }
     },
@@ -72,7 +64,7 @@ module.exports = (grunt) ->
 
       apps:
         files: ["./app/**/*.coffee" ,"./app/**/*.eco","./app/**/*.jeco","./app/**/*.less"]
-        tasks: ["grunt_appbot_compiler","appbot_scout"]
+        tasks: ["grunt_appbot_compiler"]
 
       views:
         files: ["./views/*.jade","./views/**/*.jade"]
@@ -137,7 +129,6 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-coffee');
-  grunt.loadNpmTasks('grunt-appbot-scout');
   grunt.loadNpmTasks('grunt-express');
 
   grunt.loadNpmTasks('grunt-appbot-compiler');

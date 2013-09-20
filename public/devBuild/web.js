@@ -9983,7 +9983,6 @@ module.exports = window.jQuery;
 }).call(this);
 }, "index": function(exports, require, module) {(function() {
   var App, HeaderLink, Spine,
-    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -9997,39 +9996,27 @@ module.exports = window.jQuery;
     __extends(App, _super);
 
     App.prototype.elements = {
-      ".after_send": "after_send",
-      ".email_input": "email_input",
-      ".sendEmail": 'sendEmail'
-    };
-
-    App.prototype.events = {
-      "click .sendEmail": "onSendEmailClick"
+      ".news-feed": "newsFeed"
     };
 
     function App() {
-      this.onSendEmailClick = __bind(this.onSendEmailClick, this);
+      var _this = this;
       App.__super__.constructor.apply(this, arguments);
-      this.after_send.hide();
       LazyLoad.js("" + window.src.path + "/" + window.src.build + "/contentBox.js", function() {
-        var ContentBox;
+        var ContentBox, NewsFeed;
         require("lib/setup");
         ContentBox = require("components/contentBox/contentBox");
-        return new ContentBox({
+        NewsFeed = require("components/newsFeed/newsFeed");
+        new ContentBox({
           el: $("aside"),
           tagSelectors: "h2,h3",
           sourceSelector: "article"
         });
+        return new NewsFeed({
+          el: _this.newsFeed
+        });
       });
     }
-
-    App.prototype.onSendEmailClick = function() {
-      this.after_send.show();
-      this.sendEmail.hide();
-      $.post("http://vot3-server.herokuapp.com/email", {
-        user_email: this.email_input.val()
-      });
-      return this.email_input.val("");
-    };
 
     return App;
 
