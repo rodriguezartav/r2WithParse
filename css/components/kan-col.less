@@ -1,23 +1,26 @@
 .kan-col{
   .full-height();
+  position: relative;
 
+  
 
   .header{
     height: @line-height-double-block;
     text-align: center;
-    position: relative;
-
-    &.green{
+    border: 1px solid @gray-lighter;
+    border-bottom: none;
     
-      #gradient.horizontal( @brand-success; #8cbf3c; 0%; 100%);
+
+    &.purple{
+      background-color: @brand-info;
     }
 
     &.blue{
-      #gradient.horizontal( lighten( rgb(61,164,223) , 1%); darken( rgb(61,164,223) , 10%); 50%; 100%);
+      background-color: @brand-primary;
     }
     
     &.red{
-      #gradient.horizontal( #ff5c3d; #d44b31; 60%; 100%);
+      background-color: @brand-danger;
     }
 
     .large-title{
@@ -40,8 +43,7 @@
 
       
   .sub-header{
-    background-color: white;
-    margin-bottom: @line-height-half-block;
+    border: 1px solid @gray-lightest;
     line-height: @line-height-block;
     
     .sub-title{
@@ -50,11 +52,16 @@
         margin-left: 0px;
       }
     }
-    
   }
   
   .content-body{
+    border: 1px solid @gray-lightest;
     .full-height();
+    min-height:  50%;
+    height: 72%;
+    padding: 8px 8px;  
+    
+    overflow-y: scroll !important;    
   }
   
   .comment-box{

@@ -1,24 +1,45 @@
 .icon {
-    background: #399CC2;
-    width: 175px /2.5;
-    height: 175px/2.5;
-    border-radius: 38/2.5px;
-    border: solid 5px/2.5 @gray-light;
+  width: 175px /2.5;
+  height: 175px/2.5;
+
+  &.blue{
+    background: @brand-primary;
+  }
+
+  &.green{
+    background: @brand-success;
+  }
+  
+  &.purple{
+    background: @brand-info;
+  }
+  
+  &.red{
+    background: @brand-danger;
+  }
+
+  &.gray-light{
+    background: @gray-light;
+  }
+
+  &.gray-dark{
+    background: @gray-dark;
+  }
+
+  &.gray{
+    background: @gray;
+  }
+
+
+
 }
+
+
+
+
 .icon .gloss {
-    background: #000;
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 255, 255, 0.7)), to(rgba(255, 255, 255, 0.2)));
-    height: 90px/2.5;
-    width: 165px/2.5;
-    position: relative;
-    z-index: 5;
-    box-shadow: inset 0px 2px 1px rgba(255, 255, 255, 0.5);
-    
-    border-top-right-radius: 38px/2.5 38px/2.5;
-    border-top-left-radius: 38px/2.5 38px/2.5;
-    border-bottom-right-radius: 120px/2.5 20px/2.5;
-    border-bottom-left-radius: 100px/2.5 20px/2.5;
 }
+
 .icon .text
 {
     color: white;
@@ -30,33 +51,21 @@
 }
 
 
-.icon-small {
-    background: #399CC2;
-    width: 175px /3;
-    height: 175px/3;
-    border-radius: 38/3px;
-    border: solid 5px/3 @gray;
+.icon.icon-small {
+    width: 90%;
+    height: 100%;
 }
-.icon-small .gloss {
-    background: #000;
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255, 255, 255, 0.7)), to(rgba(255, 255, 255, 0.2)));
-    height: 90px/3;
-    width: 165px/3;
-    position: relative;
-    z-index: 5;
-    box-shadow: inset 0px 2px 1px rgba(255, 255, 255, 0.5);
-    
-    border-top-right-radius: 38px/3 38px/3;
-    border-top-left-radius: 38px/3 38px/3;
-    border-bottom-right-radius: 120px/3 20px/3;
-    border-bottom-left-radius: 100px/3 20px/3;
+
+.icon.icon-small .gloss {
 }
-.icon-small .text
+
+.icon.icon-small .text
 {
+    margin: 0px auto;
     color: white;
-    font-size: 150px/5;
+    font-size: 30px;
     font-family: sans-serif;
-    line-height: 0px;
+    line-height: 50px;
     font-weight: bold;
     text-align: center;
 }
