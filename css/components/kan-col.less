@@ -2,8 +2,6 @@
   .full-height();
   position: relative;
 
-  
-
   .header{
     height: @line-height-double-block;
     text-align: center;
@@ -80,6 +78,55 @@
     }
   
   }
+ 
+ 
+  &.metric-ban{
+
+    .header{
+    }
+
+    .intro-box{
+      background-color: rgb(61,164,223);
+      #gradient.vertical( lighten( rgb(61,164,223) , 1%); darken( rgb(61,164,223) , 10%); 50%; 100%);
+      height: 350px;
+    }
+
+    .graph{
+      height: 66px;
+      margin-bottom: 10px;
+    }
+
+
+
+  }
   
-      
+  
+  
+  
+  
+  &.app-ban{
+
+    .header{
+    }
+
+
+    .app-row{
+      margin: 10px 0px 6px 0px;
+      padding: 9px 0px 6px 0px;
+      .border-top-radius(5px);
+      .border-bottom-radius(5px);    
+
+
+      .labels{
+        margin-top: 3px;
+        text-align: center;
+      }
+
+    }
+
+  }
+
+  
+  
+       
 }

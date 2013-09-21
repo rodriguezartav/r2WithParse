@@ -2871,9 +2871,22 @@ body {
   height: 100%;
   overflow: hidden;
   width: 5.7%;
+  background-color: #000;
+  border-right: #ccc 7px solid;
 }
 .outer-container {
   padding-left: 0px;
+  height: 100%;
+  overflow: hidden;
+}
+.kanban {
+  height: 100%;
+  overflow: hidden;
+  width: 94.3%;
+  padding: 0px 20px;
+  overflow: scroll;
+}
+.kanban-wrapper {
   height: 100%;
   overflow: hidden;
 }
@@ -2885,10 +2898,6 @@ body {
 }
 .kan-col-wrapper.large {
   width: 37.25%;
-}
-.kanban {
-  width: 94.3%;
-  padding: 0px 20px;
 }
 .kan-col {
   height: 100%;
@@ -2956,70 +2965,7 @@ body {
   padding-top: 4px;
   margin-bottom: 5px;
 }
-.app-ban .highlight .title {
-  line-height: 1.6;
-  color: #ee5437;
-}
-.app-ban .highlight .labels {
-  margin-bottom: 6px;
-  line-height: 1.2;
-}
-.app-ban .highlight .star {
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 10px solid red;
-}
-.app-ban .highlight .star:after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid red;
-  margin: 5px 0 0 -10px;
-}
-.app-ban .app-row {
-  margin: 10px 0px 6px 0px;
-  padding: 9px 0px 6px 0px;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-}
-.app-ban .app-row .labels {
-  margin-top: 3px;
-  text-align: center;
-}
-.icon {
-  width: 70px;
-  height: 70px;
-}
-.icon .text {
-  color: white;
-  font-size: 60px;
-  font-family: sans-serif;
-  line-height: 0px;
-  font-weight: bold;
-  text-align: center;
-}
-.icon.icon-small {
-  width: 90%;
-  height: 100%;
-}
-.icon.icon-small .text {
-  margin: 0px auto;
-  color: white;
-  font-size: 30px;
-  font-family: sans-serif;
-  line-height: 50px;
-  font-weight: bold;
-  text-align: center;
-}
-.metric-ban .intro-box {
+.kan-col.metric-ban .intro-box {
   background-color: #3da4df;
   background-image: -webkit-gradient(linear, left 50%, left 100%, from(#41a6e0), to(#218bc8));
   background-image: -webkit-linear-gradient(top, #41a6e0, 50%, #218bc8, 100%);
@@ -3029,11 +2975,38 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff41a6e0', endColorstr='#ff218bc8', GradientType=0);
   height: 350px;
 }
-.metric-ban .graph {
+.kan-col.metric-ban .graph {
   height: 66px;
   margin-bottom: 10px;
 }
-.menu {
-  background-color: #000;
-  border-right: #ccc 7px solid;
+.kan-col.app-ban .app-row {
+  margin: 10px 0px 6px 0px;
+  padding: 9px 0px 6px 0px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.kan-col.app-ban .app-row .labels {
+  margin-top: 3px;
+  text-align: center;
+}
+.icon {
+  width: 90%;
+  height: 100%;
+}
+.icon .text {
+  margin: 0px auto;
+  color: white;
+  font-size: 30px;
+  font-family: sans-serif;
+  line-height: 50px;
+  font-weight: bold;
+  text-align: center;
+}
+.menu .labels {
+  color: #fff;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 15px;
 }

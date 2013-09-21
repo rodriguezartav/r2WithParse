@@ -9982,13 +9982,15 @@ module.exports = window.jQuery;
 
 }).call(this);
 }, "index": function(exports, require, module) {(function() {
-  var App, HeaderLink, Spine,
+  var App, Menu, NewsFeed, Spine,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   Spine = require("spine");
 
-  HeaderLink = require("headerLink");
+  NewsFeed = require("components/newsFeed/newsFeed");
+
+  Menu = require("components/menu/menu");
 
   require("lib/setup");
 
@@ -9996,27 +9998,52 @@ module.exports = window.jQuery;
     __extends(App, _super);
 
     App.prototype.elements = {
-      ".news-feed": "newsFeed"
+      ".news-feed": "newsFeed",
+      ".menu": "menu",
+      ".app-highlight": "appHighlight",
+      ".kanban": "kanban",
+      ".kanban-wrapper": "kanbanWrapper"
+    };
+
+    App.prototype.events = {
+      "click .app": "onAppClick"
     };
 
     function App() {
       var _this = this;
       App.__super__.constructor.apply(this, arguments);
-      LazyLoad.js("" + window.src.path + "/" + window.src.build + "/contentBox.js", function() {
-        var ContentBox, NewsFeed;
+      new NewsFeed({
+        el: this.newsFeed
+      });
+      new Menu({
+        el: this.menu
+      });
+      LazyLoad.js("" + window.src.path + "/" + window.src.build + "/launch-components.js", function() {
+        var AppHighlight;
         require("lib/setup");
-        ContentBox = require("components/contentBox/contentBox");
-        NewsFeed = require("components/newsFeed/newsFeed");
-        new ContentBox({
-          el: $("aside"),
-          tagSelectors: "h2,h3",
-          sourceSelector: "article"
-        });
-        return new NewsFeed({
-          el: _this.newsFeed
+        AppHighlight = require("components/appHighlight/appHighlight");
+        return new AppHighlight({
+          el: $(".app-highlight")
         });
       });
     }
+
+    App.prototype.onAppClick = function() {
+      this.kanban.prepend('<div class="kanban-wrapper app-wrapper">\
+      <div class="row full-height">\
+        <div class="col-md-12 kan-col">\
+          <div class="header blue"><span class="triangle"></span><span class="large-title">Nombre del App</span></div>\
+          <div class="sub-header">\
+            <div class="sub-title">Todos los Clientes</div>\
+          </div>\
+        </div>\
+      </div>\
+    </div>');
+      this.kanban.scrollTop(100000);
+      return this.kanban.animate({
+        scrollTop: 0
+      }, 1000);
+    };
 
     return App;
 
@@ -10424,6 +10451,198 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
   require("lib/lazyload");
 
 }).call(this);
-}
+}, "components/menu/menu": function(exports, require, module) {(function() {
+  var $, Menu, Spine,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  Spine = require("spine");
+
+  if (!$) {
+    $ = window.$;
+  }
+
+  Menu = (function(_super) {
+    __extends(Menu, _super);
+
+    Menu.className = "menu";
+
+    Menu.prototype.elements = {
+      ".content": "content"
+    };
+
+    function Menu() {
+      Menu.__super__.constructor.apply(this, arguments);
+      this.html(require("components/menu/menu_layout")());
+    }
+
+    return Menu;
+
+  })(Spine.Controller);
+
+  module.exports = Menu;
+
+}).call(this);
+}, "components/menu/menu_layout": function(exports, require, module) {var content = function(__obj) {
+  if (!__obj) __obj = {};
+  var __out = [], __capture = function(callback) {
+    var out = __out, result;
+    __out = [];
+    callback.call(this);
+    result = __out.join('');
+    __out = out;
+    return __safe(result);
+  }, __sanitize = function(value) {
+    if (value && value.ecoSafe) {
+      return value;
+    } else if (typeof value !== 'undefined' && value != null) {
+      return __escape(value);
+    } else {
+      return '';
+    }
+  }, __safe, __objSafe = __obj.safe, __escape = __obj.escape;
+  __safe = __obj.safe = function(value) {
+    if (value && value.ecoSafe) {
+      return value;
+    } else {
+      if (!(typeof value !== 'undefined' && value != null)) value = '';
+      var result = new String(value);
+      result.ecoSafe = true;
+      return result;
+    }
+  };
+  if (!__escape) {
+    __escape = __obj.escape = function(value) {
+      return ('' + value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    };
+  }
+  (function() {
+    (function() {
+      __out.push('<div class="labels">Rodco</div>');
+    
+    }).call(this);
+    
+  }).call(__obj);
+  __obj.safe = __objSafe, __obj.escape = __escape;
+  return __out.join('');
+};
+module.exports = content;}, "components/newsFeed/newsFeed": function(exports, require, module) {(function() {
+  var $, NewsFeed, Spine,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  Spine = require("spine");
+
+  if (!$) {
+    $ = window.$;
+  }
+
+  NewsFeed = (function(_super) {
+    __extends(NewsFeed, _super);
+
+    NewsFeed.className = "news-feed";
+
+    NewsFeed.prototype.elements = {
+      ".content": "content"
+    };
+
+    function NewsFeed() {
+      NewsFeed.__super__.constructor.apply(this, arguments);
+      this.html(require("components/newsFeed/newsFeed_layout")());
+      this.append(require("components/newsFeed/newsFeed_layout")());
+      this.append(require("components/newsFeed/newsFeed_layout")());
+      this.append(require("components/newsFeed/newsFeed_layout")());
+      $(".kan-col-wrapper > .content-body").mouseover(function(e) {
+        var target, wrapper;
+        target = $(e.target);
+        while (!target.hasClass("content-body")) {
+          target = target.parent();
+        }
+        wrapper = target.find(".content-body-wrapper");
+        if (wrapper.height() > target.height()) {
+          $(".kanban").css("overflow", "hidden");
+          return $(".kan-col-wrapper > .content-body").one("mouseout", function() {
+            return $(".kanban").css("overflow", "scroll");
+          });
+        }
+      });
+    }
+
+    return NewsFeed;
+
+  })(Spine.Controller);
+
+  module.exports = NewsFeed;
+
+}).call(this);
+}, "components/newsFeed/newsFeed_layout": function(exports, require, module) {var content = function(__obj) {
+  if (!__obj) __obj = {};
+  var __out = [], __capture = function(callback) {
+    var out = __out, result;
+    __out = [];
+    callback.call(this);
+    result = __out.join('');
+    __out = out;
+    return __safe(result);
+  }, __sanitize = function(value) {
+    if (value && value.ecoSafe) {
+      return value;
+    } else if (typeof value !== 'undefined' && value != null) {
+      return __escape(value);
+    } else {
+      return '';
+    }
+  }, __safe, __objSafe = __obj.safe, __escape = __obj.escape;
+  __safe = __obj.safe = function(value) {
+    if (value && value.ecoSafe) {
+      return value;
+    } else {
+      if (!(typeof value !== 'undefined' && value != null)) value = '';
+      var result = new String(value);
+      result.ecoSafe = true;
+      return result;
+    }
+  };
+  if (!__escape) {
+    __escape = __obj.escape = function(value) {
+      return ('' + value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    };
+  }
+  (function() {
+    (function() {
+      __out.push('<div class="row post">\n\n    <div class="col-md-1 post-image-wrapper">\n      <img src="images/lau.png" />\n    </div>\n\n    <div class="col-md-11">\n      <div class="post-area">\n        <span class="title">Laura Sanchez</span>\n        <span class="text">ds f jknkj ds ewen wehe  d ekkddk ndkdbe du3n  manana dds dfs fsdds dsfjsjsdi oifjkewf o jsdf sfdksdop oidsajkdsoda jadkdas kals</span>\n      </div>\n\n\n\n\n      <div class="row post-actions">\n        <div class="col-md-12">\n          <a class="labels comment">Comente</a>\n          <a class="labels like">Me gusta</a>\n        </div>\n      </div>\n    \n      <div class="row post-comments"> \n\n        <div class="row inner-wrapper">\n        \n          <div class="col-md-1 ">\n            <img src="images/quiros.png">\n          </div>\n\n          <div class="col-md-11">\n            <div class="post-area">\n              <span class="title"> Rolando Quiros</span>\n              <span class="text"> ds f jknkj ds ewen wehe dd ekkddk ndkdbe du3n  manana dds dfs fsdds dsfjsjsdi oifjkewf o jsdf sfdksdop oidsajkdsoda jadkdas kals</span>\n              <div class="row post-actions">\n                <div class="col-md-11">\n                  <a class="labels comment"> Comente</a>\n                  <a class="labels like"> Me Gusta</a>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n  \n  \n      </div>\n\n      <div class="row post-new-comment">\n        <div class="row">\n          <div class="col-md-1 ">\n            <img src="images/mau.png" />\n          </div>\n\n          <div class="col-md-11">\n            <textarea class="form-control" rows="1"/>\n          </div>\n        </div>\n\n      </div>\n\n  </div>\n\n    \n</div>');
+    
+    }).call(this);
+    
+  }).call(__obj);
+  __obj.safe = __objSafe, __obj.escape = __escape;
+  return __out.join('');
+};
+module.exports = content;}
 });
 
+
+  //CSS Styles for Modules
+  var css=".post {  margin-top: 16.5px;  margin-bottom: 33px;}.post:first-child {  margin-top: 0px;}.post img {  width: 33px;  height: 31.68px;}.post .title {  display: inline-block;  margin-right: 7px;  color: #4a4b4c;  font-weight: 700;}.post .post-actions {  margin: 3px;  margin-bottom: 0px;}.post .post-actions a.labels {  display: inline-block;  margin-right: 6px;  cursor: pointer;  color: #1cb5ea;}.post .post-comments {  margin-bottom: 4px;  border-left: 1px solid #f1f2f2;}.post .post-comments a.comment {  display: none;}.post .post-new-comment {  position: relative;}.post .post-new-comment img {  display: inline-block;}.post .post-new-comment textarea {  display: inline-block;  position: absolute;  width: 90%;}";
+  
+  var head  = document.head || document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+
+  style.type = 'text/css';
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  }
+  else {
+    style.appendChild(document.createTextNode(css));
+  }
+
+  head.appendChild(style);

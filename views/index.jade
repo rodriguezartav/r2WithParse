@@ -6,53 +6,45 @@ block content
     .row.full-height
 
       .col-md-1.menu
-        h1 d 
-    
-      .col-md-11.kanban.full-height
-        .row
-          .col-md-11
-            h1 Welcome
-          .col-md-1
-            h1 O
 
-        .row.full-height
     
-          .col-md-4.kan-col-wrapper.large.social-ban
-            .kan-col
+      .col-md-11.kanban
+
+        .kanban-wrapper
+          .row
+            .col-md-11
+              h1 Welcome
+            .col-md-1
+              h1 O
+
+          .row.full-height
+  
+            .col-md-4.kan-col-wrapper.large.social-ban.kan-col
+       
               .header.blue
                 span.triangle
                 span.large-title !Buenos días Mari!
-            
+        
               .sub-header
                 .sub-title Que hay de nuevo?
-          
+      
               .content-body.scrollable
-                .news-feed
+                .news-feed.content-body-wrapper
 
 
-          .col-md-4.kan-col-wrapper.app-ban
-            .kan-col
+            .col-md-4.kan-col-wrapper.app-ban.kan-col
               .header.red
                 span.triangle
                 span.large-title Apps mas usadas
-          
+      
               .sub-header
                 .sub-title.text-center Home
-                              
+                        
               .content-body
-                .inner-wrapper
-                
-                  .row.highlight
-                    .col-md-4.app-icon.
-                      <div class="icon">
-                          <div class="gloss"></div>
-                          <div class="text">in</div>
-                      </div>
+                .inner-wrapper.content-body-wrapper
+            
+                  .row.app-highlight
 
-                    .col-md-8.app-info
-                      .title  App Name
-                      .labels d d ads ds das sd d adas das dsa dasD ASD Ad sadS AD sad sad sad sdsfds fdsf dsafd saf dsf sadf
-                      .btn.btn-danger.btn-block Abrir App
 
                 .row.app-row
                   .col-md-4
@@ -60,15 +52,15 @@ block content
                       .gloss
                       .text Ze
                     .labels Abc Bde
-                    
+                
                   .col-md-4
-                    .icon.icon-small.blue
+                    .icon.icon-small.blue.app
                       .gloss
                       .text Ah
                     .labels Abc Bde
-                  
+              
                   .col-md-4
-                    .icon.icon-small.green
+                    .icon.icon-small.green.app
                       .gloss
                       .text Yh
                     .labels Abc Bde
@@ -98,7 +90,7 @@ block content
                       .gloss
                       .text Ry
                     .labels Abc Bde
-                    
+                
                   .col-md-4
                     .icon.icon-small.gray-light
                       .gloss
@@ -132,33 +124,31 @@ block content
                     .labels Abc Bde
 
 
-          .col-md-4.kan-col-wrapper.large.metric-ban
-            .kan-col
+            .col-md-4.kan-col-wrapper.large.metric-ban.kan-col
               .header.purple
                 span.triangle
                 span.large-title Que paso con el cliente 
-            
+        
               .sub-header
                 .sub-title Todos los Clientes
-          
+    
               .content-body
-                .row
-                  .col-md-6
-                    .blue.graph
-                  .col-md-6
-                    .purple.graph
-                
-                .row
-                  .col-md-12
-                    .gray-light.graph
+                .content-body-wrapper
+                  .row
+                    .col-md-6
+                      .blue.graph
+                    .col-md-6
+                      .purple.graph
+            
+                  .row
+                    .col-md-12
+                      .gray-light.graph
 
-                .row         
-                  .col-md-6
-                    .graph.gray-light
-                  .col-md-6
-                    .graph.green        
-                
-                
-          
+                  .row         
+                    .col-md-6
+                      .graph.gray-light
+                    .col-md-6
+                      .graph.green        
+            
 
-  
+

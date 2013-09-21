@@ -31,14 +31,15 @@ module.exports = (grunt) ->
 
     grunt_appbot_compiler: {
       oneApp: {
-        appPaths: ['./app/web'],
+        appPaths: ['./app/web','./app/components/menu','./app/components/newsFeed'],
+        lessVariables: "./css/base/variables.css",
         dependencyPaths: ["jqueryify","spine"],
         destination: "./public/devBuild/web.js"
       },      
       contentBox:{
-        appPaths: ['./app/components/contentBox','./app/components/newsFeed'],
+        appPaths: ['./app/components/appHighlight'],
         lessVariables: "./css/base/variables.css",
-        destination: "./public/devBuild/contentBox.js"
+        destination: "./public/devBuild/launch-components.js"
       }
     },
 
@@ -107,7 +108,7 @@ module.exports = (grunt) ->
 
     s3:
       options: 
-        bucket: "r2.rodcocr.com",
+        bucket: "r2.stage.rodcocr.com",
         access: 'public-read',
         key: 'AKIAI6YXGEM6SDQPO3XQ',
         secret: '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'

@@ -52,8 +52,8 @@
   }
   return this.require.define;
 }).call(this)({
-  "components/newsFeed/newsFeed": function(exports, require, module) {(function() {
-  var $, NewsFeed, Spine,
+  "components/appHighlight/appHighlight": function(exports, require, module) {(function() {
+  var $, AppHighlight, Spine,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -63,31 +63,24 @@
     $ = window.$;
   }
 
-  NewsFeed = (function(_super) {
-    __extends(NewsFeed, _super);
+  AppHighlight = (function(_super) {
+    __extends(AppHighlight, _super);
 
-    NewsFeed.className = "news-feed";
+    AppHighlight.className = "";
 
-    NewsFeed.prototype.elements = {
-      ".content": "content"
-    };
-
-    function NewsFeed() {
-      NewsFeed.__super__.constructor.apply(this, arguments);
-      this.html(require("components/newsFeed/newsFeed_layout")());
-      this.append(require("components/newsFeed/newsFeed_layout")());
-      this.append(require("components/newsFeed/newsFeed_layout")());
-      this.append(require("components/newsFeed/newsFeed_layout")());
+    function AppHighlight() {
+      AppHighlight.__super__.constructor.apply(this, arguments);
+      this.html(require("components/appHighlight/appHighlight_layout")());
     }
 
-    return NewsFeed;
+    return AppHighlight;
 
   })(Spine.Controller);
 
-  module.exports = NewsFeed;
+  module.exports = AppHighlight;
 
 }).call(this);
-}, "components/newsFeed/newsFeed_layout": function(exports, require, module) {var content = function(__obj) {
+}, "components/appHighlight/appHighlight_layout": function(exports, require, module) {var content = function(__obj) {
   if (!__obj) __obj = {};
   var __out = [], __capture = function(callback) {
     var out = __out, result;
@@ -126,7 +119,7 @@
   }
   (function() {
     (function() {
-      __out.push('<div class="row post">\n\n    <div class="col-md-1 post-image-wrapper">\n      <img src="images/lau.png" />\n    </div>\n\n    <div class="col-md-11">\n      <div class="post-area">\n        <span class="title">Laura Sanchez</span>\n        <span class="text">ds f jknkj ds ewen wehe  d ekkddk ndkdbe du3n  manana dds dfs fsdds dsfjsjsdi oifjkewf o jsdf sfdksdop oidsajkdsoda jadkdas kals</span>\n      </div>\n\n\n\n\n      <div class="row post-actions">\n        <div class="col-md-12">\n          <a class="labels comment">Comente</a>\n          <a class="labels like">Me gusta</a>\n        </div>\n      </div>\n    \n      <div class="row post-comments"> \n\n        <div class="row inner-wrapper">\n        \n          <div class="col-md-1 ">\n            <img src="images/quiros.png">\n          </div>\n\n          <div class="col-md-11">\n            <div class="post-area">\n              <span class="title"> Rolando Quiros</span>\n              <span class="text"> ds f jknkj ds ewen wehe dd ekkddk ndkdbe du3n  manana dds dfs fsdds dsfjsjsdi oifjkewf o jsdf sfdksdop oidsajkdsoda jadkdas kals</span>\n              <div class="row post-actions">\n                <div class="col-md-11">\n                  <a class="labels comment"> Comente</a>\n                  <a class="labels like"> Me Gusta</a>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n  \n  \n      </div>\n\n      <div class="row post-new-comment">\n        <div class="row">\n          <div class="col-md-1 ">\n            <img src="images/mau.png" />\n          </div>\n\n          <div class="col-md-11">\n            <textarea class="form-control" rows="1"/>\n          </div>\n        </div>\n\n      </div>\n\n  </div>\n\n    \n</div>');
+      __out.push('<div class="col-md-4 app-icon full-height">\n  \n  <div class="icon red">\n    <div class="text">Ze</div>\n    </div>\n  </div>  \n  \n</div>\n\n<div class="col-md-8 app-info">\n  <div class="title">App Name</div>\n  <div class="labels"> d d ads ds das sd d adas das dsa dasD ASD Ad sadS AD sad sad sad sdsfds fdsf dsafd saf dsf sadf</div>\n  <a class="btn btn-danger btn-block"> Abrir App</a>\n</div>');
     
     }).call(this);
     
@@ -139,7 +132,7 @@ module.exports = content;}
 
 
   //CSS Styles for Modules
-  var css=".post {  margin-top: 16.5px;  margin-bottom: 33px;}.post:first-child {  margin-top: 0px;}.post img {  width: 33px;  height: 31.68px;}.post .title {  display: inline-block;  margin-right: 7px;  color: #4a4b4c;  font-weight: 700;}.post .post-actions {  margin: 3px;  margin-bottom: 0px;}.post .post-actions a.labels {  display: inline-block;  margin-right: 6px;  cursor: pointer;  color: #1cb5ea;}.post .post-comments {  margin-bottom: 4px;  border-left: 1px solid #f1f2f2;}.post .post-comments a.comment {  display: none;}.post .post-new-comment {  position: relative;}.post .post-new-comment img {  display: inline-block;}.post .post-new-comment textarea {  display: inline-block;  position: absolute;  width: 90%;}";
+  var css=".app-highlight .title {  line-height: 1.6;  color: #ee5437;}.app-highlight .icon {  width: 90%;  height: 95px;}.app-highlight .icon .text {  color: white;  font-size: 60px;  font-family: sans-serif;  line-height: 0px;  font-weight: bold;  text-align: center;}.app-highlight .labels {  margin-bottom: 6px;  line-height: 1.2;}.app-highlight .star {  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 10px solid red;}.app-highlight .star:after {  content: '';  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-top: 10px solid red;  margin: 5px 0 0 -10px;}";
   
   var head  = document.head || document.getElementsByTagName('head')[0];
   var style = document.createElement('style');
