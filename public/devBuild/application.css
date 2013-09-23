@@ -113,6 +113,7 @@ h6 {
   background: #8a8c8e;
 }
 .large-title {
+  font-family: "PT Sans", "Helvetica Neue", Helvetica, Arial;
   font-size: 20px;
   font-weight: 500;
 }
@@ -3003,6 +3004,44 @@ body {
   line-height: 50px;
   font-weight: bold;
   text-align: center;
+}
+.login-wrapper .login-box {
+  border: 1px solid #f1f2f2;
+  margin: 14px 0px 14px 0px;
+}
+.login-wrapper .login-box > div {
+  border-right: 1px solid #f1f2f2;
+  margin-bottom: 14px;
+}
+.login-wrapper .login-box .large-title {
+  color: #636466;
+  margin: 14px 0px 15px 0px;
+}
+.login-wrapper .btn-facebook,
+.login-wrapper .btn-facebook:visited {
+  border-color: #f1f2f2;
+  color: #fff;
+  background-color: #5872a7;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#637bad), to(#5872a7));
+  background-image: -webkit-linear-gradient(#637bad, #5872a7);
+  background-image: -moz-linear-gradient(#637bad, #5872a7);
+  background-image: -ms-linear-gradient(#637bad, #5872a7);
+  background-image: -o-linear-gradient(#637bad, #5872a7);
+  background-image: linear-gradient(#637bad, #5872a7);
+  -webkit-box-shadow: inset 0 1px 0 #879ac0;
+  box-shadow: inset 0 1px 0 #879ac0;
+}
+.login-wrapper .btn-salesforce {
+  border-color: #e6e6e6;
+  color: #fff;
+  background-color: #2789c7;
+  background-image: -webkit-linear-gradient(#2789c7, #3f9fd9);
+  background-image: -moz-linear-gradient(#2789c7, #3f9fd9);
+  background-image: -ms-linear-gradient(#2789c7, #3f9fd9);
+  background-image: -o-linear-gradient(#2789c7, #3f9fd9);
+  background-image: linear-gradient(#2789c7, #3f9fd9);
+  -webkit-box-shadow: inset 0 1px 0 #879ac0;
+  box-shadow: inset 0 1px 0 #879ac0;
 }
 .menu .labels {
   color: #fff;

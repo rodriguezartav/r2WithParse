@@ -1,5 +1,5 @@
 class Helper
-  
+   
   @randomChars: (len) ->
     chars = '';
 
@@ -16,7 +16,8 @@ module.exports = (grunt) ->
   grunt.initConfig
     
     clean:
-      tests: ['public/style','public/script','test/unit/*.js']
+      app: ['public/style','public/script']
+      test: ['test/unit/*.js','test/functional/*.js','test/integration/*.js']
 
     copy: 
       main: 
@@ -27,37 +28,62 @@ module.exports = (grunt) ->
         files:
           "./public/devBuild/application.css" : "./css/index.less"
 
-
-
     grunt_appbot_compiler: {
-      oneApp: {
-        appPaths: ['./app/web','./app/components/menu','./app/components/newsFeed'],
-        lessVariables: "./css/base/variables.css",
-        dependencyPaths: ["jqueryify","spine"],
-        destination: "./public/devBuild/web.js"
+      r2: {
+        appPaths: ['./app/r2','./app/web_components/menu','./app/web_components/newsFeed'],
+        lessVariables: "./css/base/variables.less",
+        dependencyPaths: ["jqueryify","rspine","rspine/lib/ajax"],
+        destination: "./public/devBuild/r2.js"
       },      
       contentBox:{
-        appPaths: ['./app/components/appHighlight'],
-        lessVariables: "./css/base/variables.css",
+        appPaths: ['./app/web_components/appHighlight','./app/web_components/appMenu','./app/web_components/appMetrics','./app/web_components/breadcrum'],
+        lessVariables: "./css/base/variables.less",
         destination: "./public/devBuild/launch-components.js"
       }
     },
 
     coffee:
-      testFiles:
+      
+      unit:
         expand: true,
         flatten: true,
-        cwd: './test/unit/src',
-        src: ['*.coffee'],
+        cwd: './test/unit_src/',
+        src: ['**/*.coffee'],
         dest: './test/unit/',
         ext: '.js'        
 
+      functional:
+        expand: true,
+        flatten: true,
+        cwd: './test/functional_src/',
+        src: ['**/*.coffee'],
+        dest: './test/functional/',
+        ext: '.js'
+
+      integration:
+        expand: true,
+        flatten: true,
+        cwd: './test/integration_src/',
+        src: ['**/*.coffee'],
+        dest: './test/integration/',
+        ext: '.js'
+
     mochaTest:
-      test:
+      unit:
         options:
           reporter: 'spec'
         src: ['test/unit/*.js']
         
+      functional:
+        options:
+          reporter: 'spec'
+        src: ['test/functional/*.js']
+
+      integration:
+        options:
+          reporter: 'spec'
+        src: ['test/integration/*.js']
+
     watch:
       css:
         files: ["./css/*.less","./css/**/*.less"]
@@ -71,31 +97,39 @@ module.exports = (grunt) ->
         files: ["./views/*.jade","./views/**/*.jade"]
         tasks: ["jade"]
 
+
     jade: 
       production: 
         files:
           "./public/index.html": ["./views/index.jade"]
-          "./public/gettingstarted.html": ["./views/gettingstarted.jade"]
-          "./public/frontend.html": ["./views/frontend.jade"]
-          "./public/standards.html": ["./views/standards.jade"]
+          "./public/login.html": ["./views/login.jade"]
         options: 
           data: 
             build: build
             path: ""
+            apiServer: ""
 
       dev: 
         files:
           "./public/index.html": ["./views/index.jade"]
-          "./public/gettingstarted.html": ["./views/gettingstarted.jade"]
-          "./public/frontend.html": ["./views/frontend.jade"]
-          "./public/standards.html": ["./views/standards.jade"]
-          "./public/tasks.html": ["./views/tasks.jade"]
-          "./public/api.html": ["./views/api.jade"]
+          "./public/login.html": ["./views/login.jade"]
 
         options:
           data:
             build: "devBuild"
             path: ""
+            apiServer: "http://localhost:3000"
+
+      test: 
+        files:
+          "./public/index.html": ["./views/index.jade"]
+          "./public/login.html": ["./views/login.jade"]
+
+        options:
+          data:
+            build: "devBuild"
+            path: ""
+            apiServer: "http://localhost:3001"
 
     express:
       all: 
@@ -137,7 +171,13 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-s3');  
 
-  grunt.registerTask('test', ["clean",'coffee',"grunt_appbot_compiler","mochaTest"]);   
+  grunt.registerTask('test', ["clean:test",'coffee',"jade:test","grunt_appbot_compiler","mochaTest"]);   
+
+  grunt.registerTask('test_unit', ["clean:test",'coffee',"jade:test","grunt_appbot_compiler","mochaTest:unit"]); 
+
+  grunt.registerTask('test_functional', ["clean:test",'coffee',"jade:test","grunt_appbot_compiler","mochaTest:functional"]); 
+
+  grunt.registerTask('test_integration', ["clean:test",'coffee',"jade:test","grunt_appbot_compiler","mochaTest:integration"]); 
 
   grunt.registerTask('build', ['coffee' , "test" , "grunt_appbot_compiler" , "jade:production","s3"]);   
 

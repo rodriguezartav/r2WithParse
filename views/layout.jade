@@ -6,15 +6,20 @@ html
 
     link(href='http://fonts.googleapis.com/css?family=PT+Sans:400,700|Asap:400,700',rel='stylesheet',type='text/css')
 
-    script(src="#{path}/#{build}/web.js")
+    script(src="#{path}/#{build}/r2.js")
 
+    script(type='text/javascript', charset='utf-8').
+      if(localStorage.session == null || localStorage.session == undefined){
+        window.location.href = "/login.html";
+      }
+      
     script(type='text/javascript', charset='utf-8').
       var jQuery  = require("jqueryify");
       var exports = this;
       jQuery(function(){
         var App = require("index");
         window.src = { path: "#{path}" , build: "#{build}" }
-        exports.app =  new App({ el: $("body") }); 
+        exports.app =  new App({ el: $("body") , layout: "web", }); 
       });
 
 
