@@ -17,7 +17,7 @@
       this.app.use(express.bodyParser());
       this.server = this.app.listen(3001);
       this.app.get("/salesforce/login", function(req, res) {
-        return res.redirect("http://localhost:7770/login.html");
+        return res.send("ok");
       });
       return done();
     });

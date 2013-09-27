@@ -1,21 +1,19 @@
 RSpine = require("rspine")     
-require("lib/setup")
+require("lib/setup") 
 Session = require("models/session")
-
 User = require("models/user")
-
-
+         
 class App extends RSpine.Controller
-    
+  
   elements:
     ".app-highlight" : "appHighlight"
     ".kanban" : "kanban"
     ".kanban-wrapper" : "kanbanWrapper"
  
-  loginStage: 
+  loginStage:
     "login" : ".login-wrapper"
 
-  ignitionStage: 
+  ignitionStage:
     "newsFeed"  :  ".news-feed" 
     "menu"      :  ".menu"
     
@@ -32,9 +30,10 @@ class App extends RSpine.Controller
     Session.createFromQuery(@session)
     User.create id: RSpine.session.user.id
 
+    User.query("select name from User__c");
+
     @requireComponents(@ignitionStage)  
     @initLaunchStage()
-
 
   initLaunchStage: ->  
     LazyLoad.js "#{window.src.path}/#{window.src.build}/launch-components.js", =>

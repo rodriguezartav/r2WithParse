@@ -13,6 +13,8 @@ module.exports = (grunt) ->
 
   build = Helper.randomChars(5)
 
+  apiServer = "http://localhost:9293"
+
   grunt.initConfig
     
     clean:
@@ -32,7 +34,7 @@ module.exports = (grunt) ->
       r2: {
         appPaths: ['./app/r2','./app/web_components/menu','./app/web_components/newsFeed'],
         lessVariables: "./css/base/variables.less",
-        dependencyPaths: ["jqueryify","rspine","rspine/lib/ajax"],
+        dependencyPaths: ["jqueryify","rspine","rspine/lib/salesforceAjax","rspine/lib/salesforceModel","rspine/lib/offlineModel","rspine/lib/realtimeModel"],
         destination: "./public/devBuild/r2.js"
       },      
       contentBox:{
@@ -129,7 +131,7 @@ module.exports = (grunt) ->
           data:
             build: "devBuild"
             path: ""
-            apiServer: "http://localhost:3001"
+            apiServer: apiServer
 
     express:
       all: 

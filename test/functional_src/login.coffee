@@ -15,7 +15,7 @@ describe 'pages', ->
     @server = @app.listen 3001
 
     @app.get "/salesforce/login" , (req,res) ->
-      res.redirect "http://localhost:7770/login.html"
+      res.send "ok"
 
     done()
 
