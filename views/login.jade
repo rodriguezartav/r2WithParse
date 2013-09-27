@@ -12,6 +12,20 @@ html
       if(localStorage.session != null && localStorage.session != undefined){
         window.location.href = "/";
       }
+      
+      var jQuery  = require("jqueryify");
+      var RSpine  = require("rspine");
+      require('rspine/lib/salesforceAjax')
+      
+      var base = new RSpine.Ajax.Base();
+      var request = base.ajaxQueue({}, {
+        type: 'GET',
+        url:"#{apiServer}/sessions/salesforce/login"
+      }).fail(function(data){
+        console.log(data);
+        window.location.href = data.responseText;
+      });
+
 
   body.fullHeight
 
@@ -53,7 +67,7 @@ html
                                   <div class="col-md-6 col-md-offset-">
                                     <div  class="large-title text-center">Employees & Partners</div>
 
-                                  <a href="#{apiServer}/sessions/salesforce/login" class="btn btn-salesforce btn-lg btn-block">
+                                  <a class="btn btn-salesforce btn-lg btn-block">
                                       Sign in with <b>Salesforce</b>
                                   </a>
                                   </div>

@@ -1,9 +1,11 @@
 RSpine = require('rspine')
 
 class User extends RSpine.Model
-  @configure "User", "Name" , "SmallPhotoUrl", "Perfil" ,  "FirstName" , "Online"  , "Status" , "LastUpdate"
-  @extend RSpine.Model.SalesforceAjax
+  @configure "User", "Name" , "SmallPhotoUrl" ,  "FirstName" , "Online"  , "Status" , "LastUpdate"
+  @extend RSpine.Model.Ajax
   @extend RSpine.Model.SalesforceModel
+  
+  @avoidQueryList= ["Online","Status","LastUpdate"]
   
   @standardObject = true
 

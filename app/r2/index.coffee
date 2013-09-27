@@ -5,11 +5,11 @@ User = require("models/user")
          
 class App extends RSpine.Controller
   
-  elements:
+  elements:   
     ".app-highlight" : "appHighlight"
     ".kanban" : "kanban"
     ".kanban-wrapper" : "kanbanWrapper"
- 
+
   loginStage:
     "login" : ".login-wrapper"
 
@@ -26,11 +26,13 @@ class App extends RSpine.Controller
   constructor: ->
     super
     @html require("layout_#{@layout}")()
-    RSpine.Model.host = @apiServer; 
+    RSpine.Model.salesforceHost = @apiServer + "/salesforce";
     Session.createFromQuery(@session)
-    User.create id: RSpine.session.user.id
 
-    User.query("select name from User__c");
+    RSpine.bind "platform:login_invalid" , ->
+      #  window.location = "/login.html"
+
+    User.fetch({}, query: true);
 
     @requireComponents(@ignitionStage)  
     @initLaunchStage()
