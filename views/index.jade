@@ -35,10 +35,90 @@ html
       jQuery(function(){
         var App = require("index");
         window.src = { path: "#{path}" , build: "#{build}" }
-        exports.app =  new App({ el: $("body") , layout: layout, session: queryString["session"], apiServer: apiServer }); 
+        //exports.app =  new App({ el: $("body") , layout: layout, session: queryString["session"], apiServer: apiServer }); 
       });
-
-
+      
+      
   body.fullHeight
-
-
+  
+  .outer-container.full-height
+    .row.full-height
+      .col-md-1.menu
+      
+      .kanban
+        .kanban-wrapper
+          .row
+            .col-md-8
+              h1 Pedidos
+            .col-md-3
+              .tittle.text-center Crear un Pedido
+            .col-md-1
+              .button.icon-create
+              
+          .app-wrapper
+            .row.full-height
+              
+              .col-md-3.kan-col
+                .header.blue
+                  span.triangle
+                  span.large-title Proformas
+                .sub-header
+                  .sub-title Cliente
+                .content-body
+                  .title 3 Dias atras
+                .content-body
+                  .text Deposito La Maravilla
+                .content-body
+                  .text Hogar y Ferreteria
+                .content-body
+                  .text Taller Industrial
+                .content-body
+                  .title 8 dias atras
+                .content-body
+                  .text Ferreteria y Materiales Orosi
+                .content-body
+                  .text Mundillaves
+                  
+              .col-md-3.kan-col
+                .header.red
+                  span.triangle
+                  span.large-title Guardados
+                .sub-header
+                  .sub-title Cliente
+                .content-body
+                  .title 3 Dias atras
+                .content-body
+                  .text Deposito La Maravilla
+                .content-body
+                  .text Hogar y Ferreteria
+                .content-body
+                  .text Taller Industrial
+                .content-body
+                  .title 8 dias atras
+                .content-body
+                  .text Ferreteria y Materiales Orosi
+                .content-body
+                  .text Mundillaves
+                  
+              .col-md-3.kan-col
+                .header.purple
+                  span.triangle
+                  span.large-title Pendientes
+                .sub-header
+                  .sub-title Todos los Clientes
+                .content-body.scrollable
+                                    
+              .col-md-3.kan-col
+                .header.green
+                  span.triangle
+                  span.large-title Aprovados
+                .sub-header
+                  .sub-title Todos los Clientes
+                .content-body.scrollable
+                  
+                  
+                  
+                  
+                  
+                  
+                      
