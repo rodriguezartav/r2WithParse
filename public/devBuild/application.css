@@ -117,6 +117,10 @@ h6 {
   font-size: 20px;
   font-weight: 500;
 }
+.app-header {
+  font-size: 24px;
+  color: #8a8c8e;
+}
 .title {
   font-size: 12px;
   font-weight: 700;
@@ -1552,15 +1556,15 @@ textarea.input-sm {
   height: auto;
 }
 .input-lg {
-  height: 41px;
+  height: 48px;
   padding: 10px 16px;
-  font-size: 15px;
+  font-size: 20px;
   line-height: 1.33;
   border-radius: 6px;
 }
 select.input-lg {
-  height: 41px;
-  line-height: 41px;
+  height: 48px;
+  line-height: 48px;
 }
 textarea.input-lg {
   height: auto;
@@ -2000,7 +2004,7 @@ fieldset[disabled] .btn-link:focus {
 }
 .btn-lg {
   padding: 10px 16px;
-  font-size: 15px;
+  font-size: 20px;
   line-height: 1.33;
   border-radius: 6px;
 }
@@ -3062,7 +3066,7 @@ body {
   color: #fff;
   text-align: center;
   margin-top: 10px;
-  font-size: 15px;
+  font-size: 20px;
 }
 .button-large {
   font-size: 12px;
@@ -3072,7 +3076,7 @@ body {
   padding: 0 10px;
   color: #b3b3b3;
   cursor: pointer;
-  width: 300px;
+  width: 100%;
   overflow: hidden;
   position: relative;
 }
@@ -3088,6 +3092,7 @@ body {
   position: absolute;
   left: 0px;
   padding: 0 20px 0 10px;
+  background: #f6f6f6;
   top: 66px;
   -webkit-transition: 0.3s all ease-in-out;
   -moz-transition: 0.3s all ease-in-out;
