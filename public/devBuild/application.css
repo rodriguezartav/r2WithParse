@@ -3079,6 +3079,10 @@ body {
   width: 100%;
   overflow: hidden;
   position: relative;
+  text-align: right;
+}
+.button-large span {
+  margin-right: 10px;
 }
 .button-large .original-text {
   display: inline-block;
@@ -3090,25 +3094,30 @@ body {
 }
 .button-large .hover-text {
   position: absolute;
-  left: 0px;
-  padding: 0 20px 0 10px;
-  background: #f6f6f6;
+  right: 33px;
+  padding: 0 10px;
+  background: #ffffff;
   top: 66px;
+  opacity: 0;
   -webkit-transition: 0.3s all ease-in-out;
   -moz-transition: 0.3s all ease-in-out;
   -ms-transition: 0.3s all ease-in-out;
   -o-transition: 0.3s all ease-in-out;
   transition: 0.3s all ease-in-out;
 }
-.button-large:hover {
-  box-shadow: 0px 0px 0px 1px #e6e6e6;
-}
 .button-large:hover .original-text {
   position: relative;
   top: -66px;
+  opacity: 0;
+  -webkit-transition: 0.3s all ease-in-out;
+  -moz-transition: 0.3s all ease-in-out;
+  -ms-transition: 0.3s all ease-in-out;
+  -o-transition: 0.3s all ease-in-out;
+  transition: 0.3s all ease-in-out;
 }
 .button-large:hover .hover-text {
-  top: 0px;
+  top: 0;
+  opacity: 1;
 }
 .button-large:hover .icon-create {
   fill: #ee5437;
@@ -3123,7 +3132,7 @@ body {
 .icon {
   float: right;
   height: 50%;
-  width: 66px;
+  max-width: 33px;
   margin-top: 16px;
   display: inline-block;
   -webkit-transition: 0.3s all ease-in-out;

@@ -9,7 +9,7 @@ require('rspine/lib/salesforceAjax')
 var base = new RSpine.Ajax.Base();
 var request = base.ajaxQueue({}, {
   type: 'GET',
-  url:"http://local.host.com:9293/sessions/salesforce/login"
+  url:"http://localhost:3000/sessions/salesforce/login"
 }).fail(function(data){
   console.log(data);
   window.location.href = data.responseText;
@@ -27,7 +27,7 @@ var request = base.ajaxQueue({}, {
         
                 <div class="col-md-6 col-md-offset-">
                   <div class="large-title text-center">Customers & Visitors</div>
-                  <a href="http://local.host.com:9293/facebook/login" class="btn btn-lg btn-block btn-facebook large">
+                  <a href="http://localhost:3000/facebook/login" class="btn btn-lg btn-block btn-facebook large">
                       Sign in with <b>Facebook</b>
                   </a>
                 </div>
