@@ -7927,6 +7927,7 @@ var fxNow, timerId,
 			if ( start && start[ 3 ] !== unit ) {
 				// Trust units reported by jQuery.css
 				unit = unit || start[ 3 ];
+<<<<<<< HEAD
 
 				// Make sure we update the tween properties later on
 				parts = parts || [];
@@ -7943,6 +7944,24 @@ var fxNow, timerId,
 					start = start / scale;
 					jQuery.style( tween.elem, prop, start + unit );
 
+=======
+
+				// Make sure we update the tween properties later on
+				parts = parts || [];
+
+				// Iteratively approximate from a nonzero starting point
+				start = +target || 1;
+
+				do {
+					// If previous iteration zeroed out, double until we get *something*
+					// Use a string for doubling factor so we don't accidentally see scale as unchanged below
+					scale = scale || ".5";
+
+					// Adjust and apply
+					start = start / scale;
+					jQuery.style( tween.elem, prop, start + unit );
+
+>>>>>>> 243ed8c21730010fe1d6cc6f83b9e7b951e6b906
 				// Update scale, tolerating zero or NaN from tween.cur()
 				// And breaking the loop if scale is unchanged or perfect, or if we've just had enough
 				} while ( scale !== (scale = tween.cur() / target) && scale !== 1 && --maxIterations );
