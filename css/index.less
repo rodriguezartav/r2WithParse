@@ -16,14 +16,67 @@
 @import "components/menu.less";
 
 
-.button {
-  width: 33px;
-  height: 33px;
-  color: #1cb5ea;
+.button-large {
+  font-size: 12px;
+  text-transform: uppercase;
+  height: 66px;
+  line-height: 66px;
+  padding: 0 10px;
+  color: #b3b3b3;
+  cursor: pointer;
+  width: 300px;
+  overflow: hidden;
+  position: relative;
 }
-
-.icon-create{
-  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMzNweCIgaGVpZ2h0PSIzM3B4IiB2aWV3Qm94PSIwIDAgMzMgMzMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDMzIDMzIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxnPg0KCTxsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHgxPSIzMy4xMzciIHkxPSIxNi42MTEiIHgyPSIwLjEzOCIgeTI9IjE2LjYxMSIvPg0KCTxsaW5lIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHgxPSIxNi42MzgiIHkxPSIzMy4xMTEiIHgyPSIxNi42MzgiIHkyPSIwLjExMiIvPg0KPC9nPg0KPC9zdmc+DQo=);
-  //color: #1cb5ea;
+.button-large .original-text {
+  display: inline-block;
+  -webkit-transition: .3s all ease-in-out;
+  -moz-transition: .3s all ease-in-out;
+  -ms-transition: .3s all ease-in-out;
+  -o-transition: .3s all ease-in-out;
+  transition: .3s all ease-in-out;
+}
+.button-large .hover-text {
+  position:absolute;
+  left: 0px;
+  padding: 0 20px 0 10px;
+  //background: #f6f6f6;
+  top:66px;
+  -webkit-transition: .3s all ease-in-out;
+  -moz-transition: .3s all ease-in-out;
+  -ms-transition: .3s all ease-in-out;
+  -o-transition: .3s all ease-in-out;
+  transition: .3s all ease-in-out;
+}
+.button-large:hover {
+  box-shadow: 0px 0px 0px 1px #e6e6e6;
+}
+.button-large:hover .original-text {
+  position: relative;
+  top: -66px;
+}
+.button-large:hover .hover-text {
+  top: 0px;
+}
+.button-large:hover .icon-create {
+  fill:#ee5437;
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg); /* IE 9 */
+  -webkit-transform: rotate(45deg); /* Safari and Chrome */
+}
+.icon {
+  float: right;
+  height: 50%;
+  width: 66px;
+  margin-top: 16px;
+  display: inline-block;
+  -webkit-transition: .3s all ease-in-out;
+  -moz-transition: .3s all ease-in-out;
+  -ms-transition: .3s all ease-in-out;
+  -o-transition: .3s all ease-in-out;
+  transition: .3s all ease-in-out;
+}
+.icon-create {
+  fill: #1cb5ea;
 }
 
