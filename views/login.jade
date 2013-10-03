@@ -2,16 +2,29 @@ doctype 5
 html
   head
     title= R
-    link(rel="stylesheet", type="text/css", href="#{path}/#{build}/application.css")
+    link(rel="stylesheet", type="text/css", href="#{path}/r2.css")
 
     link(href='http://fonts.googleapis.com/css?family=PT+Sans:400,700|Asap:400,700',rel='stylesheet',type='text/css')
 
-    script(src="#{path}/#{build}/r2.js")
+    script(src="#{path}/r2.js")
 
     script(type='text/javascript', charset='utf-8').
       if(localStorage.session != null && localStorage.session != undefined){
         window.location.href = "/";
       }
+      
+      var jQuery  = require("jqueryify");
+      var RSpine  = require("rspine");
+      require('rspine/lib/salesforceAjax')
+      
+      var base = new RSpine.Ajax.Base();
+      var request = base.ajaxQueue({}, {
+        type: 'GET',
+        url:"#{apiServer}/sessions/salesforce/login"
+      }).fail(function(data){
+        window.location.href = data.responseText;
+      });
+
 
   body.fullHeight
 
@@ -26,7 +39,7 @@ html
           .kanban-wrapper
             .row
               .col-md-12
-                h1 R2Rodco
+                h1 R2Rodco 
 
             .row.full-height
   
@@ -53,7 +66,7 @@ html
                                   <div class="col-md-6 col-md-offset-">
                                     <div  class="large-title text-center">Employees & Partners</div>
 
-                                  <a href="#{apiServer}/salesforce/login" class="btn btn-salesforce btn-lg btn-block">
+                                  <a class="btn btn-salesforce btn-lg btn-block">
                                       Sign in with <b>Salesforce</b>
                                   </a>
                                   </div>

@@ -10717,54 +10717,7 @@ module.exports = window.jQuery;
   }
 
 }).call(this);
-}, "index": function(exports, require, module) {undefined}, "layout_web": function(exports, require, module) {var content = function(__obj) {
-  if (!__obj) __obj = {};
-  var __out = [], __capture = function(callback) {
-    var out = __out, result;
-    __out = [];
-    callback.call(this);
-    result = __out.join('');
-    __out = out;
-    return __safe(result);
-  }, __sanitize = function(value) {
-    if (value && value.ecoSafe) {
-      return value;
-    } else if (typeof value !== 'undefined' && value != null) {
-      return __escape(value);
-    } else {
-      return '';
-    }
-  }, __safe, __objSafe = __obj.safe, __escape = __obj.escape;
-  __safe = __obj.safe = function(value) {
-    if (value && value.ecoSafe) {
-      return value;
-    } else {
-      if (!(typeof value !== 'undefined' && value != null)) value = '';
-      var result = new String(value);
-      result.ecoSafe = true;
-      return result;
-    }
-  };
-  if (!__escape) {
-    __escape = __obj.escape = function(value) {
-      return ('' + value)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-    };
-  }
-  (function() {
-    (function() {
-      __out.push('<div class="outer-container full-height">\n  <div class="row full-height">\n    <div class="col-md-1 menu"></div>\n    <div class="col-md-11 kanban">\n      <div class="kanban-wrapper">\n        \n        \n        <div class="row breadcrum">\n        </div>\n        \n        \n        <div class="row full-height">\n          \n          \n          <div class="col-md-4 kan-col-wrapper large social-ban kan-col">\n            <div class="header blue"><span class="triangle"></span><span class="large-title">!Buenos días Mari!</span></div>\n            <div class="sub-header">\n              <div class="sub-title">Que hay de nuevo?</div>\n            </div>\n            <div class="content-body scrollable">\n              <div class="news-feed content-body-wrapper"></div>\n            </div>\n          </div>\n          \n          \n          \n          \n          <div class="col-md-4 kan-col-wrapper app-ban kan-col">\n            <div class="header red"><span class="triangle"></span><span class="large-title">Apps mas usadas</span></div>\n            <div class="sub-header">\n              <div class="sub-title text-center">Home</div>\n            </div>\n            <div class="content-body">\n              <div class="inner-wrapper content-body-wrapper">\n                <div class="row app-highlight"></div>\n              </div>\n              \n              <div class="app-menu">\n              </div>\n              \n            </div>\n          </div>\n          \n          <div class="col-md-4 kan-col-wrapper large metric-ban kan-col">\n            <div class="header purple"><span class="triangle"></span><span class="large-title">Que paso con el cliente </span></div>\n            <div class="sub-header">\n              <div class="sub-title">Todos los Clientes</div>\n            </div>\n            <div class="content-body">\n              <div class="content-body-wrapper">\n    \n                <div class="app-metrics"></div>\n    \n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>');
-    
-    }).call(this);
-    
-  }).call(__obj);
-  __obj.safe = __objSafe, __obj.escape = __escape;
-  return __out.join('');
-};
-module.exports = content;}, "lib/lazyload": function(exports, require, module) {/*jslint browser: true, eqeqeq: true, bitwise: true, newcap: true, immed: true, regexp: false */
+}, "lib/lazyload": function(exports, require, module) {/*jslint browser: true, eqeqeq: true, bitwise: true, newcap: true, immed: true, regexp: false */
 
 /**
 LazyLoad makes it easy and painless to lazily load one or more external
@@ -11215,7 +11168,7 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
       return _ref;
     }
 
-    ChatterNews.configure("ChatterNews", "actor", "body", "comments", "likes", "url");
+    ChatterNews.configure("ChatterNews", "actor", "body", "comments", "likes", "url", "photoUrl");
 
     return ChatterNews;
 
@@ -11240,7 +11193,7 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
     Session.createFromQuery = function(sourceData) {
       var parts, session;
       Session.destroyAll();
-      session = Session.create(JSON.parse(sourceData));
+      session = Session.create(JSON.parse(sourceData.session));
       parts = session.user.id.split("/");
       session.userId = parts[parts.length - 1];
       session.orgId = parts[parts.length - 2];
@@ -11319,6 +11272,67 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
   })(RSpine.Model);
 
   module.exports = User;
+
+}).call(this);
+}, "r2": function(exports, require, module) {(function() {
+  var App, RSpine, Session,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  RSpine = require("rspine");
+
+  require("lib/setup");
+
+  Session = require("models/session");
+
+  App = (function(_super) {
+    __extends(App, _super);
+
+    function App() {
+      var queryString, session,
+        _this = this;
+      App.__super__.constructor.apply(this, arguments);
+      RSpine.app = this;
+      queryString = this.getQueryParams(document.location.search);
+      if (queryString["session"] === null || queryString["session"] === void 0) {
+        window.location.href = "/login.html";
+      }
+      RSpine.Model.salesforceHost = this.apiServer + "/salesforce";
+      session = Session.createFromQuery(queryString);
+      RSpine.jsPath = "" + this.path + "/" + RSpine.session.orgId + "/";
+      RSpine.getImage = function(url) {
+        return RSpine.Model.salesforceHost + "/photo?url=" + url;
+      };
+      RSpine.bind("platform:login_invalid", function() {
+        return window.location = "/login.html";
+      });
+      LazyLoad.js("" + RSpine.jsPath + "/initApp.js", function() {
+        var InitApp, initApp;
+        InitApp = require("initApp");
+        initApp = new InitApp({
+          el: "body"
+        });
+        return RSpine.trigger("platform:initApp_loaded");
+      });
+    }
+
+    App.prototype.getQueryParams = function(qs) {
+      var params, re, tokens;
+      tokens = null;
+      re = /[?&]?([^=]+)=([^&]*)/g;
+      params = {};
+      qs = qs.split("+").join(" ");
+      while (tokens = re.exec(qs)) {
+        params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+      }
+      return params;
+    };
+
+    return App;
+
+  })(RSpine.Controller);
+
+  module.exports = App;
 
 }).call(this);
 }, "components/menu/menu": function(exports, require, module) {(function() {
@@ -11401,7 +11415,7 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
   return __out.join('');
 };
 module.exports = content;}, "components/newsFeed/newsFeed": function(exports, require, module) {(function() {
-  var $, NewsFeed, RSpine, Session,
+  var $, ChatterNews, NewsFeed, RSpine, Session,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -11413,6 +11427,8 @@ module.exports = content;}, "components/newsFeed/newsFeed": function(exports, re
 
   Session = require("models/session");
 
+  ChatterNews = require("models/chatterNews");
+
   NewsFeed = (function(_super) {
     __extends(NewsFeed, _super);
 
@@ -11423,15 +11439,24 @@ module.exports = content;}, "components/newsFeed/newsFeed": function(exports, re
     };
 
     function NewsFeed() {
-      var base, request;
+      var base, request,
+        _this = this;
       NewsFeed.__super__.constructor.apply(this, arguments);
       base = new RSpine.Ajax.Base();
       request = base.ajaxQueue({}, {
         type: 'GET',
         url: RSpine.Model.salesforceHost + ("/api?path=/services/data/v24.0/chatter/feeds/news/" + (Session.first().userId) + "/feed-items")
       });
-      request.fail(function(data) {
-        return console.log(data);
+      request.done(function(response) {
+        var item, _i, _len, _ref;
+        console.log(response.items);
+        _ref = response.items;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          item = _ref[_i];
+          ChatterNews.create(item);
+        }
+        console.log(ChatterNews.all());
+        return _this.html(require("components/newsFeed/newsFeed_item")(ChatterNews.all()));
       });
       $(".kan-col-wrapper > .content-body").mouseover(function(e) {
         var target, wrapper;
@@ -11456,7 +11481,13 @@ module.exports = content;}, "components/newsFeed/newsFeed": function(exports, re
   module.exports = NewsFeed;
 
 }).call(this);
-}, "components/newsFeed/newsFeed_layout": function(exports, require, module) {var content = function(__obj) {
+}, "components/newsFeed/newsFeed_item": function(exports, require, module) {module.exports = function(values, data){ 
+  var $  = jQuery, result = $();
+  values = $.makeArray(values);
+  data = data || {};
+  for(var i=0; i < values.length; i++) {
+    var value = $.extend({}, values[i], data, {index: i});
+    var elem  = $((function(__obj) {
   if (!__obj) __obj = {};
   var __out = [], __capture = function(callback) {
     var out = __out, result;
@@ -11495,24 +11526,62 @@ module.exports = content;}, "components/newsFeed/newsFeed": function(exports, re
   }
   (function() {
     (function() {
-      __out.push('<div class="row post">\n\n    <div class="col-md-1 post-image-wrapper">\n      <img src="images/lau.png" />\n    </div>\n\n    <div class="col-md-11">\n      <div class="post-area">\n        <span class="title">Laura Sanchez</span>\n        <span class="text">ds f jknkj ds ewen wehe  d ekkddk ndkdbe du3n  manana dds dfs fsdds dsfjsjsdi oifjkewf o jsdf sfdksdop oidsajkdsoda jadkdas kals</span>\n      </div>\n\n\n\n\n      <div class="row post-actions">\n        <div class="col-md-12">\n          <a class="labels comment">Comente</a>\n          <a class="labels like">Me gusta</a>\n        </div>\n      </div>\n    \n      <div class="row post-comments"> \n\n        <div class="row inner-wrapper">\n        \n          <div class="col-md-1 ">\n            <img src="images/quiros.png">\n          </div>\n\n          <div class="col-md-11">\n            <div class="post-area">\n              <span class="title"> Rolando Quiros</span>\n              <span class="text"> ds f jknkj ds ewen wehe dd ekkddk ndkdbe du3n  manana dds dfs fsdds dsfjsjsdi oifjkewf o jsdf sfdksdop oidsajkdsoda jadkdas kals</span>\n              <div class="row post-actions">\n                <div class="col-md-11">\n                  <a class="labels comment"> Comente</a>\n                  <a class="labels like"> Me Gusta</a>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n  \n  \n      </div>\n\n      <div class="row post-new-comment">\n        <div class="row">\n          <div class="col-md-1 ">\n            <img src="images/mau.png" />\n          </div>\n\n          <div class="col-md-11">\n            <textarea class="form-control" rows="1"/>\n          </div>\n        </div>\n\n      </div>\n\n  </div>\n\n    \n</div>');
+      var RSpine, comment, _i, _len, _ref;
+    
+      RSpine = require("rspine");
+    
+      __out.push('\n\n<div class="row post">\n\n  <div class="col-md-1 post-image-wrapper">\n    <img src="');
+    
+      __out.push(__sanitize(RSpine.getImage(this.photoUrl)));
+    
+      __out.push('" />\n  </div>\n\n  <div class="col-md-11">\n    <div class="post-area">\n      <span class="title">');
+    
+      __out.push(__sanitize(this.actor.name));
+    
+      __out.push('</span>\n      <span class="text">');
+    
+      __out.push(__sanitize(this.body.text));
+    
+      __out.push('</span>\n    </div>\n\n    <div class="row post-actions">\n      <div class="col-md-12">\n        <a class="labels like">Me gusta (');
+    
+      __out.push(__sanitize(this.likes.total));
+    
+      __out.push(')</a>\n      </div>\n    </div>\n  \n    <div class="row post-comments"> \n      ');
+    
+      _ref = this.comments.comments;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        comment = _ref[_i];
+        __out.push('\n        <div class="row inner-wrapper">\n      \n          <div class="col-md-1 ">\n            <img src="');
+        __out.push(__sanitize(RSpine.getImage(comment.user.photo.smallPhotoUrl)));
+        __out.push('">\n          </div>\n\n          <div class="col-md-11">\n            <div class="post-area">\n              <span class="title">');
+        __out.push(__sanitize(comment.user.name));
+        __out.push('</span>\n              <span class="text">');
+        __out.push(__sanitize(comment.body.text));
+        __out.push('</span>\n              <div class="row post-actions">\n                <div class="col-md-11">\n                  <a class="labels like"> Me Gusta (');
+        __out.push(__sanitize(this.likes.total));
+        __out.push(')</a>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      ');
+      }
+    
+      __out.push('\n    </div>\n\n    <div class="row post-new-comment">\n      <div class="row">\n        <div class="col-md-1 ">\n          <img src="');
+    
+      __out.push(__sanitize(RSpine.getImage(RSpine.session.user.SmallPhotoUrl)));
+    
+      __out.push('">\n        </div>\n        <div class="col-md-11">\n          <textarea class="form-control" rows="1"/>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>');
     
     }).call(this);
     
   }).call(__obj);
   __obj.safe = __objSafe, __obj.escape = __escape;
   return __out.join('');
-};
-module.exports = content;}
+})(value));
+    elem.data('item', value);
+    $.merge(result, elem);
+  }
+  return result;
+};}
 });
 
   moduleList = [
-  
-    
-    
-    
-
-     
   
     
     

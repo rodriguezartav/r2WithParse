@@ -8,8 +8,9 @@ class AppMenu extends RSpine.Controller
     "click .app" : "onAppClick"
 
   constructor: ->
-    super    
-    @html require("components/appMenu/appMenu_layout")()
+    super
+    RSpine.bind "platform:apps_loaded" , =>
+      @html require("components/appMenu/appMenu_layout")(apps: RSpine.apps)
 
 
   onAppClick: ->

@@ -15,16 +15,16 @@ describe 'pages', ->
     @server = @app.listen 3001
 
     @app.get "/salesforce/login" , (req,res) ->
-      res.redirect "http://localhost:7770/login.html"
+      res.send "ok"
 
     done()
 
 
-  it 'should show contact a form', (done) ->
-
-    browser = new Browser();
-
-    browser.visit 'http://localhost:7770/login.html' , ->
-      browser.clickLink ".btn-salesforce", ->
-        assert.ok(browser.success);
-        done()
+#  it 'should show contact a form', (done) ->
+#
+#    browser = new Browser();
+#
+#    browser.visit 'http://localhost:7770/login.html' , ->
+#      browser.clickLink ".btn-salesforce", ->
+#        assert.ok(browser.success);
+#        done()

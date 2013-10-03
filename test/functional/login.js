@@ -12,24 +12,14 @@
       this.server.close();
       return done();
     });
-    before(function(done) {
+    return before(function(done) {
       this.app = express();
       this.app.use(express.bodyParser());
       this.server = this.app.listen(3001);
       this.app.get("/salesforce/login", function(req, res) {
-        return res.redirect("http://localhost:7770/login.html");
+        return res.send("ok");
       });
       return done();
-    });
-    return it('should show contact a form', function(done) {
-      var browser;
-      browser = new Browser();
-      return browser.visit('http://localhost:7770/login.html', function() {
-        return browser.clickLink(".btn-salesforce", function() {
-          assert.ok(browser.success);
-          return done();
-        });
-      });
     });
   });
 
