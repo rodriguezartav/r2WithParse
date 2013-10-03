@@ -1,41 +1,31 @@
 doctype 5
 html
   head
-    title= R 
-    link(rel="stylesheet", type="text/css", href="#{path}/#{build}/application.css")
+    title= R
+    link(rel="stylesheet", type="text/css", href="#{path}/r2.css")
 
     link(href='http://fonts.googleapis.com/css?family=PT+Sans:400,700|Asap:400,700',rel='stylesheet',type='text/css')
 
-    script(src="#{path}/#{build}/r2.js")
+    script(src="#{path}/r2.js")
 
     script(type='text/javascript', charset='utf-8').
       var jQuery  = require("jqueryify");
 
       var apiServer= "#{apiServer}";
-
-      var tokens, re = /[?&]?([^=]+)=([^&]*)/g;
-      function getQueryParams(qs) {
-        var params = {}
-        qs = qs.split("+").join(" ");
-        while (tokens = re.exec(qs)) {
-          params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
-        }
-        return params;
-      }
-
-      var queryString = getQueryParams(document.location.search);
-
-      if( ( queryString["session"] == null || queryString["session"] == undefined ) && (localStorage.session == null || localStorage.session == undefined) ){
-        window.location.href = "/login.html";
-      }
       
       var layout = "web"
 
       var exports = this;
       jQuery(function(){
-        var App = require("index");
-        window.src = { path: "#{path}" , build: "#{build}" }
-        exports.app =  new App({ el: $("body") , layout: layout, session: queryString["session"], apiServer: apiServer }); 
+        var App = require("r2");
+        exports.app =  new App(
+          { 
+            el: $("body"), 
+            layout: layout, 
+            apiServer: apiServer,
+            path: "#{path}"
+          }
+        ); 
       });
 
 

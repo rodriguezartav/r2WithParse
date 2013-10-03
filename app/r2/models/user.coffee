@@ -1,7 +1,7 @@
 RSpine = require('rspine')
 
 class User extends RSpine.Model
-  @configure "User", "Name" , "SmallPhotoUrl" ,  "FirstName" , "Online"  , "Status" , "LastUpdate"
+  @configure "User", "Name" , "SmallPhotoUrl" ,  "FirstName" , "Online"  , "Status" , "LastUpdate","Perfil__c"
   @extend RSpine.Model.Ajax
   @extend RSpine.Model.SalesforceModel
   
@@ -9,11 +9,10 @@ class User extends RSpine.Model
   
   @standardObject = true
 
-  @queryFilter: (options) =>
-    filter = ""
-    filter = @queryFilterAddCondition(" IsActive = true " , filter)
-    filter = @queryFilterAddCondition(" Profile = 'Cobrador' or Profile = 'Vendedor' " , filter) if options.cobrador
-    filter
+  @filters:
+    "" : "IsActive = true"
+    "id" : "id = '?' "
+    "vendedor" : "Profile = 'Cobrador' or Profile = 'Vendedor'"
 
   getLastUpdate: =>
     return new Date(Date.parse("1970-1-1")) if !@LastUpdate

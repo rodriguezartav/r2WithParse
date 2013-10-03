@@ -1,92 +1,17 @@
 <div class="row app-row">
-  <div class="col-md-4">
-    <div class="icon icon-small green">
-      <div class="gloss"></div>
-      <div class="text">Ze</div>
+
+  <% for app in @apps: %>
+  <% console.log app %>
+    <div class="col-md-4">
+      <div class="icon icon-small <%= app.iconColor %>">
+        <div class="gloss"></div>
+        <div class="text"><%= app.iconLabel %></div>
+      </div>
+      <div class="labels">Pedidos</div>
     </div>
-    <div class="labels">Abc Bde</div>
-  </div>
-  <div class="col-md-4">
-    <div class="icon icon-small blue app">
-      <div class="gloss"></div>
-      <div class="text">Ah</div>
-    </div>
-    <div class="labels">Abc Bde</div>
-  </div>
-  <div class="col-md-4">
-    <div class="icon icon-small green app">
-      <div class="gloss"></div>
-      <div class="text">Yh</div>
-    </div>
-    <div class="labels">Abc Bde</div>
-  </div>
+  
+  <% end %>
+
 </div>
-<div class="row app-row app-row-n">
-  <div class="col-md-4">
-    <div class="icon icon-small gray">
-      <div class="gloss"></div>
-      <div class="text">Re</div>
-    </div>
-    <div class="labels">Abc Bde</div>
-  </div>
-  <div class="col-md-4">
-    <div class="icon icon-small purple">
-      <div class="gloss"></div>
-      <div class="text">Pa</div>
-    </div>
-    <div class="labels">Abc Bde</div>
-  </div>
-  <div class="col-md-4">
-    <div class="icon icon-small red">
-      <div class="gloss"></div>
-      <div class="text">Op</div>
-    </div>
-    <div class="labels">Abc Bde</div>
-  </div>
-</div>
-<div class="row app-row">
-  <div class="col-md-4">
-    <div class="icon icon-small blue">
-      <div class="gloss"></div>
-      <div class="text">Ry</div>
-    </div>
-    <div class="labels">Abc Bde</div>
-  </div>
-  <div class="col-md-4">
-    <div class="icon icon-small gray-light">
-      <div class="gloss"></div>
-      <div class="text">Kb</div>
-    </div>
-    <div class="labels">Abc Bde</div>
-  </div>
-  <div class="col-md-4">
-    <div class="icon icon-small gray">
-      <div class="gloss"></div>
-      <div class="text">Fy</div>
-    </div>
-    <div class="labels">Abc Bde</div>
-  </div>
-</div>
-<div class="row app-row app-row-n">
-  <div class="col-md-4">
-    <div class="icon icon-small blue">
-      <div class="gloss"></div>
-      <div class="text">Dd</div>
-    </div>
-    <div class="labels">Abc Bde</div>
-  </div>
-  <div class="col-md-4">
-    <div class="icon icon-small purple">
-      <div class="gloss"></div>
-      <div class="text">Bb</div>
-    </div>
-    <div class="labels">Abc Bde</div>
-  </div>
-  <div class="col-md-4">
-    <div class="icon icon-small purple">
-      <div class="gloss"></div>
-      <div class="text">Uj</div>
-    </div>
-    <div class="labels">Abc Bde</div>
-  </div>
-</div>
+  
+  

@@ -20,11 +20,11 @@ describe 'pages', ->
     done()
 
 
-  it 'should show contact a form', (done) ->
-
-    browser = new Browser();
-
-    browser.visit 'http://localhost:7770/login.html' , ->
-      browser.clickLink ".btn-salesforce", ->
-        assert.ok(browser.success);
-        done()
+#  it 'should show contact a form', (done) ->
+#
+#    browser = new Browser();
+#
+#    browser.visit 'http://localhost:7770/login.html' , ->
+#      browser.clickLink ".btn-salesforce", ->
+#        assert.ok(browser.success);
+#        done()

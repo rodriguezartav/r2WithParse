@@ -11,9 +11,9 @@ class Helper
 
 module.exports = (grunt) ->
 
-  build = Helper.randomChars(5)
+  orgId = "00DZ0000000orOaMAI"
 
-  apiServer = "http://local.host.com:9293"
+  apiServer = "http://quiet-atoll-3343.herokuapp.com"
 
   grunt.initConfig
     
@@ -28,20 +28,39 @@ module.exports = (grunt) ->
     less:
       development:
         files:
-          "./public/devBuild/application.css" : "./css/index.less"
+          "./public/r2.css" : "./css/index.less"
 
     grunt_appbot_compiler: {
       r2: {
-        appPaths: ['./app/r2','./app/web_components/menu','./app/web_components/newsFeed'],
+        appPaths: ['./app/r2', './app/web_components/menu', './app/web_components/newsFeed'],
         lessVariables: "./css/base/variables.less",
         dependencyPaths: ["jqueryify","rspine","rspine/lib/salesforceAjax","rspine/lib/salesforceModel","rspine/lib/offlineModel"],
-        destination: "./public/devBuild/r2.js"
+        destination: "./public/r2.js"
       },      
-      contentBox:{
+      initApp: {
+        appPaths: ['./app/initApp'],
+        lessVariables: "./css/base/variables.less",
+        dependencyPaths: [],
+        destination: "./public/#{orgId}/initApp.js"
+      },
+      launchStage:{
         appPaths: ['./app/web_components/appHighlight','./app/web_components/appMenu','./app/web_components/appMetrics','./app/web_components/breadcrum'],
         lessVariables: "./css/base/variables.less",
-        destination: "./public/devBuild/launch-components.js"
+        destination: "./public/#{orgId}/launch-components.js"
       }
+
+      vendedores:{
+        appPaths: ["./app/apps/pedidos"]
+        lessVariables: "./css/base/variables.less",
+        destination: "./public/#{orgId}/apps_vendedores.js"
+      }
+
+      credito:{
+        appPaths: ["./app/apps/pedidos","./app/apps/recibos"]
+        lessVariables: "./css/base/variables.less",
+        destination: "./public/#{orgId}/apps_credito.js"
+      }
+
     },
 
     coffee:
@@ -99,28 +118,25 @@ module.exports = (grunt) ->
         files: ["./views/*.jade","./views/**/*.jade"]
         tasks: ["jade"]
 
-
-    jade: 
-      production: 
+    jade:
+      production:
         files:
           "./public/index.html": ["./views/index.jade"]
           "./public/login.html": ["./views/login.jade"]
         options: 
           data: 
-            build: build
             path: ""
-            apiServer: ""
+            apiServer: apiServer
 
-      dev: 
+      dev:
         files:
           "./public/index.html": ["./views/index.jade"]
           "./public/login.html": ["./views/login.jade"]
 
         options:
           data:
-            build: "devBuild"
             path: ""
-            apiServer: "http://localhost:3000"
+            apiServer: apiServer
 
       test: 
         files:
@@ -129,7 +145,6 @@ module.exports = (grunt) ->
 
         options:
           data:
-            build: "devBuild"
             path: ""
             apiServer: apiServer
 
@@ -149,7 +164,6 @@ module.exports = (grunt) ->
         key: 'AKIAI6YXGEM6SDQPO3XQ',
         secret: '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'
 
-          
       test:
         options:
           encodePaths: true,
@@ -157,9 +171,12 @@ module.exports = (grunt) ->
 
         upload: 
           [
-             { src: './public/devBuild/*.*', dest: "#{build}/", gzip: true ,access: 'public-read' , headers: "Cache-Control": "max-age=30000000" }
-             { src: './public/images/*.*', dest: "images/", gzip: true , access: 'public-read', headers: "Cache-Control": "max-age=30000000" }
-             { src: './public/*.html', dest: "", gzip: true , access: 'public-read' , headers: "Cache-Control": "max-age=300" }
+             { src: './public/r2.css', dest: "/", gzip: true ,access: 'public-read' , headers: "Cache-Control": "max-age=300" }
+             { src: './public/r2.js', dest: "/", gzip: true ,access: 'public-read' , headers: "Cache-Control": "max-age=300" }
+             { src: './public/*.html', dest: "/", gzip: true ,access: 'public-read' , headers: "Cache-Control": "max-age=300" }
+             { src: "./public/images/*.*", dest: "images/", gzip: true , access: 'public-read', headers: "Cache-Control": "max-age=300" }
+             
+             { src: "./public/#{orgId}/*.js", dest: "#{orgId}/", gzip: true , access: 'public-read', headers: "Cache-Control": "max-age=300" }
           ]
 
   grunt.loadNpmTasks('grunt-contrib-watch');

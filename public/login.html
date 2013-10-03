@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><title></title><link rel="stylesheet" type="text/css" href="/devBuild/application.css"><link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700|Asap:400,700" rel="stylesheet" type="text/css"><script src="/devBuild/r2.js"></script><script type="text/javascript" charset="utf-8">if(localStorage.session != null && localStorage.session != undefined){
+<!DOCTYPE html><html><head><title></title><link rel="stylesheet" type="text/css" href="/r2.css"><link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700|Asap:400,700" rel="stylesheet" type="text/css"><script src="/r2.js"></script><script type="text/javascript" charset="utf-8">if(localStorage.session != null && localStorage.session != undefined){
   window.location.href = "/";
 }
 
@@ -9,9 +9,8 @@ require('rspine/lib/salesforceAjax')
 var base = new RSpine.Ajax.Base();
 var request = base.ajaxQueue({}, {
   type: 'GET',
-  url:"http://local.host.com:9293/sessions/salesforce/login"
+  url:"http://quiet-atoll-3343.herokuapp.com/sessions/salesforce/login"
 }).fail(function(data){
-  console.log(data);
   window.location.href = data.responseText;
 });
 
@@ -27,7 +26,7 @@ var request = base.ajaxQueue({}, {
         
                 <div class="col-md-6 col-md-offset-">
                   <div class="large-title text-center">Customers & Visitors</div>
-                  <a href="http://local.host.com:9293/facebook/login" class="btn btn-lg btn-block btn-facebook large">
+                  <a href="http://quiet-atoll-3343.herokuapp.com/facebook/login" class="btn btn-lg btn-block btn-facebook large">
                       Sign in with <b>Facebook</b>
                   </a>
                 </div>
