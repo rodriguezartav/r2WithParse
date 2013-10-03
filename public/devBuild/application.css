@@ -120,6 +120,7 @@ h6 {
 .app-header {
   font-size: 24px;
   color: #8a8c8e;
+  line-height: 66px;
 }
 .title {
   font-size: 12px;
@@ -134,6 +135,16 @@ h6 {
 }
 .labels {
   font-size: 11px;
+}
+.list-header {
+  font-size: 16px;
+  height: 33px;
+}
+.blue ~ .content-body .list-header {
+  color: #1cb5ea;
+}
+.blue ~ .content-body .list-header .icon {
+  fill: #1cb5ea;
 }
 /*! normalize.css v2.1.0 | MIT License | git.io/normalize */
 article,

@@ -6,7 +6,8 @@
 
 .app-header{
   font-size: @font-size-largest;
-  color: @gray; 
+  color: @gray;
+  line-height: 66px;
 }
 
 .title{
@@ -26,3 +27,18 @@
 .labels{
   font-size: @font-size-small;
 }
+
+.list-header{
+  font-size: @font-size-medium;
+  //color: @brand-primary;
+  height: 33px;
+}
+
+.blue ~ .content-body {
+   .list-header{
+     color: @brand-primary;
+     .icon{
+       fill: @brand-primary
+     }
+   } 
+} 
