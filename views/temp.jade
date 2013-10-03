@@ -1,0 +1,114 @@
+doctype 5
+html
+  head
+    title= R
+    link(rel="stylesheet", type="text/css", href="#{path}/#{build}/application.css")
+
+    link(href='http://fonts.googleapis.com/css?family=PT+Sans:400,700|Asap:400,700',rel='stylesheet',type='text/css')
+
+    script(src="#{path}/#{build}/r2.js")
+
+    script(type='text/javascript', charset='utf-8').
+      var jQuery  = require("jqueryify");
+
+      var apiServer= "#{apiServer}";
+
+      var tokens, re = /[?&]?([^=]+)=([^&]*)/g;
+      function getQueryParams(qs) {
+        var params = {}
+        qs = qs.split("+").join(" ");
+        while (tokens = re.exec(qs)) {
+          params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+        }
+        return params;
+      }
+
+      var queryString = getQueryParams(document.location.search);
+
+      if( ( queryString["session"] == null || queryString["session"] == undefined ) && (localStorage.session == null || localStorage.session == undefined) ){
+        //window.location.href = "/login.html";
+      }
+      
+      var layout = "web"
+
+      var exports = this;
+      jQuery(function(){
+        var App = require("index");
+        window.src = { path: "#{path}" , build: "#{build}" }
+        //exports.app =  new App({ el: $("body") , layout: layout, session: queryString["session"], apiServer: apiServer }); 
+      });
+      
+      
+  body.fullHeight  
+  
+    .outer-container.full-height
+      .row.full-height
+        .col-md-1.menu
+      
+        .kanban
+          .kanban-wrapper
+            .row
+              .col-md-9
+                .app-header Pedidos
+              .col-md-3
+                .button-large
+                  span.original-text Crear Nuevo Pedido
+                  span.hover-text CAncelar Pedido
+                  svg.icon.icon-create(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 33 33')
+                    <polygon points="33.1,15.6 17.6,15.6 17.6,0.1 15.6,0.1 15.6,15.6 0.1,15.6 0.1,17.6 15.6,17.6 15.6,33.1 17.6,33.1 17.6,17.6 33.1,17.6"/>
+              
+            .app-wrapper
+              .row.full-height
+              
+                .col-md-3.kan-col
+                  .header.blue
+                    span.triangle
+                    span.large-title Proformas
+                  .sub-header
+                    .sub-title Cliente
+                  .content-body
+                    .list-header 3 Dias atras
+                  .content-body
+                    .text Deposito La Maravilla
+                  .content-body
+                    .text Hogar y Ferreteria
+                  .content-body
+                    .text Taller Industrial
+                  .content-body
+                    .list-header 8 dias atras
+                  .content-body
+                    .text Ferreteria y Materiales Orosi
+                  .content-body
+                    .text Mundillaves
+                  
+                .col-md-3.kan-col
+                  .header.red
+                    span.triangle
+                    span.large-title Guardados
+                  .sub-header
+                    .sub-title Cliente                    
+                  .content-body
+                    .text Hogar y Ferreteria
+                  .content-body
+                    .text Taller Industrial
+                  .content-body
+                    .text Ferreteria y Materiales Orosi
+                  .content-body
+                    .text Mundillaves
+                  
+                .col-md-3.kan-col
+                  .header.purple
+                    span.triangle
+                    span.large-title Pendientes
+                  .sub-header
+                    .sub-title Todos los Clientes
+                  .content-body.scrollable
+                                    
+                .col-md-3.kan-col
+                  .header.green
+                    span.triangle
+                    span.large-title Aprobados
+                  .sub-header
+                    .sub-title Todos los Clientes
+                  .content-body.scrollable
+                    

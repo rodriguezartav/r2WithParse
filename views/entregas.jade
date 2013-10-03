@@ -1,0 +1,139 @@
+doctype 5
+html
+  head
+    title= R
+    link(rel="stylesheet", type="text/css", href="#{path}/#{build}/application.css")
+
+    link(href='http://fonts.googleapis.com/css?family=PT+Sans:400,700|Asap:400,700',rel='stylesheet',type='text/css')
+
+    script(src="#{path}/#{build}/r2.js")
+
+    script(type='text/javascript', charset='utf-8').
+      var jQuery  = require("jqueryify");
+
+      var apiServer= "#{apiServer}";
+
+      var tokens, re = /[?&]?([^=]+)=([^&]*)/g;
+      function getQueryParams(qs) {
+        var params = {}
+        qs = qs.split("+").join(" ");
+        while (tokens = re.exec(qs)) {
+          params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
+        }
+        return params;
+      }
+
+      var queryString = getQueryParams(document.location.search);
+
+      if( ( queryString["session"] == null || queryString["session"] == undefined ) && (localStorage.session == null || localStorage.session == undefined) ){
+        //window.location.href = "/login.html";
+      }
+      
+      var layout = "web"
+
+      var exports = this;
+      jQuery(function(){
+        var App = require("index");
+        window.src = { path: "#{path}" , build: "#{build}" }
+        //exports.app =  new App({ el: $("body") , layout: layout, session: queryString["session"], apiServer: apiServer }); 
+      });
+      
+      
+  body.fullHeight 
+  
+    .outer-container.full-height
+      .row.full-height
+        .col-md-1.menu
+      
+        .kanban
+          .kanban-wrapper
+            .row
+              .col-md-9
+                .app-header Entregas
+              .col-md-3
+                .button-large
+                  span.original-text Crear Nueva Ruta
+                  span.hover-text Cancelar Ruta
+                  svg.icon.icon-create(xmlns='http://www.w3.org/2000/svg', viewBox='0 0 33 33')
+                    <polygon points="33.1,15.6 17.6,15.6 17.6,0.1 15.6,0.1 15.6,15.6 0.1,15.6 0.1,17.6 15.6,17.6 15.6,33.1 17.6,33.1 17.6,17.6 33.1,17.6"/>
+              
+            .app-wrapper
+              .row.full-height
+                .col-md-3.kan-col.full-height()
+                  .header.blue
+                    span.triangle
+                    span.large-title Pendientes
+                  .sub-header
+                    .sub-title Cliente
+                  .list-item
+                    .list-header Agosto 28    
+                      svg.icon(xmlns="http://www.w3.org/2000/svg", viewBox="0 0 16 16")
+                        <path d="M15.539 13.316l-3.247-3.248c0.609-1.002 0.963-2.182 0.963-3.441C13.255 3 10.3 0 6.6 0 C2.968 0-0.001 2.967-0.001 6.627c0 3.7 3 6.6 6.6 6.628c1.26 0 2.438-0.353 3.441-0.962l3.247 3.2 C13.622 15.8 14 16 14.4 16s0.805-0.152 1.112-0.461C16.153 14.9 16.2 13.9 15.5 13.316z M6.626 10.7 c-2.227 0-4.031-1.805-4.031-4.031c0-2.225 1.805-4.03 4.031-4.03s4.031 1.8 4 4.03C10.657 8.9 8.9 10.7 6.6 10.658z"/>
+                    .list
+                      .text 1
+                      .text 2
+                      .text 3
+                      .text 4
+                  .list-item
+                    .text Deposito La Maravilla
+                  .list-item
+                    .text Hogar y Ferreteria
+                  .list-item
+                    .text Taller Industrial
+                  .list-item Agosto 29                  
+                  .list-item
+                    .text Ferreteria y Materiales Orosi
+                  .list-item
+                    .text Mundillaves
+
+                  
+                .col-md-6.kan-col
+                  .header.purple
+                    span.triangle
+                    span.large-title En Proceso
+                  .sub-header
+                    .sub-title Cliente
+                  .row
+                    .col-md-4
+                      .list-item
+                        .text Hogar y Ferreteria
+                      .list-item
+                        .text Taller Industrial
+                      .list-item
+                        .text Ferreteria y Materiales Orosi
+                      .list-item
+                        .text Mundillaves
+                    .col-md-4
+                      .list-item
+                        .text Hogar y Ferreteria
+                      .list-item
+                        .text Taller Industrial
+                      .list-item
+                        .text Ferreteria y Materiales Orosi
+                      .list-item
+                        .text Mundillaves
+                    .col-md-4
+                      .list-item
+                        .text Hogar y Ferreteria
+                      .list-item
+                        .text Taller Industrial
+                      .list-item
+                        .text Ferreteria y Materiales Orosi
+                      .list-item
+                        .text Mundillaves
+
+                        
+                .col-md-3.kan-col
+                  .header.green
+                    span.triangle
+                    span.large-title Entregados
+                  .sub-header
+                    .sub-title Todos los Clientes
+                  .content-body.scrollable
+              
+              
+              
+              
+              
+              
+              

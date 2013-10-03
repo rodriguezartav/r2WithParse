@@ -128,16 +128,12 @@ module.exports = (grunt) ->
             path: ""
             apiServer: apiServer
 
-<<<<<<< HEAD
-      dev:  
-=======
       dev:
->>>>>>> origin
         files:
           "./public/index.html": ["./views/index.jade"]
           "./public/login.html": ["./views/login.jade"]
           "./public/temp.html": ["./views/temp.jade"]
-          
+          "./public/entregas.html": ["./views/entregas.jade"]
 
         options:
           data:

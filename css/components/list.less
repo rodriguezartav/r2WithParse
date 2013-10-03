@@ -1,0 +1,41 @@
+// Lists
+// -------------------------
+
+.blue ~ .list-item {
+  .list-header {
+    color: @brand-primary;
+    .icon{
+      fill: @brand-primary
+    } 
+  }
+} 
+.list-item {
+  border-bottom: 1px solid @gray-lighter;
+  border-left: 1px solid @gray-lighter;
+  border-right: 1px solid @gray-lighter;
+  height:33px;
+  overflow: hidden;
+  line-height: 33px;
+  padding: 0 @padding-small-horizontal;
+  cursor: pointer;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  
+  &:hover{
+    border: 1px solid @gray-lighter;
+    margin: 10px 0;
+    height: 200px;
+  }
+} 
+
+.list-header{
+  font-size: @font-size-medium;
+  height: 33px;
+}
+
+.list {
+  display: block;
+}
