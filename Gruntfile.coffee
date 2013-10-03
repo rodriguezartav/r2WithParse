@@ -111,7 +111,7 @@ module.exports = (grunt) ->
             path: ""
             apiServer: ""
 
-      dev: 
+      dev:  
         files:
           "./public/index.html": ["./views/index.jade"]
           "./public/login.html": ["./views/login.jade"]
