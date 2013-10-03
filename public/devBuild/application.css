@@ -3145,17 +3145,18 @@ body {
 .icon-create {
   fill: #1cb5ea;
 }
-.blue ~ .list-header {
+.blue ~ .list-item .list-header {
   color: #1cb5ea;
 }
-.blue ~ .list-header .icon {
+.blue ~ .list-item .list-header .icon {
   fill: #1cb5ea;
 }
 .list-item {
   border-bottom: 1px solid #e6e6e6;
   border-left: 1px solid #e6e6e6;
   border-right: 1px solid #e6e6e6;
-  min-height: 33px;
+  height: 33px;
+  overflow: hidden;
   line-height: 33px;
   padding: 0 10px;
   cursor: pointer;
@@ -3168,8 +3169,12 @@ body {
 .list-item:hover {
   border: 1px solid #e6e6e6;
   margin: 10px 0;
+  height: 200px;
 }
 .list-header {
   font-size: 16px;
   height: 33px;
+}
+.list {
+  display: block;
 }
