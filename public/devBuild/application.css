@@ -2946,13 +2946,13 @@ body {
 }
 .kan-col .header .triangle {
   position: absolute;
-  left: 0px;
+  left: 8px;
   top: 0px;
   width: 0px;
   height: 0px;
   border-style: solid;
-  border-width: 70px 60px 0 0;
-  border-color: rgba(255, 255, 255, 0.3) transparent transparent transparent;
+  border-width: 70px 70px 0 0;
+  border-color: rgba(255, 255, 255, 0.2) transparent transparent transparent;
 }
 .kan-col .sub-header {
   border: 1px solid #f1f2f2;
@@ -3084,6 +3084,7 @@ body {
 }
 .button-large span {
   margin-right: 10px;
+  vertical-align: top;
 }
 .button-large .original-text {
   display: inline-block;
@@ -3130,11 +3131,10 @@ body {
   /* Safari and Chrome */
 
 }
-.icon {
-  float: right;
-  height: 50%;
-  max-width: 33px;
-  margin-top: 16px;
+.icon-large,
+.icon-medium,
+.icon-small {
+  vertical-align: top;
   display: inline-block;
   -webkit-transition: 0.3s all ease-in-out;
   -moz-transition: 0.3s all ease-in-out;
@@ -3142,14 +3142,78 @@ body {
   -o-transition: 0.3s all ease-in-out;
   transition: 0.3s all ease-in-out;
 }
+.icon-large {
+  width: 33px;
+}
+.icon-medium {
+  width: 20px;
+}
+.icon-small {
+  width: 8px;
+}
 .icon-create {
   fill: #1cb5ea;
 }
-.blue ~ .list-item .list-header {
+.icon-fold {
+  fill: #636466;
+  float: right;
+}
+.icon-menu {
+  float: right;
+}
+.blue ~ .list-item:hover .icon-fold {
+  fill: #1cb5ea;
+}
+.blue ~ .list-header .icon-clock {
+  fill: #1cb5ea;
+}
+.purple ~ .row .list-item:hover .icon-fold {
+  fill: #99569b;
+}
+.purple ~ .row .list-header .icon-clock {
+  fill: #99569b;
+}
+.green ~ .list-item:hover .icon-fold {
+  fill: #97ce41;
+}
+.green ~ .list-header .icon-clock {
+  fill: #97ce41;
+}
+.icon-blue {
+  fill: #1cb5ea;
+}
+.icon-success {
+  fill: #97ce41;
+}
+.icon-info {
+  fill: #99569b;
+}
+.icon-danger {
+  fill: #ee5437;
+}
+.icon-right {
+  float: right;
+}
+.icon-left {
+  float: left;
+}
+.blue ~ .list-item:hover {
   color: #1cb5ea;
 }
-.blue ~ .list-item .list-header .icon {
-  fill: #1cb5ea;
+.blue ~ .list-header {
+  color: #1cb5ea;
+}
+.purple ~ .row .list-item:hover {
+  color: #99569b;
+}
+.purple ~ .row .list-header {
+  color: #99569b;
+}
+.green ~ .list-item:hover {
+  color: #97ce41;
+}
+.green ~ .list-header {
+  color: #97ce41;
 }
 .list-item {
   border-bottom: 1px solid #e6e6e6;
@@ -3160,6 +3224,7 @@ body {
   line-height: 33px;
   padding: 0 10px;
   cursor: pointer;
+  position: relative;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
@@ -3169,12 +3234,75 @@ body {
 .list-item:hover {
   border: 1px solid #e6e6e6;
   margin: 10px 0;
-  height: 200px;
+  height: 198px;
+}
+.list-item:hover .icon-fold {
+  transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  /* IE 9 */
+
+  -webkit-transform: rotate(180deg);
+  /* Safari and Chrome */
+
 }
 .list-header {
+  border-bottom: 1px solid #e6e6e6;
+  border-left: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
+  height: 33px;
+  line-height: 33px;
+  padding: 0 10px;
   font-size: 16px;
+}
+.list-header .icon-medium {
+  margin-right: 10px;
+}
+.nested-list-item {
+  display: block;
+  color: #636466;
+  line-height: 33px;
+  padding: 0 10px;
+  cursor: pointer;
+}
+.list-options {
+  line-height: 33px;
   height: 33px;
 }
-.list {
-  display: block;
+.blue ~ .input-select .icon-medium {
+  fill: #1cb5ea;
+}
+.blue ~ .input-select:hover {
+  background: #1cb5ea;
+}
+.purple ~ .input-item .input-select .icon-menu {
+  fill: #efdf30;
+}
+.green ~ .input-select .icon-medium {
+  fill: #97ce41;
+}
+.green ~ .input-select:hover {
+  background: #97ce41;
+}
+.input-item {
+  border: 1px solid #e6e6e6;
+  height: 33px;
+  line-height: 33px;
+  padding: 0 10px;
+  cursor: text;
+  color: #8a8c8e;
+  text-transform: uppercase;
+  -webkit-transition: 0.3s all ease-in-out;
+  -moz-transition: 0.3s all ease-in-out;
+  -ms-transition: 0.3s all ease-in-out;
+  -o-transition: 0.3s all ease-in-out;
+  transition: 0.3s all ease-in-out;
+}
+.input-select {
+  cursor: pointer;
+}
+.input-select:hover {
+  color: white;
+}
+.input-select:hover .icon-medium {
+  fill: white!important;
 }

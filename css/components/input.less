@@ -1,0 +1,53 @@
+// Inputs
+// -------------------------
+
+.blue ~ .input-select {
+    .icon-medium{
+      fill: @brand-primary
+    } 
+    &:hover{
+    	background: @brand-primary;
+    }
+}
+
+.purple ~ .input-item {
+  .input-select {
+    .icon-menu{
+      fill: @brand-warning
+    } 
+  }
+} 
+
+.green ~ .input-select {
+    .icon-medium{
+      fill: @brand-success
+    }
+    &:hover {
+    	background: @brand-success;
+    } 
+}
+
+.input-item {
+	border: 1px solid @gray-lighter;
+	height:@line-height-block;
+	line-height: @line-height-block;
+  	padding: 0 @padding-small-horizontal;
+  	cursor: text;
+  	color:@gray;
+  	text-transform: uppercase;
+  	-webkit-transition: .3s all ease-in-out;
+  	-moz-transition: .3s all ease-in-out;
+  	-ms-transition: .3s all ease-in-out;
+  	-o-transition: .3s all ease-in-out;
+  	transition: .3s all ease-in-out;
+}
+
+.input-select {
+	cursor: pointer;
+	&:hover {
+  		color: white;
+  		.icon-medium{
+  			fill:white!important;
+  		}
+  	}
+}

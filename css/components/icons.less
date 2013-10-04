@@ -1,8 +1,5 @@
-.icon {
-  float: right;
-  height: 50%;
-  max-width: 33px;
-  margin-top: 16px;
+.icon-large, .icon-medium, .icon-small {
+  vertical-align: top; 
   display: inline-block;
   -webkit-transition: .3s all ease-in-out;
   -moz-transition: .3s all ease-in-out;
@@ -10,6 +7,85 @@
   -o-transition: .3s all ease-in-out;
   transition: .3s all ease-in-out;
 }
+
+.icon-large {
+  width: 33px;
+}
+
+.icon-medium {
+  width: 20px;
+}
+
+.icon-small {
+  width:8px;
+}
+
 .icon-create {
   fill: @brand-primary;
 }
+.icon-fold {
+  fill: @gray-dark;
+  float: right
+}
+.icon-menu {
+  float: right;
+}
+
+.blue ~ .list-item {  
+  &:hover{
+    .icon-fold {
+      fill: @brand-primary;
+    }
+  }
+}
+.blue ~ .list-header {
+    .icon-clock{
+      fill: @brand-primary
+    } 
+}
+
+.purple ~ .row {  
+  .list-item {
+    &:hover{
+      .icon-fold {
+        fill: @brand-info;
+      }
+    }
+  }
+}
+.purple ~ .row {
+  .list-header {
+    .icon-clock{
+      fill: @brand-info
+    }
+  } 
+}
+
+.green ~ .list-item {  
+  &:hover{
+    .icon-fold {
+      fill: @brand-success;
+    }
+  }
+}
+.green ~ .list-header {
+    .icon-clock{
+      fill: @brand-success
+    } 
+}
+
+.icon-blue {
+  fill: @brand-primary;
+}
+.icon-success {
+  fill: @brand-success;
+}
+.icon-info {
+  fill: @brand-info;
+}
+.icon-danger {
+  fill: @brand-danger;
+}
+
+.icon-right {float: right;}
+.icon-left {float: left}
