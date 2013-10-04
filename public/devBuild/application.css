@@ -91,14 +91,8 @@ h6 {
 .inner-wrapper {
   padding: 6px;
 }
-.blue {
-  background: #1cb5ea;
-}
 .green {
   background: #97ce41;
-}
-.purple {
-  background: #99569b;
 }
 .red {
   background: #ee5437;
@@ -3137,6 +3131,20 @@ body {
   /* Safari and Chrome */
 
 }
+.icon-create {
+  fill: #1cb5ea;
+}
+.icon-large,
+.icon-medium,
+.icon-small {
+  vertical-align: top;
+  display: inline-block;
+  -webkit-transition: 0.3s all ease-in-out;
+  -moz-transition: 0.3s all ease-in-out;
+  -ms-transition: 0.3s all ease-in-out;
+  -o-transition: 0.3s all ease-in-out;
+  transition: 0.3s all ease-in-out;
+}
 .icon-blue {
   fill: #1cb5ea;
 }
@@ -3151,17 +3159,6 @@ body {
 }
 .icon-warning {
   fill: #efdf30;
-}
-.icon-large,
-.icon-medium,
-.icon-small {
-  vertical-align: top;
-  display: inline-block;
-  -webkit-transition: 0.3s all ease-in-out;
-  -moz-transition: 0.3s all ease-in-out;
-  -ms-transition: 0.3s all ease-in-out;
-  -o-transition: 0.3s all ease-in-out;
-  transition: 0.3s all ease-in-out;
 }
 .icon-large {
   width: 33px;
@@ -3180,13 +3177,27 @@ body {
 .blue ~ .content-body .list-header .icon-large {
   fill: #1cb5ea;
 }
-.purple ~ .row .list-item:hover .icon-fold {
+.purple .header {
+  background: #99569b;
+}
+.purple .list-header {
+  color: #99569b;
+}
+.purple .list-header .icon-small,
+.purple .list-header .icon-medium,
+.purple .list-header .icon-large {
   fill: #99569b;
 }
-.purple ~ .content-body .row .list-header .icon-small,
-.purple ~ .content-body .row .list-header .icon-medium,
-.purple ~ .content-body .row .list-header .icon-large {
-  fill: #99569b;
+.blue .header {
+  background: #1cb5ea;
+}
+.blue .list-header {
+  color: #1cb5ea;
+}
+.blue .list-header .icon-small,
+.blue .list-header .icon-medium,
+.blue .list-header .icon-large {
+  fill: #1cb5ea;
 }
 .green ~ .list-item:hover .icon-fold {
   fill: #97ce41;
