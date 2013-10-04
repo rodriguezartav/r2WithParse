@@ -1,3 +1,25 @@
+// Icon Colors
+// -------------------------
+
+.icon-blue {
+  fill: @brand-primary;
+}
+.icon-green {
+  fill: @brand-success;
+}
+.icon-purple {
+  fill: @brand-info;
+}
+.icon-danger {
+  fill: @brand-danger;
+}
+.icon-warning {
+  fill: @brand-warning;
+}
+
+// Icons General Styles
+// -------------------------
+
 .icon-large, .icon-medium, .icon-small {
   vertical-align: top; 
   display: inline-block;
@@ -7,6 +29,9 @@
   -o-transition: .3s all ease-in-out;
   transition: .3s all ease-in-out;
 }
+
+// Icon Sizes
+// -------------------------
 
 .icon-large {
   width: 33px;
@@ -20,16 +45,8 @@
   width:8px;
 }
 
-.icon-create {
-  fill: @brand-primary;
-}
-.icon-fold {
-  fill: @gray-dark;
-  float: right
-}
-.icon-menu {
-  float: right;
-}
+// Icon Sizes
+// -------------------------
 
 .blue ~ .list-item {  
   &:hover{
@@ -38,10 +55,12 @@
     }
   }
 }
-.blue ~ .list-header {
-    .icon-clock{
-      fill: @brand-primary
-    } 
+.blue ~ .content-body {
+    .list-header {
+      .icon-small, .icon-medium, .icon-large{
+        fill: @brand-primary
+      } 
+    }
 }
 
 .purple ~ .row {  
@@ -53,12 +72,14 @@
     }
   }
 }
-.purple ~ .row {
-  .list-header {
-    .icon-clock{
-      fill: @brand-info
-    }
-  } 
+.purple ~ .content-body {
+  .row {
+    .list-header {
+      .icon-small, .icon-medium, .icon-large{
+        fill: @brand-info
+      }
+    } 
+  }
 }
 
 .green ~ .list-item {  
@@ -74,18 +95,3 @@
     } 
 }
 
-.icon-blue {
-  fill: @brand-primary;
-}
-.icon-success {
-  fill: @brand-success;
-}
-.icon-info {
-  fill: @brand-info;
-}
-.icon-danger {
-  fill: @brand-danger;
-}
-
-.icon-right {float: right;}
-.icon-left {float: left}

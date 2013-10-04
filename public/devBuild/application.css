@@ -112,6 +112,12 @@ h6 {
 .gray {
   background: #8a8c8e;
 }
+.right {
+  float: right;
+}
+.left {
+  float: left;
+}
 .large-title {
   font-family: "PT Sans", "Helvetica Neue", Helvetica, Arial;
   font-size: 20px;
@@ -3131,6 +3137,21 @@ body {
   /* Safari and Chrome */
 
 }
+.icon-blue {
+  fill: #1cb5ea;
+}
+.icon-green {
+  fill: #97ce41;
+}
+.icon-purple {
+  fill: #99569b;
+}
+.icon-danger {
+  fill: #ee5437;
+}
+.icon-warning {
+  fill: #efdf30;
+}
 .icon-large,
 .icon-medium,
 .icon-small {
@@ -3151,26 +3172,20 @@ body {
 .icon-small {
   width: 8px;
 }
-.icon-create {
-  fill: #1cb5ea;
-}
-.icon-fold {
-  fill: #636466;
-  float: right;
-}
-.icon-menu {
-  float: right;
-}
 .blue ~ .list-item:hover .icon-fold {
   fill: #1cb5ea;
 }
-.blue ~ .list-header .icon-clock {
+.blue ~ .content-body .list-header .icon-small,
+.blue ~ .content-body .list-header .icon-medium,
+.blue ~ .content-body .list-header .icon-large {
   fill: #1cb5ea;
 }
 .purple ~ .row .list-item:hover .icon-fold {
   fill: #99569b;
 }
-.purple ~ .row .list-header .icon-clock {
+.purple ~ .content-body .row .list-header .icon-small,
+.purple ~ .content-body .row .list-header .icon-medium,
+.purple ~ .content-body .row .list-header .icon-large {
   fill: #99569b;
 }
 .green ~ .list-item:hover .icon-fold {
@@ -3178,24 +3193,6 @@ body {
 }
 .green ~ .list-header .icon-clock {
   fill: #97ce41;
-}
-.icon-blue {
-  fill: #1cb5ea;
-}
-.icon-success {
-  fill: #97ce41;
-}
-.icon-info {
-  fill: #99569b;
-}
-.icon-danger {
-  fill: #ee5437;
-}
-.icon-right {
-  float: right;
-}
-.icon-left {
-  float: left;
 }
 .blue ~ .list-item:hover {
   color: #1cb5ea;
@@ -3225,16 +3222,17 @@ body {
   padding: 0 10px;
   cursor: pointer;
   position: relative;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+  /*-webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;*/
+
 }
 .list-item:hover {
   border: 1px solid #e6e6e6;
   margin: 10px 0;
-  height: 198px;
+  height: 200px;
 }
 .list-item:hover .icon-fold {
   transform: rotate(180deg);
