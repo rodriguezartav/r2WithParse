@@ -130,21 +130,17 @@ module.exports = content;}, "app/pedidos/pedidosApp": function(exports, require,
 }
 });
 
-  moduleList = [
+moduleList = [
   
-    
-    
     
 
      
   
-    
-    
     
 
      
       {"path":"app/pedidos/pedidosApp","iconColor": "red","iconLabel": "Pe" },
       
   
-  ]
+]
 

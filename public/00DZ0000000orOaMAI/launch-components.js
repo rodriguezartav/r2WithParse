@@ -119,7 +119,7 @@
   }
   (function() {
     (function() {
-      __out.push('<div class="col-md-4 app-icon full-height">\n  \n  <div class="icon red">\n    <div class="text">Ze</div>\n    </div>\n  </div>  \n  \n</div>\n\n<div class="col-md-8 app-info">\n  <div class="title">App Name</div>\n  <div class="labels"> d d ads ds das sd d adas das dsa dasD ASD Ad sadS AD sad sad sad sdsfds fdsf dsafd saf dsf sadf</div>\n  <a class="btn btn-danger btn-block"> Abrir App</a>\n</div>');
+      __out.push('<div class="col-md-4 full-height">\n  \n  <div class="app-icon red">\n    <div class="text">Ze</div>\n    </div>\n  </div>  \n  \n</div>\n\n<div class="col-md-8 app-info">\n  <div class="title">App Name</div>\n  <div class="labels"> d d ads ds das sd d adas das dsa dasD ASD Ad sadS AD sad sad sad sdsfds fdsf dsafd saf dsf sadf</div>\n  <a class="btn btn-danger btn-block"> Abrir App</a>\n</div>');
     
     }).call(this);
     
@@ -220,7 +220,7 @@ module.exports = content;}, "components/appMenu/appIcon": function(exports, requ
       kanban.prepend('<div class="kanban-wrapper app-wrapper">\
       <div class="row full-height">\
         <div class="col-md-12 kan-col">\
-          <div class="header blue"><span class="triangle"></span><span class="large-title">Nombre del App</span></div>\
+          <div class="header blue"><span class="triangle"></span><span class="large-title">Pedidos del App</span></div>\
           <div class="sub-header">\
             <div class="sub-title">Todos los Clientes</div>\
           </div>\
@@ -286,9 +286,7 @@ module.exports = content;}, "components/appMenu/appIcon": function(exports, requ
       _ref = this.apps;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         app = _ref[_i];
-        __out.push('\n  ');
-        console.log(app);
-        __out.push('\n    <div class="col-md-4">\n      <div class="icon icon-small ');
+        __out.push('\n    <div class="col-md-4">\n      <div class="app-icon icon-small ');
         __out.push(__sanitize(app.iconColor));
         __out.push('">\n        <div class="gloss"></div>\n        <div class="text">');
         __out.push(__sanitize(app.iconLabel));
@@ -465,67 +463,49 @@ module.exports = content;}, "components/breadcrum/breadcrum": function(exports, 
 module.exports = content;}
 });
 
-  moduleList = [
+moduleList = [
   
-    
-    
     
 
      
   
     
-    
+
+     
+  
     
 
      
   
     
-    
+
+     
+  
     
 
      
   
     
-    
+
+     
+  
     
 
      
   
     
-    
-    
 
      
   
     
-    
-    
 
      
   
-    
-    
-    
-
-     
-  
-    
-    
-    
-
-     
-  
-    
-    
-    
-
-     
-  
-  ]
+]
 
 
   //CSS Styles for Modules
-  var css=".app-highlight .title {  line-height: 1.6;  color: #ee5437;}.app-highlight .icon {  width: 90%;  height: 95px;}.app-highlight .icon .text {  color: white;  font-size: 60px;  font-family: sans-serif;  line-height: 0px;  font-weight: bold;  text-align: center;}.app-highlight .labels {  margin-bottom: 6px;  line-height: 1.2;}";
+  var css=".app-highlight .title {  line-height: 1.6;  color: #ee5437;}.app-highlight .app-icon {  width: 90%;  height: 95px;}.app-highlight .app-icon .text {  color: white;  font-size: 60px;  font-family: sans-serif;  line-height: 0px;  font-weight: bold;  text-align: center;}.app-highlight .labels {  margin-bottom: 6px;  line-height: 1.2;}";
   var head  = document.head || document.getElementsByTagName('head')[0];
   var style = document.createElement('style');
 

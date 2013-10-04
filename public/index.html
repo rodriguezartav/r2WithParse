@@ -1,36 +1,11 @@
 <!DOCTYPE html><html><head><title></title><link rel="stylesheet" type="text/css" href="/r2.css"><link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700|Asap:400,700" rel="stylesheet" type="text/css"><script src="/r2.js"></script><script type="text/javascript" charset="utf-8">var jQuery  = require("jqueryify");
 
-<<<<<<< HEAD
 var apiServer= "http://quiet-atoll-3343.herokuapp.com";
-=======
-var apiServer= "http://localhost:3000";
-
-var tokens, re = /[?&]?([^=]+)=([^&]*)/g;
-function getQueryParams(qs) {
-  var params = {}
-  qs = qs.split("+").join(" ");
-  while (tokens = re.exec(qs)) {
-    params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]);
-  }
-  return params;
-}
-
-var queryString = getQueryParams(document.location.search);
-
-if( ( queryString["session"] == null || queryString["session"] == undefined ) && (localStorage.session == null || localStorage.session == undefined) ){
-  window.location.href = "/login.html";
-}
->>>>>>> App-Pedidos
 
 var layout = "web"
 
 var exports = this;
 jQuery(function(){
-<<<<<<< HEAD
-  var App = require("index");
-  window.src = { path: "" , build: "devBuild" }
-  //exports.app =  new App({ el: $("body") , layout: layout, session: queryString["session"], apiServer: apiServer }); 
-=======
   var App = require("r2");
   exports.app =  new App(
     { 
@@ -40,7 +15,6 @@ jQuery(function(){
       path: ""
     }
   ); 
->>>>>>> origin
 });
 
 </script></head><body class="fullHeight"></body></html>

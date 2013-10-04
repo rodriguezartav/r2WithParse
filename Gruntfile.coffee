@@ -32,13 +32,13 @@ module.exports = (grunt) ->
 
     grunt_appbot_compiler: {
       r2: {
-        appPaths: ['./app/r2', './app/web_components/menu', './app/web_components/newsFeed'],
+        appPaths: ['./app/r2'],
         lessVariables: "./css/base/variables.less",
         dependencyPaths: ["jqueryify","rspine","rspine/lib/salesforceAjax","rspine/lib/salesforceModel","rspine/lib/offlineModel"],
         destination: "./public/r2.js"
       },      
       initApp: {
-        appPaths: ['./app/initApp'],
+        appPaths: ['./app/initApp', './app/web_components/menu', './app/web_components/newsFeed'],
         lessVariables: "./css/base/variables.less",
         dependencyPaths: [],
         destination: "./public/#{orgId}/initApp.js"
@@ -202,6 +202,6 @@ module.exports = (grunt) ->
 
   grunt.registerTask('build', ['coffee' , "test" , "grunt_appbot_compiler" , "jade:production","s3"]);   
 
-  grunt.registerTask('server', ["jade:dev" , 'express','watch']);
+  grunt.registerTask('server', ["grunt_appbot_compiler","less","jade:dev" , 'express','watch']);
   
   grunt.registerTask('default', ['clean','coffee', "copy" , 'mochaTest']);   

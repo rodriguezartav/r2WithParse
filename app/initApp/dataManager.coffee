@@ -17,7 +17,6 @@ class DataManager
   
   
   initializeData: ->
-    console.log "oj"
     Cliente.autoQuery=true;
     RSpine.Model.SalesforceModel.initialize()
   

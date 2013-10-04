@@ -3,8 +3,5 @@ node_modules
 .DS_STORE
 .ds_store
 .DS_Store
-<<<<<<< HEAD
 public/devBuild
-=======
->>>>>>> App-Pedidos
 ./public/devBuild

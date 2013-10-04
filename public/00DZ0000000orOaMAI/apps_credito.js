@@ -205,16 +205,12 @@ module.exports = content;}, "app/recibos/recibosApp": function(exports, require,
 }
 });
 
-  moduleList = [
+moduleList = [
   
-    
-    
     
 
      
   
-    
-    
     
 
      
@@ -222,16 +218,12 @@ module.exports = content;}, "app/recibos/recibosApp": function(exports, require,
       
   
     
-    
-    
 
      
   
     
-    
-    
 
      
   
-  ]
+]
 

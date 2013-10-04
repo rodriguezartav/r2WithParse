@@ -77,7 +77,6 @@
     }
 
     DataManager.prototype.initializeData = function() {
-      console.log("oj");
       Cliente.autoQuery = true;
       return RSpine.Model.SalesforceModel.initialize();
     };
@@ -224,7 +223,7 @@
   }
   (function() {
     (function() {
-      __out.push('<div class="outer-container full-height">\n  <div class="row full-height">\n    <div class="col-md-1 menu"></div>\n    <div class="col-md-11 kanban">\n      <div class="kanban-wrapper">\n        \n        \n        <div class="row breadcrum">\n        </div>\n        \n        \n        <div class="row full-height">\n          \n          \n          <div class="col-md-4 kan-col-wrapper large social-ban kan-col">\n            <div class="header blue"><span class="triangle"></span><span class="large-title">!Buenos días Mari!</span></div>\n            <div class="sub-header">\n              <div class="sub-title">Que hay de nuevo?</div>\n            </div>\n            <div class="content-body scrollable">\n              <div class="news-feed content-body-wrapper"></div>\n            </div>\n          </div>\n          \n          \n          \n          \n          <div class="col-md-4 kan-col-wrapper app-ban kan-col">\n            <div class="header red"><span class="triangle"></span><span class="large-title">Apps mas usadas</span></div>\n            <div class="sub-header">\n              <div class="sub-title text-center">Home</div>\n            </div>\n            <div class="content-body">\n              <div class="inner-wrapper content-body-wrapper">\n                <div class="row app-highlight"></div>\n              </div>\n              \n              <div class="app-menu">\n              </div>\n              \n            </div>\n          </div>\n          \n          <div class="col-md-4 kan-col-wrapper large metric-ban kan-col">\n            <div class="header purple"><span class="triangle"></span><span class="large-title">Que paso con el cliente </span></div>\n            <div class="sub-header">\n              <div class="sub-title">Todos los Clientes</div>\n            </div>\n            <div class="content-body">\n              <div class="content-body-wrapper">\n    \n                <div class="app-metrics"></div>\n    \n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>');
+      __out.push('<div class="outer-container full-height">\n  <div class="row full-height">\n    <div class="col-md-1 menu"></div>\n    <div class="col-md-11 kanban">\n      <div class="kanban-wrapper">\n        <div class="row breadcrum">\n        </div>\n\n        <div class="row full-height">\n          \n          <div class="col-md-4 kan-col-wrapper large social-ban kan-col">\n            <div class="header blue"><span class="triangle"></span><span class="large-title">!Buenos días Mari!</span></div>\n            <div class="sub-header">\n              <div class="sub-title">Que hay de nuevo?</div>\n            </div>\n            <div class="content-body scrollable">\n              <div class="news-feed content-body-wrapper"></div>\n            </div>\n          </div>\n          \n          \n          \n          \n          <div class="col-md-4 kan-col-wrapper app-ban kan-col">\n            <div class="header red"><span class="triangle"></span><span class="large-title">Apps mas usadas</span></div>\n            <div class="sub-header">\n              <div class="sub-title text-center">Home</div>\n            </div>\n            <div class="content-body">\n              <div class="inner-wrapper content-body-wrapper">\n                <div class="row app-highlight"></div>\n              </div>\n              \n              <div class="app-menu">\n              </div>\n              \n            </div>\n          </div>\n          \n          <div class="col-md-4 kan-col-wrapper large metric-ban kan-col">\n            <div class="header purple"><span class="triangle"></span><span class="large-title">Que paso con el cliente </span></div>\n            <div class="sub-header">\n              <div class="sub-title">Todos los Clientes</div>\n            </div>\n            <div class="content-body">\n              <div class="content-body-wrapper">\n    \n                <div class="app-metrics"></div>\n    \n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>');
     
     }).call(this);
     
@@ -355,40 +354,305 @@ module.exports = content;}, "lib/setup": function(exports, require, module) {(fu
   module.exports = Cliente;
 
 }).call(this);
-}
+}, "components/menu/menu": function(exports, require, module) {(function() {
+  var $, Menu, RSpine,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  RSpine = require("rspine");
+
+  if (!$) {
+    $ = window.$;
+  }
+
+  Menu = (function(_super) {
+    __extends(Menu, _super);
+
+    Menu.className = "menu";
+
+    Menu.prototype.elements = {
+      ".content": "content"
+    };
+
+    function Menu() {
+      Menu.__super__.constructor.apply(this, arguments);
+      this.html(require("components/menu/menu_layout")());
+    }
+
+    return Menu;
+
+  })(RSpine.Controller);
+
+  module.exports = Menu;
+
+}).call(this);
+}, "components/menu/menu_layout": function(exports, require, module) {var content = function(__obj) {
+  if (!__obj) __obj = {};
+  var __out = [], __capture = function(callback) {
+    var out = __out, result;
+    __out = [];
+    callback.call(this);
+    result = __out.join('');
+    __out = out;
+    return __safe(result);
+  }, __sanitize = function(value) {
+    if (value && value.ecoSafe) {
+      return value;
+    } else if (typeof value !== 'undefined' && value != null) {
+      return __escape(value);
+    } else {
+      return '';
+    }
+  }, __safe, __objSafe = __obj.safe, __escape = __obj.escape;
+  __safe = __obj.safe = function(value) {
+    if (value && value.ecoSafe) {
+      return value;
+    } else {
+      if (!(typeof value !== 'undefined' && value != null)) value = '';
+      var result = new String(value);
+      result.ecoSafe = true;
+      return result;
+    }
+  };
+  if (!__escape) {
+    __escape = __obj.escape = function(value) {
+      return ('' + value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    };
+  }
+  (function() {
+    (function() {
+      __out.push('<div class="labels">Rodco</div>');
+    
+    }).call(this);
+    
+  }).call(__obj);
+  __obj.safe = __objSafe, __obj.escape = __escape;
+  return __out.join('');
+};
+module.exports = content;}, "components/newsFeed/newsFeed": function(exports, require, module) {(function() {
+  var $, ChatterNews, NewsFeed, RSpine, Session,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  RSpine = require("rspine");
+
+  if (!$) {
+    $ = window.$;
+  }
+
+  Session = require("models/session");
+
+  ChatterNews = require("models/chatterNews");
+
+  NewsFeed = (function(_super) {
+    __extends(NewsFeed, _super);
+
+    NewsFeed.className = "news-feed";
+
+    NewsFeed.prototype.elements = {
+      ".content": "content"
+    };
+
+    function NewsFeed() {
+      var base, request,
+        _this = this;
+      NewsFeed.__super__.constructor.apply(this, arguments);
+      base = new RSpine.Ajax.Base();
+      request = base.ajaxQueue({}, {
+        type: 'GET',
+        url: RSpine.Model.salesforceHost + ("/api?path=/services/data/v24.0/chatter/feeds/news/" + (Session.first().userId) + "/feed-items")
+      });
+      request.done(function(response) {
+        var item, _i, _len, _ref;
+        console.log(response.items);
+        _ref = response.items;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          item = _ref[_i];
+          ChatterNews.create(item);
+        }
+        console.log(ChatterNews.all());
+        return _this.html(require("components/newsFeed/newsFeed_item")(ChatterNews.all()));
+      });
+      $(".kan-col-wrapper > .content-body").mouseover(function(e) {
+        var target, wrapper;
+        target = $(e.target);
+        while (!target.hasClass("content-body")) {
+          target = target.parent();
+        }
+        wrapper = target.find(".content-body-wrapper");
+        if (wrapper.height() > target.height()) {
+          $(".kanban").css("overflow", "hidden");
+          return $(".kan-col-wrapper > .content-body").one("mouseout", function() {
+            return $(".kanban").css("overflow", "scroll");
+          });
+        }
+      });
+    }
+
+    return NewsFeed;
+
+  })(RSpine.Controller);
+
+  module.exports = NewsFeed;
+
+}).call(this);
+}, "components/newsFeed/newsFeed_item": function(exports, require, module) {module.exports = function(values, data){ 
+  var $  = jQuery, result = $();
+  values = $.makeArray(values);
+  data = data || {};
+  for(var i=0; i < values.length; i++) {
+    var value = $.extend({}, values[i], data, {index: i});
+    var elem  = $((function(__obj) {
+  if (!__obj) __obj = {};
+  var __out = [], __capture = function(callback) {
+    var out = __out, result;
+    __out = [];
+    callback.call(this);
+    result = __out.join('');
+    __out = out;
+    return __safe(result);
+  }, __sanitize = function(value) {
+    if (value && value.ecoSafe) {
+      return value;
+    } else if (typeof value !== 'undefined' && value != null) {
+      return __escape(value);
+    } else {
+      return '';
+    }
+  }, __safe, __objSafe = __obj.safe, __escape = __obj.escape;
+  __safe = __obj.safe = function(value) {
+    if (value && value.ecoSafe) {
+      return value;
+    } else {
+      if (!(typeof value !== 'undefined' && value != null)) value = '';
+      var result = new String(value);
+      result.ecoSafe = true;
+      return result;
+    }
+  };
+  if (!__escape) {
+    __escape = __obj.escape = function(value) {
+      return ('' + value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    };
+  }
+  (function() {
+    (function() {
+      var RSpine, comment, _i, _len, _ref;
+    
+      RSpine = require("rspine");
+    
+      __out.push('\n\n<div class="row post">\n\n  <div class="col-md-1 post-image-wrapper">\n    <img src="');
+    
+      __out.push(__sanitize(RSpine.getImage(this.photoUrl)));
+    
+      __out.push('" />\n  </div>\n\n  <div class="col-md-11">\n    <div class="post-area">\n      <span class="title">');
+    
+      __out.push(__sanitize(this.actor.name));
+    
+      __out.push('</span>\n      <span class="text">');
+    
+      __out.push(__sanitize(this.body.text));
+    
+      __out.push('</span>\n    </div>\n\n    <div class="row post-actions">\n      <div class="col-md-12">\n        <a class="labels like">Me gusta (');
+    
+      __out.push(__sanitize(this.likes.total));
+    
+      __out.push(')</a>\n      </div>\n    </div>\n  \n    <div class="row post-comments"> \n      ');
+    
+      _ref = this.comments.comments;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        comment = _ref[_i];
+        __out.push('\n        <div class="row inner-wrapper">\n      \n          <div class="col-md-1 ">\n            <img src="');
+        __out.push(__sanitize(RSpine.getImage(comment.user.photo.smallPhotoUrl)));
+        __out.push('">\n          </div>\n\n          <div class="col-md-11">\n            <div class="post-area">\n              <span class="title">');
+        __out.push(__sanitize(comment.user.name));
+        __out.push('</span>\n              <span class="text">');
+        __out.push(__sanitize(comment.body.text));
+        __out.push('</span>\n              <div class="row post-actions">\n                <div class="col-md-11">\n                  <a class="labels like"> Me Gusta (');
+        __out.push(__sanitize(this.likes.total));
+        __out.push(')</a>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      ');
+      }
+    
+      __out.push('\n    </div>\n\n    <div class="row post-new-comment">\n      <div class="row">\n        <div class="col-md-1 ">\n          <img src="');
+    
+      __out.push(__sanitize(RSpine.getImage(RSpine.session.user.SmallPhotoUrl)));
+    
+      __out.push('">\n        </div>\n        <div class="col-md-11">\n          <textarea class="form-control" rows="1"/>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>');
+    
+    }).call(this);
+    
+  }).call(__obj);
+  __obj.safe = __objSafe, __obj.escape = __escape;
+  return __out.join('');
+})(value));
+    elem.data('item', value);
+    $.merge(result, elem);
+  }
+  return result;
+};}
 });
 
-  moduleList = [
+moduleList = [
   
-    
-    
     
 
      
   
     
-    
+
+     
+  
     
 
      
   
     
-    
+
+     
+  
     
 
      
   
     
-    
+
+     
+  
     
 
      
   
     
-    
+
+     
+  
     
 
      
   
-  ]
+]
 
+
+  //CSS Styles for Modules
+  var css=".post {  margin-top: 16.5px;  margin-bottom: 33px;}.post:first-child {  margin-top: 0px;}.post img {  width: 33px;  height: 31.68px;}.post .title {  display: inline-block;  margin-right: 7px;  color: #4a4b4c;  font-weight: 700;}.post .post-actions {  margin: 3px;  margin-bottom: 0px;}.post .post-actions a.labels {  display: inline-block;  margin-right: 6px;  cursor: pointer;  color: #1cb5ea;}.post .post-comments {  margin-bottom: 4px;  border-left: 1px solid #f1f2f2;}.post .post-comments a.comment {  display: none;}.post .post-new-comment {  position: relative;}.post .post-new-comment img {  display: inline-block;}.post .post-new-comment textarea {  display: inline-block;  position: absolute;  width: 90%;}";
+  var head  = document.head || document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+
+  style.type = 'text/css';
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  }
+  else {
+    style.appendChild(document.createTextNode(css));
+  }
+
+  head.appendChild(style);

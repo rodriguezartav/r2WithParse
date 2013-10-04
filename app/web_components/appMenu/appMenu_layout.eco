@@ -1,9 +1,8 @@
 <div class="row app-row">
 
   <% for app in @apps: %>
-  <% console.log app %>
     <div class="col-md-4">
-      <div class="icon icon-small <%= app.iconColor %>">
+      <div class="app-icon icon-small <%= app.iconColor %>">
         <div class="gloss"></div>
         <div class="text"><%= app.iconLabel %></div>
       </div>

@@ -7,6 +7,6 @@ class Name extends RSpine.Controller
    
   constructor: ->
     super    
-    @html require("apps/pedidos/name_layout")()
+    @html require("apps/pedidos/name_layout")() 
 
 module.exports = Name

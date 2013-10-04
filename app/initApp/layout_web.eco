@@ -3,14 +3,10 @@
     <div class="col-md-1 menu"></div>
     <div class="col-md-11 kanban">
       <div class="kanban-wrapper">
-        
-        
         <div class="row breadcrum">
         </div>
-        
-        
+
         <div class="row full-height">
-          
           
           <div class="col-md-4 kan-col-wrapper large social-ban kan-col">
             <div class="header blue"><span class="triangle"></span><span class="large-title">!Buenos días Mari!</span></div>
