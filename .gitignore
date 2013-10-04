@@ -3,5 +3,5 @@ node_modules
 .DS_STORE
 .ds_store
 .DS_Store
-public/devBuild
-./public/devBuild
+public/*.*
+./public/*.*

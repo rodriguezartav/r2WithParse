@@ -23,7 +23,9 @@ module.exports = (grunt) ->
 
     copy: 
       main: 
-        files: []
+        files:
+           [ {expand: true, src: ['./images/**'], dest: './public'} ]
+
 
     less:
       development:
@@ -183,6 +185,7 @@ module.exports = (grunt) ->
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-express');
@@ -192,16 +195,16 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-s3');  
 
-  grunt.registerTask('test', ["clean:test",'coffee',"jade:test","grunt_appbot_compiler","mochaTest"]);   
+  grunt.registerTask('test', ["copy","clean:test",'coffee',"jade:test","grunt_appbot_compiler","mochaTest"]);   
 
-  grunt.registerTask('test_unit', ["clean:test",'coffee',"jade:test","grunt_appbot_compiler","mochaTest:unit"]); 
+  grunt.registerTask('test_unit', ["copy","clean:test",'coffee',"jade:test","grunt_appbot_compiler","mochaTest:unit"]); 
 
-  grunt.registerTask('test_functional', ["clean:test",'coffee',"jade:test","grunt_appbot_compiler","mochaTest:functional"]); 
+  grunt.registerTask('test_functional', ["copy","clean:test",'coffee',"jade:test","grunt_appbot_compiler","mochaTest:functional"]); 
 
-  grunt.registerTask('test_integration', ["clean:test",'coffee',"jade:test","grunt_appbot_compiler","mochaTest:integration"]); 
+  grunt.registerTask('test_integration', ["copy","clean:test",'coffee',"jade:test","grunt_appbot_compiler","mochaTest:integration"]); 
 
-  grunt.registerTask('build', ['coffee' , "test" , "grunt_appbot_compiler" , "jade:production","s3"]);   
+  grunt.registerTask('build', ["copy",'coffee' , "test" , "grunt_appbot_compiler" , "jade:production","s3"]);   
 
-  grunt.registerTask('server', ["grunt_appbot_compiler","less","jade:dev" , 'express','watch']);
+  grunt.registerTask('server', ["copy","grunt_appbot_compiler","less","jade:dev" , 'express','watch']);
   
-  grunt.registerTask('default', ['clean','coffee', "copy" , 'mochaTest']);   
+  grunt.registerTask('default', ["copy",'clean','coffee' , 'mochaTest']);   
