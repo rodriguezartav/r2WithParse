@@ -13,18 +13,30 @@ class AppMenu extends RSpine.Controller
       @html require("components/appMenu/appMenu_layout")(apps: RSpine.apps)
 
 
-  onAppClick: ->
+  onAppClick: (e) ->
+    target = $(e.target)
+    target = target.parent() until target.hasClass "app"
+    
+    appPath = target.data "path"
+    App = require(appPath)
+
+    
     kanban = $(".kanban")
-    kanban.prepend '<div class="kanban-wrapper app-wrapper">
+    template = $('<div class="kanban-wrapper app-wrapper">
       <div class="row full-height">
         <div class="col-md-12 kan-col">
           <div class="header blue"><span class="triangle"></span><span class="large-title">Pedidos del App</span></div>
           <div class="sub-header">
             <div class="sub-title">Todos los Clientes</div>
           </div>
+          <div class="body"></div>
         </div>
       </div>
-    </div>'
+    </div>')
+    
+    kanban.prepend template
+    app = new App(el: template.find(".body"))
+    
     
     
     kanban.scrollTop 100000;

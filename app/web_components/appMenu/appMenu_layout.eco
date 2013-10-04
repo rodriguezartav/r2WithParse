@@ -2,7 +2,7 @@
 
   <% for app in @apps: %>
     <div class="col-md-4">
-      <div class="app-icon icon-small <%= app.iconColor %>">
+      <div data-path="<%= app.path %>" class="app-icon app icon-small <%= app.iconColor %>">
         <div class="gloss"></div>
         <div class="text"><%= app.iconLabel %></div>
       </div>

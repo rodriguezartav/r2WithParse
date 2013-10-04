@@ -52,7 +52,35 @@
   }
   return this.require.define;
 }).call(this)({
-  "app/pedidos/name_layout": function(exports, require, module) {var content = function(__obj) {
+  "app/pedidos/pedidosApp": function(exports, require, module) {(function() {
+  var $, Name, RSpine,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  RSpine = require("rspine");
+
+  if (!$) {
+    $ = window.$;
+  }
+
+  Name = (function(_super) {
+    __extends(Name, _super);
+
+    Name.className = "";
+
+    function Name() {
+      Name.__super__.constructor.apply(this, arguments);
+      this.html(require("app/pedidos/pedidosApp_layout")());
+    }
+
+    return Name;
+
+  })(RSpine.Controller);
+
+  module.exports = Name;
+
+}).call(this);
+}, "app/pedidos/pedidosApp_layout": function(exports, require, module) {var content = function(__obj) {
   if (!__obj) __obj = {};
   var __out = [], __capture = function(callback) {
     var out = __out, result;
@@ -91,7 +119,7 @@
   }
   (function() {
     (function() {
-    
+      __out.push('<h1>Hellooooo</h1>');
     
     }).call(this);
     
@@ -99,35 +127,7 @@
   __obj.safe = __objSafe, __obj.escape = __escape;
   return __out.join('');
 };
-module.exports = content;}, "app/pedidos/pedidosApp": function(exports, require, module) {(function() {
-  var $, Name, RSpine,
-    __hasProp = {}.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
-
-  RSpine = require("rspine");
-
-  if (!$) {
-    $ = window.$;
-  }
-
-  Name = (function(_super) {
-    __extends(Name, _super);
-
-    Name.className = "";
-
-    function Name() {
-      Name.__super__.constructor.apply(this, arguments);
-      this.html(require("apps/pedidos/name_layout")());
-    }
-
-    return Name;
-
-  })(RSpine.Controller);
-
-  module.exports = Name;
-
-}).call(this);
-}, "app/recibos/name_layout": function(exports, require, module) {var content = function(__obj) {
+module.exports = content;}, "app/recibos/name_layout": function(exports, require, module) {var content = function(__obj) {
   if (!__obj) __obj = {};
   var __out = [], __capture = function(callback) {
     var out = __out, result;
@@ -210,12 +210,12 @@ moduleList = [
     
 
      
+      {"path":"app/pedidos/pedidosApp","iconColor": "red","iconLabel": "Pe" },
+      
   
     
 
      
-      {"path":"app/pedidos/pedidosApp","iconColor": "red","iconLabel": "Pe" },
-      
   
     
 

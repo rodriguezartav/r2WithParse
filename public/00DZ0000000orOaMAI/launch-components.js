@@ -127,64 +127,7 @@
   __obj.safe = __objSafe, __obj.escape = __escape;
   return __out.join('');
 };
-module.exports = content;}, "components/appMenu/appIcon": function(exports, require, module) {module.exports = function(values, data){ 
-  var $  = jQuery, result = $();
-  values = $.makeArray(values);
-  data = data || {};
-  for(var i=0; i < values.length; i++) {
-    var value = $.extend({}, values[i], data, {index: i});
-    var elem  = $((function(__obj) {
-  if (!__obj) __obj = {};
-  var __out = [], __capture = function(callback) {
-    var out = __out, result;
-    __out = [];
-    callback.call(this);
-    result = __out.join('');
-    __out = out;
-    return __safe(result);
-  }, __sanitize = function(value) {
-    if (value && value.ecoSafe) {
-      return value;
-    } else if (typeof value !== 'undefined' && value != null) {
-      return __escape(value);
-    } else {
-      return '';
-    }
-  }, __safe, __objSafe = __obj.safe, __escape = __obj.escape;
-  __safe = __obj.safe = function(value) {
-    if (value && value.ecoSafe) {
-      return value;
-    } else {
-      if (!(typeof value !== 'undefined' && value != null)) value = '';
-      var result = new String(value);
-      result.ecoSafe = true;
-      return result;
-    }
-  };
-  if (!__escape) {
-    __escape = __obj.escape = function(value) {
-      return ('' + value)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-    };
-  }
-  (function() {
-    (function() {
-    
-    
-    }).call(this);
-    
-  }).call(__obj);
-  __obj.safe = __objSafe, __obj.escape = __escape;
-  return __out.join('');
-})(value));
-    elem.data('item', value);
-    $.merge(result, elem);
-  }
-  return result;
-};}, "components/appMenu/appMenu": function(exports, require, module) {(function() {
+module.exports = content;}, "components/appMenu/appMenu": function(exports, require, module) {(function() {
   var $, AppMenu, RSpine,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -214,19 +157,30 @@ module.exports = content;}, "components/appMenu/appIcon": function(exports, requ
       });
     }
 
-    AppMenu.prototype.onAppClick = function() {
-      var kanban;
+    AppMenu.prototype.onAppClick = function(e) {
+      var App, app, appPath, kanban, target, template;
+      target = $(e.target);
+      while (!target.hasClass("app")) {
+        target = target.parent();
+      }
+      appPath = target.data("path");
+      App = require(appPath);
       kanban = $(".kanban");
-      kanban.prepend('<div class="kanban-wrapper app-wrapper">\
+      template = $('<div class="kanban-wrapper app-wrapper">\
       <div class="row full-height">\
         <div class="col-md-12 kan-col">\
           <div class="header blue"><span class="triangle"></span><span class="large-title">Pedidos del App</span></div>\
           <div class="sub-header">\
             <div class="sub-title">Todos los Clientes</div>\
           </div>\
+          <div class="body"></div>\
         </div>\
       </div>\
     </div>');
+      kanban.prepend(template);
+      app = new App({
+        el: template.find(".body")
+      });
       kanban.scrollTop(100000);
       return kanban.animate({
         scrollTop: 0
@@ -286,7 +240,9 @@ module.exports = content;}, "components/appMenu/appIcon": function(exports, requ
       _ref = this.apps;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         app = _ref[_i];
-        __out.push('\n    <div class="col-md-4">\n      <div class="app-icon icon-small ');
+        __out.push('\n    <div class="col-md-4">\n      <div data-path="');
+        __out.push(__sanitize(app.path));
+        __out.push('" class="app-icon app icon-small ');
         __out.push(__sanitize(app.iconColor));
         __out.push('">\n        <div class="gloss"></div>\n        <div class="text">');
         __out.push(__sanitize(app.iconLabel));
@@ -464,10 +420,6 @@ module.exports = content;}
 });
 
 moduleList = [
-  
-    
-
-     
   
     
 
