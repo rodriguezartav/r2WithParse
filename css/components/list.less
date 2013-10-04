@@ -1,6 +1,7 @@
 // Lists
 // -------------------------
 
+
 .list {
   display: block;
 }
@@ -10,43 +11,65 @@
   height: 33px;
 }
 
+
+
+.blue ~ .list-item {  
+  &:hover{
+    color: @brand-primary;
+  }
+}
+.blue ~ .list-header {
+    color: @brand-primary;
+}
+
+.purple ~ .row {  
+  .list-item {
+    &:hover{
+      color: @brand-info;
+    }
+  }
+}
+.purple ~ .row {
+  .list-header {
+    color: @brand-info;
+  } 
+}
+
+.green ~ .list-item {  
+  &:hover{
+    color: @brand-success;
+  }
+}
+.green ~ .list-header {
+    color: @brand-success;
+}
+
+
 .list-item {
   border-bottom: 1px solid @gray-lighter;
   border-left: 1px solid @gray-lighter;
   border-right: 1px solid @gray-lighter;
+  height:@line-height-block;
   overflow: hidden;
-  line-height: 33px;
+  line-height: @line-height-block;
   padding: 0 @padding-small-horizontal;
-  cursor: pointer;
-  
+  cursor: pointer; 
+  position: relative;
+  /*-webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;*/
   &:hover{
-    //border: 1px solid @gray-lighter;
-    //margin: 10px 0;
-    //height: 200px;
-  }
-  
-  
-  
-  .list-item-header{
-    .primary{
+    border: 1px solid @gray-lighter;
+    margin: @padding-small-horizontal 0;
+   height: 200px;
+    .icon-fold {
+      transform: rotate(180deg);
+      -ms-transform: rotate(180deg); /* IE 9 */
+      -webkit-transform: rotate(180deg); /* Safari and Chrome */
     }
-    .secondary{
-      float: right;
-    }
-    
-  }
-
-  .indent{
-    padding-left: 15px;
-  }
-  
-  .text{    
-    &.heading{
-      margin-right: 10px;
-    }
-  }
-  
-  
+  }  
 } 
 
 .blue ~ .list-item {
@@ -61,3 +84,34 @@
     color: @brand-primary;
   }
 } 
+
+
+.list-header{
+  border-bottom: 1px solid @gray-lighter;
+  border-left: 1px solid @gray-lighter;
+  border-right: 1px solid @gray-lighter;
+  height:@line-height-block;
+  line-height: @line-height-block;
+  padding: 0 @padding-small-horizontal;
+  font-size: @font-size-medium;
+  .icon-medium {
+    margin-right: @padding-small-horizontal;
+  }
+}
+
+.nested-list {
+
+}
+
+.nested-list-item {
+  display: block;
+  color: @gray-dark;
+  line-height: @line-height-block;
+  padding: 0 @padding-small-horizontal;
+  cursor: pointer;
+}
+
+.list-options {
+  line-height: @line-height-block;
+  height:@line-height-block;
+}

@@ -1,8 +1,8 @@
-.icon {
-  float: right;
-  height: 50%;
-  max-width: 33px;
-  margin-top: 16px;
+// Icons General Styles
+// -------------------------
+
+.icon-large, .icon-medium, .icon-small {
+  vertical-align: top; 
   display: inline-block;
   -webkit-transition: .3s all ease-in-out;
   -moz-transition: .3s all ease-in-out;
@@ -10,6 +10,38 @@
   -o-transition: .3s all ease-in-out;
   transition: .3s all ease-in-out;
 }
-.icon-create {
+
+// Icon Colors
+// -------------------------
+
+.icon-blue {
   fill: @brand-primary;
 }
+.icon-green {
+  fill: @brand-success;
+}
+.icon-purple {
+  fill: @brand-info;
+}
+.icon-danger {
+  fill: @brand-danger;
+}
+.icon-warning {
+  fill: @brand-warning;
+}
+
+// Icon Sizes
+// -------------------------
+
+.icon-large {
+  width: 33px;
+}
+
+.icon-medium {
+  width: 20px;
+}
+
+.icon-small {
+  width:8px;
+}
+
