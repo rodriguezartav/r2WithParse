@@ -38,9 +38,11 @@ class InitApp extends RSpine.Controller
 
     User.bind "refresh" , =>
       user = User.first();
-      LazyLoad.js "#{RSpine.jsPath}/apps_vendedores.js", =>
-        RSpine.apps = moduleList
-        RSpine.trigger "platform:apps_loaded"
+
+
+    LazyLoad.js "#{RSpine.jsPath}/apps_vendedores.js", =>
+      RSpine.apps = moduleList
+      RSpine.trigger "platform:apps_loaded"
 
   createAccount_click: (event) ->
     accountForm = event.target

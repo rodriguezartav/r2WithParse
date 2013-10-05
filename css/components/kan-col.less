@@ -53,13 +53,17 @@
   }
   
   .content-body{
-    border: 1px solid @gray-lightest;
     .full-height();
     min-height:  50%;
     height: 72%;
+    border: 1px solid @gray-lightest;
     padding: 8px 8px;  
+    overflow-y: scroll !important; 
     
-    overflow-y: scroll !important;    
+    &.content-body-stretch{
+      width: 1000px;
+      overflow-x: scroll !important;
+    }   
   }
   
   .comment-box{

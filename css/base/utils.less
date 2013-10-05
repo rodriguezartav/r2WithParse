@@ -32,26 +32,6 @@
   padding: @padding-base-vertical;
 }
 
-&.green{
-  background: @brand-success;
-}
-
-&.red{
-  background: @brand-danger;
-}
-
-&.gray-light{
-  background: @gray-light;
-}
-
-&.gray-dark{
-  background: @gray-dark;
-}
-
-&.gray{
-  background: @gray;
-}
-
 
 .display-block{
   display: block;
@@ -74,35 +54,10 @@
   float: left
 }
 
-// Inherited Color Styles
-// -------------------------
-
-.purple {
-  .header {background: @brand-info}
-  .list-header {
-    color: @brand-info;
-    .icon-small, .icon-medium, .icon-large {
-      fill: @brand-info;
-    }
-  }
+.col-stretch{
+  overflow-x: scroll;
 }
 
-.blue {
-  .header {background: @brand-primary}
-  .list-header {
-    color: @brand-primary;
-    .icon-small, .icon-medium, .icon-large {
-      fill: @brand-primary;
-    }
-  }
-}
-
-.green {
-  .header {background: @brand-success}
-  .list-header {
-    color: @brand-success;
-    .icon-small, .icon-medium, .icon-large {
-      fill: @brand-success;
-    }
-  }
+.col-stretch-900{
+  width: 900px;
 }

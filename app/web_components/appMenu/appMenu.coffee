@@ -22,22 +22,8 @@ class AppMenu extends RSpine.Controller
 
     
     kanban = $(".kanban")
-    template = $('<div class="kanban-wrapper app-wrapper">
-      <div class="row full-height">
-        <div class="col-md-12 kan-col">
-          <div class="header blue"><span class="triangle"></span><span class="large-title">Pedidos del App</span></div>
-          <div class="sub-header">
-            <div class="sub-title">Todos los Clientes</div>
-          </div>
-          <div class="body"></div>
-        </div>
-      </div>
-    </div>')
-    
-    kanban.prepend template
-    app = new App(el: template.find(".body"))
-    
-    
+    app = new App()
+    kanban.prepend app.el
     
     kanban.scrollTop 100000;
     kanban.animate({scrollTop:0}, 1000 );

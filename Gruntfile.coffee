@@ -52,7 +52,7 @@ module.exports = (grunt) ->
       }
 
       vendedores:{
-        appPaths: ["./app/apps/pedidos"]
+        appPaths: ["./app/apps/pedidos","./app/apps/logistica"]
         lessVariables: "./css/base/variables.less",
         destination: "./public/#{orgId}/apps_vendedores.js"
       }

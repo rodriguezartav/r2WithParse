@@ -11,45 +11,11 @@
   height: 33px;
 }
 
-
-
-.blue ~ .list-item {  
-  &:hover{
-    color: @brand-primary;
-  }
-}
-.blue ~ .list-header {
-    color: @brand-primary;
-}
-
-.purple ~ .row {  
-  .list-item {
-    &:hover{
-      color: @brand-info;
-    }
-  }
-}
-.purple ~ .row {
-  .list-header {
-    color: @brand-info;
-  } 
-}
-
-.green ~ .list-item {  
-  &:hover{
-    color: @brand-success;
-  }
-}
-.green ~ .list-header {
-    color: @brand-success;
-}
-
-
 .list-item {
   border-bottom: 1px solid @gray-lighter;
   border-left: 1px solid @gray-lighter;
   border-right: 1px solid @gray-lighter;
-  height:@line-height-block;
+  //height:@line-height-block;
   overflow: hidden;
   line-height: @line-height-block;
   padding: 0 @padding-small-horizontal;
@@ -61,9 +27,9 @@
   -o-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;*/
   &:hover{
-    border: 1px solid @gray-lighter;
-    margin: @padding-small-horizontal 0;
-   height: 200px;
+    //border: 1px solid @gray-lighter;
+    //margin: @padding-small-horizontal 0;
+    //height: 200px;
     .icon-fold {
       transform: rotate(180deg);
       -ms-transform: rotate(180deg); /* IE 9 */
@@ -72,24 +38,8 @@
   }  
 } 
 
-.blue ~ .list-item {
-  .list-header {
-    color: @brand-primary;
-    .icon{
-      fill: @brand-primary
-    } 
-  }
-  
-  .primary,.secondary{
-    color: @brand-primary;
-  }
-} 
-
-
 .list-header{
-  border-bottom: 1px solid @gray-lighter;
-  border-left: 1px solid @gray-lighter;
-  border-right: 1px solid @gray-lighter;
+  border: 1px solid @gray-lighter;
   height:@line-height-block;
   line-height: @line-height-block;
   padding: 0 @padding-small-horizontal;
