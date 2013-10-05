@@ -20,7 +20,7 @@ class InitApp extends RSpine.Controller
     "menu"      :  ".menu"
     
   launchStage:
-    "appHighlight": ".app-highlight"  
+    "appHighlight": ".app-highlight"      
     "appMenu": ".app-menu"  
     "appMetrics": ".app-metrics"  
     "breadcrum": ".breadcrum"  

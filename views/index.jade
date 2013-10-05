@@ -13,17 +13,17 @@ html
 
       var apiServer= "#{apiServer}";
       
-      var layout = "web"
+      var layout = "web";
 
       var exports = this;
       jQuery(function(){
         var App = require("r2");
         exports.app =  new App(
           { 
-            el: $("body"), 
-            layout: layout, 
-            apiServer: apiServer,
-            path: "#{path}"
+          el: $("body"), 
+          layout: layout, 
+          apiServer: apiServer,
+          path: "#{path}"
           }
         ); 
       });

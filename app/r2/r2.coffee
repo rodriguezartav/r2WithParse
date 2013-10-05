@@ -1,7 +1,7 @@
 RSpine = require("rspine")     
 require("lib/setup") 
 Session = require("models/session")
-              
+                  
 class App extends RSpine.Controller
         
   constructor: ->
