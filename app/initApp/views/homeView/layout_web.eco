@@ -1,0 +1,40 @@
+
+  <div class="row breadcrum"></div>
+
+  <div class="row full-height">
+    
+    <div class="col-md-4 social-ban color-column home-column home-column-large">
+      <div class="header blue"><span class="triangle"></span><span class="large-title">!Buenos días Mari!</span></div>
+      <div class="sub-header">
+        <div class="sub-title">Que hay de nuevo?</div>
+      </div>
+      <div class="content-body scrollable">
+        <div class="news-feed content-body-wrapper"></div>
+      </div>
+    </div>
+    
+    <div class="col-md-4 app-ban color-column home-column">
+      <div class="header red"><span class="triangle"></span><span class="large-title">Apps mas usadas</span></div>
+      <div class="sub-header">
+        <div class="sub-title text-center">Home</div>
+      </div>
+      <div class="content-body">
+        <div class="inner-wrapper content-body-wrapper">
+          <div class="row app-highlight"></div>
+        </div>
+        <div class="app-menu"></div>
+      </div>
+    </div>
+    
+    <div class="col-md-4 metric-ban color-column home-column home-column-large">
+      <div class="header purple"><span class="triangle"></span><span class="large-title">Que paso con el cliente </span></div>
+      <div class="sub-header">
+        <div class="sub-title">Todos los Clientes</div>
+      </div>
+      <div class="content-body">
+        <div class="content-body-wrapper">
+          <div class="app-metrics"></div>
+        </div>
+      </div>
+    </div>
+  </div>

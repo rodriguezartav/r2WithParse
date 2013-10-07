@@ -1,16 +1,15 @@
 <div class="row app-row">
-
   <% for app in @apps: %>
-    <div class="col-md-4">
-      <div data-path="<%= app.path %>" class="app-icon app <%= app.iconColor %>">
-        <div class="gloss"></div>
-        <div class="text"><%= app.iconLabel %></div>
+    <% if app.name != "Home View": %>
+      <div class="col-md-4">
+        <div data-path="<%= app.path %>" class="app-icon js-btn-app <%= app.iconColor %>">
+          <div class="gloss"></div>
+          <div class="text"><%= app.iconLabel %></div>
+        </div>
+        <div class="labels"><%= app.name %></div>
       </div>
-      <div class="labels">Pedidos</div>
-    </div>
-  
+    <% end %>
   <% end %>
-
 </div>
   
   

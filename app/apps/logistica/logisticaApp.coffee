@@ -2,7 +2,7 @@ RSpine = require("rspine")
 $ = window.$ if !$
 
 class Name extends RSpine.Controller
-  @className: ""
+  className: "app-canvas"
 
    
   constructor: ->

@@ -5,27 +5,19 @@ class AppMenu extends RSpine.Controller
   @className: ""
 
   events:
-    "click .app" : "onAppClick"
+    "click .js-btn-app" : "onAppClick"
 
   constructor: ->
     super
     RSpine.bind "platform:apps_loaded" , =>
-      @html require("components/appMenu/appMenu_layout")(apps: RSpine.apps)
+      @html require("components/appMenu/appMenu_layout")(apps: RSpine.appsMetadata)
 
 
   onAppClick: (e) ->
     target = $(e.target)
-    target = target.parent() until target.hasClass "app"
+    target = target.parent() until target.hasClass "js-btn-app"
     
     appPath = target.data "path"
-    App = require(appPath)
-
-    
-    kanban = $(".kanban")
-    app = new App()
-    kanban.prepend app.el
-    
-    kanban.scrollTop 100000;
-    kanban.animate({scrollTop:0}, 1000 );
+    RSpine.trigger "platform:app-launch" , appPath
 
 module.exports = AppMenu

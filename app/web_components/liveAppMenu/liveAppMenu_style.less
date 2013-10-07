@@ -1,0 +1,25 @@
+.liveAppMenu{
+   position: fixed;
+   top: 40%;
+   bottom: 40%;
+   
+   right: 4px;
+   width: 30px;   
+   .liveApps{
+      li{
+        text-align: center;
+        color: #333;
+        padding: 5px;
+        width: 100%;
+        border: 1px solid #ddd;
+        margin-top: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        &.active{
+          background-color: @brand-primary;
+          color: #fff;
+        }
+      }
+   }
+   
+}

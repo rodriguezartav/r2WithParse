@@ -1,0 +1,46 @@
+.color-column{
+
+  .header{
+    text-align: center;
+    border: 1px solid @gray-lighter;
+    border-bottom: none;
+    
+    .large-title{
+      line-height: @line-height-double-block;
+      color: #fff;
+    }
+    
+    .triangle{
+      position: absolute;
+      left: 8px;
+      top: 0px;
+      width: 0px;
+      height: 0px;
+      border-style: solid;
+      border-width: 70px 70px 0 0;
+      border-color: rgba(255,255,255,0.2) transparent transparent transparent;
+    }
+    
+  }
+
+      
+  .sub-header{
+    border: 1px solid @gray-lightest;
+    line-height: @line-height-block;
+    
+    .sub-title{
+      margin-left: 10px;
+      &.text-center{
+        margin-left: 0px;
+      }
+    }
+  }
+  
+  .content-body{
+    border: 1px solid @gray-lightest;
+    padding: 8px 8px;  
+  }
+  
+  
+     
+}

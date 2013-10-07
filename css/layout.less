@@ -8,7 +8,6 @@ body{
   .full-height();
 }
 
-
 .menu{
   .full-height();
   width: 5.7%;
@@ -16,49 +15,45 @@ body{
   border-right: #ccc 7px solid;
 }
 
-.outer-container{
-  padding-left: 0px;
+.platform-canvas{
   .full-height();
-}
-
-.kanban{
-  .full-height();
-  width: 94.3%;
+  width: 92.3%;
   padding: 0px 20px;
-  overflow: scroll;
+  //overflow: scroll;
 }
 
-.kanban-wrapper{
+.app-canvas{
   .full-height();
 }
 
-.kan-col-wrapper{
+//Columns & View Specific Layouts
+
+.home-column{
   .full-height();
   width: 25.5%;
   margin-top: 7px;
   
-  &.large{
+  &.home-column-large{
     width: 37.25%;
   }
 }
 
-.crear{
-  height: 200px;
-  width: 300px;
-  left: 50%;
-  top: 50%;
+.color-column{
+  .full-height();
+  position: relative;
+  .header{
+    height: @line-height-double-block;
+  }
+  
+  .content-body{
+    .full-height();
+    min-height:  50%;
+    height: 72%;
+    overflow-y: scroll !important; 
+    
+    &.content-body-stretch{
+      width: 1000px;
+      overflow-x: scroll !important;
+    }   
+  }     
 }
-
-
-.icon-create .text
-{
-    margin: 0px auto;
-    color: white;
-    font-size: 30px;
-    font-family: sans-serif;
-    line-height: 50px;
-    font-weight: bold;
-    text-align: center;
-}
-
-

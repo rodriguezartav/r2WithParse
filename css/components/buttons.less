@@ -1,4 +1,7 @@
-.button-large {
+//BTN-SQUARE
+//THIS BUTTONS IS USED IN APP HEADER
+
+.btn-square {
   font-size: 12px;
   text-transform: uppercase;
   height: 66px;
@@ -15,7 +18,7 @@
     vertical-align: top;
   }
 }
-.button-large .original-text {
+.btn-square .original-text {
   display: inline-block;
   -webkit-transition: .3s all ease-in-out;
   -moz-transition: .3s all ease-in-out;
@@ -23,7 +26,7 @@
   -o-transition: .3s all ease-in-out;
   transition: .3s all ease-in-out;
 }
-.button-large .hover-text {
+.btn-square .hover-text {
   position:absolute;
   right: 33px;
   padding: 0 10px;
@@ -36,7 +39,7 @@
   -o-transition: .3s all ease-in-out;
   transition: .3s all ease-in-out;
 } 
-.button-large:hover .original-text {
+.btn-square:hover .original-text {
   position: relative;
   top: -66px;
   opacity: 0;
@@ -46,17 +49,13 @@
   -o-transition: .3s all ease-in-out;
   transition: .3s all ease-in-out;
 }
-.button-large:hover .hover-text {
+.btn-square:hover .hover-text {
   top: 0;
   opacity: 1;
 }
-.button-large:hover .icon-create {
+.btn-square:hover .icon-create {
   fill:#ee5437;
   transform: rotate(45deg);
   -ms-transform: rotate(45deg); /* IE 9 */
   -webkit-transform: rotate(45deg); /* Safari and Chrome */
-}
-
-.icon-create {
-  fill: @brand-primary;
 }

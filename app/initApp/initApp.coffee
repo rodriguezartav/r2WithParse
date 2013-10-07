@@ -1,62 +1,45 @@
 RSpine = require("rspine")     
-require("lib/setup") 
+require("lib/initSetup")
+
 Session = require("models/session")
 User = require("models/user")
- 
-DataManager = require "dataManager"
-      
+DataManager = require "managers/dataManager"
+LayoutManager = require "managers/layoutManager"
+LoadManager = require "managers/loadManager"
+
 class InitApp extends RSpine.Controller
-  
-  elements:
-    ".app-highlight" : "appHighlight"
-    ".kanban" : "kanban"
-    ".kanban-wrapper" : "kanbanWrapper"
 
-  loginStage: 
-    "login" : ".login-wrapper" 
 
-  ignitionStage:
-    "newsFeed"  :  ".news-feed" 
-    "menu"      :  ".menu"
-    
-  launchStage:
-    "appHighlight": ".app-highlight"      
-    "appMenu": ".app-menu"  
-    "appMetrics": ".app-metrics"  
-    "breadcrum": ".breadcrum"  
+  #Variables
+  # appsMetadata: Metadata of all Apps
+  # appsByPath: Dictionary of path with values of App Metadata
+  # Live Apps Patgs: Array of Paths of instantiate Apps
+  # LiveAppsByPath: Dictionary of Paths with values of instantiate Apps
+  # liveAppPositionByPath: Dictionary of Paths with positions
+  # 
 
   constructor: ->
     super
-    @html require("layout_#{RSpine.app.layout}")()                               
+    homeViewMetaData = {path: "views/homeView/homeView",name: "Home View", iconColor:"blue", iconLabel:"Hm" }
+    RSpine.appsMetadata = [ homeViewMetaData ];
+    RSpine.appsByPath =  {}
+    RSpine.appsByPath[homeViewMetaData.path] = homeViewMetaData
+    
+    RSpine.liveAppPaths = []
+    RSpine.liveAppsByPath = {}
+    RSpine.liveAppPositionByPath = {}
 
+    new LayoutManager(el: @el)
+    new LoadManager(el: @el)
     new DataManager()
 
-    User.fetch({id: Session.first().userId}, query: true);
-
-    @requireComponents(@ignitionStage)  
-    @initLaunchStage()
-
-    User.bind "refresh" , =>
-      user = User.first();
-
-
-    LazyLoad.js "#{RSpine.jsPath}/apps_vendedores.js", =>
-      RSpine.apps = moduleList
-      RSpine.trigger "platform:apps_loaded"
-
-  createAccount_click: (event) ->
-    accountForm = event.target
-    account = new Account(accountForm)
-
-  initLaunchStage: ->  
-    LazyLoad.js "#{RSpine.jsPath}/launch-components.js", =>
-      require("lib/setup")
-      @requireComponents(@launchStage)
-
-  requireComponents: (stage) ->
-    for component,element of stage
-      Component = require("components/#{component}/#{component}") 
-      new Component(el: $(element)  )
-
-
 module.exports = InitApp   
+
+# Events:
+#  platform:app-launch
+#  platform:app-shutdown
+#  platform:apps_loaded
+#  platform-app-launch-complete   
+#  platform:app-current-changed
+#  platform:ajax-idle
+#  platform:library-loaded-keyboard

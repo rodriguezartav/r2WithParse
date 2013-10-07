@@ -1,0 +1,8 @@
+<% RSpine = require("rspine")  %>
+
+<% for index,position of @appAndPositions:  %>
+  <% if  RSpine.currentAppPath == RSpine.appsByPath[index].path then active = "active"  else active = ""   %>
+  <li class="liveAppIcon <%= active %>" data-path="<%= RSpine.appsByPath[index].path %>">
+    <%= RSpine.appsByPath[index].iconLabel %>
+  </li>
+<% end %>

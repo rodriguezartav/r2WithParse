@@ -20,12 +20,9 @@ class NewsFeed extends RSpine.Controller
       url: RSpine.Model.salesforceHost + "/api?path=/services/data/v24.0/chatter/feeds/news/#{Session.first().userId}/feed-items"
     
     request.done (response) => 
-      console.log response.items
       for item in response.items
         ChatterNews.create item
-      console.log ChatterNews.all()
       @html require("components/newsFeed/newsFeed_item")(ChatterNews.all())
-
 
     $(".kan-col-wrapper > .content-body").mouseover (e) ->
       target = $(e.target)
