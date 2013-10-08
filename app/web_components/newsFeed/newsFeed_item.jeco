@@ -1,6 +1,6 @@
 <% RSpine = require("rspine") %>
 
-<div class="post">
+<div class="post" data-id="<%= @id %>">
 
   
   <div>
@@ -17,11 +17,10 @@
       <span class="labels coments"><%= @comments.comments.length %> Comments</span>
   </div>
   
+  
   <div class="">
-
     <div class="btn-social-action">Like</div>
     <div class="btn-social-action">Comment</div>
-
   </div>
 
  </div>

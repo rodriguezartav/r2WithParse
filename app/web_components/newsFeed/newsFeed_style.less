@@ -5,10 +5,23 @@
 
 .post{
   overflow: hidden;
+  position: relative;
   margin-top: @line-height-block/2;
   background-color: #fff;
   &:first-child{
     margin-top: 0px;
+  }
+  
+  
+  .btn-close{
+    position: absolute;
+    top: -6px;
+    right: 2px;
+    font-size: 23px;
+    display: inline-block;
+    padding: 8px;
+    cursor: pointer;
+    color: @gray;
   }
   
   >div{
