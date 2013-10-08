@@ -4,17 +4,17 @@
   <div class="row full-height">
     
     <div class="col-md-4 social-ban color-column home-column home-column-large">
-      <div class="header blue"><span class="triangle"></span><span class="large-title">!Buenos días Mari!</span></div>
+      <div class="header blue"><span class="triangle"></span><span class="large-title">The Social Network</span></div>
       <div class="sub-header">
         <div class="sub-title">Que hay de nuevo?</div>
       </div>
-      <div class="content-body scrollable">
-        <div class="news-feed content-body-wrapper"></div>
+      <div class="content-body news-feed scrollable">
+
       </div>
     </div>
     
     <div class="col-md-4 app-ban color-column home-column">
-      <div class="header red"><span class="triangle"></span><span class="large-title">Apps mas usadas</span></div>
+      <div class="header red"><span class="triangle"></span><span class="large-title">The App Menu</span></div>
       <div class="sub-header">
         <div class="sub-title text-center">Home</div>
       </div>

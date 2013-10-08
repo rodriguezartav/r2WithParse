@@ -8,7 +8,6 @@ class Helper
 
     return chars.substring(0, len);
 
-
 module.exports = (grunt) ->
 
   orgId = "00DZ0000000orOaMAI"
@@ -26,37 +25,40 @@ module.exports = (grunt) ->
         files:
            [ {expand: true, src: ['./images/**'], dest: './public'} ]
 
-
     less:
       development:
         files:
           "./public/r2.css" : "./css/index.less"
 
     grunt_appbot_compiler: {
+
       r2: {
         appPaths: ['./app/r2'],
         lessVariables: "./css/base/variables.less",
         dependencyPaths: ["jqueryify","rspine","rspine/lib/salesforceAjax","rspine/lib/salesforceModel","rspine/lib/offlineModel"],
         destination: "./public/r2.js"
       },      
+
       initApp: {
         appPaths: ['./app/initApp', './app/web_components/menu', './app/web_components/newsFeed','./app/web_components/appMenu'],
         lessVariables: "./css/base/variables.less",
         dependencyPaths: [],
         destination: "./public/#{orgId}/initApp.js"
       },
+
       launchStage:{
         appPaths: ['./app/web_components/appHighlight','./app/web_components/appMetrics','./app/web_components/breadcrum','./app/web_components/liveAppMenu'],
         lessVariables: "./css/base/variables.less",
         destination: "./public/#{orgId}/launch-components.js"
       },
+
       orbitStage:{
         appPaths: ['./app/libraries/keyboardFramework'],
         destination: "./public/#{orgId}/orbit-components.js"        
       }
 
       vendedores:{
-        appPaths: ["./app/apps/pedidos","./app/apps/logistica"]
+        appPaths: ["./app/apps/pedidos","./app/apps/logistica" , "./app/apps/newApp" ]
         lessVariables: "./css/base/variables.less",
         destination: "./public/#{orgId}/apps_vendedores.js"
       }
@@ -69,8 +71,16 @@ module.exports = (grunt) ->
 
     },
 
-    coffee:
+    r2cli:
+      app:
+        destination: "./app/apps"
+        type: "app"
       
+      model:
+        destination: "./app/initApp/models"
+        type: "model"
+
+    coffee:
       unit:
         expand: true,
         flatten: true,
@@ -164,7 +174,6 @@ module.exports = (grunt) ->
           bases: ['./public'],
           livereload: true
 
-
     s3:
       options: 
         bucket: "r2.stage.rodcocr.com",
@@ -179,12 +188,11 @@ module.exports = (grunt) ->
 
         upload: 
           [
-             { src: './public/r2.css', dest: "/", gzip: true ,access: 'public-read' , headers: "Cache-Control": "max-age=300" }
-             { src: './public/r2.js', dest: "/", gzip: true ,access: 'public-read' , headers: "Cache-Control": "max-age=300" }
-             { src: './public/*.html', dest: "/", gzip: true ,access: 'public-read' , headers: "Cache-Control": "max-age=300" }
-             { src: "./public/images/*.*", dest: "images/", gzip: true , access: 'public-read', headers: "Cache-Control": "max-age=300" }
-             
-             { src: "./public/#{orgId}/*.js", dest: "#{orgId}/", gzip: true , access: 'public-read', headers: "Cache-Control": "max-age=300" }
+             { src: './public/r2.css', dest: "/", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=300" }
+             { src: './public/r2.js', dest: "/", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=300" }
+             { src: './public/*.html', dest: "/", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=300" }
+             { src: "./public/images/*.*", dest: "images/", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=300" }
+             { src: "./public/#{orgId}/*.js", dest: "#{orgId}/", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=300" }
           ]
 
   grunt.loadNpmTasks('grunt-contrib-watch');
@@ -195,6 +203,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-express');
 
   grunt.loadNpmTasks('grunt-appbot-compiler');
+  grunt.loadNpmTasks('grunt-r2-cli');
+
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-s3');  
@@ -210,5 +220,9 @@ module.exports = (grunt) ->
   grunt.registerTask('build', ["copy",'coffee' , "test" , "grunt_appbot_compiler" , "jade:production","s3"]);   
 
   grunt.registerTask('server', ["copy","grunt_appbot_compiler","less","jade:dev" , 'express','watch']);
+
+  grunt.registerTask('app', ["r2cli:app"]);
+
+  grunt.registerTask('model', ["r2cli:model"]);
   
-  grunt.registerTask('default', ["copy",'clean','coffee' , 'mochaTest']);   
+  grunt.registerTask('default', ["copy",'clean','coffee' , 'mochaTest']);

@@ -21,7 +21,6 @@ class LayoutManager extends RSpine.Controller
     @launchApp("views/homeView/homeView")
 
     $(window).resize @calculatePositionIndex
-    
 
   launchApp: (appPath) =>
     #return RSpine.scrollToApp( appPath ) if RSpine.liveAppsIndexByPath(path)
@@ -50,7 +49,6 @@ class LayoutManager extends RSpine.Controller
     @pCanvas.animate({scrollTop: RSpine.liveAppPositionByPath[path] }, 500 );
     RSpine.trigger "platform:app-current-changed"
     
-
   calculatePositionIndex: =>
     RSpine.liveAppPositionByPath = {}
     for appEl in @pCanvas.find(".app-canvas")
@@ -68,7 +66,5 @@ class LayoutManager extends RSpine.Controller
 
     Mousetrap.bind 'h', =>
       @launchApp(RSpine.liveAppPaths[ 0 ])
-
-
 
 module.exports = LayoutManager

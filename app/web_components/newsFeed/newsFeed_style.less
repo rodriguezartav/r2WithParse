@@ -1,10 +1,25 @@
+.news-feed{
+  background-color: @gray-lightest;
+}
 
 
 .post{
+  overflow: hidden;
   margin-top: @line-height-block/2;
-  margin-bottom: @line-height-block;
+  background-color: #fff;
   &:first-child{
     margin-top: 0px;
+  }
+  
+  >div{
+    margin: 4px 8px 0px 8px;
+    &:first-child{
+      margin: 8px 8px 0px 8px;
+    }
+    &:last-child{
+      margin: 8px 0px 0px 0px;
+      clear: both;
+    }
   }
 
 
@@ -13,13 +28,33 @@
     height: @line-height-block * 0.96;
   }
  
-
-
   .title{
     display: inline-block;
-    margin-right: 7px;
-    color: darken(@gray-dark,10%);
-    font-weight: 700;
+    margin-left: 4px;
+    color: @gray-light;
+    font-weight: 100;
+  }
+
+  .text{
+    display: inline-block;    
+  }
+  
+  .labels{
+    color: @gray-light;
+    display: inline-block;
+    margin: 0px 5px;
+  }
+
+  .btn-social-action{
+    float: left;
+    text-align: center;
+    color: @gray;
+    width: 50%;
+    line-height: @line-height-block;
+    border-top: 1px solid @gray-lighter;
+    &:first-child{
+      border-right: 1px solid @gray-lighter;
+    }
   }
 
   .post-area{

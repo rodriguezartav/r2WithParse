@@ -1,11 +1,11 @@
-RSpine = require('rspine')
+RSpine = require('rspine') 
 
 class Cliente extends RSpine.Model
   @configure 'Cliente', 'Name', 'CodigoExterno' , "Activo" , "Saldo" , "DiasCredito" , "CreditoAsignado" , "Rating_Crediticio",
   "Negociacion" , "LastModifiedDate" , "Ruta" , "Transporte" , "Direccion" , "Telefono"  , "RutaTransporte" 
 
   @extend RSpine.Model.SalesforceModel
-  @extend RSpine.Model.Ajax
+  @extend RSpine.Model.Ajax 
 
   @querySinceLastUpdate = true
 

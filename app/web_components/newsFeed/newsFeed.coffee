@@ -5,14 +5,14 @@ ChatterNews = require("models/chatterNews")
 
 
 class NewsFeed extends RSpine.Controller
-  @className: "news-feed"
 
   elements:
     ".content" : "content"
+    ".js_src_posts" : "jsSrcPosts"
    
   constructor: ->
     super    
-
+    @html require("components/newsFeed/newsFeed_layout")(ChatterNews.all())
 
     base = new RSpine.Ajax.Base();
     request = base.ajaxQueue {} ,
@@ -22,19 +22,6 @@ class NewsFeed extends RSpine.Controller
     request.done (response) => 
       for item in response.items
         ChatterNews.create item
-      @html require("components/newsFeed/newsFeed_item")(ChatterNews.all())
+      @jsSrcPosts.html require("components/newsFeed/newsFeed_item")(ChatterNews.all())
 
-    $(".kan-col-wrapper > .content-body").mouseover (e) ->
-      target = $(e.target)
-      target = target.parent() until target.hasClass "content-body"
-      
-      wrapper= target.find(".content-body-wrapper")
-      
-      if wrapper.height() > target.height()
-        $(".kanban").css "overflow","hidden" 
-      
-        $(".kan-col-wrapper > .content-body").one "mouseout" , ->
-          $(".kanban").css "overflow","scroll"
-
-  
 module.exports = NewsFeed
