@@ -1,21 +1,17 @@
-.menu{
+.app-menu-content-body{
+ padding: 0px !important;
+ background-color: @gray-lightest;
+ border-top: none !important;
+}
 
-  
-  .labels{
-    color: #fff;
-    text-align: center;
-    margin-top: 10px;
-    font-size: @font-size-large;
-  }
-  
+.app-menu{
+  margin: 10px;
 }
 
 .app-row{
   margin: 10px 0px 6px 0px;
   padding: 9px 0px 6px 0px;
-  .border-top-radius(5px);
-  .border-bottom-radius(5px);    
-
+  .full-height();
 
   .labels{
     margin-top: 3px;
@@ -26,17 +22,47 @@
 
 .app-icon {
     width: 90%;
-    height: 100%;
     cursor: pointer;
+    background-color: #fff;
+    border: 1px solid @gray-lighter;
+    margin: 0px auto 24px auto;
+    
+    .app-icon-header{
+      text-align: center;
+      border-bottom: none;
+      height: 21px;
+   
+
+      .label{
+        line-height: 21px;
+        color: #fefefe;
+        font-size: 10px;
+        
+      }
+
+
+
+    }
+
+
+    .triangle{
+      position: absolute;
+      left: 8px;
+      top: 0px;
+      width: 0px;
+      height: 0px;
+      border-style: solid;
+      border-width: 60px 68px 0 0;
+      border-color: rgba(255,255,255,0.2) transparent transparent transparent;
+    }
 
   .text
   {
       margin: 0px auto;
-      color: white;
-      font-size: 30px;
-      font-family: sans-serif;
-      line-height: 50px;
-      font-weight: bold;
+      color: @gray;
+      font-weight: 100;
+      font-size: 28px;
+      line-height: 44px;
       text-align: center;
   }
 

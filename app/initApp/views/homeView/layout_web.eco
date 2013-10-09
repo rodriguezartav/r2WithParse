@@ -18,11 +18,9 @@
       <div class="sub-header">
         <div class="sub-title text-center">Home</div>
       </div>
-      <div class="content-body">
-        <div class="inner-wrapper content-body-wrapper">
-          <div class="row app-highlight"></div>
-        </div>
-        <div class="app-menu"></div>
+      <div class="content-body app-menu-content-body">
+        <div class="row app-highlight"></div>
+        <div class="app-menu full-height"></div>
       </div>
     </div>
     
