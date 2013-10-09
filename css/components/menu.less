@@ -1,6 +1,6 @@
 .app-menu-content-body{
  padding: 0px !important;
- background-color: @gray-lightest;
+ background-color: lighten(@gray-lightest,3%);
  border-top: none !important;
 }
 
@@ -9,8 +9,8 @@
 }
 
 .app-row{
-  margin: 10px 0px 6px 0px;
-  padding: 9px 0px 6px 0px;
+  margin: 5px 0px 5px 0px;
+  padding: 5px 0px 5px 0px;
   .full-height();
 
   .labels{
@@ -21,21 +21,21 @@
 }
 
 .app-icon {
-    width: 90%;
+    width: 95%;
     cursor: pointer;
     background-color: #fff;
-    border: 1px solid @gray-lighter;
+    border: 1px solid @gray-lightest;
     margin: 0px auto 24px auto;
     
     .app-icon-header{
       text-align: center;
       border-bottom: none;
-      height: 21px;
+      height: 23px;
    
 
       .label{
-        line-height: 21px;
-        color: #fefefe;
+        line-height: 24px;
+        color: #fff;
         font-size: 10px;
         
       }
@@ -53,7 +53,7 @@
       height: 0px;
       border-style: solid;
       border-width: 60px 68px 0 0;
-      border-color: rgba(255,255,255,0.2) transparent transparent transparent;
+      border-color: rgba(255,255,255,0.3) transparent transparent transparent;
     }
 
   .text
@@ -62,7 +62,7 @@
       color: @gray;
       font-weight: 100;
       font-size: 28px;
-      line-height: 44px;
+      line-height: 47px;
       text-align: center;
   }
 

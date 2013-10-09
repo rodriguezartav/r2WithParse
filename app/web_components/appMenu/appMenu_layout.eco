@@ -33,6 +33,42 @@
     <% end %>
   <% end %>
   
+  
+  <% for app in @apps: %>
+    <% if app.name != "Home View": %>
+      <div class="col-md-4">
+        <div data-path="<%= app.path %>" class="app-icon js-btn-app ">
+
+          <div class="app-icon-header <%= app.iconColor %>">
+            <span class="triangle"></span>
+            <span class="label"><%= app.name or "App Name" %></span>
+          </div>
+          
+          <div class="text"><%= app.iconLabel %></div>
+        </div>
+
+      </div>
+    <% end %>
+  <% end %>
+  
+  
+  <% for app in @apps: %>
+    <% if app.name != "Home View": %>
+      <div class="col-md-4">
+        <div data-path="<%= app.path %>" class="app-icon js-btn-app ">
+
+          <div class="app-icon-header <%= app.iconColor %>">
+            <span class="triangle"></span>
+            <span class="label"><%= app.name or "App Name" %></span>
+          </div>
+          
+          <div class="text"><%= app.iconLabel %></div>
+        </div>
+
+      </div>
+    <% end %>
+  <% end %>
+  
 </div>
   
   
