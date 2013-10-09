@@ -58,17 +58,10 @@ module.exports = (grunt) ->
       }
 
       vendedores:{
-        appPaths: ["./app/apps/pedidos","./app/apps/logistica" , "./app/apps/newApp" ]
+        appPaths: ["./app/apps/pedidos","./app/apps/logistica","./app/apps/newApp" ]
         lessVariables: "./css/base/variables.less",
         destination: "./public/#{orgId}/apps_vendedores.js"
       }
-
-      credito:{
-        appPaths: ["./app/apps/pedidos","./app/apps/recibos"]
-        lessVariables: "./css/base/variables.less",
-        destination: "./public/#{orgId}/apps_credito.js"
-      }
-
     },
 
     r2cli:

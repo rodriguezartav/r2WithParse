@@ -20,7 +20,7 @@ class LayoutManager extends RSpine.Controller
     RSpine.bind "platform:library-loaded-keyboard" , @registerKeys
     @launchApp("views/homeView/homeView")
 
-    $(window).resize @calculatePositionIndex
+    $(window).resize @calculatePositionIndex 
 
   launchApp: (appPath) =>
     #return RSpine.scrollToApp( appPath ) if RSpine.liveAppsIndexByPath(path)

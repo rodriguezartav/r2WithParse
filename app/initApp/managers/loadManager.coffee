@@ -1,10 +1,9 @@
 RSpine= require "rspine"
-
+ 
 class LoadMananger
  
   ignitionStage: 
     "newsFeed"  :  ".news-feed" 
-    "menu"      :  ".menu"
     "appMenu": ".app-menu"  
 
     
@@ -12,7 +11,7 @@ class LoadMananger
     "appHighlight": ".app-highlight"      
     "appMetrics": ".app-metrics"  
     "breadcrum": ".breadcrum"
-    "liveAppMenu": "body"
+    "liveAppMenu": ".menu"
 
   constructor: ->
     

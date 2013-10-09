@@ -1,24 +1,7 @@
-<% RSpine = require("rspine") %>
 
 <div class="row">
   <div class="col-md-9">
     <div class="app-header">newApp</div>
-  </div>
+  </div>  
 </div>
 
-<div class="row full-height">
-  <div class="col-md-3 color-column full-height">
-    <div class="header blue">
-      <span class="triangle"></span>
-      <span class="large-title">Pendientes</span>
-    </div>
-
-    <div class="sub-header">
-      <div class="sub-title">Filtrar por:</div>        
-    </div>
-  
-
-    <div class="content-body js-list">
-    
-    </div>
-  </div>
