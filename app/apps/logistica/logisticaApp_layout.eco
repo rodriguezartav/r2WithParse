@@ -25,13 +25,15 @@
         </div>
     
         <div class="sub-header">
-          <div class="sub-title">Filtrar por:</div>        
+          <div class="sub-title">Mostrar Todos los Transportes </div>
         </div>
       
     
         <div class="content-body noPadding">
           <div class="list-header color-blue">
-            <span class="fill-blue left"><%- RSpine.icons["clock"] %></span> Agosto 29</div>
+            <span class="fill-blue icon-medium "><%- RSpine.icons["clock"] %></span>Agosto 29
+            <span class="fill-blue icon-small right "><%- RSpine.icons["fold"] %></span>
+          </div>
           <div class="list-item">La Maravilla N°6472
             <div class="nested-list">
               <div class="nested-list-item">Transporte: RODCO</div>
@@ -42,11 +44,79 @@
                   </div>
                 </div>
               </div>
-      
-              <div class="list-options"></div>
             </div>
+            <div class="list-item">La Maravilla N°6472
+              <div class="nested-list">
+                <div class="nested-list-item">Transporte: RODCO</div>
+                <div class="nested-list-item">Productos
+                  <div class="nested-list">
+                    <div class="nested-list-item">1 Llavin Dale Doble Paso</div>
+                    <div class="nested-list-item">3 Llavin Dale Doble Paso</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="list-item">La Maravilla N°6472
+                <div class="nested-list">
+                  <div class="nested-list-item">Transporte: RODCO</div>
+                  <div class="nested-list-item">Productos
+                    <div class="nested-list">
+                      <div class="nested-list-item">1 Llavin Dale Doble Paso</div>
+                      <div class="nested-list-item">3 Llavin Dale Doble Paso</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
     
-          <div class="list-header color-blue"><span class="fill-blue"><%- RSpine.icons["clock"] %></span>Agosto 28      </div>
+          <div class="list-header color-blue">
+            <span class="fill-blue icon-medium "><%- RSpine.icons["clock"] %></span>Agosto 29
+            <span class="fill-blue icon-small right "><%- RSpine.icons["fold"] %></span>
+          </div>
+          <div class="list-item">La Maravilla N°6472
+            <div class="nested-list">
+              <div class="nested-list-item">Transporte: RODCO</div>
+              <div class="nested-list-item">Productos
+                <div class="nested-list">
+                  <div class="nested-list-item">1 Llavin Dale Doble Paso</div>
+                  <div class="nested-list-item">3 Llavin Dale Doble Paso</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="list-item">La Maravilla N°6472
+              <div class="nested-list">
+                <div class="nested-list-item">Transporte: RODCO</div>
+                <div class="nested-list-item">Productos
+                  <div class="nested-list">
+                    <div class="nested-list-item">1 Llavin Dale Doble Paso</div>
+                    <div class="nested-list-item">3 Llavin Dale Doble Paso</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="list-item">La Maravilla N°6472
+                <div class="nested-list">
+                  <div class="nested-list-item">Transporte: RODCO</div>
+                  <div class="nested-list-item">Productos
+                    <div class="nested-list">
+                      <div class="nested-list-item">1 Llavin Dale Doble Paso</div>
+                      <div class="nested-list-item">3 Llavin Dale Doble Paso</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="list-item">La Maravilla N°6472
+                  <div class="nested-list">
+                    <div class="nested-list-item">Transporte: RODCO</div>
+                    <div class="nested-list-item">Productos
+                      <div class="nested-list">
+                        <div class="nested-list-item">1 Llavin Dale Doble Paso</div>
+                        <div class="nested-list-item">3 Llavin Dale Doble Paso</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+          
         </div>
       </div>
 
@@ -70,7 +140,9 @@
       
             <div class="row">
               <div class="col-md-4">
-                <div class="list-header color-purple">Agosto 28</div>
+                <div class="list-header color-purple">
+                  <span class="fill-purple icon-medium "><%- RSpine.icons["clock"] %></span>Agosto 28
+                </div>
                 <div class="list-item">La Maravilla N°6472
                   <div class="nested-list">
                     <div class="nested-list-item">Transporte: RODCO</div>
@@ -149,7 +221,9 @@
               </div>
     
               <div class="col-md-4">
-                <div class="list-header color-purple">Agosto 29</div>
+                <div class="list-header color-purple">
+                  <span class="fill-purple icon-medium "><%- RSpine.icons["clock"] %></span>Agosto 29
+                </div>
                 <div class="list-item">Hogar y Ferretería N°6472
                   <div class="nested-list">
                     <div class="nested-list-item">Transporte: RODCO</div>
@@ -175,7 +249,9 @@
     
     
             <div class="col-md-4">
-              <div class="list-header color-purple">Agosto 30</div>
+              <div class="list-header color-purple">
+                <span class="fill-purple icon-medium "><%- RSpine.icons["clock"] %></span>Agosto 30
+              </div>
               <div class="list-item">
                 <div class="text">Hogar y Ferreteria</div>
               </div>
@@ -209,7 +285,9 @@
         </div>
         
           <div class="content-body noPadding">
-            <div class="list-header color-green">Agosto 31</div>
+            <div class="list-header color-green">
+              <span class="fill-green icon-medium "><%- RSpine.icons["clock"] %></span>Agosto 29
+            </div>
           
         
             <div class="list-item">
