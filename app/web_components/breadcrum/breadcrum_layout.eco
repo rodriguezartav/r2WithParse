@@ -1,9 +1,10 @@
   <div class="col-md-11">
-  
-  
-  
-    <h1>Welcome <%= @name %></h1>
+    <div class="app-header">
+      Welcome <%= @name %>
+    </div>
   </div>
   <div class="col-md-1">
-    <h1>O</h1>
+    <div class="app-header">
+      0
+    </div>
   </div>

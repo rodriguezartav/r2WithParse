@@ -27,13 +27,13 @@
     <% for comment in @comments.comments:  %>
       <div class="row inner-wrapper">
   
-        <div class="col-md-1 ">
-          <img src="<%= RSpine.getImage(comment.user.photo.smallPhotoUrl) %>">
+        <div class="col-md-9 right ">
+          <span class="title right"><%= comment.user.name %></span>
+          <img class="img-circle right" src="<%= RSpine.getImage(comment.user.photo.smallPhotoUrl) %>">
         </div>
 
-        <div class="col-md-11">
+        <div class="col-md-9 offset-3">
           <div class="post-area">
-            <span class="title"><%= comment.user.name %></span>
             <span class="text"><%= comment.body.text %></span>
             <div class="row post-actions">
               <div class="col-md-11">
@@ -49,7 +49,7 @@
   <div class="row post-new-comment">
     <div class="row">
       <div class="col-md-1 ">
-        <img src="<%= RSpine.getImage(RSpine.session.user.SmallPhotoUrl) %>">
+        <img class="img-circle" src="<%= RSpine.getImage(RSpine.session.user.SmallPhotoUrl) %>">
       </div>
       <div class="col-md-11">
         <textarea class="form-control" rows="1"/>

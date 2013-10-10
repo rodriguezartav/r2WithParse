@@ -29,9 +29,9 @@
         </div>
       
     
-        <div class="content-body">
+        <div class="content-body noPadding">
           <div class="list-header color-blue">
-          <span class="fill-blue"><%- RSpine.icons["clock"] %></span> Agosto 29</div>
+            <span class="fill-blue left"><%- RSpine.icons["clock"] %></span> Agosto 29</div>
           <div class="list-item">La Maravilla N°6472
             <div class="nested-list">
               <div class="nested-list-item">Transporte: RODCO</div>
@@ -46,7 +46,7 @@
               <div class="list-options"></div>
             </div>
     
-          <div class="list-header"><span class="fill-blue"><%- RSpine.icons["clock"] %></span>Agosto 28      </div>
+          <div class="list-header color-blue"><span class="fill-blue"><%- RSpine.icons["clock"] %></span>Agosto 28      </div>
         </div>
       </div>
 
@@ -70,7 +70,7 @@
       
             <div class="row">
               <div class="col-md-4">
-                <div class="list-header">Agosto 28</div>
+                <div class="list-header color-purple">Agosto 28</div>
                 <div class="list-item">La Maravilla N°6472
                   <div class="nested-list">
                     <div class="nested-list-item">Transporte: RODCO</div>
@@ -149,7 +149,7 @@
               </div>
     
               <div class="col-md-4">
-                <div class="list-header">Agosto 29</div>
+                <div class="list-header color-purple">Agosto 29</div>
                 <div class="list-item">Hogar y Ferretería N°6472
                   <div class="nested-list">
                     <div class="nested-list-item">Transporte: RODCO</div>
@@ -175,7 +175,7 @@
     
     
             <div class="col-md-4">
-              <div class="list-header">Agosto 30</div>
+              <div class="list-header color-purple">Agosto 30</div>
               <div class="list-item">
                 <div class="text">Hogar y Ferreteria</div>
               </div>
@@ -208,8 +208,8 @@
           <div class="sub-title">Hoy</div>
         </div>
         
-          <div class="content-body">
-            <div class="list-header">Agosto 31</div>
+          <div class="content-body noPadding">
+            <div class="list-header color-green">Agosto 31</div>
           
         
             <div class="list-item">
