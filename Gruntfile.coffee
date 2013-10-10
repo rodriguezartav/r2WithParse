@@ -57,10 +57,10 @@ module.exports = (grunt) ->
         destination: "./public/#{orgId}/orbit-components.js"        
       }
 
-      vendedores:{
+      "Markering User":{
         appPaths: ["./app/apps/pedidos","./app/apps/logistica","./app/apps/newApp" ]
         lessVariables: "./css/base/variables.less",
-        destination: "./public/#{orgId}/apps_vendedores.js"
+        destination: "./public/#{orgId}/apps_marketing_user.js"
       }
     },
 

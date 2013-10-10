@@ -1,0 +1,3 @@
+<div class="list-header color-blue">
+  <%= @Name %>
+</div>
