@@ -7,7 +7,7 @@ class NewApp extends RSpine.Controller
     
   elements:
     ".js-list" : "jsList"
-    
+     
   constructor: ->
     super    
     @html require("app/newApp/newApp_layout")() 
