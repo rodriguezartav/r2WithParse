@@ -1,11 +1,11 @@
-<div class="row app-row">
+<div class="row full-height app-menu-wrapper">
   <% for app in @apps: %>
     <% if app.name != "Home View": %>
       <div class="col-md-4">
         <div data-path="<%= app.path %>" class="app-icon js-btn-app ">
-        <span class="triangle"></span>
 
           <div class="app-icon-header <%= app.iconColor %>">
+            <span class="triangle"></span>
             <span class="label"><%= app.name or "App Name" %></span>
           </div>
           

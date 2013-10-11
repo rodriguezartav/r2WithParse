@@ -1,6 +1,15 @@
+<span class="logo">
+  Rodco
+</span>
+
+
+<span class="menu-title">
+  Menu
+</span>
+
 <div class="liveAppMenu">
 
-  <ul class="liveApps nav nav-pills">
+  <ul class="liveApps list-unstyled">
   
     
   
