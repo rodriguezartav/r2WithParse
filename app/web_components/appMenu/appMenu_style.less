@@ -1,20 +1,51 @@
 .app-menu-content-body{
   padding: 0px !important;
-  background-color: @gray-light4;
   border-top: none !important;
 
   .app-menu-wrapper{
     padding: 15px;
+    background-color: @gray-light4;
+    
   }
 
-  .app-menu{
+  .app-menu, .small-app-menu{
     margin: 10px;
     
     .app-icon{
       width: 95%;
       margin: 0px auto 24px auto;
-    }
-    
+    } 
   }
+}
+
+.app-highlight{
+  background-color: #fff;
+  padding: 8px;
+
+  .title{
+    line-height: 1.6;
+    color: @brand-danger;
+  }
+
+  .app-icon {
+    width: 90%;
+    height: 95px;
+  }
+
+  .app-icon .text
+  {
+      color: white;
+      font-size: 60px;
+      font-family: sans-serif;
+      line-height: 0px;
+      font-weight: bold;
+      text-align: center;
+  }
+
+  .labels{
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
 
 }

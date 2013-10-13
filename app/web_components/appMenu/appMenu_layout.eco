@@ -1,7 +1,24 @@
+<div class="row app-highlight">
+  
+  <div class="col-md-4 full-height">
+  
+    <div class="app-icon red">
+      <div class="text">Ze</div>
+      </div>
+  </div>
+
+  <div class="col-md-8 app-info">
+    <div class="title">App Name</div>
+    <div class="labels"> d d ads ds das sd d adas das dsa dasD ASD Ad sadS AD sad sad sad sdsfds fdsf dsafd saf dsf sadf</div>
+    <a class="btn btn-danger btn-block"> Abrir App</a>
+  </div>
+
+</div>
+
 <div class="row full-height app-menu-wrapper">
   <% for app in @apps: %>
     <% if app.name != "Home View": %>
-      <div class="col-md-4">
+      <div class="col-md-<%= @columnsInMenu %>">
         <div data-path="<%= app.path %>" class="app-icon js-btn-app ">
 
           <div class="app-icon-header <%= app.iconColor %>">

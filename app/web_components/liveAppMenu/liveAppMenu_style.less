@@ -1,12 +1,11 @@
 .logo{
   color: #fff;
   height: 66px;
-  display: block;
+  display: block; 
   text-align: center;
   margin-top: 8px;
   font-size: 11px;
 }
-
 
 .menu-title{
   display:block;
@@ -26,4 +25,19 @@
 
 li.active{
   background-color: @brand-danger;
+}
+
+.extra-menu{
+  position: fixed;
+  left: 56px;
+  top: 0px;
+  bottom: 0px;
+  background-color: #fff;
+  width: 250px;
+  display: none; 
+  z-index: 1000;
+  &.on{
+    display: block; 
+  }
+  
 }

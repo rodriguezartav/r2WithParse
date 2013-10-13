@@ -39,10 +39,18 @@ body{
   .full-height();
   width: 25.5%;
   margin-top: 7px;
+
   
   &.home-column-large{
     width: 37.25%;
   }
+  
+  .content-body{
+    height: 72% !important;
+    max-height: 72% !important;
+    overflow-y: scroll;
+  }
+
 }
 
 .color-column{
@@ -54,13 +62,12 @@ body{
   
   .content-body{
     .full-height();
-    min-height:  50%;
-    height: 72%;
     overflow-y: scroll !important; 
-    
+  
     &.content-body-stretch{
       width: 1000px;
       overflow-x: scroll !important;
     }   
-  }     
+  }
+
 }

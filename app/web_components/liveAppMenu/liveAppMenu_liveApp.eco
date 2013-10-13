@@ -1,7 +1,7 @@
 <% RSpine = require("rspine")  %>
 
 
-<li class="color-app-icon home-icon <%= "active" if RSpine.currentAppPath.indexOf("homeView") >
+<li data-type="app-menu" class="color-app-icon social-icon home-icon " >
   <span class="triangle"></span>
   <span class="label">
     Home
@@ -11,7 +11,7 @@
   </span>
 </li>
 
-<li class="color-app-icon">
+<li class="color-app-icon social-icon" data-type="social">
   <span class="triangle"></span>
   <span class="label">
     Social
@@ -22,7 +22,7 @@
 </li>
 
 
-<li class="color-app-icon ">
+<li class="color-app-icon " data-type="metric">
   <span class="triangle"></span>
   <span class="label">
     Metrics
@@ -42,7 +42,7 @@
       <li class="color-app-icon  <%= active %>" data-path="<%= RSpine.appsByPath[index].path %>">
         <span class="triangle"></span>
         <span class="label">
-          <%= RSpine.appsByPath[index].name %>
+          <%= RSpine.appsByPath[index] %>
         </span>
         <span class="text">
           <%= RSpine.appsByPath[index].iconLabel %>

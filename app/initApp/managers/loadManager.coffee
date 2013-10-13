@@ -2,14 +2,12 @@ RSpine= require "rspine"
  
 class LoadMananger
  
-  ignitionStage: 
-    "newsFeed"  :  ".news-feed" 
-    "appMenu": ".app-menu"  
+  ignitionStage:
+    "newsFeed"  :  [".news-feed", ".small-news-feed"]
+    "appMenu": [".app-menu" , ".small-app-menu"]
 
-    
   launchStage:
-    "appHighlight": ".app-highlight"      
-    "appMetrics": ".app-metrics"  
+    "appMetrics": ".app-metrics"
     "breadcrum": ".breadcrum"
     "liveAppMenu": ".menu"
 
@@ -24,7 +22,7 @@ class LoadMananger
       @requireComponents(@launchStage)
 
     LazyLoad.js "#{RSpine.jsPath}/apps_vendedores.js", =>
-      for app in moduleList
+      for app in moduleList   
         RSpine.appsMetadata.push app
         RSpine.appsByPath[app.path] = app  
       RSpine.trigger "platform:apps_loaded"
@@ -35,8 +33,12 @@ class LoadMananger
         require(lib.path)
 
   requireComponents: (stage) =>
-    for component,element of stage
-      Component = require("components/#{component}/#{component}") 
-      new Component(el: $(element)  )
+    for component,elements of stage
+      elements = [elements] if !RSpine.isArray(elements)
+      for element in elements
+        console.log element
+        console.log $(element)
+        Component = require("components/#{component}/#{component}") 
+        new Component(el: $(element)  )
 
 module.exports = LoadMananger

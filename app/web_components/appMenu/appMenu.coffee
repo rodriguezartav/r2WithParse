@@ -10,7 +10,8 @@ class AppMenu extends RSpine.Controller
   constructor: ->
     super
     RSpine.bind "platform:apps_loaded" , =>
-      @html require("components/appMenu/appMenu_layout")(apps: RSpine.appsMetadata)
+      columnsInMenu = if @el.attr("class").indexOf("small") == -1 then 4 else 6
+      @html require("components/appMenu/appMenu_layout")(apps: RSpine.appsMetadata, columnsInMenu: columnsInMenu )
 
 
   onAppClick: (e) ->

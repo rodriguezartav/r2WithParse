@@ -47,7 +47,7 @@ module.exports = (grunt) ->
       },
 
       launchStage:{
-        appPaths: ['./app/web_components/appHighlight','./app/web_components/appMetrics','./app/web_components/breadcrum','./app/web_components/liveAppMenu'],
+        appPaths: ['./app/web_components/appMetrics','./app/web_components/breadcrum','./app/web_components/liveAppMenu'],
         lessVariables: "./css/base/variables.less",
         destination: "./public/#{orgId}/launch-components.js"
       },

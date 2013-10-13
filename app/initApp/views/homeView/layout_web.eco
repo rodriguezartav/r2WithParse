@@ -1,38 +1,59 @@
-
-  <div class="row breadcrum"></div>
-
-  <div class="row full-height">
-    
-    <div class="col-md-4 social-ban color-column home-column home-column-large">
-      <div class="header blue"><span class="triangle"></span><span class="large-title">The Social Network</span></div>
-      <div class="sub-header">
-        <div class="sub-title">Que hay de nuevo?</div>
-      </div>
-      <div class="content-body news-feed scrollable">
-
-      </div>
+<div class="extra-menu">
+  
+  <div class="color-column .small-menu-app-menu onOnApp-menu extra-menu-view">
+    <div class="header red"><span class="triangle"></span><span class="large-title">The App Menu</span></div>
+    <div class="sub-header">
+      <div class="sub-title text-center">Home</div>
     </div>
-    
-    <div class="col-md-4 app-ban color-column home-column">
-      <div class="header red"><span class="triangle"></span><span class="large-title">The App Menu</span></div>
-      <div class="sub-header">
-        <div class="sub-title text-center">Home</div>
-      </div>
-      <div class="content-body app-menu-content-body">
-        <div class="row app-highlight"></div>
-        <div class="app-menu full-height"></div>
-      </div>
+    <div class="content-body  full-height  app-menu-content-body">
+      <div class="small-app-menu full-height"></div>
     </div>
-    
-    <div class="col-md-4 metric-ban color-column home-column home-column-large">
-      <div class="header purple"><span class="triangle"></span><span class="large-title">Que paso con el cliente </span></div>
-      <div class="sub-header">
-        <div class="sub-title">Todos los Clientes</div>
-      </div>
-      <div class="content-body">
-        <div class="content-body-wrapper">
-          <div class="app-metrics"></div>
-        </div>
+  </div>
+
+  <div class="color-column .small-menu-news-feed onOnSocial extra-menu-view">
+     <div class="header blue"><span class="triangle"></span><span class="large-title">The Social Network</span></div>
+     <div class="sub-header">
+       <div class="sub-title">Que hay de nuevo?</div>
+     </div>
+     <div class="content-body full-height small-news-feed scrollable"></div>
+   </div>  
+
+</div>
+
+<div class="row breadcrum"></div>
+
+<div class="row full-height">
+  
+  <div class="col-md-4 social-ban color-column home-column home-column-large">
+    <div class="header blue"><span class="triangle"></span><span class="large-title">The Social Network</span></div>
+    <div class="sub-header">
+      <div class="sub-title">Que hay de nuevo?</div>
+    </div>
+    <div class="content-body news-feed scrollable">
+
+    </div>
+  </div>
+  
+  <div class="col-md-4 app-ban color-column home-column">
+    <div class="header red"><span class="triangle"></span><span class="large-title">The App Menu</span></div>
+    <div class="sub-header">
+      <div class="sub-title text-center">Home</div>
+    </div>
+    <div class="content-body app-menu-content-body">
+      <div class="row app-highlight"></div>
+      <div class="app-menu full-height"></div>
+    </div>
+  </div>
+  
+  <div class="col-md-4 metric-ban color-column home-column home-column-large">
+    <div class="header purple"><span class="triangle"></span><span class="large-title">Que paso con el cliente </span></div>
+    <div class="sub-header">
+      <div class="sub-title">Todos los Clientes</div>
+    </div>
+    <div class="content-body">
+      <div class="content-body-wrapper">
+        <div class="app-metrics"></div>
       </div>
     </div>
   </div>
+</div>
