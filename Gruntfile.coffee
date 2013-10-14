@@ -121,7 +121,7 @@ module.exports = (grunt) ->
 
       apps:
         files: ["./app/**/*.coffee" ,"./app/**/*.eco","./app/**/*.jeco","./app/**/*.less"]
-        tasks: ["grunt_appbot_compiler"]
+        tasks: ["grunt_r2_compiler"]
 
       views:
         files: ["./views/*.jade","./views/**/*.jade"]
@@ -209,7 +209,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask('test_integration', ["copy","clean:test",'coffee',"jade:test","grunt_r2_compiler","mochaTest:integration"]); 
 
-  grunt.registerTask('build', ["copy",'coffee' , "test" , "grunt_appbot_compiler" , "jade:production","s3"]);   
+  grunt.registerTask('build', ["copy",'coffee' , "test" , "grunt_r2_compiler" , "jade:production","s3"]);   
 
   grunt.registerTask('server', ["copy","grunt_r2_compiler","less","jade:dev" , 'express','watch']);
 
