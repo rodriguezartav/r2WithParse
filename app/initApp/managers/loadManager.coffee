@@ -12,23 +12,22 @@ class LoadMananger
     "liveAppMenu": ".menu"
 
   constructor: ->
-    
     @requireComponents(@ignitionStage)  
     @initLaunchStage()
     RSpine.bind "platform:ajax-idle", @initOrbitStage
 
   initLaunchStage: ->  
-    LazyLoad.js "#{RSpine.jsPath}/launch-components.js", =>
+    LazyLoad.js "#{RSpine.jsPath}launch-components.js", =>
       @requireComponents(@launchStage)
 
-    LazyLoad.js "#{RSpine.jsPath}/apps_vendedores.js", =>
+    LazyLoad.js "#{RSpine.jsPath}apps_vendedores.js", =>
       for app in moduleList   
         RSpine.appsMetadata.push app
         RSpine.appsByPath[app.path] = app  
       RSpine.trigger "platform:apps_loaded"
 
   initOrbitStage: =>
-    LazyLoad.js "#{RSpine.jsPath}/orbit-components.js", =>
+    LazyLoad.js "#{RSpine.jsPath}orbit-components.js", =>
       for lib in moduleList
         require(lib.path)
 
@@ -36,8 +35,6 @@ class LoadMananger
     for component,elements of stage
       elements = [elements] if !RSpine.isArray(elements)
       for element in elements
-        console.log element
-        console.log $(element)
         Component = require("components/#{component}/#{component}") 
         new Component(el: $(element)  )
 

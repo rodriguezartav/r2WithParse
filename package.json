@@ -16,13 +16,12 @@
   "devDependencies": {
     "zombie": "latest",
     "grunt-contrib-jshint": "~0.6.0",
-    "grunt-appbot-scout": "latest",
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-nodeunit": "~0.2.0",
     "grunt-contrib-watch": "latest",
     "grunt-contrib-sass": "~0.4.1",
     "grunt-contrib-less": "latest",
-    "grunt-appbot-compiler": "latest",
+    "grunt-r2-compiler": "latest",
     "grunt-contrib-coffee": "~0.7.0",
     "grunt-mocha-test": "~0.6.2",
     "grunt-r2-cli": "latest",
@@ -41,6 +40,6 @@
     "grunt-express": "~1.0.0-beta2",
     "express": "~3.3.1",
     "grunt-contrib-copy": "~0.4.1",
-    "appbot-compiler": "latest"
+    "r2-compiler": "latest"
   }
 }

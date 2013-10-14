@@ -20,7 +20,7 @@ html
       var base = new RSpine.Ajax.Base();
       var request = base.ajaxQueue({}, {
         type: 'GET',
-        url:"#{apiServer}/sessions/salesforce/login"
+        url:"#{apiServer}/sessions/salesforce/login?app_url=#{app_url}" 
       }).fail(function(data){
         window.location.href = data.responseText;
       });

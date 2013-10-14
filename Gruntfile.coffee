@@ -30,8 +30,8 @@ module.exports = (grunt) ->
         files:
           "./public/r2.css" : "./css/index.less"
 
-    grunt_appbot_compiler: {
 
+    grunt_r2_compiler: {
       r2: {
         appPaths: ['./app/r2'],
         lessVariables: "./css/base/variables.less",
@@ -136,18 +136,18 @@ module.exports = (grunt) ->
           data: 
             path: ""
             apiServer: apiServer
+            app_url: "http://edge.3vot.com.s3-website-us-east-1.amazonaws.com"
 
       dev:
         files:
           "./public/index.html": ["./views/index.jade"]
           "./public/login.html": ["./views/login.jade"]
-          "./public/temp.html": ["./views/temp.jade"]
-          "./public/entregas.html": ["./views/entregas.jade"]
 
         options:
           data:
             path: ""
             apiServer: apiServer
+            app_url: "http://localhost:7770"
 
       test: 
         files:
@@ -158,6 +158,7 @@ module.exports = (grunt) ->
           data:
             path: ""
             apiServer: apiServer
+            app_url: "http://localhost:7770"
 
     express:
       all: 
@@ -169,10 +170,10 @@ module.exports = (grunt) ->
 
     s3:
       options: 
-        bucket: "r2.stage.rodcocr.com",
+        bucket: "edge.3vot.com",
         access: 'public-read',
-        key: 'AKIAI6YXGEM6SDQPO3XQ',
-        secret: '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'
+        key: 'AKIAIHNBUFKPBA2LINFQ',
+        secret: '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'
 
       test:
         options:
@@ -181,11 +182,9 @@ module.exports = (grunt) ->
 
         upload: 
           [
-             { src: './public/r2.css', dest: "/", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=300" }
-             { src: './public/r2.js', dest: "/", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=300" }
-             { src: './public/*.html', dest: "/", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=300" }
-             { src: "./public/images/*.*", dest: "images/", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=300" }
-             { src: "./public/#{orgId}/*.js", dest: "#{orgId}/", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=300" }
+             { src: './public/*.*', dest: "", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=300" }
+             { src: './public/images/*.*', dest: "images", gzip: false, access: 'public-read', headers: "Cache-Control": "max-age=5000" }
+             { src: './public/' + orgId  + '/*.*', dest: orgId , gzip: false, access: 'public-read', headers: "Cache-Control": "max-age=5000" }
           ]
 
   grunt.loadNpmTasks('grunt-contrib-watch');
@@ -195,24 +194,24 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-express');
 
-  grunt.loadNpmTasks('grunt-appbot-compiler');
+  grunt.loadNpmTasks('grunt-r2-compiler');
   grunt.loadNpmTasks('grunt-r2-cli');
 
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-s3');  
 
-  grunt.registerTask('test', ["copy","clean:test",'coffee',"jade:test","grunt_appbot_compiler","mochaTest"]);   
+  grunt.registerTask('test', ["copy","clean:test",'coffee',"jade:test","grunt_r2_compiler","mochaTest"]);   
 
-  grunt.registerTask('test_unit', ["copy","clean:test",'coffee',"jade:test","grunt_appbot_compiler","mochaTest:unit"]); 
+  grunt.registerTask('test_unit', ["copy","clean:test",'coffee',"jade:test","grunt_r2_compiler","mochaTest:unit"]); 
 
-  grunt.registerTask('test_functional', ["copy","clean:test",'coffee',"jade:test","grunt_appbot_compiler","mochaTest:functional"]); 
+  grunt.registerTask('test_functional', ["copy","clean:test",'coffee',"jade:test","grunt_r2_compiler","mochaTest:functional"]); 
 
-  grunt.registerTask('test_integration', ["copy","clean:test",'coffee',"jade:test","grunt_appbot_compiler","mochaTest:integration"]); 
+  grunt.registerTask('test_integration', ["copy","clean:test",'coffee',"jade:test","grunt_r2_compiler","mochaTest:integration"]); 
 
   grunt.registerTask('build', ["copy",'coffee' , "test" , "grunt_appbot_compiler" , "jade:production","s3"]);   
 
-  grunt.registerTask('server', ["copy","grunt_appbot_compiler","less","jade:dev" , 'express','watch']);
+  grunt.registerTask('server', ["copy","grunt_r2_compiler","less","jade:dev" , 'express','watch']);
 
   grunt.registerTask('app', ["r2cli:app"]);
 

@@ -19,6 +19,7 @@ class LiveAppMenu extends RSpine.Controller
 
     RSpine.bind "platform:app-current-changed" , @renderApps
     
+    
     @renderApps()
 
   onLiveAppIconClick: (e) ->
@@ -44,5 +45,8 @@ class LiveAppMenu extends RSpine.Controller
   
     @extra.data "type" , type
     @extra.addClass(type)
+
+  onExtClick: ->
+    @extra.removeClass("on")
 
 module.exports = LiveAppMenu

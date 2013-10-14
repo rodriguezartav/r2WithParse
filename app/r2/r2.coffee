@@ -17,7 +17,7 @@ class App extends RSpine.Controller
     RSpine.bind "platform:login_invalid" , ->
       window.location = "/login.html"
 
-    LazyLoad.js "#{RSpine.jsPath}/initApp.js", =>
+    LazyLoad.js "#{RSpine.jsPath}initApp.js", =>
       InitApp = require("initApp")
       initApp = new InitApp(el: ("body"))        
       RSpine.trigger "platform:initApp_loaded"
