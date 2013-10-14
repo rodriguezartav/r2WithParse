@@ -33,9 +33,10 @@ class LiveAppMenu extends RSpine.Controller
     $(".liveApps").html require("components/liveAppMenu/liveAppMenu_liveApp")(appAndPositions: RSpine.liveAppPositionByPath)
 
   onSocialIconClick: (e) =>
-    @el.find(".social-icon").removeClass "red"
+    @el.find(".social-icon").removeClass "purple"
     target = $(e.target)
     target = target.parent() until target.hasClass "social-icon"
+    
     type  = target.data("type")
     extraType = @extra.data("type")
     
@@ -43,7 +44,7 @@ class LiveAppMenu extends RSpine.Controller
     @extra.addClass "on" if type != extraType
         
     @extra.removeClass(extraType)
-    target.addClass("red") if @extra.hasClass("on")
+    target.addClass("purple") if @extra.hasClass("on")
   
     @extra.data "type" , type
     @extra.addClass(type)

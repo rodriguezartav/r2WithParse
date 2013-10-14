@@ -3,55 +3,27 @@
 //BUT WITH MUCH MORE ORDER
 
 
-.color-app-icon{
-  
-  height: 62px;
-  position: relative;
-
-  .triangle{
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    width: 0px;
-    height: 0px;
-    border-style: solid;
-    border-width: 60px 68px 0 0;
-    border-color: rgba(255,255,255,0.25) transparent transparent transparent;
-  }
-  
-  .text{
-   margin: 0px auto;
-   color: @gray-lighter;
-   font-weight: 300;
-   font-size: 28px;
-   text-align: center;
-   display: block;
-   text-align: center;
-  }
-  
-  .label{
-    color: @gray-lighter;
-    text-align: center;
-    display: block;
-    font-size: 8px;
-    padding-top: 4px;
-  }
-  
-}
-
 .app-icon {  
   cursor: pointer;
   background-color: #fff;
   border: 1px solid @gray-lightest;
+  width: 66px;
+  height: 66px;
   
   .app-icon-header{
     text-align: center;
     border-bottom: none;
-    height: 23px;
+    height: 20px;
+    overflow: hidden;
+    padding: 0px 10px;
+  
     .label{
-      line-height: 24px;
+      line-height: 20px;
       color: #fff;
-      font-size: 10px;
+      font-size: 11px;
+      text-transform: capitalize;
+      text-shadow: 1px 1px rgba(0,0,0,0.3);
+      
     }
 
     .triangle{
@@ -74,6 +46,49 @@
       font-size: 28px;
       line-height: 47px;
       text-align: center;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 100;
     }
 
 }
+
+.color-app-icon{
+  height: 62px;
+  position: relative;
+
+  .triangle{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 60px 68px 0 0;
+    border-color: rgba(255,255,255,0.25) transparent transparent transparent;
+  }
+  
+  .text{
+   margin: 0px auto;
+   color: @gray-lighter;
+   font-weight: 300;
+   font-size: 28px;
+   text-align: center;
+   display: block;
+   text-align: center;
+   
+   font-family: 'Roboto', sans-serif;
+   font-weight: 100;
+   
+   
+  }
+  
+  .label{
+    color: @gray-lighter;
+    text-align: center;
+    display: block;
+    font-size: 8px;
+    padding-top: 4px;
+  }
+  
+}
+

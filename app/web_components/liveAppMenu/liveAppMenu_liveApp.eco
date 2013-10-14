@@ -1,7 +1,6 @@
 <% RSpine = require("rspine")  %>
 
-
-<li data-type="app-menu" class="color-app-icon social-icon home-icon " >
+<li class="color-app-icon social-icon home-icon " data-path="views/homeView/homeView" >
   <span class="triangle"></span>
   <span class="label">
     Home
@@ -9,30 +8,6 @@
   <span class="text">
    Hm
   </span>
-</li>
-
-<li class="color-app-icon social-icon" data-type="social">
-  <span class="triangle"></span>
-  <span class="label">
-    Social
-  </span>
-  <span class="text">
-    So
-  </span>
-</li>
-
-
-<li class="color-app-icon " data-type="metric">
-  <span class="triangle"></span>
-  <span class="label">
-    Metrics
-  </span>
-  <span class="text">
-    Me
-  </span>
-</li>
-
-<li class="live-app-menu-divider">
 </li>
 
 <% for index,position of @appAndPositions:  %>
@@ -50,3 +25,37 @@
       </li>
     <% end %>
 <% end %>
+
+<li class="live-app-menu-divider">
+</li>
+
+<li data-type="app-menu" data-color="red" class="color-app-icon social-icon home-icon " >
+  <span class="triangle"></span>
+  <span class="label">
+    App Menu
+  </span>
+  <span class="text">
+   Am
+  </span>
+</li>
+
+<li data-type="blue" class="color-app-icon social-icon" data-type="social">
+  <span class="triangle"></span>
+  <span class="label">
+    Social
+  </span>
+  <span class="text">
+    So
+  </span>
+</li>
+
+
+<li data-color="purple" class="color-app-icon " data-type="metric">
+  <span class="triangle"></span>
+  <span class="label">
+    Metrics
+  </span>
+  <span class="text">
+    Me
+  </span>
+</li>

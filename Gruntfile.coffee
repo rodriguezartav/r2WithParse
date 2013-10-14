@@ -136,7 +136,7 @@ module.exports = (grunt) ->
           data: 
             path: ""
             apiServer: apiServer
-            app_url: "http://edge.3vot.com.s3-website-us-east-1.amazonaws.com"
+            app_url: "http://edge.3vot.com"
 
       dev:
         files:
@@ -182,9 +182,9 @@ module.exports = (grunt) ->
 
         upload: 
           [
-             { src: './public/*.*', dest: "", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=300" }
+             { src: './public/*.*', dest: "", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=0" }
              { src: './public/images/*.*', dest: "images", gzip: false, access: 'public-read', headers: "Cache-Control": "max-age=5000" }
-             { src: './public/' + orgId  + '/*.*', dest: orgId , gzip: false, access: 'public-read', headers: "Cache-Control": "max-age=5000" }
+             { src: './public/' + orgId  + '/*.*', dest: orgId , gzip: false, access: 'public-read', headers: "Cache-Control": "max-age=0" }
           ]
 
   grunt.loadNpmTasks('grunt-contrib-watch');

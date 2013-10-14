@@ -18,7 +18,7 @@
 <div class="row full-height app-menu-wrapper">
   <% for app in @apps: %>
     <% if app.name != "Home View": %>
-      <div class="col-md-<%= @columnsInMenu %>">
+      <div class="col-md-<%= @columnsInMenu %> col-sm-2" >
         <div data-path="<%= app.path %>" class="app-icon js-btn-app ">
 
           <div class="app-icon-header <%= app.iconColor %>">
