@@ -16,7 +16,6 @@ class NewsFeed extends RSpine.Controller
    
   constructor: ->
     super    
-    @html require("components/newsFeed/newsFeed_layout")()
 
     base = new RSpine.Ajax.Base();
     request = base.ajaxQueue {} ,
@@ -29,7 +28,7 @@ class NewsFeed extends RSpine.Controller
       @render()
 
   render: =>
-    @jsSrcPosts.html require("components/newsFeed/newsFeed_item")(ChatterNews.all())
+    @html require("components/newsFeed/newsFeed_item")(ChatterNews.all())
     @el.scrollTop(NewsFeed.lastScrollPosition) if NewsFeed.lastScrollPosition
     
 
@@ -43,7 +42,7 @@ class NewsFeed extends RSpine.Controller
   
   showDetails: (item) ->
     NewsFeed.lastScrollPosition = @el.scrollTop()
-    @jsSrcPosts.html require("components/newsFeed/newsFeed_detail")(item)
+    @html require("components/newsFeed/newsFeed_detail")(item)
 
   onBtnCloseClick: (e) =>
     e.preventDefault();

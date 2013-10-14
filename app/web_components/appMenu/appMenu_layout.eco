@@ -1,14 +1,17 @@
-<div class="row app-highlight">
-  
-  <div class="col-md-4 full-height">
-    <div class="app-icon red">
-      <div class="text">Ze</div>
-      </div>
-  </div>
+<div class=" app-highlight">
+  <div class="row">
+    <div class="col-md-4 full-height">
+      <div class="app-icon red">
+        <div class="text">Ze</div>
+        </div>
+    </div>
 
-  <div class="col-md-8 app-info">
-    <div class="title">App Name</div>
-    <div class="labels">Mantiene un conteo de los productos y te envía un.. correo con recordatorios te envía un</div>
+
+    <div class="col-md-8 app-info">
+      <div class="title">App Name</div>
+      <div class="labels">Mantiene un conteo de los productos y te envía un.. correo con recordatorios te envía un</div>
+    </div>
+  
   </div>
 
 </div>
