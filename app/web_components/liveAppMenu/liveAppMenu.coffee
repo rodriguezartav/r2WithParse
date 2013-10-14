@@ -13,13 +13,15 @@ class LiveAppMenu extends RSpine.Controller
     super    
 
     @append require("components/liveAppMenu/liveAppMenu_layout")()
-
-    #Extra Menu
     @extra = $(".extra-menu")
+    
 
     RSpine.bind "platform:app-current-changed" , @renderApps
     
-    
+    @el.click @clickDontHideExtra
+    @extra.click @clickDontHideExtra
+    $("body").click @clickHideExtra
+
     @renderApps()
 
   onLiveAppIconClick: (e) ->
@@ -46,7 +48,11 @@ class LiveAppMenu extends RSpine.Controller
     @extra.data "type" , type
     @extra.addClass(type)
 
-  onExtClick: ->
+  clickDontHideExtra: (e) ->
+    e.preventDefault()
+    e.stopImmediatePropagation();
+
+  clickHideExtra: =>
     @extra.removeClass("on")
 
 module.exports = LiveAppMenu
