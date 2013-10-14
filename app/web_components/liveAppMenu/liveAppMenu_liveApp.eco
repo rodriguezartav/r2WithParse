@@ -25,10 +25,7 @@
       </li>
     <% end %>
 <% end %>
-
-<li class="live-app-menu-divider">
-</li>
-
+  
 <li data-type="app-menu" data-color="red" class="color-app-icon social-icon home-icon " >
   <span class="triangle"></span>
   <span class="label">

@@ -1,7 +1,6 @@
 <div class="row app-highlight">
   
   <div class="col-md-4 full-height">
-  
     <div class="app-icon red">
       <div class="text">Ze</div>
       </div>
@@ -9,8 +8,7 @@
 
   <div class="col-md-8 app-info">
     <div class="title">App Name</div>
-    <div class="labels"> d d ads ds das sd d adas das dsa dasD ASD Ad sadS AD sad sad sad sdsfds fdsf dsafd saf dsf sadf</div>
-    <a class="btn btn-danger btn-block"> Abrir App</a>
+    <div class="labels">Mantiene un conteo de los productos y te envía un.. correo con recordatorios te envía un</div>
   </div>
 
 </div>
