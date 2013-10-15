@@ -18,7 +18,6 @@ class LayoutManager extends RSpine.Controller
     RSpine.bind "platform:app-launch", @launchApp      
     RSpine.bind "platform:app-shutdown", @shutdownApp 
     RSpine.bind "platform:library-loaded-keyboard" , @registerKeys
-    @launchApp("views/homeView/homeView")
 
     $(window).resize @calculatePositionIndex 
 

@@ -9,7 +9,6 @@ LoadManager = require "managers/loadManager"
 
 class InitApp extends RSpine.Controller
 
-
   #Variables
   # appsMetadata: Metadata of all Apps
   # appsByPath: Dictionary of path with values of App Metadata
@@ -20,15 +19,13 @@ class InitApp extends RSpine.Controller
 
   constructor: ->
     super
-    homeViewMetaData = {path: "views/homeView/homeView",name: "Home View", iconColor:"blue", iconLabel:"Hm" }
-    RSpine.appsMetadata = [ homeViewMetaData ];
+    RSpine.appsMetadata = [];
     RSpine.appsByPath =  {}
-    RSpine.appsByPath[homeViewMetaData.path] = homeViewMetaData
     
     RSpine.liveAppPaths = []
     RSpine.liveAppsByPath = {}
     RSpine.liveAppPositionByPath = {}
-
+    
     new LayoutManager(el: @el)
     new LoadManager(el: @el)
     new DataManager()

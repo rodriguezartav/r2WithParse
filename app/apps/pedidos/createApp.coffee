@@ -5,6 +5,6 @@ class CreateApp extends RSpine.Controller
 
   constructor: ->
     super    
-    @html require("app/pedidos/createApp_layout")() 
+    @html require("app/pedidos/createApp_layout")()
  
 module.exports = CreateApp

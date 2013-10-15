@@ -40,14 +40,14 @@ module.exports = (grunt) ->
       },      
 
       initApp: {
-        appPaths: ['./app/initApp', './app/web_components/menu', './app/web_components/newsFeed','./app/web_components/appMenu'],
+        appPaths: ['./app/initApp', './app/apps/webHome', './app/web_components/menu', './app/web_components/newsFeed','./app/web_components/appMenu'],
         lessVariables: "./css/base/variables.less",
         dependencyPaths: [],
         destination: "./public/#{orgId}/initApp.js"
       },
 
       launchStage:{
-        appPaths: ['./app/web_components/appMetrics','./app/web_components/breadcrum','./app/web_components/liveAppMenu'],
+        appPaths: ['./app/web_components/appMetrics','./app/web_components/breadcrum'],
         lessVariables: "./css/base/variables.less",
         destination: "./public/#{orgId}/launch-components.js"
       },

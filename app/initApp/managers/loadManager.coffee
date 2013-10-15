@@ -9,9 +9,10 @@ class LoadMananger
   launchStage:
     "appMetrics": ".app-metrics"
     "breadcrum": ".breadcrum"
-    "liveAppMenu": ".menu"
+    "menu": ".menu"
 
   constructor: ->
+    @requireApps()
     @requireComponents(@ignitionStage)  
     @initLaunchStage()
     RSpine.bind "platform:ajax-idle", @initOrbitStage
@@ -21,9 +22,7 @@ class LoadMananger
       @requireComponents(@launchStage)
 
     LazyLoad.js "#{RSpine.jsPath}apps_vendedores.js", =>
-      for app in moduleList   
-        RSpine.appsMetadata.push app
-        RSpine.appsByPath[app.path] = app  
+      @requireApps(moduleList)  
       RSpine.trigger "platform:apps_loaded"
 
   initOrbitStage: =>
@@ -31,8 +30,14 @@ class LoadMananger
       for lib in moduleList
         require(lib.path)
 
+  requireApps: =>
+    for app in moduleList   
+      RSpine.appsMetadata.push app
+      RSpine.appsByPath[app.path] = app
+      RSpine.trigger("platform:app-launch", app.path) if app.home
+
   requireComponents: (stage) =>
-    for component,elements of stage
+    for component, elements of stage
       elements = [elements] if !RSpine.isArray(elements)
       for element in elements
         Component = require("components/#{component}/#{component}") 
