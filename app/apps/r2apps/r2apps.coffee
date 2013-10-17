@@ -61,16 +61,17 @@ class R2Apps extends RSpine.Controller
       sourceHide: false,
       dragClass: "whileDragging",
       parentContainer: $("body")
-      canDrop: ($dst) ->
-        return $dst.parents(".card").length == 1
-      didDrop: ($src, $dst) =>
-        id = $src.data "id"
-        app = App.find id
-        cardId = $dst.data "id"
-        profile = Profile.find cardId
+      canDrop: (destination) ->
+        return destination.parents(".card").length == 1
+      didDrop: (source, destination) =>
+        destination = destination.parent() until destination.hasClass "card"
+        appId = source.data "id"
+        app = App.find appId
+        profileId = destination.data "id"
+        profile = Profile.find profileId
         profile.appPaths.push app.path
         profile.save()
-        @updateCardView($dst, profile)
+        @updateCardView(destination, profile)
                        
   renderProfiles: =>
     @profileList.html require("app/r2apps/r2apps_profile")(Profile.all())    
@@ -103,9 +104,9 @@ class R2Apps extends RSpine.Controller
   onRemoveApp: (e) ->
     target = $(e.target)
     card = target.parents(".card")
-    
     path = target.data("path")
-    profile = Profile.find target.data("profile")
+    profileId = target.data("profile")
+    profile = Profile.find profileId
     app = App.findByAttribute("path",path)
     index = profile.appPaths.indexOf path
     profile.appPaths.splice(index, 1);

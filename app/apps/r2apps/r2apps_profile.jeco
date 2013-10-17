@@ -1,6 +1,6 @@
 <div class="col-md-3 ">
   
-  <div data-id="<%= @id %>" class=" profile card-editable card ">
+  <div data-id="<%= @id %>" class=" profile card-editable card unselectable ">
   
     <div class="card-for-view full-height">
   
