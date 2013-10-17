@@ -1,0 +1,18 @@
+<div class="col-md-3 ">
+  
+  <div data-id="<%= @id %>" class=" profile card-editable card ">
+  
+    <div class="card-for-view full-height">
+  
+    <%- require("app/r2apps/r2apps_profile_view")(@) %>
+  
+  
+    </div>
+
+
+    <div class="card-for-edit full-height">
+    
+    </div>
+  
+  </div>
+</div>

@@ -32,35 +32,18 @@ module.exports = (grunt) ->
 
 
     grunt_r2_compiler: {
-      r2: {
-        appPaths: ['./app/r2'],
+      apps:{
+        parts: "./r2apps.json",
         lessVariables: "./css/base/variables.less",
-        dependencyPaths: ["jqueryify","rspine","rspine/lib/salesforceAjax","rspine/lib/salesforceModel","rspine/lib/offlineModel"],
-        destination: "./public/r2.js"
-      },      
-
-      initApp: {
-        appPaths: ['./app/initApp', './app/apps/webHome', './app/web_components/menu', './app/web_components/newsFeed','./app/web_components/appMenu'],
-        lessVariables: "./css/base/variables.less",
-        dependencyPaths: [],
-        destination: "./public/#{orgId}/initApp.js"
-      },
-
-      launchStage:{
-        appPaths: ['./app/web_components/appMetrics','./app/web_components/breadcrum'],
-        lessVariables: "./css/base/variables.less",
-        destination: "./public/#{orgId}/launch-components.js"
-      },
-
-      orbitStage:{
-        appPaths: ['./app/libraries/keyboardFramework'],
-        destination: "./public/#{orgId}/orbit-components.js"        
+        organizationId: orgId,
+        destination: "./public"
       }
-
-      vendedores:{
-        appPaths: ["./app/apps/pedidos","./app/apps/logistica","./app/apps/newApp" ]
+      
+      components:{
+        parts: "./r2stage.json",
         lessVariables: "./css/base/variables.less",
-        destination: "./public/#{orgId}/apps_vendedores.js"
+        organizationId: orgId,
+        destination: "./public"
       }
     },
 
@@ -166,8 +149,8 @@ module.exports = (grunt) ->
           port: '7770',
           hostname: "0.0.0.0",
           bases: ['./public'],
+          server: './server/main',
           livereload: true
-
     s3:
       options: 
         bucket: "edge.3vot.com",
@@ -200,6 +183,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-s3');  
+
 
   grunt.registerTask('test', ["copy","clean:test",'coffee',"jade:test","grunt_r2_compiler","mochaTest"]);   
 

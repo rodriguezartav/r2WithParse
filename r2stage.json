@@ -1,0 +1,28 @@
+{"parts":
+  [
+    {
+        "name":"r2",
+        "type": "lib",
+        "appPaths": ["./app/r2"],
+        "dependencyPaths": ["jqueryify","rspine","rspine/lib/salesforceAjax","rspine/lib/salesforceModel","rspine/lib/offlineModel"]
+        },      
+
+      {
+        "name":"initApp",
+        "type": "lib,app,component",
+        "appPaths": ["./app/initApp", "./app/apps/webHome", "./app/web_components/menu", "./app/web_components/newsFeed","./app/web_components/appMenu"]
+      },
+
+      {
+        "name":"launchStage",
+        "type": "component",
+        "appPaths": ["./app/web_components/appMetrics","./app/web_components/breadcrum"]
+      },
+
+      {
+        "name":"orbitStage",
+        "type": "lib",
+        "appPaths": ["./app/libraries/keyboardFramework","./app/libraries/dragdropFramework"]
+      }
+  ]
+}

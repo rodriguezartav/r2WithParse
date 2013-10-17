@@ -14,7 +14,7 @@ class InitApp extends RSpine.Controller
   # appsByPath: Dictionary of path with values of App Metadata
   # Live Apps Patgs: Array of Paths of instantiate Apps
   # LiveAppsByPath: Dictionary of Paths with values of instantiate Apps
-  # liveAppPositionByPath: Dictionary of Paths with positions
+  # liveAppPositionByPath: Dictionary of Paths with positions 
   # 
 
   constructor: ->
@@ -26,6 +26,8 @@ class InitApp extends RSpine.Controller
     RSpine.liveAppsByPath = {}
     RSpine.liveAppPositionByPath = {}
     
+    RSpine.libraries = {}
+    
     new LayoutManager(el: @el)
     new LoadManager(el: @el)
     new DataManager()
@@ -33,6 +35,7 @@ class InitApp extends RSpine.Controller
 module.exports = InitApp   
 
 # Events:
+#  platform:login_invalid
 #  platform:app-launch
 #  platform:app-shutdown
 #  platform:apps_loaded
@@ -40,3 +43,4 @@ module.exports = InitApp
 #  platform:app-current-changed
 #  platform:ajax-idle
 #  platform:library-loaded-keyboard
+

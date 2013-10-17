@@ -1,54 +1,55 @@
 // Lists
 // -------------------------
 
-.list-header{
-  font-size: @font-size-medium;
-  height: 33px;
-}
+.flat-list{
+  .list-unstyled();
 
-.list-item {
-  border-bottom: 1px solid @gray-lighter;
-  //border-left: 1px solid @gray-lighter;
-  //border-right: 1px solid @gray-lighter;
-  height:@line-height-block;
-  overflow: hidden;
-  line-height: @line-height-block;
-  padding: 0 @padding-small-horizontal;
-  cursor: pointer; 
-  position: relative;
+  .list-item,li {
+    border-bottom: 1px solid @gray-lighter;
+    //border-left: 1px solid @gray-lighter;
+    //border-right: 1px solid @gray-lighter;
+    height:@line-height-block;
+    overflow: hidden;
+    line-height: @line-height-block;
+    padding: 0 @padding-small-horizontal;
+    cursor: pointer; 
+    position: relative;
 
-  &:hover{
-    //border: 1px solid @gray-lighter;
-    //margin: @padding-small-horizontal 0;
-    //height: 200px;
-    .icon-fold {
-      transform: rotate(180deg);
-      -ms-transform: rotate(180deg); /* IE 9 */
-      -webkit-transform: rotate(180deg); /* Safari and Chrome */
-    }
+    &:hover{
+      //border: 1px solid @gray-lighter;
+      //margin: @padding-small-horizontal 0;
+      //height: 200px;
+      .icon-fold {
+        transform: rotate(180deg);
+        -ms-transform: rotate(180deg); /* IE 9 */
+        -webkit-transform: rotate(180deg); /* Safari and Chrome */
+      }
+    } 
   } 
-} 
 
-.list-header{
-  border: 1px solid @gray-lighter;
-  height:@line-height-block;
-  line-height: @line-height-block;
-  padding: 0 @padding-small-horizontal;
-  font-size: @font-size-medium;
-  .icon-medium {
-    margin-right: @padding-small-horizontal;
+  .list-header{
+    font-size: @font-size-medium;
+    height: 33px;
+    border: 1px solid @gray-lighter;
+    height:@line-height-block;
+    line-height: @line-height-block;
+    padding: 0 @padding-small-horizontal;
+    font-size: @font-size-medium;
+    .icon-medium {
+      margin-right: @padding-small-horizontal;
+    }
   }
-}
 
-.nested-list-item {
-  display: block;
-  color: @gray-dark;
-  line-height: @line-height-block;
-  padding: 0 @padding-small-horizontal;
-  cursor: pointer;
-}
+  .nested-list-item {
+    display: block;
+    color: @gray-dark;
+    line-height: @line-height-block;
+    padding: 0 @padding-small-horizontal;
+    cursor: pointer;
+  }
 
-.list-options {
-  line-height: @line-height-block;
-  height:@line-height-block;
+  .list-options {
+    line-height: @line-height-block;
+    height:@line-height-block;
+  }
 }

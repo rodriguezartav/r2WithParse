@@ -1,0 +1,1 @@
+{"parts":[{"name":"vendedores","appPaths":["./app/apps/logistica","./app/apps/r2apps","./app/apps/pedidos"],"type":"app","id":"c-0"},{"name":"credito","appPaths":["./app/apps/r2apps","./app/apps/logistica","./app/apps/r2apps","./app/apps/pedidos"],"type":"app","id":"c-1"}]}

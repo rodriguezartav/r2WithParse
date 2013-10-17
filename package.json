@@ -11,14 +11,15 @@
     "jade": "*",
     "less": "*",
     "jqueryify": "latest",
-    "rspine": "latest"
+    "rspine": "latest",
+    "grunt-contrib-watch": "latest",
+    "walk": "~2.2.1"
   },
   "devDependencies": {
     "zombie": "latest",
     "grunt-contrib-jshint": "~0.6.0",
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt-contrib-watch": "latest",
     "grunt-contrib-sass": "~0.4.1",
     "grunt-contrib-less": "latest",
     "grunt-r2-compiler": "latest",

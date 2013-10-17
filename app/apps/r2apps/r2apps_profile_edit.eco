@@ -1,0 +1,10 @@
+<input data-attr="name" class="item-editable" value="<%= @name %>"/>
+
+<ul class="flat-list apps-lists scrollable full-height">
+  <% for path in @appPaths: %>
+    <li class="row item-editable">
+      <span data-profile="<%= @id %>" data-path="<%= path %>" class="text-danger  btn-remove-app">  <%= path %></span>
+      
+    </li>
+  <% end %>
+</ul>

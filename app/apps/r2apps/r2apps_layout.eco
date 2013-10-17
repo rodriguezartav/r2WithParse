@@ -1,0 +1,44 @@
+  <div class="row">
+    <div class="col-md-9">
+      <div class="app-header">Apps By Profile</div>
+    </div>  
+    
+    <div class="col-md-3">
+      <div class="btn btn-block btn-primary btn-large btn-action-new">New</div>
+    </div>  
+    
+  </div>    
+
+
+  <div class="row full-height">
+
+    <div class="col-md-3 color-column">
+      <div class="header  blue">
+        <h1>Applications</h1>
+      </div>
+      
+      <div class="content-body">
+      
+        <ul class="app-list flat-list flat-list-draggable ">
+        
+        </ul>
+    
+      </div>
+    
+    </div>
+
+    <div class="col-md-9 color-column">
+       <div class="header purple">
+          <h1>Profiles and Apps</h1>
+        </div>
+      
+        <div class="content-body">
+          <div class="profile-list"></div>
+        </div>
+      
+    </div>
+
+  </div>
+
+
+

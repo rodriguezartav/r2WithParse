@@ -18,15 +18,15 @@ class LoadMananger
     RSpine.bind "platform:ajax-idle", @initOrbitStage
 
   initLaunchStage: ->  
-    LazyLoad.js "#{RSpine.jsPath}launch-components.js", =>
+    LazyLoad.js "#{RSpine.jsPath}launchStage.js", =>
       @requireComponents(@launchStage)
 
-    LazyLoad.js "#{RSpine.jsPath}apps_vendedores.js", =>
+    LazyLoad.js "#{RSpine.jsPath}vendedores.js", =>
       @requireApps(moduleList)  
       RSpine.trigger "platform:apps_loaded"
 
   initOrbitStage: =>
-    LazyLoad.js "#{RSpine.jsPath}orbit-components.js", =>
+    LazyLoad.js "#{RSpine.jsPath}orbitStage.js", =>
       for lib in moduleList
         require(lib.path)
 
