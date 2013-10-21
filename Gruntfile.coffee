@@ -32,7 +32,7 @@ module.exports = (grunt) ->
           "./public/r2.css" : "./css/index.less"
 
 
-    grunt_r2_compiler: {
+    threevot_compiler: {
       apps:{
         parts: "./r2apps.json",
         lessVariables: "./css/base/variables.less",
@@ -48,14 +48,7 @@ module.exports = (grunt) ->
       }
     },
 
-    r2cli:
-      app:
-        destination: "./app/apps"
-        type: "app"
-      
-      model:
-        destination: "./app/initApp/models"
-        type: "model"
+
 
     coffee:
       unit:
@@ -110,7 +103,7 @@ module.exports = (grunt) ->
             globals: ["jQuery*","RSpine","exports"]
             ignoreLeaks: false
 
-    r2test: 
+    threevot_tester: 
       allTest: 
         options:
           testScripts: ["./node_modules/chai/chai.js", "./node_modules/mocha/mocha.js" ]
@@ -210,37 +203,29 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-express');
 
-  grunt.loadNpmTasks('grunt-r2test');
 
-
-  grunt.loadNpmTasks('grunt-r2-compiler');
-  grunt.loadNpmTasks('grunt-r2-cli');
+  grunt.loadNpmTasks('grunt-threevot-compiler');
+  grunt.loadNpmTasks('grunt-threevot-tester');
 
   grunt.loadNpmTasks('grunt-mocha');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-s3');  
 
-  grunt.loadNpmTasks('grunt-contrib-jasmine');
 
+  grunt.registerTask("newTest" , ['clean:testUnit', 'threevot_tester', 'mocha'] )
 
-
-  grunt.registerTask("newTest" , ['clean:testUnit', 'r2test', 'mocha'] )
-
-  grunt.registerTask('test', ["copy","clean:test",'coffee',"jade:test","grunt_r2_compiler","mochaTest"]);   
+  grunt.registerTask('test', ["copy","clean:test",'coffee',"jade:test","threevot_compiler","mochaTest"]);   
 
   grunt.registerTask('test_unit', ["clean:test",'coffee',"mochaTest:unit"]); 
 
-  grunt.registerTask('test_functional', ["copy","clean:test",'coffee',"jade:test","grunt_r2_compiler","mochaTest:functional"]); 
+  grunt.registerTask('test_functional', ["copy","clean:test",'coffee',"jade:test","threevot_compiler","mochaTest:functional"]); 
 
-  grunt.registerTask('test_integration', ["copy","clean:test",'coffee',"jade:test","grunt_r2_compiler","mochaTest:integration"]); 
+  grunt.registerTask('test_integration', ["copy","clean:test",'coffee',"jade:test","grunt-threevot_compiler","mochaTest:integration"]); 
 
-  grunt.registerTask('build', ["copy",'coffee' , "test" , "grunt_r2_compiler" , "jade:production","s3"]);   
+  grunt.registerTask('build', ["copy",'coffee' , "test" , "threevot_compiler" , "jade:production","s3"]);   
 
-  grunt.registerTask('server', ["clean","copy","grunt_r2_compiler","less","jade:dev" , 'express','watch']);
+  grunt.registerTask('server', ["clean","copy","threevot_compiler","less","jade:dev" , 'express','watch']);
 
-  grunt.registerTask('app', ["r2cli:app"]);
-
-  grunt.registerTask('model', ["r2cli:model"]);
   
   grunt.registerTask('default', ["copy",'clean','coffee' , 'mochaTest']);
