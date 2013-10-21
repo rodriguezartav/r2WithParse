@@ -1,0 +1,24 @@
+<li data-app="<%= @id %>" class="list-item-detail app-detail">
+  
+  <h4>Name</h4>
+  <% if @isNewApp: %>
+    <input class="form-control validate-name item-editable" data-type="name" value="<%= @name %>"/>
+  <% else: %> 
+    <h3 class="lead"><%= @name %></h3>
+  <% end %>
+
+  <h4>Label</h4>
+  <input  class="form-control item-editable" data-type="label" value="<%= @label %>"/>
+
+  <h4>Icon Color</h4>
+  <input  class="form-control item-editable" data-type="iconColor" value="<%= @iconColor %>"/>
+
+  <h4>Icon Label</h4>
+  <input  class="form-control item-editable" data-type="iconLabel" value="<%= @iconLabel %>"/>
+  
+  <h4 class="item-editable">
+    <a class="btn btn-primary pull-right btn-action-save-app  ">Save</a>
+    <a class="btn btn-danger  item-editable">Delete</a>
+  </h4>
+
+</li>

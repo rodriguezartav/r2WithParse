@@ -1,0 +1,134 @@
+.news-feed, .small-news-feed{
+  background-color: @gray-light4;
+  padding-bottom: 106px !important;
+}
+
+.post{
+  overflow: hidden;
+  position: relative;
+  margin-top: @line-height-block/2;
+  background-color: #fff;
+  border: 1px solid @gray-lighter;
+  &:first-child{
+    margin-top: 0px;
+  }
+  
+  
+  .btn-close{
+    position: absolute;
+    top: -6px;
+    right: 2px;
+    font-size: 23px;
+    display: inline-block;
+    padding: 8px;
+    cursor: pointer;
+    color: @gray;
+  }
+  
+  >div{
+    margin: 10px 10px 0px 10px;
+    &:first-child{
+      //margin: 8px 8px 0px 8px;
+    }
+    &:last-child{
+      margin: 10px 0px 0px 0px;
+      clear: both;
+    }
+  }
+
+
+  img{
+    width: @line-height-block;
+    height: @line-height-block;
+  }
+ 
+  .title{
+    display: inline-block;
+    margin-left: 10px;
+    color: @gray-light;
+    font-weight: 100;
+    line-height: @line-height-block
+  }
+
+  .text{
+    display: inline-block; 
+    line-height: 18px   
+  }
+  
+  .labels{
+    color: @gray-light;
+    display: inline-block;
+    margin: 0px 5px;
+  }
+
+  .btn-social-action{
+    float: left;
+    text-align: center;
+    color: @gray;
+    width: 50%;
+    line-height: @line-height-block;
+    border-top: 1px solid @gray-lighter;
+    cursor: pointer;
+    &:first-child{
+      border-right: 1px solid @gray-lighter;
+    }
+    &:hover {color: @brand-primary;}
+  }
+
+  .post-area{
+  } 
+
+  .post-actions{
+    margin: 3px;
+    margin-bottom: 0px;
+    a.labels{
+      display: inline-block;
+      margin-right: 6px;
+      cursor: pointer;
+      color: @brand-primary;
+    }
+  }
+
+  .comment-box{
+    margin-top: 10px;
+    margin-bottom: @line-height-block;
+  
+    h4{
+      margin: 4px 0px;
+    }
+  
+    .reply-box{
+      background-color: rgb(223,223,223);
+      margin: 0px;
+      padding-top: 4px;
+      margin-bottom: 5px;
+    }
+  
+  }
+
+
+  .post-comments{
+    margin-bottom: 4px;
+    border-left: 1px solid @gray-lightest;
+
+    .inner-wrapper{
+    }
+  
+    a.comment{ display: none; }
+  
+  }
+
+  .post-new-comment{
+    position: relative;
+  
+    img{
+      display: inline-block;
+    }
+
+    textarea{
+      display: inline-block;
+      position: absolute;
+      width: 90%;
+    }
+  }  
+}

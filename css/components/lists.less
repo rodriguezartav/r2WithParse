@@ -11,7 +11,7 @@
     height:@line-height-block;
     overflow: hidden;
     line-height: @line-height-block;
-    padding: 0 @padding-small-horizontal;
+    padding: 0;
     cursor: pointer; 
     position: relative;
 
@@ -24,7 +24,14 @@
         -ms-transform: rotate(180deg); /* IE 9 */
         -webkit-transform: rotate(180deg); /* Safari and Chrome */
       }
-    } 
+    }
+    
+    
+    &.list-item-detail{
+      height: auto;
+      overflow: auto;
+    }
+     
   } 
 
   .list-header{

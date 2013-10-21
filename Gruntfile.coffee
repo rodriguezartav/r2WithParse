@@ -17,8 +17,9 @@ module.exports = (grunt) ->
   grunt.initConfig
     
     clean:
-      app: ['public/style','public/script']
+      r2: ["public/**/*.js"]
       test: ['test/unit/*.js','test/functional/*.js','test/integration/*.js']
+      testUnit: ['test/unit/*.html']
 
     copy: 
       main: 
@@ -60,7 +61,7 @@ module.exports = (grunt) ->
       unit:
         expand: true,
         flatten: true,
-        cwd: './test/unit_src/',
+        cwd: './test/unit/src/',
         src: ['**/*.coffee'],
         dest: './test/unit/',
         ext: '.js'        
@@ -97,6 +98,30 @@ module.exports = (grunt) ->
           reporter: 'spec'
         src: ['test/integration/*.js']
 
+
+    mocha: 
+      test:
+        src: ['./test/unit/*.html']
+        options:
+          log: true
+          run: true
+          reporter: "Spec"
+          mocha:
+            globals: ["jQuery*","RSpine","exports"]
+            ignoreLeaks: false
+
+    r2test: 
+      allTest: 
+        options:
+          testScripts: ["./node_modules/chai/chai.js", "./node_modules/mocha/mocha.js" ]
+          testStyles: ["./node_modules/mocha/mocha.css"]
+          init: "chai.should();"
+          lessVariables: ""
+          destination: "./test/unit"
+          template: "./test/unit/template.eco"
+        src: "./app/**/test.json"
+
+
     watch:
       css:
         files: ["./css/*.less","./css/**/*.less"]
@@ -104,7 +129,7 @@ module.exports = (grunt) ->
 
       apps:
         files: ["./app/**/*.coffee" ,"./app/**/*.eco","./app/**/*.jeco","./app/**/*.less"]
-        tasks: ["grunt_r2_compiler"]
+        tasks: ["clean:r2","grunt_r2_compiler"]
 
       views:
         files: ["./views/*.jade","./views/**/*.jade"]
@@ -169,6 +194,14 @@ module.exports = (grunt) ->
              { src: './public/images/*.*', dest: "images", gzip: false, access: 'public-read', headers: "Cache-Control": "max-age=500" }
              { src: './public/' + orgId  + '/*.*', dest: orgId , gzip: false, access: 'public-read', headers: "Cache-Control": "max-age=0" }
           ]
+          
+          
+          
+    jasmine: 
+      pivotal: 
+        options: 
+          specs: 'test/unit/*.js'
+          keepRunner: true
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-clean');
@@ -177,17 +210,26 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-express');
 
+  grunt.loadNpmTasks('grunt-r2test');
+
+
   grunt.loadNpmTasks('grunt-r2-compiler');
   grunt.loadNpmTasks('grunt-r2-cli');
 
+  grunt.loadNpmTasks('grunt-mocha');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-s3');  
 
+  grunt.loadNpmTasks('grunt-contrib-jasmine');
+
+
+
+  grunt.registerTask("newTest" , ['clean:testUnit', 'r2test', 'mocha'] )
 
   grunt.registerTask('test', ["copy","clean:test",'coffee',"jade:test","grunt_r2_compiler","mochaTest"]);   
 
-  grunt.registerTask('test_unit', ["copy","clean:test",'coffee',"jade:test","grunt_r2_compiler","mochaTest:unit"]); 
+  grunt.registerTask('test_unit', ["clean:test",'coffee',"mochaTest:unit"]); 
 
   grunt.registerTask('test_functional', ["copy","clean:test",'coffee',"jade:test","grunt_r2_compiler","mochaTest:functional"]); 
 
@@ -195,7 +237,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask('build', ["copy",'coffee' , "test" , "grunt_r2_compiler" , "jade:production","s3"]);   
 
-  grunt.registerTask('server', ["copy","grunt_r2_compiler","less","jade:dev" , 'express','watch']);
+  grunt.registerTask('server', ["clean","copy","grunt_r2_compiler","less","jade:dev" , 'express','watch']);
 
   grunt.registerTask('app', ["r2cli:app"]);
 

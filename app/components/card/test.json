@@ -1,0 +1,7 @@
+{
+  "name": "card",
+  "pathsToCompile": ["./app/components/card"],
+  "dependenciesToCompile": ["jqueryify","rspine","rspine/lib/salesforceAjax","rspine/lib/salesforceModel","rspine/lib/offlineModel"],
+  "filesToInclude": [],
+  "specs": "test_spec.js"
+}

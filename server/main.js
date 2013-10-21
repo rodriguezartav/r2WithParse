@@ -10,12 +10,6 @@ var path = require('path');
 
 app.use(express.bodyParser());
 
-app.get('/test', function(req,res){
-  results = R2Builder.build( { "model": { name: "test" } } );
-  grunt.file.write( "model.eco" , results["model"]  );
-  res.send(200);
-});
-
 app.get('/r2apps', function(req, res) {
   var response = {profiles: "",apps: []};
   var r2apps = fs.readFileSync("./r2apps.json");
@@ -46,8 +40,25 @@ app.get('/r2apps', function(req, res) {
 
 
 app.post('/r2apps', function(req, res) {
-  console.error(req.body);
   var file = fs.writeFileSync("./r2apps.json", JSON.stringify(req.body));
+  res.send(200);
+});
+
+app.put('/r2apps', function(req,res){
+  //if req.body.app.newApp
+  grunt.file.delete("./app/apps/" + req.body.name);
+  try{
+    results = R2Builder.build( { "app": req.body , "component": req.body , "style": req.body , "layout": req.body } );
+    grunt.file.write( "./app/apps/" + req.body.name + "/" + req.body.name + ".coffee" , results["app"]  );
+    grunt.file.write( "./app/apps/" + req.body.name + "/component.json" , results["component"]  );
+    grunt.file.write( "./app/apps/" + req.body.name + "/style.less" , results["style"]  );
+    grunt.file.write( "./app/apps/" + req.body.name + "/layout.eco" , results["layout"]  );
+  }
+  catch(error){
+    grunt.file.delete("./app/apps/" + req.body.name);
+    res.status(501);
+    res.send(error);
+  }
   res.send(200);
 });
 

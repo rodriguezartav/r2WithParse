@@ -1,0 +1,26 @@
+<% RSpine = require("rspine") %>
+
+<div class="post" data-id="<%= @id %>">
+
+  
+  <div>
+    <img class="img-circle" src="<%= RSpine.getImage(@photoUrl) %>" />
+    <span class="title"><%= @actor.name %></span>    
+  </div>
+
+  <div>
+    <span class="text"><%= @body.text %></span>
+  </div>
+  
+  <div class="">
+      <span class="labels like"><%= @likes.total %> Likes </span>
+      <span class="labels coments"><%= @comments.comments.length %> Comments</span>
+  </div>
+  
+  
+  <div class="">
+    <div class="btn-social-action">Like</div>
+    <div class="btn-social-action">Comment</div>
+  </div>
+
+ </div>

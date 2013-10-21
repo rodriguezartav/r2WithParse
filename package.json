@@ -13,7 +13,9 @@
     "jqueryify": "latest",
     "rspine": "latest",
     "grunt-contrib-watch": "latest",
-    "walk": "~2.2.1"
+    "walk": "~2.2.1",
+    "chai": "~1.8.1",
+    "mocha": "~1.13.0"
   },
   "devDependencies": {
     "zombie": "latest",

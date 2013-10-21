@@ -32,9 +32,10 @@ class LoadMananger
 
   requireApps: =>
     for app in moduleList   
-      RSpine.appsMetadata.push app
-      RSpine.appsByPath[app.path] = app
-      RSpine.trigger("platform:app-launch", app.path) if app.home
+      if app.namespace == "app"
+        RSpine.appsMetadata.push app
+        RSpine.appsByPath[app.path] = app
+        RSpine.trigger("platform:app-launch", app.path) if app.home
 
   requireComponents: (stage) =>
     for component, elements of stage

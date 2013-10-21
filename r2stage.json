@@ -10,13 +10,13 @@
       {
         "name":"initApp",
         "type": "lib,app,component",
-        "appPaths": ["./app/initApp", "./app/apps/webHome", "./app/web_components/menu", "./app/web_components/newsFeed","./app/web_components/appMenu"]
+        "appPaths": ["./app/initApp", "./app/apps/webHome", "./app/components/menu", "./app/components/newsFeed","./app/components/appMenu"]
       },
 
       {
         "name":"launchStage",
         "type": "component",
-        "appPaths": ["./app/web_components/appMetrics","./app/web_components/breadcrum"]
+        "appPaths": ["./app/components/appMetrics","./app/components/breadcrum"]
       },
 
       {

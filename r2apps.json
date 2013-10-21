@@ -1,1 +1,1 @@
-{"parts":[{"name":"vendedores","appPaths":["./app/apps/pedidos","./app/apps/testApp","./app/apps/r2apps"],"type":"app","id":"c-0"},{"name":"credito","appPaths":["./app/apps/r2apps","./app/apps/logistica","./app/apps/r2apps","./app/apps/pedidos"],"type":"app","id":"c-1"},{"name":"sales","appPaths":[],"type":"app","id":"c-2"}]}
+{"parts":[{"name":"vendedores","appPaths":["./app/apps/r2apps","./app/apps/NewApp jj","./app/apps/pedidos"],"type":"app","id":"c-0"},{"name":"New Profiles","appPaths":["./app/apps/NewApp jj"],"type":"app","id":"c-1"}]}

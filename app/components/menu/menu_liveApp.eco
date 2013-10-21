@@ -1,0 +1,65 @@
+<% RSpine = require("rspine")  %>
+
+<li>
+  <span class="menu-title">
+    Menu
+  </span>
+  
+</li>
+
+<% for index,position of @appAndPositions:  %>
+  <% if  RSpine.currentAppPath == RSpine.appsByPath[index].path then active = "active"  else active = ""   %>
+
+  
+      <li class="app-icon unselectable" data-path="<%= RSpine.appsByPath[index].path %>">
+        
+        <div class="app-icon-header blue">
+          <span class="label"><%= RSpine.appsByPath[index].label %></span>
+        </div>
+        
+        <div class="text">
+          <%= RSpine.appsByPath[index].iconLabel %>
+        </div>
+      </li>
+<% end %>
+  
+<li class="">
+<span class="menu-title shortcut">
+  Shortcuts
+</span>
+
+</li>
+  
+<li data-type="app-menu" data-color="red" class="app-icon social-icon home-icon unselectable" >
+  
+       <div class="app-icon-header red">
+          <span class="label">App Menu</span>
+        </div>
+  
+
+  <div class="text">
+   Am
+  </div>
+</li>
+
+<li data-color="blue" class="app-icon social-icon unselectable" data-type="social">
+     
+      <div class="app-icon-header blue">
+         <span class="label">Social</span>
+       </div>
+
+  <div class="text">
+    So
+  </div>
+</li>
+
+
+<li data-color="purple" class="app-icon unselectable" data-type="metric">
+       <div class="app-icon-header purple">
+          <span class="label">Metrics</span>
+        </div>
+
+  <div class="text">
+    Me
+  </div>
+</li>

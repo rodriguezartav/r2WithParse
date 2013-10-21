@@ -1,18 +1,42 @@
-<div class="col-md-3 ">
-  
-  <div data-id="<%= @id %>" class=" profile card-editable card unselectable ">
-  
-    <div class="card-for-view full-height unselectable">
-  
-    <%- require("app/r2apps/r2apps_profile_view")(@) %>
-  
-  
-    </div>
+<div data-profile="<%= @id %>" class="col-md-3 profile card-editable card unselectable "> 
 
+  <div class="card-body">
 
-    <div class="card-for-edit full-height unselectable">
+    <div class="card-for-view full-height unselectable scrollable ">
+
+    <h2>
+      <%= @name %>
+    </h2>
+
+    <ul class="flat-list apps-lists ">
+      <% for path in @appPaths: %>
+        <li>
+          <%= path %>
+        </li>
+      <% end %>
+    </ul>
     
-    </div>
+  </div>
+
+
+    <div class="card-for-edit full-height unselectable scrollable">
   
+      <input data-attr="name" class="item-editable validate-name spaceable" value="<%= @name %>"/>
+
+      <ul class="flat-list apps-lists">
+        <% for path in @appPaths: %>
+          <li class="item-editable">
+            <span data-profile="<%= @id %>" data-path="<%= path %>" class="text-danger  btn-remove-app">  <%= path %></span>
+
+          </li>
+        <% end %>
+      </ul>
+
+      <div class="buttons item-editable">
+        <a class="btn btn-danger btn-large btn-block btn-delete-profile ">Delete Profile</a>
+      </div>
+  
+    </div>
+
   </div>
 </div>

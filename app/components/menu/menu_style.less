@@ -1,0 +1,89 @@
+.menu{
+  background-color: @gray-lightest;
+  border-right: 2px solid @gray-lighter;
+  padding-right: 0px;
+}
+
+
+
+.menu-title{
+  display:block;
+  font-size: 9px;
+  color: @gray;
+  text-align: center;
+  margin-bottom: 5px;
+  background-color: @gray-lighter;
+
+  line-height:20px;
+  
+  &.shortcut{
+    margin-top: 50px;
+  }
+  
+}
+
+.live-app-menu-divider{
+  margin-top: 16px;
+  margin-bottom: 16px;
+  height: 1px;
+  border-bottom: 1px solid @gray;
+  border-top:  1px solid @gray-light;
+}
+
+li.active{
+  background-color: @brand-primary;
+}
+
+.menu{
+  .app-icon{
+    cursor: pointer;
+    width: 40px;
+    background-color: @gray-lightest;
+    height: 40px;
+    margin: 10px auto;
+  
+    .app-icon-header{
+      position: relative;
+      text-align: center;
+      border-bottom: none;
+      overflow: hidden;
+      padding: 0px 5px;
+      height: 13px;
+  
+      .label{
+        line-height: 8px;
+        color: #fff;
+        font-size: 8px;
+        position: relative;
+        top: -3px;
+        text-transform: capitalize;
+        text-shadow: none;
+      }
+
+      .triangle{
+        position: absolute;
+        left: 8px;
+        top: 0px;
+        width: 0px;
+        height: 0px;
+        border-style: solid;
+        border-width: 50px 48px 0 0;
+        border-color: rgba(255,255,255,0.3) transparent transparent transparent;
+      }
+    }
+
+      .text
+      {
+        margin: 0px auto;
+        color: @gray;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 25px;
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 100;
+      }
+
+  }
+}
+
