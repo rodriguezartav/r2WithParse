@@ -1,19 +1,10 @@
 <div class=" app-highlight">
-  <div class="row">
-    <div class="col-md-4 full-height">
-      <div class="app-icon red">
-        <div class="text">Ze</div>
-        </div>
-    </div>
 
+  <span class="r2-logo">R2</span>
+  <span class="r2-slogan">Web & Mobile Platform</span>
 
-    <div class="col-md-8 app-info">
-      <div class="title">App Name</div>
-      <div class="labels">Mantiene un conteo de los productos y te envía un.. correo con recordatorios te envía un</div>
-    </div>
+  <span class="r2-apps">Your Apps</span>
   
-  </div>
-
 </div>
 
 <div class="row full-height app-menu-wrapper">

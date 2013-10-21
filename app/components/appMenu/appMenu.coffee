@@ -7,7 +7,7 @@ class AppMenu extends RSpine.Controller
   events:
     "click .js-btn-app" : "onAppClick"
 
-  constructor: ->
+  constructor: -> 
     super
     RSpine.bind "platform:apps_loaded" , =>
       @html require("components/appMenu/appMenu_layout")(apps: RSpine.appsMetadata )

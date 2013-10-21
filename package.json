@@ -18,7 +18,6 @@
     "mocha": "~1.13.0"
   },
   "devDependencies": {
-    "zombie": "latest",
     "grunt-contrib-jshint": "~0.6.0",
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-nodeunit": "~0.2.0",
@@ -37,11 +36,7 @@
     "eco": "~1.1.0",
     "should": "~1.2.2",
     "mocha": "~1.12.0",
-    "jsdom": "latest",
-    "jquery-browserify": "latest",
-    "sandboxed-module": "latest",
     "grunt-mocha": "~0.4.1",
-    "supertest": "latest",
     "express": "~3.3.1",
     "threevot-compiler": "latest",
     "r2-builder": "latest"

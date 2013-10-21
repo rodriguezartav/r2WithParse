@@ -117,12 +117,12 @@ module.exports = (grunt) ->
 
     watch:
       css:
-        files: ["./css/*.less","./css/**/*.less"]
+        files: ["./css/**/*.less"]
         tasks: ["less"]
 
       apps:
         files: ["./app/**/*.coffee" ,"./app/**/*.eco","./app/**/*.jeco","./app/**/*.less"]
-        tasks: ["clean:r2","grunt_r2_compiler"]
+        tasks: ["clean:r2","threevot_compiler"]
 
       views:
         files: ["./views/*.jade","./views/**/*.jade"]
