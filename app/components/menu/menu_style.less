@@ -4,8 +4,6 @@
   padding-right: 0px;
 }
 
-
-
 .menu-title{
   display:block;
   font-size: 9px;
@@ -18,6 +16,7 @@
   
   &.shortcut{
     margin-top: 50px;
+    margin-bottom: 10px;
   }
   
 }
@@ -35,12 +34,14 @@ li.active{
 }
 
 .menu{
+
   .app-icon{
     cursor: pointer;
     width: 40px;
     background-color: @gray-lightest;
     height: 40px;
     margin: 10px auto;
+    border: none;
   
     .app-icon-header{
       position: relative;
@@ -49,16 +50,6 @@ li.active{
       overflow: hidden;
       padding: 0px 5px;
       height: 13px;
-  
-      .label{
-        line-height: 8px;
-        color: #fff;
-        font-size: 8px;
-        position: relative;
-        top: -3px;
-        text-transform: capitalize;
-        text-shadow: none;
-      }
 
       .triangle{
         position: absolute;
@@ -72,18 +63,58 @@ li.active{
       }
     }
 
+    .label{
+      line-height: 8px;
+      color: #fff;
+      font-size: 8px;
+      position: relative;
+      top: -3px;
+      text-transform: capitalize;
+      text-shadow: none;
+    }
+
       .text
       {
         margin: 0px auto;
         color: @gray;
         font-weight: 300;
-        font-size: 18px;
+        font-size: 16px;
         line-height: 25px;
         text-align: center;
         font-family: 'Roboto', sans-serif;
         font-weight: 100;
       }
-
   }
+  
+  .side-icon{
+    border: none !important;
+    width: 34px !important;
+    margin: 5px auto;
+    
+    .app-icon-header{
+      padding: 0px !important;
+      float: left;
+      width: 8px !important;
+      height: 32px !important;
+    }
+    
+    .text{
+      width: 26px;
+      font-size: 13px;
+      text-align: right;
+      float: left;
+      .text-header{
+        height: 10px;
+        overflow: hidden;
+        display: block;
+        font-size: 7px;
+        font-family: 'roboto';
+        text-align: right;
+        line-height: 10px;
+      }
+    }
+    
+  }
+  
 }
 

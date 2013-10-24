@@ -121,8 +121,9 @@ module.exports = (grunt) ->
         tasks: ["less"]
 
       apps:
-        files: ["./app/**/*.coffee" ,"./app/**/*.eco","./app/**/*.jeco","./app/**/*.less"]
-        tasks: ["clean:r2","threevot_compiler"]
+        files: ["./app/**/*.coffee", "./app/**/*.eco", "./app/**/*.jeco", "./app/**/*.less"]
+        tasks: ["clean:r2", "threevot_compiler"]
+        livereload: true
 
       views:
         files: ["./views/*.jade","./views/**/*.jade"]

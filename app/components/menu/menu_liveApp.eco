@@ -30,36 +30,84 @@
 
 </li>
   
-<li data-type="app-menu" data-color="red" class="app-icon social-icon home-icon unselectable" >
+<li data-type="app-menu" data-color="red" class="app-icon side-icon social-icon home-icon unselectable" >
   
        <div class="app-icon-header red">
-          <span class="label">App Menu</span>
         </div>
   
 
   <div class="text">
-   Am
+    <span class="text-header">App Menu</span>
+    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    	 width="12.38px" height="14.06px" viewBox="0 0 12.38 14.06" enable-background="new 0 0 12.38 14.06" xml:space="preserve">
+    <g>
+    	<g>
+    		<rect x="1.19" y="1.25" fill="#B4B4B4" width="2.46" height="2.46"/>
+    		<rect x="8.71" y="1.25" fill="#B4B4B4" width="2.46" height="2.46"/>
+    		<rect x="4.95" y="1.25" fill="#B4B4B4" width="2.46" height="2.46"/>
+    	</g>
+    	<g>
+    		<rect x="1.19" y="5.71" fill="#B4B4B4" width="2.46" height="2.46"/>
+    		<rect x="8.71" y="5.71" fill="#B4B4B4" width="2.46" height="2.46"/>
+    		<rect x="4.95" y="5.71" fill="#B4B4B4" width="2.46" height="2.46"/>
+    	</g>
+    	<g>
+    		<rect x="1.19" y="10.17" fill="#B4B4B4" width="2.46" height="2.46"/>
+    		<rect x="8.71" y="10.17" fill="#B4B4B4" width="2.46" height="2.46"/>
+    		<rect x="4.95" y="10.17" fill="#B4B4B4" width="2.46" height="2.46"/>
+    	</g>
+    </g>
+    </svg>
   </div>
 </li>
 
-<li data-color="blue" class="app-icon social-icon unselectable" data-type="social">
+<li data-color="blue" class="app-icon side-icon social-icon unselectable" data-type="social">
      
       <div class="app-icon-header blue">
-         <span class="label">Social</span>
        </div>
-
+  
   <div class="text">
-    So
+  <span class="text-header">Social</span>
+     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     	 width="12.38px" height="14.06px" viewBox="0 0 12.38 14.06" enable-background="new 0 0 12.38 14.06" xml:space="preserve">
+     <g>
+     	<g>
+     		<path fill="#B4B4B4" d="M10.39,6.37c0-1.54-1.25-2.79-2.79-2.79c-1.54,0-2.79,1.25-2.79,2.79c0,1.54,1.25,2.79,2.79,2.79
+     			C9.14,9.16,10.39,7.91,10.39,6.37z"/>
+     		<path fill="#B4B4B4" d="M7.6,9.16c-2.27,0-4.11,1.84-4.11,4.11h8.22C11.7,11,9.87,9.16,7.6,9.16z"/>
+     		<path fill="#B4B4B4" d="M4.22,6.39c0-0.01,0-0.02,0-0.02c0-1.86,1.52-3.38,3.38-3.38c0.01,0,0.02,0,0.02,0
+     			C7.3,1.8,6.23,0.91,4.93,0.91c-1.54,0-2.79,1.25-2.79,2.79C2.14,4.99,3.02,6.08,4.22,6.39z"/>
+     		<path fill="#B4B4B4" d="M5.55,9.05C4.79,8.46,4.29,7.57,4.23,6.56C2.3,6.89,0.82,8.57,0.82,10.6h2.93
+     			C4.21,9.94,4.82,9.4,5.55,9.05z"/>
+     	</g>
+     </g>
+     </svg>
+     
   </div>
+  
+   
+    
+  
+
 </li>
 
 
-<li data-color="purple" class="app-icon unselectable" data-type="metric">
+<li data-color="purple" class="app-icon side-icon unselectable" data-type="metric">
        <div class="app-icon-header purple">
-          <span class="label">Metrics</span>
         </div>
 
   <div class="text">
-    Me
+  <span class="text-header">Metrics</span>
+  
+    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    	 width="12.38px" height="14.06px" viewBox="0 0 12.38 14.06" enable-background="new 0 0 12.38 14.06" xml:space="preserve">
+    <g>
+    	<rect x="1.31" y="5.27" fill="#B4B4B4" width="2.46" height="7.85"/>
+    	<rect x="4.18" y="0.95" fill="#B4B4B4" width="2.46" height="12.18"/>
+    	<rect x="7.05" y="4.83" fill="#B4B4B4" width="2.46" height="8.29"/>
+    	<rect x="9.92" y="8.98" fill="#B4B4B4" width="2.46" height="4.15"/>
+    </g>
+    </svg>
+    
   </div>
 </li>
