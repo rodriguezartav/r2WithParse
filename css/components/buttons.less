@@ -85,33 +85,41 @@
 }
 
 .btn-danger {
-  background: @brand-danger;
+  color: @brand-danger;
+  &:hover {
+    background: @brand-danger;
+    color: #fff;
+  }
+}
+
+.btn-primary {
+   color: @brand-primary;
+  &:hover {
+    background: @brand-primary;
+    color: #fff;
+  }
+}
+
+.btn-success {
+  background: @brand-success;
   color: #fff;
   &:hover {
     color: #fff;
   }
 }
 
-.btn-primary {
-  &:hover {
-    color: brand-primary;
-  }
-}
-
-.btn-success {
-  &:hover {
-    color: brand-success;
-  }
-}
-
 .btn-info {
+   color: @brand-info;
   &:hover {
-    color: brand-info;
+    background: @brand-info;
+    color: #fff;
   }
 }
 
 .btn-warning {
+   color: @brand-warning;
   &:hover {
-    color: brand-warning;
+    background: @brand-warning;
+    color: #fff;
   }
 }

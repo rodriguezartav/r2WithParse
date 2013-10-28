@@ -1,7 +1,7 @@
 .card{
 
 	padding: 0;
-	margin-right: padding-small-horizontal;
+	margin-right: @padding-small-horizontal;
 	h1,h2,h3,h4,h5,h6 {
 		text-transform:capitalize;
 		line-height: @line-height-block;
@@ -24,8 +24,9 @@
       	display: block;
       	.item-editable {
       		width: 100%;
-      		padding-left: @padding-small-horizontal
+      		padding-left: @padding-small-horizontal;
       	}
+
       	.validate-name {
       		line-height: @line-height-block;
       		font-size: @font-size-medium;
@@ -33,7 +34,10 @@
       		text-transform: capitalize;
       	}
       }
-      .card-for-view{display: none;}
+      .card-for-view{
+        display: none;
+      }
+
     
     }
     

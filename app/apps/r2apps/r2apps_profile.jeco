@@ -33,7 +33,7 @@
       </ul>
 
       <div class="buttons">
-        <a class="btn btn-danger btn-delete-profile ">Delete Profile</a>
+        <a class="btn btn-danger pull-left btn-delete-profile ">Delete Profile</a>
         <a class="btn btn-success btn-save-profile ">Save Profile</a>
       </div>
   
