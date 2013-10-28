@@ -43,14 +43,14 @@
     <% end %>
   </div>
 
-  <div class="row post-new-comment">
-    <div class="row">
-      <div class="col-md-1 ">
-        <img class="img-circle" src="<%= RSpine.getImage(RSpine.session.user.SmallPhotoUrl) %>">
-      </div>
-      <div class="col-md-11">
-        <textarea class="form-control" rows="1"/>
-      </div>
+
+  <div class="post-new-comment">
+    <div>
+      <img class="img-circle" src="<%= RSpine.getImage(@photoUrl) %>" />
+      <span class="title"><%= @actor.name %></span>  
+    </div>
+    <div>
+      <textarea class="form-control" rows="1" placeholder="WRITE A COMMENT"/>
     </div>
   </div>
 

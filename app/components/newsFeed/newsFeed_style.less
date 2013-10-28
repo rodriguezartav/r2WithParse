@@ -109,15 +109,19 @@
 
   .post-new-comment{
     position: relative;
-  
+    overflow: hidden;
+    border-top: 1px solid @gray-lighter;
+    >div{
+      margin: 10px 10px 0px 10px;
+    }
     img{
       display: inline-block;
     }
 
     textarea{
       display: inline-block;
-      position: absolute;
-      width: 90%;
+      width: 100%;
+      border: 1px solid @gray-light;
     }
   }  
 }
