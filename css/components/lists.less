@@ -5,18 +5,25 @@
   .list-unstyled();
 
   .list-item,li {
-    border-bottom: 1px solid @gray-lighter;
+    background: #fff;
+    border: 1px solid @gray-lighter;
     //border-left: 1px solid @gray-lighter;
     //border-right: 1px solid @gray-lighter;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
     height:@line-height-block;
-    overflow: hidden;
     line-height: @line-height-block;
-    padding: 0;
-    cursor: pointer; 
+    margin-bottom: -1px;
+    overflow: hidden;
+    padding: 0 @padding-small-horizontal;
     position: relative;
+    font-family: @font-family-sans-serif!important;
+    text-transform: capitalize;
+    font-weight: 400;
 
     &:hover{
-      //border: 1px solid @gray-lighter;
+      border: 1px solid @gray-light;
+      z-index: 1;
       //margin: @padding-small-horizontal 0;
       //height: 200px;
       .icon-fold {
@@ -27,9 +34,22 @@
     }
     
     
-    &.list-item-detail{
+    &.list-item-detail {
       height: auto;
       overflow: auto;
+      margin-bottom: @padding-small-horizontal;
+      padding-bottom: @padding-small-horizontal;
+      border-top: none;
+      h1,h2,h3,h4,h5,h6 {
+        line-height: @line-height-block;
+        font-size: @font-size-base;
+      }
+      h3 {
+        padding-left: @padding-small-horizontal;
+      }
+      h4 {
+        text-transform: capitalize;
+      }
     }
      
   } 
