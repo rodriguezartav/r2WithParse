@@ -59,3 +59,59 @@
   -ms-transform: rotate(45deg); /* IE 9 */
   -webkit-transform: rotate(45deg); /* Safari and Chrome */
 }
+
+//Buttons Container 
+.buttons {
+  margin-top: 10px;
+}
+
+//Buttons 
+.btn {
+  text-align: center;
+  color: @gray;
+  width: 50%;
+  line-height: @line-height-block;
+  border: 1px solid @gray-lighter;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 0;
+  padding: 0;
+  background: #fff;
+  vertical-align: top;
+  &:first-child {
+    margin-right:-1px;
+  }
+}
+
+.btn-danger {
+  background: @brand-danger;
+  color: #fff;
+  &:hover {
+    color: #fff;
+  }
+}
+
+.btn-primary {
+  &:hover {
+    color: brand-primary;
+  }
+}
+
+.btn-success {
+  &:hover {
+    color: brand-success;
+  }
+}
+
+.btn-info {
+  &:hover {
+    color: brand-info;
+  }
+}
+
+.btn-warning {
+  &:hover {
+    color: brand-warning;
+  }
+}
