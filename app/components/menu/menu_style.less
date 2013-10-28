@@ -36,6 +36,7 @@ li.active{
 .menu{
 
   .app-icon{
+    border:none;
     cursor: pointer;
     width: 40px;
     background-color: @gray-lightest;
@@ -53,7 +54,7 @@ li.active{
 
       .triangle{
         position: absolute;
-        left: 8px;
+        left: 0px;
         top: 0px;
         width: 0px;
         height: 0px;
@@ -90,12 +91,20 @@ li.active{
     border: none !important;
     width: 34px !important;
     margin: 5px auto;
+    position: relative;
     
     .app-icon-header{
       padding: 0px !important;
-      float: left;
+      position: absolute;
+      left: -8px;
       width: 8px !important;
       height: 32px !important;
+      transition: all .2s ease-in-out;
+    }
+    &:hover {
+      .app-icon-header {
+        left: 34px;
+      }
     }
     
     .text{
