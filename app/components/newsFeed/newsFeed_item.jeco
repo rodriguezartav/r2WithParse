@@ -18,9 +18,9 @@
   </div>
   
   
-  <div class="">
-    <div class="btn-social-action">Like</div>
-    <div class="btn-social-action">Comment</div>
+  <div class="buttons">
+    <div class="btn pull-left btn-primary btn-social-action">Like</div>
+    <div class="btn btn-primary btn-social-action">Comment</div>
   </div>
 
  </div>
