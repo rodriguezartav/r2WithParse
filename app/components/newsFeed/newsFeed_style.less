@@ -111,6 +111,7 @@
     position: relative;
     overflow: hidden;
     border-top: 1px solid @gray-lighter;
+    box-shadow: 0px -1px 5px rgba(0, 0, 0, .1);
     >div{
       margin: 10px 10px 0px 10px;
     }
@@ -122,6 +123,9 @@
       display: inline-block;
       width: 100%;
       border: 1px solid @gray-light;
+      &:focus {
+        border: 1px solid @brand-primary;
+      }
     }
   }  
 }
