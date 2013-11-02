@@ -4,19 +4,19 @@
 
     <div class="card-for-view full-height unselectable scrollable ">
 
-    <h2>
-      <%= @name %>
-    </h2>
+      <h2>
+        <%= @name %>
+      </h2>
 
-    <ul class="flat-list apps-lists ">
-      <% for path in @appPaths: %>
-        <li>
-          <%= path %>
-        </li>
-      <% end %>
-    </ul>
+      <ul class="flat-list apps-lists ">
+        <% for path in @appPaths: %>
+          <li>
+            <%= path %>
+          </li>
+        <% end %>
+      </ul>
     
-  </div>
+    </div>
 
 
     <div class="card-for-edit full-height unselectable scrollable">
@@ -26,8 +26,7 @@
       <ul class="flat-list apps-lists">
         <% for path in @appPaths: %>
           <li class="item-editable">
-            <span data-profile="<%= @id %>" data-path="<%= path %>" class="text-danger  btn-remove-app">  <%= path %></span>
-
+            <span data-profile="<%= @id %>" data-path="<%= path %>" class="text-danger  btn-remove-app-from-profile">  <%= path %></span>
           </li>
         <% end %>
       </ul>

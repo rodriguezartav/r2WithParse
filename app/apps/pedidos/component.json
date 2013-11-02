@@ -1,1 +1,1 @@
-{"namespace":"app","name":"pedidos","label":"lables","iconColor":"red","iconLabel":"Pe"}
+{"namespace":"app","name":"pedidos","path":"./app/apps/pedidos","iconColor":"purple","iconLabel":"Pe","label":"Pedidos","id":"c-2"}

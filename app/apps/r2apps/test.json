@@ -1,0 +1,7 @@
+{
+  "name": "r2apps",
+  "pathsToCompile": ["./app/apps/r2apps","./app/libraries/dragdropFramework"],
+  "dependenciesToCompile": ["jqueryify","rspine","rspine/lib/salesforceAjax","rspine/lib/salesforceModel","rspine/lib/offlineModel"],
+  "filesToInclude": [],
+  "specs": "test_spec.coffee"
+}

@@ -1,3 +1,7 @@
+fs = require('fs');
+path = require("path")
+walk = require("walk")
+
 class Helper
    
   @randomChars: (len) ->
@@ -7,6 +11,19 @@ class Helper
       chars += Math.random().toString(36).substring(2);
 
     return chars.substring(0, len);
+
+
+  @onlyNew: (target) ->
+    return (filepath) ->  
+      #filepath is JSON file
+      dir = path.dirname(filepath)
+      changedRecently = false
+      files = fs.readdirSync dir
+      for file in files
+        srcTime = fs.statSync(dir + "/" + file).mtime.getTime();
+        now = new Date()
+        changedRecently = true if now.getTime() - srcTime < 20000
+      return changedRecently
 
 module.exports = (grunt) ->
 
@@ -19,7 +36,7 @@ module.exports = (grunt) ->
     clean:
       r2: ["public/**/*.js"]
       test: ['test/unit/*.js','test/functional/*.js','test/integration/*.js']
-      testUnit: ['test/unit/*.html']
+      testUnit: ['./test/unit/*.html']
 
     copy: 
       main: 
@@ -106,19 +123,34 @@ module.exports = (grunt) ->
     threevot_tester: 
       allTest: 
         options:
-          testScripts: ["./node_modules/chai/chai.js", "./node_modules/mocha/mocha.js" ]
+          testScripts: ["./node_modules/chai/chai.js", "./node_modules/mocha/mocha.js","./node_modules/sinon/pkg/sinon.js" ]
           testStyles: ["./node_modules/mocha/mocha.css"]
           init: "chai.should();"
-          lessVariables: ""
+          lessVariables: "./css/base/variables.less"
           destination: "./test/unit"
           template: "./test/unit/template.eco"
-        src: "./app/**/test.json"
+        
 
+
+      newTest: 
+        options:
+          testScripts: ["./node_modules/chai/chai.js", "./node_modules/mocha/mocha.js","./node_modules/sinon/pkg/sinon.js" ]
+          testStyles: ["./node_modules/mocha/mocha.css"]
+          init: "chai.should();"
+          lessVariables: "./css/base/variables.less"
+          destination: "./test/unit"
+          template: "./test/unit/template.eco"
+        src: ['**/test.json'],
+        cwd: './app/',
+        expand: true,
+        filter: Helper.onlyNew(['copy', 'newTet'])
+        
 
     watch:
       css:
         files: ["./css/**/*.less"]
         tasks: ["less"]
+        livereload: true
 
       apps:
         files: ["./app/**/*.coffee", "./app/**/*.eco", "./app/**/*.jeco", "./app/**/*.less"]
@@ -128,6 +160,16 @@ module.exports = (grunt) ->
       views:
         files: ["./views/*.jade","./views/**/*.jade"]
         tasks: ["jade"]
+        livereload: true
+        
+      tests:
+        files: ["./app/**/*.coffee","./app/**/*.js"]
+        tasks: ["newTest"]
+        
+      r2apps:
+        files: ["./r2apps.json","./app/**/component.json"]
+        tasks: ["clean:r2", "threevot_compiler"]
+        livereload: true
 
     jade:
       production:
@@ -214,11 +256,12 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-s3');  
 
 
-  grunt.registerTask("newTest" , ['clean:testUnit', 'threevot_tester', 'mocha'] )
 
-  grunt.registerTask('test', ["copy","clean:test",'coffee',"jade:test","threevot_compiler","mochaTest"]);   
+  grunt.registerTask("newAutoTest" , ['watch:tests'] )
 
-  grunt.registerTask('test_unit', ["clean:test",'coffee',"mochaTest:unit"]); 
+  grunt.registerTask("newTest" , ['clean:testUnit', 'threevot_tester:newTest', 'mocha'] )
+
+  grunt.registerTask("test_unit" , ['clean:testUnit', 'threevot_tester:allTest', 'mocha'] )
 
   grunt.registerTask('test_functional', ["copy","clean:test",'coffee',"jade:test","threevot_compiler","mochaTest:functional"]); 
 
@@ -228,5 +271,4 @@ module.exports = (grunt) ->
 
   grunt.registerTask('server', ["clean","copy","threevot_compiler","less","jade:dev" , 'express','watch']);
 
-  
   grunt.registerTask('default', ["copy",'clean','coffee' , 'mochaTest']);

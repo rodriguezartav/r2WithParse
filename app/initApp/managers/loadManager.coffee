@@ -1,32 +1,29 @@
 RSpine= require "rspine"
  
 class LoadMananger
- 
-  ignitionStage:
-    "newsFeed"  :  [".news-feed", ".small-news-feed"]
-    "appMenu": [".app-menu" , ".small-app-menu"]
 
-  launchStage:
-    "appMetrics": ".app-metrics"
-    "breadcrum": ".breadcrum"
-    "menu": ".menu"
+  launchStage:  
+    desktop:
+      "appMetrics": ".app-metrics" 
+      "breadcrum": ".breadcrum"
+      "menu": ".menu"    
 
   constructor: ->
     @requireApps()
-    @requireComponents(@ignitionStage)  
+    #@requireComponents( @ignitionStage[RSpine.device] )  
     @initLaunchStage()
     RSpine.bind "platform:ajax-idle", @initOrbitStage
 
   initLaunchStage: ->  
-    LazyLoad.js "#{RSpine.jsPath}launchStage.js", =>
-      @requireComponents(@launchStage)
+    LazyLoad.js "#{RSpine.jsPath}launchStage_#{RSpine.device}.js", =>
+      @requireComponents( @launchStage[RSpine.device] )
 
-    LazyLoad.js "#{RSpine.jsPath}vendedores.js", =>
+    LazyLoad.js "#{RSpine.jsPath}vendedores_#{RSpine.device}.js", =>
       @requireApps(moduleList)  
       RSpine.trigger "platform:apps_loaded"
 
   initOrbitStage: =>
-    LazyLoad.js "#{RSpine.jsPath}orbitStage.js", =>
+    LazyLoad.js "#{RSpine.jsPath}orbitStage_#{RSpine.device}.js", =>
       for lib in moduleList
         require(lib.path)
 
@@ -42,6 +39,9 @@ class LoadMananger
       elements = [elements] if !RSpine.isArray(elements)
       for element in elements
         Component = require("components/#{component}/#{component}") 
-        new Component(el: $(element)  )
+        if typeof Component is "function"
+          new Component(el: $(element)  )
+        else
+          console.log "Error launching component: #{component}/#{component}, there's likely a syntax or logical error on it's main file"
 
 module.exports = LoadMananger

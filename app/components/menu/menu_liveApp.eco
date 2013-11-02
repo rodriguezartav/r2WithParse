@@ -1,17 +1,18 @@
 <% RSpine = require("rspine")  %>
 
 <li>
-  <span class="menu-title">
+  <span class="menu-title"> 
     Menu
   </span>
   
 </li>
 
 <% for index,position of @appAndPositions:  %>
+  
   <% if  RSpine.currentAppPath == RSpine.appsByPath[index].path then active = "active"  else active = ""   %>
 
   
-      <li class="app-icon unselectable" data-path="<%= RSpine.appsByPath[index].path %>">
+      <li class="app-icon live-app-icon unselectable <%= active %>" data-path="<%= RSpine.appsByPath[index].path %>">
         
         <div class="app-icon-header blue">
           <span class="label"><%= RSpine.appsByPath[index].label %></span>

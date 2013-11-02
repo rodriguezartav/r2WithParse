@@ -1,0 +1,16 @@
+<li>
+
+  <h2>
+    <%= @name %>
+  </h2>
+
+  <ul class="apps-lists  ">
+    <% for path in @appPaths: %>
+      <li class="">
+        <%= path %>
+      </li>
+    <% end %>
+  </ul>
+
+
+</li>

@@ -18,7 +18,7 @@
   
   <h4 class="item-editable">
     <a class="btn btn-primary pull-right btn-action-save-app  ">Save</a>
-    <a class="btn btn-danger  item-editable">Delete</a>
+    <a class="btn btn-danger btn-action-delete-app item-editable">Delete</a>
   </h4>
 
 </li>

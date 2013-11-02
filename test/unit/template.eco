@@ -1,6 +1,6 @@
 <html>
   <head>
-  
+
     <style>
       <%- @testStyles %>
     </style>

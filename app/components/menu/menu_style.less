@@ -42,6 +42,12 @@ li.active{
     height: 40px;
     margin: 10px auto;
     border: none;
+    
+    &.active{
+    
+      border: 1px solid @gray;
+    
+    }
   
     .app-icon-header{
       position: relative;
@@ -90,6 +96,15 @@ li.active{
     border: none !important;
     width: 34px !important;
     margin: 5px auto;
+    
+    &.active{
+      .app-icon-header{
+        float: right;
+        position: relative;
+        right: -11px;
+      }
+      
+    }
     
     .app-icon-header{
       padding: 0px !important;

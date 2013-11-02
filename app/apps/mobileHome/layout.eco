@@ -1,0 +1,9 @@
+<div class="color-column">
+  <div class="header red"><span class="triangle"></span><span class="large-title">The App Menu</span></div>
+  <div class="sub-header">
+    <div class="sub-title text-center">Home</div>
+  </div>
+  <div class="content-body app-menu-content-body">
+    <div class="app-menu full-height"></div>
+  </div>
+</div> 

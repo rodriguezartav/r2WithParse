@@ -6,7 +6,7 @@ class Menu extends RSpine.Controller
     ".liveApps" : "liveApps"
 
   events:
-    "click .liveAppIcon" : "onLiveAppIconClick"
+    "click .live-app-icon" : "onLiveAppIconClick"
     "click .social-icon" : "onSocialIconClick"
 
   constructor: ->
@@ -16,6 +16,7 @@ class Menu extends RSpine.Controller
     @extra = $(".extra-menu")
     
 
+    RSpine.bind "platform:app-shutdown-complete" , @renderApps
     RSpine.bind "platform:app-current-changed" , @renderApps
     
     @el.click @clickDontHideExtra
@@ -24,16 +25,28 @@ class Menu extends RSpine.Controller
 
     @renderApps()
 
+  destroyApp: (e) ->
+    target = $(e.target)
+    target = target.parent() until target.hasClass "live-app-icon"
+    appPath = target.data "path"
+    
+    RSpine.trigger "platform:app-shutdown" , appPath
+
   onLiveAppIconClick: (e) ->
     target = $(e.target)
+    target = target.parent() until target.hasClass "live-app-icon"
     appPath = target.data "path"
-    RSpine.trigger "platform:app-launch" , appPath
+    
+    if target.hasClass "active"
+      @destroyApp(e)
+    else
+      RSpine.trigger "platform:app-launch" , appPath
 
   renderApps: ->
     $(".liveApps").html require("components/menu/menu_liveApp")(appAndPositions: RSpine.liveAppPositionByPath)
 
   onSocialIconClick: (e) =>
-    @el.find(".social-icon").removeClass "purple"
+    @el.find(".social-icon").removeClass "active"
     target = $(e.target)
     target = target.parent() until target.hasClass "social-icon"
     
@@ -44,7 +57,7 @@ class Menu extends RSpine.Controller
     @extra.addClass "on" if type != extraType
         
     @extra.removeClass(extraType)
-    target.addClass("purple") if @extra.hasClass("on")
+    target.addClass("active") if @extra.hasClass("on")
   
     @extra.data "type" , type
     @extra.addClass(type)

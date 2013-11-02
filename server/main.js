@@ -21,7 +21,7 @@ app.get('/r2apps', function(req, res) {
 
   walker.on('file', function(root, stat, next) {
       // Add this file to the list of files
-      if(stat.name.indexOf(".json") > 0 ){
+      if(stat.name == "component.json"){
         var filePath = root + '/' + stat.name;
         var fileContents = JSON.parse(fs.readFileSync(filePath));
         fileContents.path = root;
@@ -44,7 +44,19 @@ app.post('/r2apps', function(req, res) {
   res.send(200);
 });
 
-app.put('/r2apps', function(req,res){
+
+app.post('/r2app', function(req, res) {
+  path = req.body.path
+  fs.writeFileSync(path + "/component.json", JSON.stringify(req.body));
+  res.send(200);
+});
+
+app.delete('/r2app', function(req,res){
+  console.log(req.query("path"))
+  res.send(500)
+});
+
+app.put('/r2app', function(req,res){
   //if req.body.app.newApp
   grunt.file.delete("./app/apps/" + req.body.name);
   try{
@@ -59,7 +71,7 @@ app.put('/r2apps', function(req,res){
     res.status(501);
     res.send(error);
   }
-  res.send(200);
+  res.send(req.body);
 });
 
 module.exports = app;

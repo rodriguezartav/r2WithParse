@@ -3,25 +3,36 @@ RSpine = require("rspine")
 class App extends RSpine.Model
   @configure "App","namespace", "name", "path", "index", "iconColor", "iconLabel", "label", "home", "isNewApp"
    
-  constructor: ->
+  constructor: -> 
     super 
-       
+
+  validate: ->
+    reg = /^[0-9a-z_]+$/;
+    return "Name can only contain lowercase letters, numbers and _" if reg.test(@name) == false
+ 
   @createBlankApp: ->
+    number = Math.random() * 10000
     app= 
       namespace: "app"
-      name: "NewApp"
+      name: "app" + number
       iconColor: "blue"
       iconLabel: "iL"
-      label: "New App"
+      label: "app " + number
       isNewApp: true
 
     App.create app
- 
+
 class Profile extends RSpine.Model
   @configure "Profile" , "name" , "appPaths", "dependencyPaths" ,"type"
-  
+
   constructor: ->
-    super 
+    super
+
+  @removeAppFromProfiles: (appPath) ->
+    for profile in Profile.all()
+      index = profile.appPaths.indexOf appPath
+      profile.appPaths.splice(index, 1)
+      profile.save()
 
   appExistsInPaths: (appPath) ->
     has = false
@@ -29,91 +40,61 @@ class Profile extends RSpine.Model
       for path in profile.appPaths
         has = true if path == appPath
     return true
-      
-  @toJson: ->
+
+  @toJSON: ->
     r2jsFile= 
       parts: Profile.all()
     json = JSON.stringify r2jsFile
 
-module.exports = Profile
 
-class R2Apps extends RSpine.Controller
-  className: "app-canvas r2apps" 
-    
-  elements:
-    ".profile-list" : "profileList"
-    ".app-list" : "applist"
+###
+***
+
+# APPS SECTION
+
+***
+###
+
+class Apps extends RSpine.Controller
 
   events:
-    "click .btn_save_profiles" : "onSaveProfiles"
-    "click .btn-action-new-profile" : "onNewProfile"
-    "click .btn-action-new-app" : "onNewApp"
-    "click .card" : "onCardClick"
-    "click .item-editable" : "onItemEditableClick"
-    "change .item-editable" : "onitemEditableChange"
-    "change .validate-name" : "validateName"
-    "click .btn-remove-app" : "onRemoveApp"
-    "click .btn-delete-profile" : "onDeleteProfile"
-    "click .app" : "onAppClick"
-    "click .app-detail" : "onAppDetailClick"
-    "click .btn-action-save-app" : "onSaveApp"
-    
+    "click .app" : "onListItemClick"
+    "click .app-detail" : "onDetailItemClick"
+    "click .btn-action-save-app" : "onSave"
+    "click .btn-action-delete-app" : "onDelete"
+
   constructor: ->
-    super    
-    @html require("app/r2apps/r2apps_layout")()   
-    @dragdropRegistered = false
-    Profile.bind "create", @renderProfiles
- 
-    RSpine.bind "platform:library-loaded-dragdrop", @registerDragDrop
- 
-    $.get("/r2apps").done (response) =>
-
-      for profile in response.profiles.parts
-        Profile.create profile if profile.type == "app"
-
-      for app in response.apps
-        App.create(app) if !app.home
-
-      @renderApps()
-      @registerDragDrop()
-
-  registerDragDrop: => 
-    dragableElements = $(".app-list>.app>.drag-handle")
-    if dragableElements.dragdrop and !@dragdropRegistered
-      @dragdropRegistered = true
-      $(dragableElements).dragdrop
-        makeClone: true,
-        sourceHide: false,
-        dragClass: "whileDragging",
-        parentContainer: $("body")
-        canDrop: (destination) ->
-          return destination.parents(".card").length == 1
-        didDrop: @onAddApp
-                       
-  renderProfiles: =>
-    @profileList.html require("app/r2apps/r2apps_profile")(Profile.all())    
+    super
+    @bind()
+  
+  bind: ->
+    App.bind "refresh" , @render
     
-  renderApps: =>
-    @applist.html require("app/r2apps/r2apps_app")(App.all())
+  shutdown: ->
+    App.unbind "refresh" , @render
 
-  renderCard: (card,profile,showEditView=false) ->
-    newCard = require("app/r2apps/r2apps_profile")(profile)
-    card.replaceWith newCard
-    newCard.addClass "editing" if showEditView
+  render: =>
+    @html require("app/r2apps/r2apps_app")(App.all())
 
-  onNewApp: (e) =>
-    app = App.createBlankApp()
-    @renderApps()
+  onCreate: (e) =>
+    App.createBlankApp()
+    @render()
 
-  onAppClick: (e) ->
-    @applist.find(".list-item-detail").remove()
+  onListItemClick: (e) =>
+    @el.find(".list-item-detail").remove()
     target = $(e.target)
     target = target.parent() until target.hasClass "app"
     appId = target.data "app"
     app = App.find appId
-    target.after require("app/r2apps/r2apps_appDetail")(app)
+    detailHtml = require("app/r2apps/r2apps_appDetail")(app)
+    target.replaceWith detailHtml
+
+  onDetailItemClick: (e) ->
+    target = $(e.target)
+    return false if target.hasClass("item-editable")
+    @render()
  
-  onSaveApp: (e) =>
+  onSave: (e) =>
     target = $(e.target)
     detailDiv = target.parents(".app-detail")
     app = App.find detailDiv.data "app"
@@ -122,49 +103,100 @@ class R2Apps extends RSpine.Controller
       type = input.data("type")
       app[type] = input.val()
 
+    method = if app.isNewApp then "PUT" else "POST"
+
     request = $.ajax
-      type: "PUT"
+      type: method
       contentType: "application/json"
-      url: "/r2apps"
+      url: "/r2app"
       processData: false
-      data: JSON.stringify(app)
+      data: JSON.stringify app
 
     request.success =>
       app.isNewApp=false
       app.save()
-      @renderApps()
-     
+      @render()
+
     request.error =>
       app.delete()
-      @renderApps()
+      @render()
 
-  onAppDetailClick: (e) ->
+  onDelete: (e) =>
     target = $(e.target)
-    return false if target.hasClass("item-editable")
-    @renderApps()
- 
-  onNewProfile: =>
-    Profile.create name: "New Profile", appPaths: [], type: "app"
+    detailDiv = target.parents(".app-detail")
+    app = App.find detailDiv.data "app"
 
-  onCardClick: (e) =>
+    request = $.ajax
+      type: "DEL"
+      contentType: "application/text"
+      url: "/r2app" #?path=#{app.path}"
+      processData: false
+
+    request.success =>
+      Profile.removeAppFromProfiles(app.path)
+      app.destroy()
+      @render()
+      @app.saveData()
+
+    request.error (error) =>
+      console.error "An error occured deleting Apps is probablt related to your FileSystem"
+      console.error error
+      @render()
+
+###
+***
+
+# PROFILE SECTION
+
+***
+###
+
+class Profiles extends RSpine.Controller
+
+  events:
+    "click .card" : "onListItemClick"
+    "click .item-editable" : "onEditableItemClick"
+    "change .item-editable" : "onEditableItemChange"
+    "click .btn-remove-app-from-profile" : "onRemoveApp"
+    "click .btn-delete-profile" : "onDelete"
+
+  constructor: ->
+    super
+    @bind()
+
+  bind: ->
+    Profile.bind "refresh", @render
+    App.bind "destroy", @render
+
+  shutdown: ->
+    Profile.unbind "refresh", @render
+    App.unbind "destroy", @render
+    
+  render: =>
+    @html require("app/r2apps/r2apps_profile")(Profile.all())
+
+  renderCard: (card,profile,showEditView=false) ->
+    newCard = require("app/r2apps/r2apps_profile")(profile)
+    card.replaceWith newCard
+    newCard.addClass "editing" if showEditView
+    
+  onCreate: =>
+    Profile.create name: "New Profile", appPaths: [], type: "app"
+    @render()
+    
+  onListItemClick: (e) =>
     card = $(e.target)
     card = card.parent() until card.hasClass "card"
     showEditView = if card.hasClass "editing" then false else true
     id= card.data("profile")
     profile = Profile.find(id)
     @renderCard(card,profile,showEditView)
-
-  validateName: (e) =>
-    target = $(e.target)
-    nameExp = if target.hasClass("spaceable") then /[ a-zA-Z0-9_\-\.]+/ else /[a-zA-Z0-9_\-\.]+/
-    newVal = nameExp.exec(target.val())
-    target.val(newVal)
-
-  onItemEditableClick: (e) ->
+    
+  onEditableItemClick: (e) ->
     e.preventDefault()
     e.stopImmediatePropagation()
-
-  onitemEditableChange: (e) ->
+    
+  onEditableItemChange: (e) ->
     target = $(e.target)
     target = target.parent() until target.hasClass "item-editable"
     card = target.parents(".card")
@@ -174,7 +206,7 @@ class R2Apps extends RSpine.Controller
     value = target.val().trim()
     profile[type] = target.val()
     profile.save()
-
+    
   onAddApp: (appEl, card) =>
     card = card.parent() until card.hasClass "card"
     appId = appEl.data "app"
@@ -196,8 +228,8 @@ class R2Apps extends RSpine.Controller
     profile.appPaths.splice(index, 1);
     profile.save()
     @renderCard(card,profile)
-
-  onDeleteProfile: (e) ->
+    
+  onDelete: (e) ->
     target = $(e.target)
     card = target.parents(".card")
     profileId = card.data("profile")
@@ -205,15 +237,102 @@ class R2Apps extends RSpine.Controller
     profile.destroy()
     card.remove()
 
-  onSaveProfiles: =>
-    json = Profile.toJson()
+###
+***
+
+# R2APPS SECTION
+
+***
+###
+
+class R2Apps extends RSpine.Controller
+  className: "app-canvas r2apps" 
+
+  elements:
+    ".profile-list" : "profileList"
+    ".app-list" : "appList"
+
+  events: 
+    "click .btn-action-new-profile" : "onCreateProfile"
+    "click .btn-action-new-app" : "onCreateApp" 
+    "click .btn_save_profiles" : "saveData"
+
+
+  constructor: ->
+    super    
+    @dragdropRegistered = false
+    @render()
+    @apps = new Apps(el: @appList, app: @)
+    @profiles = new Profiles(el: @profileList, app: @)
+    @loadData()
+    RSpine.bind "platform:library-loaded-dragdrop", @registerDragDrop
+
+  render: ->
+    @html require("app/r2apps/r2apps_layout")()  
+
+  loadData: =>
+    request = $.get("/r2apps")
+    
+    request.success (response) =>
+      for profile in response.profiles
+        Profile.create profile if profile.type == "app"
+        
+      for app in response.apps
+        App.create(app) if !app.home
+
+      App.trigger "refresh"
+      Profile.trigger "refresh"
+      @registerDragDrop()
+
+    request.error (error) ->
+      console.error "An error occured receiving data from your FileSystem. Please make sure the /r2apps.json file is valid and all Apps referenced exist on the FileSystem and Path"
+      console.error error
+
+  registerDragDrop: => 
+    dragableElements = $(".app-list>.app>.drag-handle")
+    if dragableElements.dragdrop and !@dragdropRegistered
+      @dragdropRegistered = true
+      $(dragableElements).dragdrop
+        makeClone: true,
+        sourceHide: false,
+        dragClass: "whileDragging",
+        parentContainer: $("body")
+        canDrop: (destination) ->
+          return destination.parents(".card").length == 1
+        didDrop: (source, destination) =>
+          @profiles.onAddApp( source, destination )
+
+  onCreateProfile: ->
+    @profiles.onCreate()
+
+  onCreateApp: ->
+    @apps.onCreate()
+
+  saveData: (callback) =>
     request = $.ajax
       type: "post"
       contentType: "application/json"
       url: "/r2apps"
-      data: json
+      data: JSON.stringify(Profile.all())
 
-    request.done =>
-      console.log arguments
+    request.success (result) =>
+      callback?(result)
+
+    request.error (error) =>
+      console.error "An error ocurred saving data to your FileSystem it's propably a permission error."
+      console.error error
+
+  shutdown: ->
+    @apps.shutdown()
+    @profiles.shutdown()
+    RSpine.unbind "platform:library-loaded-dragdrop", @registerDragDrop
+    @apps.release()
+    @profiles.release()
+    @apps= null;
+    @profiles=null;
+    @release()
 
 module.exports = R2Apps
+R2Apps.App = App;
+R2Apps.Profile = Profile;
+

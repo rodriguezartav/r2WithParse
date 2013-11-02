@@ -18,7 +18,7 @@
 <div class="row full-height app-menu-wrapper">
   <% for app in @apps: %>
     <% if app.label != "home": %>
-      <div class="col-md-4" >
+      <div class="col-md-4 col-xs-3" >
         <div data-path="<%= app.path %>" class="app-icon js-btn-app ">
 
           <div class="app-icon-header <%= app.iconColor %>">

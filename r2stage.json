@@ -1,5 +1,4 @@
-{"parts":
-  [
+[
     {
         "name":"r2",
         "type": "lib",
@@ -8,21 +7,36 @@
         },      
 
       {
-        "name":"initApp",
+        "name":"initApp_desktop",
         "type": "lib,app,component",
         "appPaths": ["./app/initApp", "./app/apps/webHome", "./app/components/menu", "./app/components/newsFeed","./app/components/appMenu"]
       },
-
       {
-        "name":"launchStage",
+        "name":"initApp_mobile",
+        "type": "lib,app,component",
+        "appPaths": ["./app/initApp","./app/apps/mobileHome","./app/components/appMenu"]
+      },
+      {
+        "name":"launchStage_desktop",
         "type": "component",
         "appPaths": ["./app/components/appMetrics","./app/components/breadcrum"]
       },
 
       {
-        "name":"orbitStage",
+        "name":"launchStage_mobile",
+        "type": "component",
+        "appPaths": []
+      },
+
+      {
+        "name":"orbitStage_desktop",
         "type": "lib",
         "appPaths": ["./app/libraries/keyboardFramework","./app/libraries/dragdropFramework"]
+      },
+      {
+        "name":"orbitStage_mobile",
+        "type": "lib",
+        "appPaths": ["./app/libraries/dragdropFramework"]
       }
-  ]
-}
+
+]
