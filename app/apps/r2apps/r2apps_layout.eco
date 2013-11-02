@@ -6,7 +6,7 @@
     
     <div class="col-md-2">
       
-      <a class="btn btn-primary btn-lg btn-block btn_save_profiles">Save Profiles</a>
+      <a class="btn btn-primary btn_save_profiles pull-right">Save Profiles</a>
       
     </div>  
     

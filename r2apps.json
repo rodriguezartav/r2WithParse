@@ -1,1 +1,2 @@
 [{"name":"vendedores_desktop","appPaths":["./app/apps/r2apps","./app/apps/pedidos"],"type":"app","id":"c-0"},{"name":"vendedores_mobile","appPaths":["./app/apps/AppManagerMobile","./app/apps/pedidos"],"type":"app","id":"c-1"}]
+

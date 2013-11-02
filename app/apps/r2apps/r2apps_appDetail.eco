@@ -16,9 +16,9 @@
   <h4>Icon Label</h4>
   <input  class="form-control item-editable" data-type="iconLabel" value="<%= @iconLabel %>"/>
   
-  <h4 class="item-editable">
+  <div class="buttons">
     <a class="btn btn-primary pull-right btn-action-save-app  ">Save</a>
     <a class="btn btn-danger btn-action-delete-app item-editable">Delete</a>
-  </h4>
+  </div>
 
 </li>

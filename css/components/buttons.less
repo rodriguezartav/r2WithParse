@@ -59,3 +59,68 @@
   -ms-transform: rotate(45deg); /* IE 9 */
   -webkit-transform: rotate(45deg); /* Safari and Chrome */
 }
+
+//Buttons Container 
+.buttons {
+  margin-top: 10px;
+}
+
+//Buttons 
+.btn {
+  text-align: center;
+  color: @gray;
+  width: 50%;
+  line-height: @line-height-block;
+  border: 1px solid @gray-lighter;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 0;
+  padding: 0;
+  background: #fff;
+  vertical-align: top;
+  transition: all .2s ease-in-out;
+  &:first-child {
+    margin-right:-1px;
+  }
+}
+
+.btn-danger {
+  color: @brand-danger;
+  &:hover {
+    background: @brand-danger;
+    color: #fff;
+  }
+}
+
+.btn-primary {
+   color: @brand-primary;
+  &:hover {
+    background: @brand-primary;
+    color: #fff;
+  }
+}
+
+.btn-success {
+  background: @brand-success;
+  color: #fff;
+  &:hover {
+    color: #fff;
+  }
+}
+
+.btn-info {
+   color: @brand-info;
+  &:hover {
+    background: @brand-info;
+    color: #fff;
+  }
+}
+
+.btn-warning {
+   color: @brand-warning;
+  &:hover {
+    background: @brand-warning;
+    color: #fff;
+  }
+}
