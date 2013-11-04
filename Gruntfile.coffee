@@ -228,9 +228,7 @@ module.exports = (grunt) ->
              { src: './public/images/*.*', dest: "images", gzip: false, access: 'public-read', headers: "Cache-Control": "max-age=500" }
              { src: './public/' + orgId  + '/*.*', dest: orgId , gzip: false, access: 'public-read', headers: "Cache-Control": "max-age=0" }
           ]
-          
-          
-          
+
     jasmine: 
       pivotal: 
         options: 
@@ -244,7 +242,6 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-express');
 
-
   grunt.loadNpmTasks('grunt-threevot-compiler');
   grunt.loadNpmTasks('grunt-threevot-tester');
 
@@ -253,17 +250,11 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-s3');  
 
-
-
   grunt.registerTask("newAutoTest" , ['watch:tests'] )
 
   grunt.registerTask("newTest" , ['clean:testUnit', 'threevot_tester:newTest', 'mocha'] )
 
   grunt.registerTask("test_unit" , ['clean:testUnit', 'threevot_tester:allTest', 'mocha'] )
-
-  grunt.registerTask('test_functional', ["copy","clean:test",'coffee',"jade:test","threevot_compiler","mochaTest:functional"]); 
-
-  grunt.registerTask('test_integration', ["copy","clean:test",'coffee',"jade:test","grunt-threevot_compiler","mochaTest:integration"]); 
 
   grunt.registerTask('build', ["copy", 'coffee', "threevot_compiler" , "jade:production","s3"]);   
 
