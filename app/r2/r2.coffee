@@ -26,6 +26,8 @@ class App extends RSpine.Controller
       initApp = new InitApp(el: ("body"))        
       RSpine.trigger "platform:initApp_loaded"
 
+
+
   RSpine.getImage= (url) ->
     return RSpine.Model.salesforceHost + "/photo?url=" + url
 
@@ -36,5 +38,7 @@ class App extends RSpine.Controller
     qs = qs.split("+").join(" ");
     params[decodeURIComponent(tokens[1])] = decodeURIComponent(tokens[2]) while tokens = re.exec(qs)
     return params;
+
+
 
 module.exports = App

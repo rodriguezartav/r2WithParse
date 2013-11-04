@@ -7,7 +7,7 @@ DataManager = require "managers/dataManager"
 LoadManager = require "managers/loadManager"
  
 class InitApp extends RSpine.Controller
-
+ 
   # Variables
   #  appsMetadata: Metadata of all Apps
   #  appsByPath: Dictionary of path with values of App Metadata
@@ -15,7 +15,7 @@ class InitApp extends RSpine.Controller
   #  LiveAppsByPath: Dictionary of Paths with values of instantiate Apps
   #  liveAppPositionByPath: Dictionary of Paths with positions 
   # 
-  
+   
   constructor: ->
     super
     RSpine.appsMetadata = [];
@@ -28,7 +28,7 @@ class InitApp extends RSpine.Controller
     RSpine.libraries = {}
     
     LayoutManager = require "managers/#{RSpine.device}Manager"
-    
+
     new LayoutManager(el: @el)
     new LoadManager(el: @el)
     new DataManager()
@@ -48,3 +48,4 @@ module.exports = InitApp
 #  platform:app-shutdown-complete
 #  platform:ajax-idle
 #  platform:library-loaded-keyboard
+#  platform:library-loaded-touch

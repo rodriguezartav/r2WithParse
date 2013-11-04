@@ -1,53 +1,53 @@
-  <div class="row">
-    <div class="col-md-10">
-      <div class="app-header">Apps By Profile</div>
-    </div>  
-    
-    
-    <div class="col-md-2">
-      
-      <a class="btn btn-primary btn_save_profiles pull-right">Save Profiles</a>
-      
-    </div>  
-    
+<div class="row">
+  <div class="col-md-10">
+    <div class="app-header">Apps By Profile</div>
+  </div>  
+  
+  
+  <div class="col-md-2">
+    <a class="btn btn-primary btn-large btn_save_profiles">Save Profiles</a>
+  </div>  
+  
 
-  </div>    
+</div>    
 
-  <div class="row full-height ">
+<div class="row">
 
-    <div class="col-md-3 color-column">
-      <div class="header  blue">
-
-          <h1 >Applications</h1>
-          <div class=" btn-create btn-action-new-app">New</div>
-        
-      </div>
-      
-      <div class="content-body unselectable scrollable">
-      
-        <ul class="app-list flat-list flat-list-draggable unselectable">
-        
-        </ul>
-    
-      </div>
-    
+  <div class="col-md-3 color-column">
+    <div class="header  blue">
+        <h1 >Applications</h1>
+        <div class=" btn-create btn-action-new-app">New</div>
     </div>
+    
 
-    <div class="col-md-9 color-column">
-       <div class="header purple">
-          <h1>Profiles and Apps</h1>
-          
-          <div class=" btn-create btn-action-new-profile">New</div>
-          
-        </div>
+    
+    <div class="content-body unselectable scrollable">
+    
+      <ul class="app-list flat-list flat-list-draggable unselectable">
       
-        <div class="content-body">
-          <div class="profile-list"></div>
-        </div>
-      
+      </ul>
+  
     </div>
-
+  
   </div>
+
+  <div class="col-md-9 color-column">
+     <div class="header purple">
+        <h1>Profiles and Apps</h1>
+        
+        <div class=" btn-create btn-action-new-profile">New</div>
+        
+      </div>
+    
+
+    
+      <div class="content-body">
+        <div class="profile-list"></div>
+      </div>
+    
+  </div>
+
+</div>
 
 
 

@@ -1,16 +1,18 @@
 html{
-  .full-height();
 }
 
 body{
   margin: 0px; 
   padding: 0px;
-  .full-height();
 }
 
 .menu{
-  .full-height();
   width: 66px;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  z-index: 1000;
 }
 
 .extra-menu{
@@ -20,24 +22,22 @@ body{
   bottom: 0px;
   width: 290px;
   z-index: 1000;
+  
 }
 
 .platform-canvas{
-  .full-height();
-  padding: 0px 20px;
-  margin-top: 20px;
-  height: 95%;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  bottom: 20px;
+  left: 86px;  
+  z-index: 2000;
 }
 
 .app-canvas{
-  .full-height();
-  border-bottom: 1px solid #efefef;
-  .sub-app-canvas{
-    .full-height();
-    height: 80%;
-    border: 1px solid @gray;
-    margin-bottom: 10px;
-  }
+  overflow-y: hidden;
+  overflow-x: hidden;
+  .full-height()
 }
 
 //Columns & View Specific Layouts
@@ -46,8 +46,6 @@ body{
   .full-height();
   width: 25.5%;
 
-
-  
   &.home-column-large{
     width: 37.25%;
   }
@@ -58,15 +56,18 @@ body{
 }
 
 .color-column{
-  .full-height();
-  position: relative;
+  display: table;
+
   .header{
     height: @line-height-double-block;
   }
+
+  .sub-header{
+    height: @line-height-block;
+  }
   
   .content-body{
-    .full-height();
-  
+    overflow-y: scroll;
     &.content-body-stretch{
       width: 1000px;
       overflow-x: scroll !important;

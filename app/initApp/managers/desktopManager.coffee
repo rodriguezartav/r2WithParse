@@ -18,9 +18,11 @@ class DesktopManager extends RSpine.Controller
     RSpine.bind "platform:app-launch", @launchApp      
     RSpine.bind "platform:app-shutdown", @shutdownApp 
     RSpine.bind "platform:library-loaded-keyboard" , @registerKeys
-
-    #$(window).resize @calculatePositionIndex 
-
+    RSpine.bind "platform:library-loaded-touch" , @registerTouch
+    RSpine.bind "platform-app-launch-complete" , @resizeApps
+  
+    @registerSize()
+  
   launchApp: (appPath) =>
     return @goToApp(appPath) if RSpine.liveAppsByPath[appPath]
     
@@ -40,7 +42,16 @@ class DesktopManager extends RSpine.Controller
     @calculatePositionIndex()
     @goToApp(appPath)
     
-    RSpine.trigger "platform:app-launch-complete"
+    @largest = 0
+    setTimeout =>
+      height = app.el.height()
+      contentBody = app.el.find(".content-body")
+      adjustedHeight=  height - contentBody.offset().top
+      console.log adjustedHeight
+      contentBody.css "height" , adjustedHeight + "px"
+    , 500
+    
+    RSpine.trigger "platform-app-launch-complete"
  
   goToApp: (path) ->
     RSpine.currentApp = RSpine.liveAppsByPath[path]
@@ -71,15 +82,46 @@ class DesktopManager extends RSpine.Controller
     for appEl in @pCanvas.find(".app-canvas")
       path = $(appEl).data("path")
       RSpine.liveAppPositionByPath[path] = appEl.offsetTop
-      
-  registerKeys: =>
-    Mousetrap.bind 'up', =>
-      index = RSpine.liveAppPaths.indexOf RSpine.currentAppPath
-      @launchApp( RSpine.liveAppPaths[ index - 1 ] ) if (index - 1) > -1
+     
+  moveUp: =>
+    index = RSpine.liveAppPaths.indexOf RSpine.currentAppPath
+    @launchApp( RSpine.liveAppPaths[ index - 1 ] ) if (index - 1) > -1
 
-    Mousetrap.bind 'down', =>
-      index = RSpine.liveAppPaths.indexOf RSpine.currentAppPath
-      @launchApp(RSpine.liveAppPaths[ index + 1 ]) if (index + 1) < RSpine.liveAppPaths.length
+  moveDown: =>
+    index = RSpine.liveAppPaths.indexOf RSpine.currentAppPath
+    @launchApp(RSpine.liveAppPaths[ index + 1 ]) if (index + 1) < RSpine.liveAppPaths.length
+    
+  realignApp: =>
+    index = RSpine.liveAppPaths.indexOf RSpine.currentAppPath
+    @launchApp(RSpine.liveAppPaths[ index ]) 
+    
+  resizeApps: =>
+    $(".app-canvas").css "height", ($(window).height() - 40)
+    @calculatePositionIndex()
+    @realignApp();
+       
+  registerSize: =>
+    $(window).resize =>
+      clearTimeout(@resizeTimer);
+      @resizeTimer = setTimeout @resizeApps , 1500
+
+  registerTouch: =>
+    Hammer(@pCanvas).on "dragdown dragup", (ev) =>
+
+      timeNow = new Date().getTime();
+      if(timeNow - @lastMoveAnimation < 1000) 
+        event.preventDefault();
+        return;
+
+      @lastMoveAnimation = timeNow;
+
+      @moveDown() if ev.type == "dragup"
+      @moveUp() if ev.type == "dragdown"
+
+  registerKeys: =>
+    Mousetrap.bind 'up', @moveUp
+
+    Mousetrap.bind 'down', @moveDown
 
     Mousetrap.bind 'h', =>
       @launchApp(RSpine.liveAppPaths[ 0 ])

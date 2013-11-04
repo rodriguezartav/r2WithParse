@@ -1,25 +1,22 @@
 RSpine = require("rspine")
-   
+    
 class App extends RSpine.Model
   @configure "App","namespace", "name", "path", "index", "iconColor", "iconLabel", "label", "home", "isNewApp"
    
   constructor: -> 
     super 
 
-  validate: ->
-    reg = /^[0-9a-z_]+$/;
-    return "Name can only contain lowercase letters, numbers and _" if reg.test(@name) == false
- 
   @createBlankApp: ->
     number = Math.random() * 10000
+    appname = "app" + number
     app= 
       namespace: "app"
-      name: "app" + number
+      name: "app"
       iconColor: "blue"
       iconLabel: "iL"
-      label: "app " + number
+      label: "app"
       isNewApp: true
-
+ 
     App.create app
 
 class Profile extends RSpine.Model
@@ -46,7 +43,6 @@ class Profile extends RSpine.Model
       parts: Profile.all()
     json = JSON.stringify r2jsFile
 
-
 ###
 ***
 
@@ -56,17 +52,18 @@ class Profile extends RSpine.Model
 ###
 
 class Apps extends RSpine.Controller
-
+  
   events:
     "click .app" : "onListItemClick"
-    "click .app-detail" : "onDetailItemClick"
-    "click .btn-action-save-app" : "onSave"
+    "submit .app-detail-form" : "onSave"
     "click .btn-action-delete-app" : "onDelete"
+    "click .btn-action-close-app" : "onClose"
+  
 
   constructor: ->
     super
     @bind()
-  
+
   bind: ->
     App.bind "refresh" , @render
     
@@ -79,34 +76,26 @@ class Apps extends RSpine.Controller
   onCreate: (e) =>
     App.createBlankApp()
     @render()
-
+ 
   onListItemClick: (e) =>
-    @el.find(".list-item-detail").remove()
     target = $(e.target)
     target = target.parent() until target.hasClass "app"
     appId = target.data "app"
     app = App.find appId
     detailHtml = require("app/r2apps/r2apps_appDetail")(app)
-    target.replaceWith detailHtml
+    target.replaceWith detailHtml 
 
-  onDetailItemClick: (e) ->
-    target = $(e.target)
-    return false if target.hasClass("item-editable")
+  onClose: (e) =>
     @render()
- 
+  
   onSave: (e) =>
+    e.preventDefault()
     target = $(e.target)
-    detailDiv = target.parents(".app-detail")
-    app = App.find detailDiv.data "app"
-    for input in detailDiv.find("input") 
-      input = $(input) 
-      type = input.data("type")
-      app[type] = input.val()
-
-    method = if app.isNewApp then "PUT" else "POST"
+    app = App.find target.data "app"
+    app.fromForm(target)
 
     request = $.ajax
-      type: method
+      type: if app.isNewApp then "PUT" else "POST"
       contentType: "application/json"
       url: "/r2app"
       processData: false

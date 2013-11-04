@@ -31,12 +31,12 @@
       {
         "name":"orbitStage_desktop",
         "type": "lib",
-        "appPaths": ["./app/libraries/keyboardFramework","./app/libraries/dragdropFramework"]
+        "appPaths": ["./app/libraries/keyboardFramework","./app/libraries/dragdropFramework","./app/libraries/touchFramework"]
       },
       {
         "name":"orbitStage_mobile",
         "type": "lib",
-        "appPaths": ["./app/libraries/dragdropFramework"]
+        "appPaths": ["./app/libraries/dragdropFramework","./app/libraries/touchFramework"]
       }
 
 ]

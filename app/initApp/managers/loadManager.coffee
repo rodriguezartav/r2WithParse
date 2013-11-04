@@ -30,7 +30,6 @@ class LoadMananger
   requireApps: =>
     for app in moduleList   
       if app.namespace == "app"
-        console.log app
         RSpine.appsMetadata.push app
         RSpine.appsByPath[app.path] = app
         RSpine.trigger("platform:app-launch", app.path) if app.home

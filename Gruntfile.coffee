@@ -162,10 +162,6 @@ module.exports = (grunt) ->
         tasks: ["jade"]
         livereload: true
         
-      tests:
-        files: ["./app/**/*.coffee","./app/**/*.js"]
-        tasks: ["newTest"]
-        
       r2apps:
         files: ["./r2apps.json","./app/**/component.json"]
         tasks: ["clean:r2", "threevot_compiler"]
@@ -186,6 +182,8 @@ module.exports = (grunt) ->
         files:
           "./public/index.html": ["./views/index.jade"]
           "./public/login.html": ["./views/login.jade"]
+          "./public/test.html": ["./views/test.jade"]
+
 
         options:
           data:

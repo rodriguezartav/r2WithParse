@@ -120,8 +120,8 @@ describe 'R2Apps', ->
       @R2Apps.Profile.count().should.equal 2
       $(".test").find(".profile").length.should.equal 2
 
-    it "should delete profile", ->
-      $(".btn-delete-profile").filter(":first").trigger("click")
+    it "should delete profile on click", ->
+      $(".btn-delete-profile").filter(":last").trigger("click")
       $(".test").find(".profile").length.should.equal 1
 
   describe "Apps" , ->
@@ -168,11 +168,12 @@ describe 'R2Apps', ->
       appId = appEl.data "app"
       e = target: appEl[0]
       @r2app.apps.onListItemClick(e)
-      $(".app-detail > input").val("An3")
+      $(".app-detail > input").val("an3")
       $(".btn-action-save-app").filter(":first").trigger("click")
+
       @server.respond() 
-      @R2Apps.App.find(appId).name.should.equal "An3"
-      @R2Apps.App.find(appId).label.should.equal "An3"
+      @R2Apps.App.find(appId).name.should.equal "an3"
+      @R2Apps.App.find(appId).label.should.equal "an3"
 
   describe "App", ->
 

@@ -17,6 +17,13 @@ html
 
       var exports = this;
       jQuery(function(){
+   
+        $("form").submit(function(e){
+         console.log(e);
+         e.preventDefault();
+         return false;
+        });
+        
         var App = require("r2");
         exports.app =  new App(
           { 
@@ -29,10 +36,7 @@ html
       });
 
 
-  body.full-height
+  body
     .visible-xs.responsiveCheck(data-device="mobile") a
     .visible-md.responsiveCheck(data-device="desktop") a 
     .visible-lg.responsiveCheck(data-device="desktop") a
-    
-
-
