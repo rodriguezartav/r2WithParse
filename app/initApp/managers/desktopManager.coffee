@@ -47,7 +47,6 @@ class DesktopManager extends RSpine.Controller
       height = app.el.height()
       contentBody = app.el.find(".content-body")
       adjustedHeight=  height - contentBody.offset().top
-      console.log adjustedHeight
       contentBody.css "height" , adjustedHeight + "px"
     , 500
     

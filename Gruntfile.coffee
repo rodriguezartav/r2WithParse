@@ -265,7 +265,7 @@ module.exports = (grunt) ->
 
   grunt.registerTask('test_integration', ["copy","clean:test",'coffee',"jade:test","grunt-threevot_compiler","mochaTest:integration"]); 
 
-  grunt.registerTask('build', ["copy",'coffee' , "test" , "threevot_compiler" , "jade:production","s3"]);   
+  grunt.registerTask('build', ["copy", 'coffee', "threevot_compiler" , "jade:production","s3"]);   
 
   grunt.registerTask('server', ["clean","copy","threevot_compiler","less","jade:dev" , 'express','watch']);
 
