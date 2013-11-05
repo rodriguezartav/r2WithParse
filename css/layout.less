@@ -22,23 +22,26 @@ body{
   bottom: 0px;
   width: 290px;
   z-index: 1000;
-  
 }
 
 .platform-canvas{
-  position: fixed;
-  right: 20px;
-  top: 20px;
-  bottom: 20px;
-  left: 86px;  
-  z-index: 2000;
+  margin-left: 80px;
+  margin-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  min-height: 100%;
+}
+
+.mobile-platform-canvas{
+  min-height: 100%;
 }
 
 .app-canvas{
-  overflow-y: hidden;
   overflow-x: hidden;
-  .full-height()
+  min-height: 100%;
 }
+
+
 
 //Columns & View Specific Layouts
 
@@ -56,7 +59,8 @@ body{
 }
 
 .color-column{
-  display: table;
+
+  height: 100%;
 
   .header{
     height: @line-height-double-block;
@@ -67,7 +71,7 @@ body{
   }
   
   .content-body{
-    overflow-y: scroll;
+    overflow-x: hidden;
     &.content-body-stretch{
       width: 1000px;
       overflow-x: scroll !important;

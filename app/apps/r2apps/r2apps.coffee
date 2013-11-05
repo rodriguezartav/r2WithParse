@@ -58,7 +58,6 @@ class Apps extends RSpine.Controller
     "submit .app-detail-form" : "onSave"
     "click .btn-action-delete-app" : "onDelete"
     "click .btn-action-close-app" : "onClose"
-  
 
   constructor: ->
     super
@@ -246,7 +245,6 @@ class R2Apps extends RSpine.Controller
     "click .btn-action-new-app" : "onCreateApp" 
     "click .btn_save_profiles" : "saveData"
 
-
   constructor: ->
     super    
     @dragdropRegistered = false
@@ -258,6 +256,9 @@ class R2Apps extends RSpine.Controller
 
   render: ->
     @html require("app/r2apps/r2apps_layout")()  
+
+    RSpine.one "platform-app-launch-complete" , ->
+      RSpine.resizeColumns ".content-body", 170
 
   loadData: =>
     request = $.get("/r2apps")

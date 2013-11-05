@@ -21,7 +21,7 @@
     
 
     
-    <div class="content-body unselectable scrollable">
+    <div class="content-body unselectable ">
     
       <ul class="app-list flat-list flat-list-draggable unselectable">
       

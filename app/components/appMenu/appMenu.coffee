@@ -15,8 +15,7 @@ class AppMenu extends RSpine.Controller
 
   onAppClick: (e) ->
     target = $(e.target)
-    target = target.parent() until target.hasClass "js-btn-app"
-    
+    target = target.parent() until target.hasClass "js-btn-app"  
     appPath = target.data "path"
     RSpine.trigger "platform:app-launch" , appPath
 

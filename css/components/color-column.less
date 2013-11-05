@@ -1,5 +1,11 @@
 .color-column{
-
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
   
   &.home-column{
     .header{
@@ -14,11 +20,14 @@
     border: 1px solid @gray-lighter;
     border-bottom: none;
     position: relative;
-
+    
+    
     .large-title, h1{
       padding-left: 20px;
       line-height: @line-height-double-block;
       color: #fff;
+      text-align: center;
+      display: block;
     }
     
     .btn-create{
@@ -43,12 +52,10 @@
     .triangle{
       position: absolute;
       left: 0px;
+      right: 0px;
       top: 0px;
-      width: 0px;
-      height: 0px;
-      border-style: solid;
-      border-width: 70px 70px 0 0;
-      border-color: rgba(255,255,255,0.3) transparent transparent transparent;
+      bottom: 0px;
+      background: url("/images/fondo.svg")
     }    
   }
 
@@ -67,11 +74,10 @@
     }
   }
   
-  .content-body,body{
+  .content-body,.body{
+    padding: 10px 10px; 
     border: 1px solid @gray-lighter;
     background: @gray-light4;
-    padding: 10px 10px;  
-    overflow-y: auto !important;
   }
   
   

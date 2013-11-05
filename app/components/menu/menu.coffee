@@ -43,7 +43,7 @@ class Menu extends RSpine.Controller
       RSpine.trigger "platform:app-launch" , appPath
 
   renderApps: ->
-    $(".liveApps").html require("components/menu/menu_liveApp")(appAndPositions: RSpine.liveAppPositionByPath)
+    $(".liveApps").html require("components/menu/menu_liveApp")(liveAppsByPath: RSpine.liveAppsByPath)
 
   onSocialIconClick: (e) =>
     @el.find(".social-icon").removeClass "active"

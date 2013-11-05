@@ -17,13 +17,7 @@ html
 
       var exports = this;
       jQuery(function(){
-   
-        $("form").submit(function(e){
-         console.log(e);
-         e.preventDefault();
-         return false;
-        });
-        
+
         var App = require("r2");
         exports.app =  new App(
           { 

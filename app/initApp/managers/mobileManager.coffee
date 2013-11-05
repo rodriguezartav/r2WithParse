@@ -3,7 +3,7 @@ RSpine= require "rspine"
 class MobileManager extends RSpine.Controller
  
   elements:
-    ".platform-canvas" : "pCanvas"
+    ".mobile-platform-canvas" : "pCanvas"
 
   #See variables in initApp
 
@@ -52,7 +52,7 @@ class MobileManager extends RSpine.Controller
     
     app.el.addClass appMetadata.name
 
-    @pCanvas.append app.el
+    @pCanvas.html app.el
     app.el.data("path" , appPath  )
 
     @calculatePositionIndex()

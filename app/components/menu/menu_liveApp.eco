@@ -7,14 +7,15 @@
   
 </li>
 
-<% for index,position of @appAndPositions:  %>
+<% for index,position of @liveAppsByPath:  %>
+  
   
   <% if  RSpine.currentAppPath == RSpine.appsByPath[index].path then active = "active"  else active = ""   %>
 
   
       <li class="app-icon live-app-icon unselectable <%= active %>" data-path="<%= RSpine.appsByPath[index].path %>">
         
-        <div class="app-icon-header blue">
+        <div class="app-icon-header <%= RSpine.appsByPath[index].iconColor or "blue" %>">
           <span class="label"><%= RSpine.appsByPath[index].label %></span>
         </div>
         

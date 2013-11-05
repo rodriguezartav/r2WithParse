@@ -20,25 +20,37 @@
 
 </div>
 
-<div class="row">
+<div class="row ">
   
   <div class="col-md-4 social-ban color-column home-column home-column-large">
     <div class="header blue"><span class="triangle"></span><span class="large-title">The Social Network</span></div>
     <div class="sub-header">
       <div class="sub-title">Que hay de nuevo?</div>
     </div>
-    <div class="content-body news-feed scrollable">
+    <div class="content-body news-feed ">
 
     </div>
   </div>
   
   <div class="col-md-4 app-ban color-column home-column">
-    <div class="header red"><span class="triangle"></span><span class="large-title">The App Menu</span></div>
+    <div class="header red">
+
+      <svg style="position: absolute;top: -13px;left: 15px;" version="1.1" id="Layer_1" x="-70px" y="0px" width="90.395px" height="90.395px" viewBox="0 0 116.395 116.395" enable-background="new 0 0 116.395 116.395" xml:space="preserve" xmlns:xml="http://www.w3.org/XML/1998/namespace">
+      <g>
+      	<path class="circle" fill="#fff" d="M58.197,0C26.107,0,0,26.107,0,58.197s26.107,58.197,58.197,58.197s58.197-26.107,58.197-58.197   S90.287,0,58.197,0z M58.197,115.395C26.659,115.395,1,89.735,1,58.197C1,26.658,26.659,1,58.197,1   c31.539,0,57.197,25.658,57.197,57.197C115.395,89.735,89.736,115.395,58.197,115.395z"/>
+      	<path class="circle" fill="#fff" d="M55.752,48.441c0-3.794-1.102-6.752-3.273-8.792c-3.336-3.135-7.942-2.882-8.078-2.874H33.752   c-0.552,0-1,0.448-1,1v40c0,0.553,0.448,1,1,1s1-0.447,1-1V59.166h9.336l9.774,19.065c0.177,0.346,0.527,0.544,0.891,0.544   c0.153,0,0.31-0.035,0.455-0.11c0.491-0.252,0.686-0.854,0.434-1.346l-9.329-18.195C55.637,58.425,55.752,48.545,55.752,48.441z    M45.252,57.167h-10.5V38.775l9.709-0.002c0.039-0.001,3.967-0.197,6.662,2.346c1.744,1.647,2.629,4.11,2.629,7.322   C53.752,48.798,53.655,57.167,45.252,57.167z"/>
+      	<path class="circle" fill="#fff" d="M65.872,66.893l9.988-7.902c7.176-5.507,6.904-10.889,6.892-11.049c0-11.038-10.534-11.166-10.641-11.166   c-9.615,0-10.515,9.322-10.522,9.416c-0.047,0.55,0.361,1.034,0.912,1.081c0.55,0.055,1.034-0.362,1.08-0.912   c0.026-0.311,0.731-7.585,8.53-7.585c0.353,0,8.641,0.104,8.643,9.232c0.003,0.045,0.225,4.533-6.122,9.405l-9.921,7.854   c-0.161,0.104-3.959,2.62-3.959,9.174v3.334c0,0.553,0.447,1,1,1h20.003c0.553,0,1-0.447,1-1s-0.447-1-1-1H62.752v-2.334   C62.752,69.036,65.675,67.028,65.872,66.893z"/>
+      </g>
+      </svg>
+    
+    <span class="triangle"></span>
+    
+    <span class="large-title">App Menu</span></div>
     <div class="sub-header">
       <div class="sub-title text-center">Home</div>
     </div>
     <div class="content-body app-menu-content-body">
-      <div class="app-menu full-height"></div>
+      <div class="app-menu"></div>
     </div>
   </div>
   

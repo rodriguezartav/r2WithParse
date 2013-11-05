@@ -19,44 +19,36 @@ class DesktopManager extends RSpine.Controller
     RSpine.bind "platform:app-shutdown", @shutdownApp 
     RSpine.bind "platform:library-loaded-keyboard" , @registerKeys
     RSpine.bind "platform:library-loaded-touch" , @registerTouch
-    RSpine.bind "platform-app-launch-complete" , @resizeApps
+    #RSpine.bind "platform-app-launch-complete" , @resizeApps
   
-    @registerSize()
+    #@registerSize()
+  
+  RSpine.resizeColumns= (selector, offset = 0) ->
+    height = $(window).height();
+    RSpine.currentApp.el.find(selector).css "height" , height - offset
   
   launchApp: (appPath) =>
-    return @goToApp(appPath) if RSpine.liveAppsByPath[appPath]
+    app = RSpine.liveAppsByPath[appPath]
     
-    App = require(appPath)
-    return console.log "Error launching App: #{appPath}, there's likely a syntax or logical error on it's main file" if typeof App isnt "function"
-    app = new App()
+    if !app    
+      App = require(appPath)
+      return console.log "Error launching App: #{appPath}, there's likely a syntax or logical error on it's main file" if typeof App isnt "function"
+      app = new App()
 
-    RSpine.liveAppPaths.push appPath
-    RSpine.liveAppsByPath[appPath] = app
+      RSpine.liveAppPaths.push appPath
+      RSpine.liveAppsByPath[appPath] = app
 
-    appMetadata = RSpine.appsByPath[appPath]
-    app.el.addClass appMetadata.name
+      appMetadata = RSpine.appsByPath[appPath]
+      app.el.addClass appMetadata.name
+      app.el.data("path" , appPath  )
 
-    @pCanvas.append app.el
-    app.el.data("path" , appPath  )
-
-    @calculatePositionIndex()
-    @goToApp(appPath)
+    RSpine.currentApp?.el.detach()
+    @pCanvas.html app.el
+    RSpine.currentApp = app
+    RSpine.currentAppPath = appPath;
     
-    @largest = 0
-    setTimeout =>
-      height = app.el.height()
-      contentBody = app.el.find(".content-body")
-      adjustedHeight=  height - contentBody.offset().top
-      contentBody.css "height" , adjustedHeight + "px"
-    , 500
-    
-    RSpine.trigger "platform-app-launch-complete"
- 
-  goToApp: (path) ->
-    RSpine.currentApp = RSpine.liveAppsByPath[path]
-    RSpine.currentAppPath = path;
-    @pCanvas.animate({scrollTop: RSpine.liveAppPositionByPath[path] }, 500 );
     RSpine.trigger "platform:app-current-changed"
+    RSpine.trigger "platform-app-launch-complete"
 
   shutdownApp: (appPath) =>
     index = RSpine.liveAppPaths.indexOf appPath
@@ -76,11 +68,19 @@ class DesktopManager extends RSpine.Controller
 
     RSpine.trigger "platform:app-shutdown-complete"
 
+  goToApp: (path) ->
+    #RSpine.currentApp = RSpine.liveAppsByPath[path]
+    #console.log @pCanvas.html
+    #console.log RSpine.currentApp.el
+    #RSpine.currentAppPath = path;
+    #@pCanvas.animate({scrollTop: RSpine.liveAppPositionByPath[path] }, 100 );
+    #RSpine.trigger "platform:app-current-changed"
+
   calculatePositionIndex: =>
     RSpine.liveAppPositionByPath = {}
-    for appEl in @pCanvas.find(".app-canvas")
-      path = $(appEl).data("path")
-      RSpine.liveAppPositionByPath[path] = appEl.offsetTop
+    #for appEl in @pCanvas.find(".app-canvas")
+    #  path = $(appEl).data("path")
+    #  RSpine.liveAppPositionByPath[path] = appEl.offsetTop
      
   moveUp: =>
     index = RSpine.liveAppPaths.indexOf RSpine.currentAppPath
@@ -91,18 +91,18 @@ class DesktopManager extends RSpine.Controller
     @launchApp(RSpine.liveAppPaths[ index + 1 ]) if (index + 1) < RSpine.liveAppPaths.length
     
   realignApp: =>
-    index = RSpine.liveAppPaths.indexOf RSpine.currentAppPath
-    @launchApp(RSpine.liveAppPaths[ index ]) 
+    #index = RSpine.liveAppPaths.indexOf RSpine.currentAppPath
+    #@launchApp(RSpine.liveAppPaths[ index ]) 
     
   resizeApps: =>
-    $(".app-canvas").css "height", ($(window).height() - 40)
-    @calculatePositionIndex()
-    @realignApp();
+    #$(".app-canvas").css "height", ($(window).height() - 40)
+    #@calculatePositionIndex()
+    #@realignApp();
        
   registerSize: =>
-    $(window).resize =>
-      clearTimeout(@resizeTimer);
-      @resizeTimer = setTimeout @resizeApps , 1500
+   # $(window).resize =>
+      #clearTimeout(@resizeTimer);
+      #@resizeTimer = setTimeout @resizeApps , 1500
 
   registerTouch: =>
     Hammer(@pCanvas).on "dragdown dragup", (ev) =>

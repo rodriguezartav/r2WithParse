@@ -176,7 +176,7 @@ module.exports = (grunt) ->
           data: 
             path: ""
             apiServer: apiServer
-            app_url: "http://edge.3vot.com"
+            app_url: "http://edge.3vot.com.s3-website-us-east-1.amazonaws.com"
 
       dev:
         files:
