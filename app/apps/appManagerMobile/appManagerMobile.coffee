@@ -9,6 +9,11 @@ class AppManagerMobile extends RSpine.Controller
   constructor: ->
     super    
     @html require("app/appManagerMobile/layout") 
+    
+    RSpine.one "platform-app-launch-complete" , ->
+      RSpine.resizeColumns ".content-body", 106
+    
+    
     @profiles = []
     @loadData()
     @bind()

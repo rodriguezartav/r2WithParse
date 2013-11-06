@@ -1,28 +1,18 @@
 <div class="color-column">
-  <div class="header purple">
+  <div class="header purple" style="position: relative;">
     <span class="triangle"></span>
     <span class="large-title">Apps by Profile</span>
-    <span class="pull-right" style="margin-top: 18px; margin-right: 10px;">
-    
-    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 12.38 14.06" enable-background="new 0 0 12.38 14.06" xml:space="preserve">
-        <g>
-        	<g>
-        		<rect x="1.19" y="1.25" fill="#fff" width="2.6" height="2.6"></rect>
-        		<rect x="8.71" y="1.25" fill="#fff" width="2.6" height="2.6"></rect>
-        		<rect x="4.95" y="1.25" fill="#fff" width="2.6" height="2.6"></rect>
-        	</g>
-        	<g>
-        		<rect x="1.19" y="5.71" fill="#fff" width="2.6" height="2.6"></rect>
-        		<rect x="8.71" y="5.71" fill="#fff" width="2.6" height="2.6"></rect>
-        		<rect x="4.95" y="5.71" fill="#fff" width="2.6" height="2.6"></rect>
-        	</g>
-        	<g>
-        		<rect x="1.19" y="10.17" fill="#fff" width="2.6" height="2.6"></rect>
-        		<rect x="8.71" y="10.17" fill="#fff" width="2.6" height="2.6"></rect>
-        		<rect x="4.95" y="10.17" fill="#fff" width="2.6" height="2.6"></rect>
-        	</g>
-        </g>
-        </svg>
+    <span class="" style="position: absolute;
+    top: 18px;
+    left: 22px;
+    width: 34px;
+    height: 34px;
+    border: 3px solid #fff;
+    padding: 4px;
+    fill: #fff;">
+      <% require "rspine" %>
+      <%- RSpine.icons.menu %>
+      
     
     </span>
   </div>

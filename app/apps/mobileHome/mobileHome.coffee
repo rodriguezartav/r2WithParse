@@ -12,6 +12,8 @@ class HomeView extends RSpine.Controller
     super    
     @html require("app/mobileHome/layout")()                               
     
+    RSpine.one "platform-app-launch-complete" , ->
+      RSpine.resizeColumns ".content-body", 106
 
     new AppMenu el: @appMenu
     
