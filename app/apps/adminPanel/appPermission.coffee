@@ -9,7 +9,6 @@ class AppPermission extends RSpine.Model
 
   constructor: -> 
     super
-    
 
   @removeAppFromProfiles: (appPath) ->
     for profile in Profile.all()

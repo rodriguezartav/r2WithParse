@@ -26473,6 +26473,7 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
       "click .btn-create-app": "onCreateApp",
       "click .app-item": "onEditApp",
       "click .add-profile": "onAddProfile",
+      "click .btn-remove-app-from-permission": "onRemoveAppFromPermission",
       "click .btn-save-profiles": "onSaveProfiles"
     };
 
@@ -26481,29 +26482,63 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
       this.renderPermissions = __bind(this.renderPermissions, this);
       this.renderProfiles = __bind(this.renderProfiles, this);
       this.renderApps = __bind(this.renderApps, this);
+      this.registerDragDrop = __bind(this.registerDragDrop, this);
       var _this = this;
       AdminPanel.__super__.constructor.apply(this, arguments);
       this.render();
       this.bind();
       Profile.query();
       App.fetch();
-      console.log("TODO BEFORE LAUNCH");
-      AppPermission.url = "/appPermissions?pathToFile=./config/apps.json";
       RSpine.one("platform:library-loaded-bootstrap", function() {
         return _this.profileList.find(".btn-add-profile").popover();
+      });
+      RSpine.one("platform:library-loaded-dragdrop", function() {
+        return _this.registerDragDrop();
       });
     }
 
     AdminPanel.prototype.bind = function() {
+      this.registerDragDrop();
       Profile.bind("refresh", this.renderProfiles);
-      App.bind("refresh", this.renderApps);
-      return AppPermission.bind("refresh create", this.renderPermissions);
+      App.bind("refresh destroy", this.renderApps);
+      return AppPermission.bind("refresh create update", this.renderPermissions);
     };
 
     AdminPanel.prototype.unbind = function() {
       Profile.unbind("refresh", this.renderProfiles);
       Profile.unbind("refresh", this.renderApps);
       return AppPermission.unbind("refresh create", this.renderPermissions);
+    };
+
+    AdminPanel.prototype.registerDragDrop = function() {
+      var dragableElements,
+        _this = this;
+      console.log("registering dragdrop");
+      dragableElements = $(".app-item .drag-handle");
+      if (dragableElements.dragdrop && !this.dragdropRegistered) {
+        this.dragdropRegistered = true;
+        return $(dragableElements).dragdrop({
+          makeClone: true,
+          sourceHide: false,
+          dragClass: "whileDragging",
+          parentContainer: $("body"),
+          canDrop: function(destination) {
+            return destination.parents(".app-permission-item").length === 1;
+          },
+          didDrop: function(source, destination) {
+            var app, appId, appPermission, appPermissionId;
+            source = source.parents(".app-item");
+            appId = source.data("app");
+            app = App.find(appId);
+            while (!destination.hasClass("app-permission-item")) {
+              destination = destination.parent();
+            }
+            appPermissionId = destination.data("app-permission");
+            appPermission = AppPermission.find(appPermissionId);
+            return _this.onAddToProfile(app, appPermission);
+          }
+        });
+      }
     };
 
     AdminPanel.prototype.render = function() {
@@ -26546,7 +26581,11 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
     };
 
     AdminPanel.prototype.onCreateApp = function() {
-      return RSpine.trigger("modal:show", EditApp);
+      return RSpine.trigger("modal:show", EditApp, {
+        data: {
+          isNewApp: true
+        }
+      });
     };
 
     AdminPanel.prototype.onEditApp = function(e) {
@@ -26559,6 +26598,21 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
       return RSpine.trigger("modal:show", EditApp, {
         data: app
       });
+    };
+
+    AdminPanel.prototype.onAddPathToPermission = function(app, appPermission) {
+      appPermission.appPaths.push(app.path);
+      return appPermission.save();
+    };
+
+    AdminPanel.prototype.onRemoveAppFromPermission = function(e) {
+      var appPath, index, permission, target;
+      target = $(e.target);
+      appPath = App.findByAttribute("path", target.data("app-path"));
+      permission = AppPermission.find(target.data("app-permission"));
+      index = permission.appPaths.indexOf(appPath);
+      permission.appPaths.splice(index, 1);
+      return permission.save();
     };
 
     AdminPanel.prototype.onSaveProfiles = function(e) {
@@ -26594,7 +26648,8 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
     AdminPanelEditApp.prototype.className = "adminPanelEditApp";
 
     AdminPanelEditApp.prototype.events = {
-      "submit .app-detail-form": "save"
+      "submit .app-detail-form": "save",
+      "click .btn-delete-app": "delete"
     };
 
     function AdminPanelEditApp() {
@@ -26616,7 +26671,7 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
       target = $(e.target);
       app = App.exists(target.data("app"));
       if (!app) {
-        return this.create(App.createBlankApp().fromForm(target));
+        return this.create(App.fromForm(target));
       }
       return this.update(app.fromForm(target));
     };
@@ -26624,7 +26679,6 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
     AdminPanelEditApp.prototype.update = function(app) {
       return app.save({
         done: function(data) {
-          console.log("hiding");
           return RSpine.trigger("modal:hide");
         }
       });
@@ -26632,9 +26686,9 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
 
     AdminPanelEditApp.prototype.create = function(app) {
       var _this = this;
+      app.path = App.appPath + "/" + app.name;
       return app.save({
         done: function(data) {
-          console.log("hiding");
           return RSpine.trigger("modal:hide");
         },
         fail: function(data) {
@@ -26643,7 +26697,17 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
       });
     };
 
-    AdminPanelEditApp.prototype["delete"] = function(e) {};
+    AdminPanelEditApp.prototype["delete"] = function(e) {
+      var app, target;
+      target = $(e.target);
+      app = App.exists(target.parents("form").data("app"));
+      app.id = app.name;
+      return app.destroy({
+        done: function() {
+          return RSpine.trigger("modal:hide");
+        }
+      });
+    };
 
     return AdminPanelEditApp;
 
@@ -26662,32 +26726,19 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
   App = (function(_super) {
     __extends(App, _super);
 
-    App.configure("App", "namespace", "name", "path", "index", "iconColor", "iconLabel", "label", "home");
+    App.configure("App", "namespace", "name", "path", "iconColor", "iconLabel", "label", "home", "type");
 
     App.extend(RSpine.Model.Ajax);
 
     App.extend(RSpine.Model.Ajax.Auto);
 
-    App.url = "/apps?appPath=./app/apps";
+    App.appPath = "./app/apps";
+
+    App.url = "/apps?appPath=" + App.appPath;
 
     function App() {
       App.__super__.constructor.apply(this, arguments);
     }
-
-    App.createBlankApp = function() {
-      var app, appname, number;
-      number = Math.random() * 10000;
-      appname = "app" + number;
-      app = {
-        namespace: "app",
-        name: "app",
-        iconColor: "blue",
-        iconLabel: "iL",
-        label: "app",
-        isNewApp: true
-      };
-      return App.create(app);
-    };
 
     return App;
 
@@ -26709,6 +26760,8 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
     AppPermission.configure("AppPermission", "name", "device", "appPaths", "dependencyPaths", "type");
 
     AppPermission.extend(RSpine.Model.Ajax);
+
+    AppPermission.url = "/appPermissions?pathToFile=./config/apps.json";
 
     function AppPermission() {
       AppPermission.__super__.constructor.apply(this, arguments);
@@ -26849,7 +26902,7 @@ module.exports = content;}, "app/adminPanel/layout_edit_app": function(exports, 
   }
   (function() {
     (function() {
-      __out.push('<form action="/test.html" class="app-detail-form" data-app="');
+      __out.push('<form action="" class="app-detail-form" data-app="');
     
       __out.push(__sanitize(this.id));
     
@@ -26857,7 +26910,7 @@ module.exports = content;}, "app/adminPanel/layout_edit_app": function(exports, 
     
       __out.push(__sanitize(this.name));
     
-      __out.push('</h2>\n  </div>\n  <div class="modal-body">\n \n\n  <h4>App Name</h4>\n\n    <input pattern="/^[0-9a-z_]+$/" ');
+      __out.push('</h2>\n  </div>\n  <div class="modal-body">\n \n    <input type="hidden" name="type" value="app"/>\n \n    <h4>App Folder Name</h4>    \n    <input patterdn="/^[0-9a-z_]+$/" ');
     
       __out.push(__sanitize(!this.isNewApp ? 'disabled' : void 0));
     
@@ -26885,7 +26938,7 @@ module.exports = content;}, "app/adminPanel/layout_edit_app": function(exports, 
     
       __out.push(__sanitize(this.iconLabel));
     
-      __out.push('"/>\n\n  </div>\n  <div class="modal-footer">\n   <a class="btn btn-danger btn-action-delete-app btn-third">Delete</a>\n   <button type="button" class=" btn btn-third" data-dismiss="modal" aria-hidden="true">Close</button>\n   <input type="submit" name="submit" value="Save" class="btn btn-primary btn-action-save-app btn-third" />\n  </div>\n</form>\n');
+      __out.push('"/>\n\n  </div>\n  <div class="modal-footer">\n   <a class="btn btn-danger btn-delete-app btn-third">Delete</a>\n   <button type="button" class=" btn btn-third" data-dismiss="modal" aria-hidden="true">Close</button>\n   <input type="submit" name="submit" value="Save" class="btn btn-primary btn-action-save-app btn-third" />\n  </div>\n</form>\n');
     
     }).call(this);
     
@@ -26942,11 +26995,11 @@ module.exports = content;}, "app/adminPanel/layout_item_app": function(exports, 
     
       __out.push(__sanitize(this.id));
     
-      __out.push('" class="list-group-item app-item">\n  <h3>');
+      __out.push('" class="list-group-item app-item">\n  \n  <h3>');
     
       __out.push(__sanitize(this.name));
     
-      __out.push('</h3>\n\n  <p class="list-group-item-text">fdsf dsfd </p>\n  \n</li>');
+      __out.push('\n    \n    <span class="drag-handle badge btn btn-primary pull-right">drag</span>\n  \n  </h3>\n\n  <p class="list-group-item-text">fdsf dsfd </p>\n  \n</li>');
     
     }).call(this);
     
@@ -27007,7 +27060,11 @@ module.exports = content;}, "app/adminPanel/layout_item_app": function(exports, 
     
       App = require("app/adminPanel/app");
     
-      __out.push('\n\n<div class="col-sm-6 col-md-4">\n\n  <div class="thumbnail  app-permission-item">\n    <h3>');
+      __out.push('\n\n<div class="col-sm-6 col-md-4">\n\n  <div class="thumbnail  app-permission-item" data-app-permission="');
+    
+      __out.push(__sanitize(this.id));
+    
+      __out.push('">\n    <h3>');
     
       __out.push(__sanitize(this.name));
     
@@ -27020,13 +27077,13 @@ module.exports = content;}, "app/adminPanel/layout_item_app": function(exports, 
       _ref = this.appPaths;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         path = _ref[_i];
-        __out.push('\n        <li class="list-group-item">\n          <span data-profile="');
-        __out.push(__sanitize(this.id));
-        __out.push('" data-path="');
-        __out.push(__sanitize(path));
-        __out.push('" class="">\n            ');
+        __out.push('\n        <li class="list-group-item">\n          <span  class="">\n            ');
         __out.push(__sanitize((_ref1 = App.findByAttribute("path", path)) != null ? _ref1.name : void 0));
-        __out.push('\n          </span>\n          \n          <span class="badge badge-danger remove-app-from-permission">X</span>\n          \n        </li>\n      ');
+        __out.push('\n          </span>\n\n          <span data-app-permission="');
+        __out.push(__sanitize(this.id));
+        __out.push('" data-app-path="');
+        __out.push(__sanitize(path));
+        __out.push('" class="badge badge-danger btn-remove-app-from-permission">X</span>\n\n        </li>\n      ');
       }
     
       __out.push('\n    </ul>\n    \n  </div>\n  \n</div>');
@@ -27325,7 +27382,7 @@ module.exports = content;}, "app/adminPanel/layout_item_app": function(exports, 
           var form;
           $("input").val("test");
           form = $(".app-detail-form");
-          this.App.bind("update", function() {
+          this.App.one("update", function() {
             return done();
           });
           return form.submit();
@@ -27350,7 +27407,7 @@ module.exports = content;}, "app/adminPanel/layout_item_app": function(exports, 
           return form.submit();
         });
       });
-      return describe("Profiles", function() {
+      return describe("App Permission", function() {
         it("should show Create App Permision PopUp", function() {
           $(".btn-add-profile").click();
           return $(".add-profile").length.should.be.above(0);
@@ -27364,7 +27421,26 @@ module.exports = content;}, "app/adminPanel/layout_item_app": function(exports, 
           this.AppPermission.count().should.be.above(permisions);
           return $(".app-permission-item > h5").html().should.equal(device);
         });
-        return it("should save changes to profiles", function(done) {
+        it("should add App to Permision", function() {
+          var app, appPermission, initCount, lastCount;
+          app = this.App.first();
+          appPermission = this.AppPermission.last();
+          initCount = appPermission.appPaths.length;
+          this.adminPanel.onAddPathToPermission(app, appPermission);
+          lastCount = appPermission.appPaths.length;
+          return lastCount.should.be.above(initCount);
+        });
+        it("should remove App to Permission", function() {
+          var ap, app, appPermission, initCount, lastCount;
+          app = this.App.first();
+          ap = $(".app-permission-item");
+          appPermission = this.AppPermission.find(ap.data("app-permission"));
+          initCount = appPermission.appPaths.length;
+          ap.find(".btn-remove-app-from-permission").filter(":first").click();
+          lastCount = appPermission.appPaths.length;
+          return lastCount.should.equal(initCount - 1);
+        });
+        return it("should save changes to App Permission", function(done) {
           $(".btn-save-profiles").click();
           this.AppPermission.bind("customSuccess", function(data) {
             return done();
@@ -28269,7 +28345,7 @@ module.exports = content;}, "library/modalFramework/test_spec": function(exports
 
   
     //CSS Styles for Modules
-    var css=".adminPanel .profile-list .popover {  max-width: 200px;}.adminPanel .profile-list .popover span {  display: block !important;  padding: 6px;  cursor: pointer;}.adminPanel .profile-list .popover span:hover {  color: #99569b;}.adminPanel .profile-list .list-group-item span {  display: inline-block;  padding: 5px;}.adminPanel .app-permission-item {  height: 190px;}.adminPanel .app-permission-item .apps-list {  margin-top: 15px;  height: 140px;  overflow: auto;}.adminPanel .app-permission-item .apps-list .list-group-item {  padding: 2px 7px;}";
+    var css=".adminPanel .app-list .drag-handle {  height: 12px;  background-color: #f5f5f6;  border: 1px solid #f1f2f2;  display: inline-block;  vertical-align: middle;}.adminPanel .app-list .drag-handle.whileDragging {  border: 2px solid #efdf30;}.adminPanel .profile-list .popover {  max-width: 200px;}.adminPanel .profile-list .popover span {  display: block !important;  padding: 6px;  cursor: pointer;}.adminPanel .profile-list .popover span:hover {  color: #99569b;}.adminPanel .profile-list .list-group-item span {  display: inline-block;  padding: 5px;}.adminPanel .app-permission-item {  height: 190px;}.adminPanel .app-permission-item .apps-list {  margin-top: 15px;  height: 140px;  overflow: auto;}.adminPanel .app-permission-item .apps-list .list-group-item {  padding: 2px 7px;}";
     var head  = document.head || document.getElementsByTagName('head')[0];
     var style = document.createElement('style');
 
@@ -28439,7 +28515,7 @@ module.exports = content;}, "library/modalFramework/test_spec": function(exports
           var form;
           $("input").val("test");
           form = $(".app-detail-form");
-          this.App.bind("update", function() {
+          this.App.one("update", function() {
             return done();
           });
           return form.submit();
@@ -28464,7 +28540,7 @@ module.exports = content;}, "library/modalFramework/test_spec": function(exports
           return form.submit();
         });
       });
-      return describe("Profiles", function() {
+      return describe("App Permission", function() {
         it("should show Create App Permision PopUp", function() {
           $(".btn-add-profile").click();
           return $(".add-profile").length.should.be.above(0);
@@ -28478,7 +28554,26 @@ module.exports = content;}, "library/modalFramework/test_spec": function(exports
           this.AppPermission.count().should.be.above(permisions);
           return $(".app-permission-item > h5").html().should.equal(device);
         });
-        return it("should save changes to profiles", function(done) {
+        it("should add App to Permision", function() {
+          var app, appPermission, initCount, lastCount;
+          app = this.App.first();
+          appPermission = this.AppPermission.last();
+          initCount = appPermission.appPaths.length;
+          this.adminPanel.onAddPathToPermission(app, appPermission);
+          lastCount = appPermission.appPaths.length;
+          return lastCount.should.be.above(initCount);
+        });
+        it("should remove App to Permission", function() {
+          var ap, app, appPermission, initCount, lastCount;
+          app = this.App.first();
+          ap = $(".app-permission-item");
+          appPermission = this.AppPermission.find(ap.data("app-permission"));
+          initCount = appPermission.appPaths.length;
+          ap.find(".btn-remove-app-from-permission").filter(":first").click();
+          lastCount = appPermission.appPaths.length;
+          return lastCount.should.equal(initCount - 1);
+        });
+        return it("should save changes to App Permission", function(done) {
           $(".btn-save-profiles").click();
           this.AppPermission.bind("customSuccess", function(data) {
             return done();

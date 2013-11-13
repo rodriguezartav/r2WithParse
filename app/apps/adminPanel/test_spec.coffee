@@ -131,7 +131,8 @@ describe 'adminPanel', ->
       it "should create a new app", (done) ->
         $("input").val "test"
         form = $(".app-detail-form")
-        
+        @App.one "update" , ->
+          done()
         form.submit()
         
 
@@ -153,7 +154,7 @@ describe 'adminPanel', ->
         form.submit()
 
 
-    describe "Profiles", ->
+    describe "App Permission", ->
       it "should show Create App Permision PopUp", ->
         $(".btn-add-profile").click()
         $(".add-profile").length.should.be.above 0
@@ -166,8 +167,24 @@ describe 'adminPanel', ->
         @AppPermission.count().should.be.above permisions
         $(".app-permission-item > h5").html().should.equal device
         
+      it "should add App to Permision" , ->
+        app = @App.first()
+        appPermission = @AppPermission.last()
+        initCount = appPermission.appPaths.length
+        @adminPanel.onAddPathToPermission(app, appPermission)
+        lastCount = appPermission.appPaths.length
+        lastCount.should.be.above initCount
 
-      it "should save changes to profiles", (done) ->
+      it "should remove App to Permission" , ->
+        app = @App.first()
+        ap = $(".app-permission-item")
+        appPermission = @AppPermission.find ap.data "app-permission"
+        initCount = appPermission.appPaths.length
+        ap.find(".btn-remove-app-from-permission").filter(":first").click()
+        lastCount = appPermission.appPaths.length
+        lastCount.should.equal initCount - 1
+
+      it "should save changes to App Permission", (done) ->
         $(".btn-save-profiles").click()
         @AppPermission.bind "customSuccess", (data) ->
           done()

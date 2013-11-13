@@ -16,6 +16,7 @@ class AdminPanel extends RSpine.Controller
     "click .btn-create-app" : "onCreateApp"
     "click .app-item" : "onEditApp"
     "click .add-profile" : "onAddProfile"
+    "click .btn-remove-app-from-permission" : "onRemoveAppFromPermission"
     "click .btn-save-profiles" : "onSaveProfiles"
 
   constructor: ->
@@ -57,8 +58,12 @@ class AdminPanel extends RSpine.Controller
           return destination.parents(".app-permission-item").length == 1
         didDrop: (source, destination) =>
           source = source.parents(".app-item")
-          @onAddToProfile(source, destination)
-
+          appId = source.data "app"
+          app = App.find appId
+          destination = destination.parent() until destination.hasClass "app-permission-item"
+          appPermissionId = destination.data "app-permission"
+          appPermission = AppPermission.find appPermissionId
+          @onAddToProfile(app, appPermission)
 
   render: ->
     @html require("app/adminPanel/layout")()
@@ -94,19 +99,18 @@ class AdminPanel extends RSpine.Controller
     app = App.find target.data "app"
     RSpine.trigger "modal:show", EditApp , { data: app }
 
-  onAddToProfile: (appEl, thumbnail) ->
-    thumbnail = thumbnail.parent() until thumbnail.hasClass "app-permission-item"
-    appId = appEl.data "app"
-    app = App.find appId
-    
-    appPermissionId = thumbnail.data "app-permission"
-    appPermission = AppPermission.find appPermissionId
+  onAddPathToPermission: (app, appPermission) ->
     appPermission.appPaths.push app.path
     appPermission.save()
     
-  onDeleteProfile: (e) ->
-    
-    
+  onRemoveAppFromPermission: (e) ->
+    target = $(e.target)
+    appPath = App.findByAttribute "path", target.data "app-path"
+    permission = AppPermission.find target.data "app-permission"
+    index = permission.appPaths.indexOf appPath
+    permission.appPaths.splice(index,1)
+    permission.save()
+
   onSaveProfiles: (e) ->
     AppPermission.custom( AppPermission.toJSON() , { method: "POST" })
 
