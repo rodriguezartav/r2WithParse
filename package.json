@@ -20,7 +20,7 @@
     "grunt-threevot-compiler": "latest",
     "threevot-compiler": "latest",
     "r2-builder": "latest",
-    "rspine": "latest",
+    "rspine": "0.0.13",
     "jqueryify": "latest",
     "eco": "~1.1.0",
     "jade": "*",
