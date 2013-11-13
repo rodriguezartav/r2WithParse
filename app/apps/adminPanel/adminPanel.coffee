@@ -104,6 +104,9 @@ class AdminPanel extends RSpine.Controller
     appPermission.appPaths.push app.path
     appPermission.save()
     
+  onDeleteProfile: (e) ->
+    
+    
   onSaveProfiles: (e) ->
     AppPermission.custom( AppPermission.toJSON() , { method: "POST" })
 

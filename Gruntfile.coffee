@@ -40,7 +40,11 @@ module.exports = (grunt) ->
     copy:
       config: 
         files:
-          "./config/*.*" : "./public/#{org.id}"
+          [ {expand: true, src: ['./config/*.*'], dest: "./public/#{org.id}"} ]
+
+      images:
+        files:
+          [ {expand: true, src: ['./images/*.*'], dest: "./public"} ]
 
     less:
       development:
@@ -122,6 +126,11 @@ module.exports = (grunt) ->
       r2apps:
         files: ["./public/**/*.json"]
         tasks: ["clean:r2", "threevot_compiler"]
+        livereload: true
+        
+      images:
+        files: ["./images/*.*"]
+        tasks: ["copy:images"]
         livereload: true
 
     jade:
@@ -241,4 +250,4 @@ module.exports = (grunt) ->
 
   grunt.registerTask('build', ["threevot_compiler" , "jade:production", "copy" ,"s3"]);   
 
-  grunt.registerTask('server', ["clean:r2", "threevot_compiler", "less", "jade:dev" ,'express', 'watch']);
+  grunt.registerTask('server', ["copy:images" , "clean:r2", "threevot_compiler", "less", "jade:dev" ,'express', 'watch']);
