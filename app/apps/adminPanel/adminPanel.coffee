@@ -13,6 +13,7 @@ class AdminPanel extends RSpine.Controller
     ".app-permission-list" : "appPermissionList"
 
   events:
+    "click .btn-create-app" : "onCreateApp"
     "click .app-item" : "onEditApp"
     "click .add-profile" : "onAddProfile"
     "click .btn-save-profiles" : "onSaveProfiles"
@@ -23,21 +24,41 @@ class AdminPanel extends RSpine.Controller
     @bind()
     Profile.query()
     App.fetch()
-    console.log "TODO BEFORE LAUNCH"
-    AppPermission.url= "/appPermissions?pathToFile=./config/apps.json"
     
     RSpine.one "platform:library-loaded-bootstrap", =>
       @profileList.find(".btn-add-profile").popover()
+      
+    RSpine.one "platform:library-loaded-dragdrop", =>
+      @registerDragDrop()
 
   bind: ->
+    @registerDragDrop()
+
     Profile.bind "refresh", @renderProfiles
-    App.bind "refresh", @renderApps
-    AppPermission.bind "refresh create", @renderPermissions
+    App.bind "refresh destroy", @renderApps
+    AppPermission.bind "refresh create update", @renderPermissions
 
   unbind: ->
     Profile.unbind "refresh", @renderProfiles
     Profile.unbind "refresh", @renderApps    
     AppPermission.unbind "refresh create", @renderPermissions
+
+  registerDragDrop: => 
+    console.log "registering dragdrop"
+    dragableElements = $(".app-item .drag-handle")
+    if dragableElements.dragdrop and !@dragdropRegistered
+      @dragdropRegistered = true
+      $(dragableElements).dragdrop
+        makeClone: true,
+        sourceHide: false,
+        dragClass: "whileDragging",
+        parentContainer: $("body")
+        canDrop: (destination) ->
+          return destination.parents(".app-permission-item").length == 1
+        didDrop: (source, destination) =>
+          source = source.parents(".app-item")
+          @onAddToProfile(source, destination)
+
 
   render: ->
     @html require("app/adminPanel/layout")()
@@ -64,12 +85,25 @@ class AdminPanel extends RSpine.Controller
     $(".btn-add-profile").popover("hide")
     ap = AppPermission.create type: "app", name: profile.Name, device: device, appPaths: []
 
+  onCreateApp: ->
+    RSpine.trigger "modal:show", EditApp , data: { isNewApp: true }
+
   onEditApp:  (e) ->
     target = $(e.target)
     target = target.parent() until target.hasClass "app-item"
     app = App.find target.data "app"
-    RSpine.trigger "modal:show", EditApp , { title: app.name, data: app }
+    RSpine.trigger "modal:show", EditApp , { data: app }
 
+  onAddToProfile: (appEl, thumbnail) ->
+    thumbnail = thumbnail.parent() until thumbnail.hasClass "app-permission-item"
+    appId = appEl.data "app"
+    app = App.find appId
+    
+    appPermissionId = thumbnail.data "app-permission"
+    appPermission = AppPermission.find appPermissionId
+    appPermission.appPaths.push app.path
+    appPermission.save()
+    
   onSaveProfiles: (e) ->
     AppPermission.custom( AppPermission.toJSON() , { method: "POST" })
 

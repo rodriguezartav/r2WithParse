@@ -18,7 +18,7 @@
       
       <div class="panel-heading">
           <span class="panel-title">Apps</span>
-          <div class="btn btn-create btn-action-new-app">New</div>
+          <div class="btn btn-create btn-create-app">New</div>
       </div>
     
       <ul data-offset="170" class="panel-stretch app-list list-group"></ul>

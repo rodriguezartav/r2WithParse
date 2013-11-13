@@ -26470,6 +26470,7 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
     };
 
     AdminPanel.prototype.events = {
+      "click .btn-create-app": "onCreateApp",
       "click .app-item": "onEditApp",
       "click .add-profile": "onAddProfile",
       "click .btn-save-profiles": "onSaveProfiles"
@@ -26487,7 +26488,7 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
       Profile.query();
       App.fetch();
       console.log("TODO BEFORE LAUNCH");
-      AppPermission.url = "/appPermissions?pathToFile=./public/00DZ0000000orOaMAI/apps.json";
+      AppPermission.url = "/appPermissions?pathToFile=./config/apps.json";
       RSpine.one("platform:library-loaded-bootstrap", function() {
         return _this.profileList.find(".btn-add-profile").popover();
       });
@@ -26544,6 +26545,10 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
       });
     };
 
+    AdminPanel.prototype.onCreateApp = function() {
+      return RSpine.trigger("modal:show", EditApp);
+    };
+
     AdminPanel.prototype.onEditApp = function(e) {
       var app, target;
       target = $(e.target);
@@ -26552,7 +26557,6 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
       }
       app = App.find(target.data("app"));
       return RSpine.trigger("modal:show", EditApp, {
-        title: app.name,
         data: app
       });
     };
@@ -26595,7 +26599,6 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
 
     function AdminPanelEditApp() {
       AdminPanelEditApp.__super__.constructor.apply(this, arguments);
-      AdminPanelEditApp.c = 1;
       this.render();
     }
 
@@ -26665,7 +26668,7 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
 
     App.extend(RSpine.Model.Ajax.Auto);
 
-    App.url = "/apps?appPath=./config";
+    App.url = "/apps?appPath=./app/apps";
 
     function App() {
       App.__super__.constructor.apply(this, arguments);
@@ -26799,7 +26802,7 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
   }
   (function() {
     (function() {
-      __out.push('<div class="row">\n  \n  <div class="col-md-10">\n    <div class="app-header">App Administrator Panel</div>\n  </div>  \n  \n  \n  <div class="col-md-2">\n    <a class="btn btn-primary btn-lg btn-block btn-save-profiles">Save Profiles</a>\n  </div>  \n\n</div>    \n \n<div class="row">\n\n  <div class="col-md-3">\n    <div class="panel panel-primary">\n      \n      <div class="panel-heading">\n          <span class="panel-title">Apps</span>\n          <div class="btn btn-create btn-action-new-app">New</div>\n      </div>\n    \n      <ul data-offset="170" class="panel-stretch app-list list-group"></ul>\n    \n    </div>\n  </div>\n\n  <div class="col-md-3">\n    <div class="panel panel-info">\n    \n       <div class="panel-heading">\n        <span class="panel-title">Profiles</span>\n      </div>\n      \n      <ul data-offset="170" class="panel-stretch profile-list list-group"></ul>\n\n    </div>\n  </div>\n  \n  <div class="col-md-6 color-column">\n    <div class="panel panel-info">\n  \n     <div class="panel-heading">\n        <span class="panel-title">Apps & Profiles</span>\n        <div class="btn btn-create btn-action-new-profile">New</div>\n    </div>\n\n    <div data-offset="170"  class="panel-body  panel-stretch">\n      <div class="row app-permission-list"></div>\n    </div>\n    \n  </div>\n\n</div>\n\n\n\n');
+      __out.push('<div class="row">\n  \n  <div class="col-md-10">\n    <div class="app-header">App Administrator Panel</div>\n  </div>  \n  \n  \n  <div class="col-md-2">\n    <a class="btn btn-primary btn-lg btn-block btn-save-profiles">Save Profiles</a>\n  </div>  \n\n</div>    \n \n<div class="row">\n\n  <div class="col-md-3">\n    <div class="panel panel-primary">\n      \n      <div class="panel-heading">\n          <span class="panel-title">Apps</span>\n          <div class="btn btn-create btn-create-app">New</div>\n      </div>\n    \n      <ul data-offset="170" class="panel-stretch app-list list-group"></ul>\n    \n    </div>\n  </div>\n\n  <div class="col-md-3">\n    <div class="panel panel-info">\n    \n       <div class="panel-heading">\n        <span class="panel-title">Profiles</span>\n      </div>\n      \n      <ul data-offset="170" class="panel-stretch profile-list list-group"></ul>\n\n    </div>\n  </div>\n  \n  <div class="col-md-6 color-column">\n    <div class="panel panel-info">\n  \n     <div class="panel-heading">\n        <span class="panel-title">Apps & Profiles</span>\n        <div class="btn btn-create btn-action-new-profile">New</div>\n    </div>\n\n    <div data-offset="170"  class="panel-body  panel-stretch">\n      <div class="row app-permission-list"></div>\n    </div>\n    \n  </div>\n\n</div>\n\n\n\n');
     
     }).call(this);
     
@@ -27273,6 +27276,11 @@ module.exports = content;}, "app/adminPanel/layout_item_app": function(exports, 
           "Content-Type": "application/json"
         }, appPermissionResponse
       ]);
+      this.server.respondWith("POST", /apps/g, [
+        200, {
+          "Content-Type": "application/json"
+        }, appPermissionResponse
+      ]);
       RSpine.libraries = {};
       require("rspine/lib/salesforceModel");
       require("rspine/lib/salesforceAjax");
@@ -27309,6 +27317,19 @@ module.exports = content;}, "app/adminPanel/layout_item_app": function(exports, 
         });
       });
       describe("App", function() {
+        it("should show create app module", function() {
+          $(".btn-create-app").click();
+          return $(".adminPanelEditApp").html().should.not.equal(null);
+        });
+        it("should create a new app", function(done) {
+          var form;
+          $("input").val("test");
+          form = $(".app-detail-form");
+          this.App.bind("update", function() {
+            return done();
+          });
+          return form.submit();
+        });
         it("should show editing app module", function() {
           $(".app-item").filter(":first").click();
           return $(".adminPanelEditApp").html().should.not.equal(null);
@@ -27321,14 +27342,13 @@ module.exports = content;}, "app/adminPanel/layout_item_app": function(exports, 
           app = app.fromForm(form);
           return app.iconLabel.should.equal("TT");
         });
-        it("should save app with changes", function(done) {
+        return it("should save app with changes", function() {
           var app, form;
           $('input[data-type="iconLabel"]').val("TT");
           form = $(".app-detail-form");
           app = this.App.find(form.data("app"));
           return form.submit();
         });
-        return it("should");
       });
       return describe("Profiles", function() {
         it("should show Create App Permision PopUp", function() {
@@ -28370,6 +28390,11 @@ module.exports = content;}, "library/modalFramework/test_spec": function(exports
           "Content-Type": "application/json"
         }, appPermissionResponse
       ]);
+      this.server.respondWith("POST", /apps/g, [
+        200, {
+          "Content-Type": "application/json"
+        }, appPermissionResponse
+      ]);
       RSpine.libraries = {};
       require("rspine/lib/salesforceModel");
       require("rspine/lib/salesforceAjax");
@@ -28406,6 +28431,19 @@ module.exports = content;}, "library/modalFramework/test_spec": function(exports
         });
       });
       describe("App", function() {
+        it("should show create app module", function() {
+          $(".btn-create-app").click();
+          return $(".adminPanelEditApp").html().should.not.equal(null);
+        });
+        it("should create a new app", function(done) {
+          var form;
+          $("input").val("test");
+          form = $(".app-detail-form");
+          this.App.bind("update", function() {
+            return done();
+          });
+          return form.submit();
+        });
         it("should show editing app module", function() {
           $(".app-item").filter(":first").click();
           return $(".adminPanelEditApp").html().should.not.equal(null);
@@ -28418,14 +28456,13 @@ module.exports = content;}, "library/modalFramework/test_spec": function(exports
           app = app.fromForm(form);
           return app.iconLabel.should.equal("TT");
         });
-        it("should save app with changes", function(done) {
+        return it("should save app with changes", function() {
           var app, form;
           $('input[data-type="iconLabel"]').val("TT");
           form = $(".app-detail-form");
           app = this.App.find(form.data("app"));
           return form.submit();
         });
-        return it("should");
       });
       return describe("Profiles", function() {
         it("should show Create App Permision PopUp", function() {

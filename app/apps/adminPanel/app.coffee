@@ -1,28 +1,17 @@
 RSpine = require('rspine')
 
 class App extends RSpine.Model
-  @configure "App","namespace", "name", "path", "index", "iconColor", "iconLabel", "label", "home"
+  @configure "App","namespace", "name", "path", "iconColor", "iconLabel", "label", "home", "type"
 
   @extend RSpine.Model.Ajax
   @extend RSpine.Model.Ajax.Auto
 
-  @url: "/apps?appPath=./app/apps"
+  @appPath: "./app/apps"
+  @url: "/apps?appPath=#{@appPath}"
 
   constructor: -> 
     super 
 
-  @createBlankApp: ->
-    number = Math.random() * 10000
-    appname = "app" + number
-    app= 
-      namespace: "app"
-      name: "app"
-      iconColor: "blue"
-      iconLabel: "iL"
-      label: "app"
-      isNewApp: true
- 
-    App.create app
 
 
 module.exports = App

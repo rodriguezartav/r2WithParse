@@ -2,7 +2,7 @@
 
 <div class="col-sm-6 col-md-4">
 
-  <div class="thumbnail  app-permission-item">
+  <div class="thumbnail  app-permission-item" data-app-permission="<%= @id %>">
     <h3><%= @name %></h3>
     <h5><%= @device %></h5>
 

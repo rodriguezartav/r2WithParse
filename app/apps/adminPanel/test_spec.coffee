@@ -81,6 +81,8 @@ describe 'adminPanel', ->
     @server.respondWith("POST", /appPermissions/g , [ 200, { "Content-Type": "application/json" }, appPermissionResponse ]);
 
     @server.respondWith("PUT", /apps/g , [ 200, { "Content-Type": "application/json" }, appPermissionResponse ]);
+    @server.respondWith("POST", /apps/g , [ 200, { "Content-Type": "application/json" }, appPermissionResponse ]);
+
 
     #INSTANTIATE APP
     RSpine.libraries = {}
@@ -122,6 +124,17 @@ describe 'adminPanel', ->
         @AppPermission.count().should.be.above 0
 
     describe "App", ->
+      it "should show create app module", ->
+        $(".btn-create-app").click()
+        $(".adminPanelEditApp").html().should.not.equal null 
+
+      it "should create a new app", (done) ->
+        $("input").val "test"
+        form = $(".app-detail-form")
+        
+        form.submit()
+        
+
       it "should show editing app module", ->
         $(".app-item").filter(":first").click()
         $(".adminPanelEditApp").html().should.not.equal null 
@@ -133,13 +146,11 @@ describe 'adminPanel', ->
         app = app.fromForm(form)
         app.iconLabel.should.equal "TT"
 
-      it "should save app with changes", (done) ->
+      it "should save app with changes", ->
         $('input[data-type="iconLabel"]').val "TT"
         form = $(".app-detail-form")
         app = @App.find form.data "app"
         form.submit()
-    
-      it "should"
 
 
     describe "Profiles", ->

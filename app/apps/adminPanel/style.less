@@ -1,5 +1,18 @@
 .adminPanel{
 
+  .app-list{
+    .drag-handle{
+      height: 12px;
+      background-color: @gray-light4;
+      border: 1px solid @gray-lightest;
+      display: inline-block;
+      vertical-align: middle;
+      &.whileDragging{
+        border: 2px solid @brand-warning;  
+      }
+    }
+  }
+
   .profile-list{
 
     .popover{

@@ -30,10 +30,10 @@ class AppController
   create: (req, res) ->
     try
       results = R2Builder.build { "app": req.body , "component": req.body , "style": req.body , "layout": req.body } 
-      grunt.file.write req.body.appPath + "/" + req.body.name + "/" + req.body.name + ".coffee" , results["app"]  
-      grunt.file.write req.body.appPath + "/" + req.body.name + "/component.json" , results["component"]  
-      grunt.file.write req.body.appPath + "/" + req.body.name + "/style.less" , results["style"]  
-      grunt.file.write req.body.appPath + "/" + req.body.name + "/layout.eco" , results["layout"]
+      grunt.file.write req.query.appPath + "/" + req.body.name + "/" + req.body.name + ".coffee" , results["app"]  
+      grunt.file.write req.query.appPath + "/" + req.body.name + "/component.json" , results["component"]  
+      grunt.file.write req.query.appPath + "/" + req.body.name + "/style.less" , results["style"]  
+      grunt.file.write req.query.appPath + "/" + req.body.name + "/layout.eco" , results["layout"]
     catch error
       res.status 501
       res.send "Error creating App Folder and Files " + JSON.stringify error

@@ -5,6 +5,8 @@ class AppPermission extends RSpine.Model
 
   @extend RSpine.Model.Ajax
 
+  @url: "/appPermissions?pathToFile=./config/apps.json"
+
   constructor: -> 
     super
     

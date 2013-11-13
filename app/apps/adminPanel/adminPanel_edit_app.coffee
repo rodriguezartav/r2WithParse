@@ -6,10 +6,10 @@ class AdminPanelEditApp extends RSpine.Controller
 
   events:
     "submit .app-detail-form" : "save"
+    "click .btn-delete-app" : "delete"
 
   constructor: ->
     super
-    AdminPanelEditApp.c = 1
     @render()
 
   bind: ->
@@ -24,28 +24,29 @@ class AdminPanelEditApp extends RSpine.Controller
     target = $(e.target)
     app = App.exists( target.data("app") )
     
-    return @create(App.createBlankApp().fromForm(target)) if !app
+    if !app then return @create( App.fromForm(target) )
+
     @update(app.fromForm(target))
 
-  update: (app) ->   
+  update: (app) ->  
     app.save done: (data) ->
-      console.log "hiding"
       RSpine.trigger "modal:hide"
 
-    
   create: (app)  ->
+    app.path = App.appPath + "/" + app.name
     app.save 
-
       done: (data) ->
-        console.log "hiding"
         RSpine.trigger "modal:hide"
 
       fail: (data) =>
         app.delete()
-    
-    
-    
-    
+
   delete: (e) ->
+    target = $(e.target)
+    app = App.exists( target.parents("form").data("app") )
+    app.id = app.name
+    app.destroy 
+      done: ->
+        RSpine.trigger "modal:hide"
 
 module.exports = AdminPanelEditApp

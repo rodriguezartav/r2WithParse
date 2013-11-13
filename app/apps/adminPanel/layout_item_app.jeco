@@ -1,5 +1,10 @@
 <li data-app="<%= @id %>" class="list-group-item app-item">
-  <h3><%= @name %></h3>
+  
+  <h3><%= @name %>
+    
+    <span class="drag-handle badge btn btn-primary pull-right">drag</span>
+  
+  </h3>
 
   <p class="list-group-item-text">fdsf dsfd </p>
   
