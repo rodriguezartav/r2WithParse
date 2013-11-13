@@ -30,7 +30,11 @@
   p{
     font-family: "Roboto";
     font-weight: 100;
-  
+    font-size: 16px;
+    -webkit-text-shadow: 0px 0px 1px #8a8c8e;
+    -moz-text-shadow: 0px 0px 1px #8a8c8e;
+    -ms-text-shadow: 0px 0px 1px #8a8c8e;
+    text-shadow: 0px 0px 1px #8a8c8e;
   }
   
 
@@ -91,8 +95,8 @@
   }
 
   .feature{
-    margin-top: 80px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   
     h3{
       color: @gray-dark;
@@ -125,6 +129,7 @@
     padding-top: 60px;
     padding-bottom: 80px;
     
+    h1 { font-weight: bold}
     h1, h2{
       text-align: center;
     }
@@ -133,18 +138,22 @@
       font-size: 24px;
       
     }
+    img {
+
+    }
     
   }
 
   footer{
-    padding-top: 90px;
     padding-bottom: 40px;
     position: relative;
     background-color: @brand-primary;
     .icon{
-      position: absolute;
-      top: -56px;
-      left: 30%;
+      position: relative;
+      width:312px;
+      img {
+        width: 100%;
+      }
     }
     
     h2{
