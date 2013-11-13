@@ -8,12 +8,7 @@ class ModalFramework extends RSpine.Controller
 
   elements:
     ".modal" : "modal"
-    ".modal-body" : "modalBody"
-    ".modal-title" : "modalTitle"
-    ".modal-dialog" : "modalDialog"
-  
-  events: ->
-    "click .onSave" : "onSave"
+    ".modal-content" : "modalContent"
 
   constructor: ->
     super
@@ -27,26 +22,18 @@ class ModalFramework extends RSpine.Controller
     RSpine.trigger "platform:library-loaded-modal"
     
 
-  show: (Controller, @options) =>
+  show: (Controller, options = {data: {}}) =>
     @hide()
-    el = if options.withWrapper then @modalBody else @modalDialog
-    @controller = new Controller(el: el, data: options.data)
-
-    @modalTitle.html options.title if options.withWrapper
+    @controller = new Controller(el: @modalContent, data: options.data)
     $('button[data-dismiss="modal"]').on "click", @hide
     @modal.show()
     @modal.addClass "in"
   
-  onSave: (e) ->
-    e.preventDefault()
-    return false if !@options.withWrapper
-    @controller.save?(e)
-
   hide: (delay=false) =>
     return false if !@controller
     @controller= null
     $('button[data-dismiss="modal"]').off "click", @hide
-    @modalBody.empty()
+    @modalContent.empty()
     @modal.removeClass "in"
     return @modal.hide()
     if delay

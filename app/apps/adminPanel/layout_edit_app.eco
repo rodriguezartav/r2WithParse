@@ -1,38 +1,33 @@
-<div class="modal-dialog">
-  
-  <div class="modal-content">
-    <form action="/test.html" class="app-detail-form" data-app="<%= @id %>">
+<form action="/test.html" class="app-detail-form" data-app="<%= @id %>">
 
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h2 class="modal-title"><%= @name %></h2>
-      </div>
-      <div class="modal-body">
-     
-
-      <h4>App Name</h4>
-
-        <input pattern="/^[0-9a-z_]+$/" <%= if !@isNewApp then 'disabled' %>  name="name" class="form-control item-editable" data-type="name" value="<%= @name %>"/>
-
-         <h4>Label</h4>
-         <input required type="text" name="label"  class="form-control item-editable" value="<%= @label %>"/>
-
-         <h4>Icon Color</h4>
-         <select name="iconColor"  class="form-control item-editable" data-type="iconColor" ">
-           <option <%= if @iconColor == "red" then "selected" %> >red</option>
-           <option <%= if @iconColor == "blue" then "selected" %> >blue</option>
-           <option <%= if @iconColor == "purple" then "selected" %> >purple</option>
-         </select>
-
-         <h4>Icon Label</h4>
-         <input name="iconLabel" type="text" class="form-control item-editable" data-type="iconLabel" value="<%= @iconLabel %>"/>
-
-      </div>
-      <div class="modal-footer">
-       <a class="btn btn-danger btn-action-delete-app btn-third">Delete</a>
-       <button type="button" class=" btn btn-third" data-dismiss="modal" aria-hidden="true">Close</button>
-       <input type="submit" name="submit" value="Save" class="btn btn-primary btn-action-save-app btn-third" />
-      </div>
-    </form>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h2 class="modal-title"><%= @name %></h2>
   </div>
-</div>
+  <div class="modal-body">
+ 
+
+  <h4>App Name</h4>
+
+    <input pattern="/^[0-9a-z_]+$/" <%= if !@isNewApp then 'disabled' %>  name="name" class="form-control item-editable" data-type="name" value="<%= @name %>"/>
+
+     <h4>Label</h4>
+     <input required type="text" name="label"  class="form-control item-editable" value="<%= @label %>"/>
+
+     <h4>Icon Color</h4>
+     <select name="iconColor"  class="form-control item-editable" data-type="iconColor" ">
+       <option <%= if @iconColor == "red" then "selected" %> >red</option>
+       <option <%= if @iconColor == "blue" then "selected" %> >blue</option>
+       <option <%= if @iconColor == "purple" then "selected" %> >purple</option>
+     </select>
+
+     <h4>Icon Label</h4>
+     <input name="iconLabel" type="text" class="form-control item-editable" data-type="iconLabel" value="<%= @iconLabel %>"/>
+
+  </div>
+  <div class="modal-footer">
+   <a class="btn btn-danger btn-action-delete-app btn-third">Delete</a>
+   <button type="button" class=" btn btn-third" data-dismiss="modal" aria-hidden="true">Close</button>
+   <input type="submit" name="submit" value="Save" class="btn btn-primary btn-action-save-app btn-third" />
+  </div>
+</form>

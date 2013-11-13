@@ -26619,16 +26619,26 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
     };
 
     AdminPanelEditApp.prototype.update = function(app) {
-      app.save();
-      App.one("ajaxSuccess", function() {
-        return RSpine.trigger("modal:hide");
-      });
-      return App.one("ajaxError", function() {
-        return console.log(JSON.stringify(arguments));
+      return app.save({
+        done: function(data) {
+          console.log("hiding");
+          return RSpine.trigger("modal:hide");
+        }
       });
     };
 
-    AdminPanelEditApp.prototype.create = function(app) {};
+    AdminPanelEditApp.prototype.create = function(app) {
+      var _this = this;
+      return app.save({
+        done: function(data) {
+          console.log("hiding");
+          return RSpine.trigger("modal:hide");
+        },
+        fail: function(data) {
+          return app["delete"]();
+        }
+      });
+    };
 
     AdminPanelEditApp.prototype["delete"] = function(e) {};
 
@@ -26655,7 +26665,7 @@ module.exports = LazyLoad}, "lib/setup": function(exports, require, module) {(fu
 
     App.extend(RSpine.Model.Ajax.Auto);
 
-    App.url = "/apps?appPath=./app/apps";
+    App.url = "/apps?appPath=./config";
 
     function App() {
       App.__super__.constructor.apply(this, arguments);
@@ -26836,15 +26846,15 @@ module.exports = content;}, "app/adminPanel/layout_edit_app": function(exports, 
   }
   (function() {
     (function() {
-      __out.push('<div class="modal-dialog">\n  \n  <div class="modal-content">\n    <form action="/test.html" class="app-detail-form" data-app="');
+      __out.push('<form action="/test.html" class="app-detail-form" data-app="');
     
       __out.push(__sanitize(this.id));
     
-      __out.push('">\n\n      <div class="modal-header">\n        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\n        <h2 class="modal-title">');
+      __out.push('">\n\n  <div class="modal-header">\n    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\n    <h2 class="modal-title">');
     
       __out.push(__sanitize(this.name));
     
-      __out.push('</h2>\n      </div>\n      <div class="modal-body">\n     \n\n      <h4>App Name</h4>\n\n        <input pattern="/^[0-9a-z_]+$/" ');
+      __out.push('</h2>\n  </div>\n  <div class="modal-body">\n \n\n  <h4>App Name</h4>\n\n    <input pattern="/^[0-9a-z_]+$/" ');
     
       __out.push(__sanitize(!this.isNewApp ? 'disabled' : void 0));
     
@@ -26852,27 +26862,27 @@ module.exports = content;}, "app/adminPanel/layout_edit_app": function(exports, 
     
       __out.push(__sanitize(this.name));
     
-      __out.push('"/>\n\n         <h4>Label</h4>\n         <input required type="text" name="label"  class="form-control item-editable" value="');
+      __out.push('"/>\n\n     <h4>Label</h4>\n     <input required type="text" name="label"  class="form-control item-editable" value="');
     
       __out.push(__sanitize(this.label));
     
-      __out.push('"/>\n\n         <h4>Icon Color</h4>\n         <select name="iconColor"  class="form-control item-editable" data-type="iconColor" ">\n           <option ');
+      __out.push('"/>\n\n     <h4>Icon Color</h4>\n     <select name="iconColor"  class="form-control item-editable" data-type="iconColor" ">\n       <option ');
     
       __out.push(__sanitize(this.iconColor === "red" ? "selected" : void 0));
     
-      __out.push(' >red</option>\n           <option ');
+      __out.push(' >red</option>\n       <option ');
     
       __out.push(__sanitize(this.iconColor === "blue" ? "selected" : void 0));
     
-      __out.push(' >blue</option>\n           <option ');
+      __out.push(' >blue</option>\n       <option ');
     
       __out.push(__sanitize(this.iconColor === "purple" ? "selected" : void 0));
     
-      __out.push(' >purple</option>\n         </select>\n\n         <h4>Icon Label</h4>\n         <input name="iconLabel" type="text" class="form-control item-editable" data-type="iconLabel" value="');
+      __out.push(' >purple</option>\n     </select>\n\n     <h4>Icon Label</h4>\n     <input name="iconLabel" type="text" class="form-control item-editable" data-type="iconLabel" value="');
     
       __out.push(__sanitize(this.iconLabel));
     
-      __out.push('"/>\n\n      </div>\n      <div class="modal-footer">\n       <a class="btn btn-danger btn-action-delete-app btn-third">Delete</a>\n       <button type="button" class=" btn btn-third" data-dismiss="modal" aria-hidden="true">Close</button>\n       <input type="submit" name="submit" value="Save" class="btn btn-primary btn-action-save-app btn-third" />\n      </div>\n    </form>\n  </div>\n</div>');
+      __out.push('"/>\n\n  </div>\n  <div class="modal-footer">\n   <a class="btn btn-danger btn-action-delete-app btn-third">Delete</a>\n   <button type="button" class=" btn btn-third" data-dismiss="modal" aria-hidden="true">Close</button>\n   <input type="submit" name="submit" value="Save" class="btn btn-primary btn-action-save-app btn-third" />\n  </div>\n</form>\n');
     
     }).call(this);
     
@@ -27311,17 +27321,14 @@ module.exports = content;}, "app/adminPanel/layout_item_app": function(exports, 
           app = app.fromForm(form);
           return app.iconLabel.should.equal("TT");
         });
-        return it("should save app with changes", function(done) {
-          var appId, form,
-            _this = this;
+        it("should save app with changes", function(done) {
+          var app, form;
           $('input[data-type="iconLabel"]').val("TT");
           form = $(".app-detail-form");
-          appId = form.data("app");
-          this.App.bind("customSuccess ajaxError ajaxSuccess", function() {
-            return done();
-          });
+          app = this.App.find(form.data("app"));
           return form.submit();
         });
+        return it("should");
       });
       return describe("Profiles", function() {
         it("should show Create App Permision PopUp", function() {
@@ -27911,7 +27918,7 @@ module.exports = content;}, "app/adminPanel/layout_item_app": function(exports, 
   }
   (function() {
     (function() {
-      __out.push('<div class="modal fade" tabindex="-1" role="dialog">\n  <div class="modal-dialog">\n    <div class="modal-content">\n      <div class="modal-header">\n        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\n        <h4 class="modal-title"></h4>\n      </div>\n      <div class="modal-body">\n        \n      </div>\n      <div class="modal-footer">\n        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>\n        <button type="button" class="btn btn-primary onSave">Save changes</button>\n      </div>\n    </div>\n  </div>\n</div>');
+      __out.push('<div class="modal fade" tabindex="-1" role="dialog">\n  <div class="modal-dialog">\n    <div class="modal-content">\n\n    </div>\n  </div>\n</div>');
     
     }).call(this);
     
@@ -27932,15 +27939,7 @@ module.exports = content;}, "library/modalFramework/modalFramework": function(ex
 
     ModalFramework.prototype.elements = {
       ".modal": "modal",
-      ".modal-body": "modalBody",
-      ".modal-title": "modalTitle",
-      ".modal-dialog": "modalDialog"
-    };
-
-    ModalFramework.prototype.events = function() {
-      return {
-        "click .onSave": "onSave"
-      };
+      ".modal-content": "modalContent"
     };
 
     function ModalFramework() {
@@ -27957,29 +27956,19 @@ module.exports = content;}, "library/modalFramework/modalFramework": function(ex
     }
 
     ModalFramework.prototype.show = function(Controller, options) {
-      var el;
-      this.options = options;
+      if (options == null) {
+        options = {
+          data: {}
+        };
+      }
       this.hide();
-      el = options.withWrapper ? this.modalBody : this.modalDialog;
       this.controller = new Controller({
-        el: el,
+        el: this.modalContent,
         data: options.data
       });
-      if (options.withWrapper) {
-        this.modalTitle.html(options.title);
-      }
       $('button[data-dismiss="modal"]').on("click", this.hide);
       this.modal.show();
       return this.modal.addClass("in");
-    };
-
-    ModalFramework.prototype.onSave = function(e) {
-      var _base;
-      e.preventDefault();
-      if (!this.options.withWrapper) {
-        return false;
-      }
-      return typeof (_base = this.controller).save === "function" ? _base.save(e) : void 0;
     };
 
     ModalFramework.prototype.hide = function(delay) {
@@ -27991,7 +27980,7 @@ module.exports = content;}, "library/modalFramework/modalFramework": function(ex
       }
       this.controller = null;
       $('button[data-dismiss="modal"]').off("click", this.hide);
-      this.modalBody.empty();
+      this.modalContent.empty();
       this.modal.removeClass("in");
       return this.modal.hide();
       if (delay) {
@@ -28033,15 +28022,15 @@ module.exports = content;}, "library/modalFramework/modalFramework": function(ex
     TestController.className = "";
 
     TestController.prototype.events = {
-      "click .btn": "onBtnClick"
+      "click .modal-body": "onClick"
     };
 
     function TestController() {
       TestController.__super__.constructor.apply(this, arguments);
-      this.html('<div class=""><a class="btn">This is a button</a></div>');
+      this.html(require("library/modalFramework/test_controller_layout")());
     }
 
-    TestController.prototype.onBtnClick = function() {
+    TestController.prototype.onClick = function() {
       return this.append('<div class="afterClick">This happend on click</div>');
     };
 
@@ -28052,7 +28041,58 @@ module.exports = content;}, "library/modalFramework/modalFramework": function(ex
   module.exports = TestController;
 
 }).call(this);
-}, "library/modalFramework/test_spec": function(exports, require, module) {(function() {
+}, "library/modalFramework/test_controller_layout": function(exports, require, module) {var content = function(__obj) {
+  if (!__obj) __obj = {};
+  var __out = [], __capture = function(callback) {
+    var out = __out, result;
+    __out = [];
+    callback.call(this);
+    result = __out.join('');
+    __out = out;
+    return __safe(result);
+  }, __sanitize = function(value) {
+    if (value && value.ecoSafe) {
+      return value;
+    } else if (typeof value !== 'undefined' && value != null) {
+      return __escape(value);
+    } else {
+      return '';
+    }
+  }, __safe, __objSafe = __obj.safe, __escape = __obj.escape;
+  __safe = __obj.safe = function(value) {
+    if (value && value.ecoSafe) {
+      return value;
+    } else {
+      if (!(typeof value !== 'undefined' && value != null)) value = '';
+      var result = new String(value);
+      result.ecoSafe = true;
+      return result;
+    }
+  };
+  if (!__escape) {
+    __escape = __obj.escape = function(value) {
+      return ('' + value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    };
+  }
+  (function() {
+    (function() {
+      __out.push('<div class="modal-header">\n  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\n  <h2 class="modal-title">');
+    
+      __out.push(__sanitize(this.name));
+    
+      __out.push('</h2>\n</div>\n<div class="modal-body">\n\n\n<h4>App Name</h4>\n\n\n</div>\n\n<div class="modal-footer">\n <a class="btn btn-danger btn-action-delete-app btn-third">Delete</a>\n <button type="button" class=" btn btn-third" data-dismiss="modal" aria-hidden="true">Close</button>\n <input type="submit" name="submit" value="Save" class="btn btn-primary btn-action-save-app btn-third" />\n</div>');
+    
+    }).call(this);
+    
+  }).call(__obj);
+  __obj.safe = __objSafe, __obj.escape = __escape;
+  return __out.join('');
+};
+module.exports = content;}, "library/modalFramework/test_spec": function(exports, require, module) {(function() {
   var exports, jQuery;
 
   jQuery = require("jqueryify");
@@ -28078,12 +28118,12 @@ module.exports = content;}, "library/modalFramework/modalFramework": function(ex
         return $(".modal").css("display").should.not.equal("none");
       });
       it("should bind controller events", function() {
-        $(".btn").click();
+        $(".modal-body").click();
         return $(".afterClick").should.not.equal(null);
       });
       it("should hide modal", function() {
         RSpine.trigger("modal:hide");
-        $(".modal-body").html().should.equal("");
+        $(".modal-content").html().should.equal("");
         return $(".modal").css("display").should.equal("none");
       });
       return it("should close modal on click", function() {
@@ -28195,6 +28235,9 @@ module.exports = content;}, "library/modalFramework/modalFramework": function(ex
        
         {"namespace":"library","path":"library/modalFramework/modalFramework","iconColor": "","iconLabel": "","label": "","home": false},
         
+    
+      
+       
     
       
        
@@ -28375,17 +28418,14 @@ module.exports = content;}, "library/modalFramework/modalFramework": function(ex
           app = app.fromForm(form);
           return app.iconLabel.should.equal("TT");
         });
-        return it("should save app with changes", function(done) {
-          var appId, form,
-            _this = this;
+        it("should save app with changes", function(done) {
+          var app, form;
           $('input[data-type="iconLabel"]').val("TT");
           form = $(".app-detail-form");
-          appId = form.data("app");
-          this.App.bind("customSuccess ajaxError ajaxSuccess", function() {
-            return done();
-          });
+          app = this.App.find(form.data("app"));
           return form.submit();
         });
+        return it("should");
       });
       return describe("Profiles", function() {
         it("should show Create App Permision PopUp", function() {

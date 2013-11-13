@@ -21,12 +21,12 @@ describe 'modalFramework', ->
       $(".modal").css("display").should.not.equal "none"
 
     it "should bind controller events", ->
-      $(".btn").click()
+      $(".modal-body").click()
       $(".afterClick").should.not.equal null
     
     it "should hide modal", ->
       RSpine.trigger "modal:hide"
-      $(".modal-body").html().should.equal ""
+      $(".modal-content").html().should.equal ""
       $(".modal").css("display").should.equal "none"
     
     it "should close modal on click", ->

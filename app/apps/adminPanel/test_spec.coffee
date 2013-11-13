@@ -136,12 +136,11 @@ describe 'adminPanel', ->
       it "should save app with changes", (done) ->
         $('input[data-type="iconLabel"]').val "TT"
         form = $(".app-detail-form")
-        appId = form.data "app"
-        
-        @App.bind "customSuccess ajaxError ajaxSuccess", =>
-          done()
-        
+        app = @App.find form.data "app"
         form.submit()
+    
+      it "should"
+
 
     describe "Profiles", ->
       it "should show Create App Permision PopUp", ->

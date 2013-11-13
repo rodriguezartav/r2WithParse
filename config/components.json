@@ -1,0 +1,48 @@
+[
+    {
+        "name":"r2",
+        "type": "lib",
+        "appPaths": ["./app/r2"],
+        "dependencyPaths": ["jqueryify","rspine","rspine/lib/ajax","rspine/lib/salesforceAjax","rspine/lib/salesforceModel","rspine/lib/offlineModel"]
+        },      
+
+      {
+        "name":"initApp",
+        "device":"desktop",
+        "type": "lib,app,component",
+        "appPaths": ["./app/initApp", "./app/apps/webHome", "./app/components/menu", "./app/components/newsFeed","./app/components/appMenu"]
+      },
+      {
+        "name":"initApp",
+        "device":"mobile",
+        "type": "lib,app,component",
+        "appPaths": ["./app/initApp","./app/apps/mobileHome","./app/components/appMenu"]
+      },
+      {
+        "name":"launchStage",
+        "device":"desktop",
+        "type": "component",
+        "appPaths": ["./app/components/appMetrics","./app/components/breadcrum"]
+      },
+
+      {
+        "name":"launchStage",
+        "device":"mobile",
+        "type": "component",
+        "appPaths": []
+      },
+
+      {
+        "name":"orbitStage",
+        "device":"desktop",
+        "type": "lib",
+        "appPaths": ["./app/libraries/keyboardFramework","./app/libraries/dragdropFramework","./app/libraries/touchFramework","./app/libraries/bootstrapFramework","./app/libraries/modalFramework"]
+      },
+      {
+        "name":"orbitStage",
+        "device":"mobile",
+        "type": "lib,component",
+        "appPaths": ["./app/libraries/dragdropFramework","./app/libraries/touchFramework","./app/libraries/bootstrapFramework", "./app/components/mobileMenu","./app/libraries/modalFramework"]
+      }
+
+]

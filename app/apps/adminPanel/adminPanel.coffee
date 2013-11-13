@@ -24,7 +24,7 @@ class AdminPanel extends RSpine.Controller
     Profile.query()
     App.fetch()
     console.log "TODO BEFORE LAUNCH"
-    AppPermission.url= "/appPermissions?pathToFile=./public/00DZ0000000orOaMAI/apps.json"
+    AppPermission.url= "/appPermissions?pathToFile=./config/apps.json"
     
     RSpine.one "platform:library-loaded-bootstrap", =>
       @profileList.find(".btn-add-profile").popover()

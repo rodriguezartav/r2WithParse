@@ -23,19 +23,28 @@ class AdminPanelEditApp extends RSpine.Controller
     e.preventDefault()
     target = $(e.target)
     app = App.exists( target.data("app") )
+    
     return @create(App.createBlankApp().fromForm(target)) if !app
     @update(app.fromForm(target))
 
   update: (app) ->   
-    app.save()
-
-    App.one "ajaxSuccess", ->      
+    app.save done: (data) ->
+      console.log "hiding"
       RSpine.trigger "modal:hide"
 
-    App.one "ajaxError", ->
-      console.log JSON.stringify(arguments)
     
   create: (app)  ->
+    app.save 
+
+      done: (data) ->
+        console.log "hiding"
+        RSpine.trigger "modal:hide"
+
+      fail: (data) =>
+        app.delete()
+    
+    
+    
     
   delete: (e) ->
 

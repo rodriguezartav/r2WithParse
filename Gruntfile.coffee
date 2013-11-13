@@ -27,7 +27,7 @@ class Helper
 
 module.exports = (grunt) ->
 
-  org = grunt.file.readJSON("./organization.json")
+  org = grunt.file.readJSON("./config/organization.json")
 
   apiServer = "http://quiet-atoll-3343.herokuapp.com"
 
@@ -37,6 +37,11 @@ module.exports = (grunt) ->
       r2: ["public/**/*.js"]
       testUnit: ['./test/unit/*.html']
 
+    copy:
+      config: 
+        files:
+          "./config/*.*" : "./public/#{org.id}"
+
     less:
       development:
         files:
@@ -44,14 +49,14 @@ module.exports = (grunt) ->
 
     threevot_compiler: {
       apps:{
-        parts: "./public/#{org.id}/apps.json",
+        parts: "./config/apps.json",
         lessVariables: "./css/base/variables.less",
         organizationId: org.id,
         destination: "./public"
       }
       
       components:{
-        parts: "./public/#{org.id}/components.json",
+        parts: "./config/components.json",
         lessVariables: "./css/base/variables.less",
         organizationId: org.id,
         destination: "./public"
@@ -214,6 +219,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-express');
 
   grunt.loadNpmTasks('grunt-threevot-compiler');
@@ -233,6 +239,6 @@ module.exports = (grunt) ->
 
   grunt.registerTask("server_test" , ['mochaTest'] )
 
-  grunt.registerTask('build', ["threevot_compiler" , "jade:production", "s3"]);   
+  grunt.registerTask('build', ["threevot_compiler" , "jade:production", "copy" ,"s3"]);   
 
   grunt.registerTask('server', ["clean:r2", "threevot_compiler", "less", "jade:dev" ,'express', 'watch']);

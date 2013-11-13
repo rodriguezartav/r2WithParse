@@ -4,13 +4,13 @@ class TestController extends RSpine.Controller
   @className: ""
 
   events:
-    "click .btn" : "onBtnClick"
+    "click .modal-body" : "onClick"
 
   constructor: -> 
     super
-    @html '<div class=""><a class="btn">This is a button</a></div>'
+    @html require("library/modalFramework/test_controller_layout")()
 
-  onBtnClick: ->
+  onClick: ->
     @append '<div class="afterClick">This happend on click</div>'
       
 module.exports = TestController
