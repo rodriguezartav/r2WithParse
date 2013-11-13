@@ -17,12 +17,11 @@ html
       var RSpine  = require("rspine");
       require('rspine/lib/salesforceAjax')
       
-      var base = new RSpine.Ajax.Base();
-      var request = base.ajaxQueue({}, {
+      var request = $.ajax( {
         type: 'GET',
-        url:"#{apiServer}/sessions/salesforce/login?app_url=#{app_url}" 
-      }).fail(function(data){
-        window.location.href = data.responseText;
+        url:"#{apiServer}/sessions/salesforce/login?app_url=#{app_url}&state=ok" 
+      }).success(function(data){
+        window.location.href = data;
       });
 
 

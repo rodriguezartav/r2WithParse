@@ -1,0 +1,15 @@
+<li class="list-group-item">
+  
+  <h3 class="">
+    <%= @Name %>
+    
+    
+    <span data-html="true" class="badge pull-right btn-info profile-popovers btn-add-profile" data-placement="left" data-toggle="popover" title="" data-content='<span data-profile="<%= @id %>" class="add-profile">Desktop</span><span data-profile="<%= @id %>"  class="add-profile">Tablet</span><span   data-profile="<%= @id %>" class="add-profile">Mobile</span>' role="button">+</span>
+    
+  </h3>
+  
+  
+  
+ 
+  
+</li>

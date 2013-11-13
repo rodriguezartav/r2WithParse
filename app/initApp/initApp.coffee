@@ -29,9 +29,21 @@ class InitApp extends RSpine.Controller
     
     LayoutManager = require "managers/#{RSpine.device}Manager"
 
+    RSpine.bind "platform-app-launch-complete" , (app) ->
+      panelsInApp = app.el.find(".panel-stretch")
+      height = $(window).height();
+      for panel in panelsInApp
+        panel = $(panel)
+        offset = panel.data("offset") or 0
+        $(panel).css "height" , height - offset
+
+
+    RSpine.resizeColumns= (selector, offset = 0) ->
+
     new LayoutManager(el: @el)
     new LoadManager(el: @el)
     new DataManager()
+
 
 module.exports = InitApp   
 

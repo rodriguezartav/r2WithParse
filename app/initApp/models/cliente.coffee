@@ -5,9 +5,9 @@ class Cliente extends RSpine.Model
   "Negociacion" , "LastModifiedDate" , "Ruta" , "Transporte" , "Direccion" , "Telefono"  , "RutaTransporte" 
 
   @extend RSpine.Model.SalesforceModel
-  @extend RSpine.Model.Ajax 
+  @extend RSpine.Model.SalesforceAjax 
 
-  @querySinceLastUpdate = true
+  #@querySinceLastUpdate = true
 
   @avoidInsertList = ["Name","Rating_Crediticio","CodigoExterno","Activo","Saldo","DiasCredito" , "LastModifiedDate" , "Meta" , "Ventas" , "PlazoRecompra","PlazoPago"]
 

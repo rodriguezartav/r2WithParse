@@ -1,4 +1,5 @@
 RSpine = require("rspine")
+Session = require("models/session")
     
 class App extends RSpine.Model
   @configure "App","namespace", "name", "path", "index", "iconColor", "iconLabel", "label", "home", "isNewApp"
@@ -261,7 +262,7 @@ class R2Apps extends RSpine.Controller
       RSpine.resizeColumns ".content-body", 170
 
   loadData: =>
-    request = $.get("/r2apps")
+    request = $.get("/profiles?appPath=./app/apps&profilesPath=./public/#{Session.first().orgId}/apps.json")
     
     request.success (response) =>
       for profile in response.profiles
@@ -292,7 +293,7 @@ class R2Apps extends RSpine.Controller
         didDrop: (source, destination) =>
           @profiles.onAddApp( source, destination )
 
-  onCreateProfile: ->
+  onCreateProfile: -> 
     @profiles.onCreate()
 
   onCreateApp: ->
@@ -302,8 +303,8 @@ class R2Apps extends RSpine.Controller
     request = $.ajax
       type: "post"
       contentType: "application/json"
-      url: "/r2apps"
-      data: JSON.stringify(Profile.all())
+      url: "/profiles"
+      data: JSON.stringify(component: Profile.all() , profilesPath: "./public/#{Session.first().orgId}/apps.json")
 
     request.success (result) =>
       callback?(result)

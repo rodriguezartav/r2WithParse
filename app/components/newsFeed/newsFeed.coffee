@@ -2,8 +2,7 @@ RSpine = require("rspine")
 $ = window.$ if !$
 Session = require("models/session")
 ChatterNews = require("models/chatterNews")
-
-
+   
 class NewsFeed extends RSpine.Controller
 
   elements:
@@ -15,17 +14,23 @@ class NewsFeed extends RSpine.Controller
     "click .btn-close" : "onBtnCloseClick"
    
   constructor: ->
-    super    
-
-    base = new RSpine.Ajax.Base();
-    request = base.ajaxQueue {} ,
-      type: 'GET',
-      url: RSpine.Model.salesforceHost + "/api?path=/services/data/v24.0/chatter/feeds/news/#{Session.first().userId}/feed-items"
+    super  
     
-    request.done (response) => 
-      for item in response.items
-        ChatterNews.create item
-      @render()
+    #only load on launch once
+    if !ChatterNews.launchQueryInvoked
+      endpoint = "/services/data/v24.0/chatter/feeds/news/#{ Session.first().userId }/feed-items"
+      ChatterNews.api({}, endpoint: endpoint)
+      ChatterNews.launchQueryInvoked= true
+
+    @bind()
+  
+  bind: ->
+    ChatterNews.bind "apiSuccess", @onAjaxSuccess
+
+  onAjaxSuccess: (response) =>
+    ChatterNews.refresh response.items
+
+    @render()
 
   render: =>
     @html require("components/newsFeed/newsFeed_item")(ChatterNews.all())

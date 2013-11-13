@@ -1,5 +1,6 @@
 require('jqueryify')
 require('rspine')
+require('rspine/lib/ajax')
 require('rspine/lib/salesforceAjax')
 require('rspine/lib/salesforceModel')
 

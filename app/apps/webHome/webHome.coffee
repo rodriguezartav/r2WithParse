@@ -15,9 +15,6 @@ class HomeView extends RSpine.Controller
   constructor: ->
     super    
     @html require("app/webHome/layout_#{RSpine.app.layout}")()                               
-
-    RSpine.one "platform-app-launch-complete" , ->
-      RSpine.resizeColumns ".content-body", 146
     
     new NewsFeed(el: @newsFeed)
     new NewsFeed(el: @smallNewsFeed)

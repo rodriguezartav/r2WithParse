@@ -1,0 +1,6 @@
+<li data-app="<%= @id %>" class="list-group-item app-item">
+  <h3><%= @name %></h3>
+
+  <p class="list-group-item-text">fdsf dsfd </p>
+  
+</li>

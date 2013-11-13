@@ -5,7 +5,7 @@ class Account extends RSpine.Model
   @configure 'Account', 'Name' 
 
   @extend RSpine.Model.SalesforceModel
-  @extend RSpine.Model.Ajax
+  @extend RSpine.Model.SalesforceAjax
 
   @standardObject= true;
 

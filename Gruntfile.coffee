@@ -22,12 +22,12 @@ class Helper
       for file in files
         srcTime = fs.statSync(dir + "/" + file).mtime.getTime();
         now = new Date()
-        changedRecently = true if now.getTime() - srcTime < 20000
+        changedRecently = true if now.getTime() - srcTime < 200000
       return changedRecently
 
 module.exports = (grunt) ->
 
-  orgId = "00DZ0000000orOaMAI"
+  org = grunt.file.readJSON("./organization.json")
 
   apiServer = "http://quiet-atoll-3343.herokuapp.com"
 
@@ -35,81 +35,36 @@ module.exports = (grunt) ->
     
     clean:
       r2: ["public/**/*.js"]
-      test: ['test/unit/*.js','test/functional/*.js','test/integration/*.js']
       testUnit: ['./test/unit/*.html']
-
-    copy: 
-      main: 
-        files:
-           [ {expand: true, src: ['./images/**'], dest: './public'} ]
 
     less:
       development:
         files:
           "./public/r2.css" : "./css/index.less"
 
-
     threevot_compiler: {
       apps:{
-        parts: "./r2apps.json",
+        parts: "./public/#{org.id}/apps.json",
         lessVariables: "./css/base/variables.less",
-        organizationId: orgId,
+        organizationId: org.id,
         destination: "./public"
       }
       
       components:{
-        parts: "./r2stage.json",
+        parts: "./public/#{org.id}/components.json",
         lessVariables: "./css/base/variables.less",
-        organizationId: orgId,
+        organizationId: org.id,
         destination: "./public"
       }
     },
 
-
-
-    coffee:
-      unit:
-        expand: true,
-        flatten: true,
-        cwd: './test/unit/src/',
-        src: ['**/*.coffee'],
-        dest: './test/unit/',
-        ext: '.js'        
-
-      functional:
-        expand: true,
-        flatten: true,
-        cwd: './test/functional_src/',
-        src: ['**/*.coffee'],
-        dest: './test/functional/',
-        ext: '.js'
-
-      integration:
-        expand: true,
-        flatten: true,
-        cwd: './test/integration_src/',
-        src: ['**/*.coffee'],
-        dest: './test/integration/',
-        ext: '.js'
-
-    mochaTest:
-      unit:
-        options:
+    mochaTest: 
+      test: 
+        options: 
           reporter: 'spec'
-        src: ['test/unit/*.js']
-        
-      functional:
-        options:
-          reporter: 'spec'
-        src: ['test/functional/*.js']
+        src: ['test/server/**/*.js']
 
-      integration:
-        options:
-          reporter: 'spec'
-        src: ['test/integration/*.js']
-
-
-    mocha: 
+    mocha:       
       test:
         src: ['./test/unit/*.html']
         options:
@@ -129,8 +84,6 @@ module.exports = (grunt) ->
           lessVariables: "./css/base/variables.less"
           destination: "./test/unit"
           template: "./test/unit/template.eco"
-        
-
 
       newTest: 
         options:
@@ -143,8 +96,7 @@ module.exports = (grunt) ->
         src: ['**/test.json'],
         cwd: './app/',
         expand: true,
-        filter: Helper.onlyNew(['copy', 'newTet'])
-        
+        filter: Helper.onlyNew(['copy', 'newTest'])
 
     watch:
       css:
@@ -163,27 +115,37 @@ module.exports = (grunt) ->
         livereload: true
         
       r2apps:
-        files: ["./r2apps.json","./app/**/component.json"]
+        files: ["./public/**/*.json"]
         tasks: ["clean:r2", "threevot_compiler"]
         livereload: true
 
     jade:
       production:
         files:
+          "./public/pricing.html": ["./views/pricing.jade"]
           "./public/index.html": ["./views/index.jade"]
           "./public/login.html": ["./views/login.jade"]
+          "./public/home.html": ["./views/home.jade"]
+          "./public/features.html": ["./views/features.jade"]
+          "./public/gettingStarted.html": ["./views/gettingStarted.jade"]
+          "./public/talkToUs.html": ["./views/talkToUs.jade"]
+          
+          
         options: 
           data: 
             path: ""
             apiServer: apiServer
-            app_url: "http://edge.3vot.com.s3-website-us-east-1.amazonaws.com"
+            app_url: "http://r2.3vot.com"
 
       dev:
         files:
-          "./public/index.html": ["./views/index.jade"]
+          "./public/pricing.html": ["./views/pricing.jade"]
+          "./public/home.html": ["./views/home.jade"]
           "./public/login.html": ["./views/login.jade"]
-          "./public/test.html": ["./views/test.jade"]
-
+          "./public/index.html": ["./views/index.jade"]
+          "./public/features.html": ["./views/features.jade"]
+          "./public/gettingStarted.html": ["./views/gettingStarted.jade"]
+          "./public/talkToUs.html": ["./views/talkToUs.jade"]
 
         options:
           data:
@@ -193,8 +155,13 @@ module.exports = (grunt) ->
 
       test: 
         files:
-          "./public/index.html": ["./views/index.jade"]
+          "./public/pricing.html": ["./views/pricing.jade"]
+          "./public/home.html": ["./views/home.jade"]
           "./public/login.html": ["./views/login.jade"]
+          "./public/index.html": ["./views/index.jade"]
+          "./public/features.html": ["./views/features.jade"]
+          "./public/gettingStarted.html": ["./views/gettingStarted.jade"]
+          "./public/talkToUs.html": ["./views/talkToUs.jade"]
 
         options:
           data:
@@ -208,56 +175,64 @@ module.exports = (grunt) ->
           port: '7770',
           hostname: "0.0.0.0",
           bases: ['./public'],
-          server: './server/main',
+          server: './server',
           livereload: true
     s3:
       options: 
-        bucket: "edge.3vot.com",
+        bucket: "r2.3vot.com",
         access: 'public-read',
         key: 'AKIAIHNBUFKPBA2LINFQ',
         secret: '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'
 
-      test:
+      r2:
         options:
+          bucket: "r2.3vot.com",
           encodePaths: true,
           maxOperations: 20
 
         upload: 
           [
-             { src: './public/*.*', dest: "", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=0" }
+             { src: './public/*.*', dest: "", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=1" }
              { src: './public/images/*.*', dest: "images", gzip: false, access: 'public-read', headers: "Cache-Control": "max-age=500" }
-             { src: './public/' + orgId  + '/*.*', dest: orgId , gzip: false, access: 'public-read', headers: "Cache-Control": "max-age=0" }
+             { src: './public/' + org.id  + '/*.*', dest: org.id , gzip: false, access: 'public-read', headers: "Cache-Control": "max-age=1" }
           ]
 
-    jasmine: 
-      pivotal: 
-        options: 
-          specs: 'test/unit/*.js'
-          keepRunner: true
+      site:
+        options:
+          bucket: "3vot.com",
+          encodePaths: true,
+          maxOperations: 20
+
+        upload: 
+          [
+            { src: './public/*.js', dest: "", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=1" }
+            { src: './public/*.css', dest: "", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=1" }              
+            { src: './public/*.html', dest: "", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=1" }
+            { src: './public/images/*.*', dest: "images", gzip: false, access: 'public-read', headers: "Cache-Control": "max-age=500" }
+          ]
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-express');
 
   grunt.loadNpmTasks('grunt-threevot-compiler');
   grunt.loadNpmTasks('grunt-threevot-tester');
 
-  grunt.loadNpmTasks('grunt-mocha');
   grunt.loadNpmTasks('grunt-mocha-test');
+
+  grunt.loadNpmTasks('grunt-mocha');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-s3');  
 
-  grunt.registerTask("newAutoTest" , ['watch:tests'] )
+  grunt.registerTask("default" , ['clean:testUnit', 'threevot_tester:newTest', 'mocha'] )
 
-  grunt.registerTask("newTest" , ['clean:testUnit', 'threevot_tester:newTest', 'mocha'] )
+  grunt.registerTask("auto_test" , ['watch:tests'] )
 
-  grunt.registerTask("test_unit" , ['clean:testUnit', 'threevot_tester:allTest', 'mocha'] )
+  grunt.registerTask("test" , ['clean:testUnit', 'threevot_tester:allTest', 'mocha'] )
 
-  grunt.registerTask('build', ["copy", 'coffee', "threevot_compiler" , "jade:production","s3"]);   
+  grunt.registerTask("server_test" , ['mochaTest'] )
 
-  grunt.registerTask('server', ["clean","copy","threevot_compiler","less","jade:dev" , 'express','watch']);
+  grunt.registerTask('build', ["threevot_compiler" , "jade:production", "s3"]);   
 
-  grunt.registerTask('default', ["copy",'clean','coffee' , 'mochaTest']);
+  grunt.registerTask('server', ["clean:r2", "threevot_compiler", "less", "jade:dev" ,'express', 'watch']);

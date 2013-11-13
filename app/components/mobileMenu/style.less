@@ -1,0 +1,122 @@
+.mobile-menu{
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #fff;
+  padding: 4px;
+  z-index: 2000;
+  fill: #fff;
+
+  .app-icon{
+    border:none;
+    cursor: pointer;
+    width: 50px;
+    background-color: @gray-lightest;
+    height: 50px;
+    margin: 10px auto;
+    border: none;
+    
+    &.active{
+    
+      border: 1px solid @gray;
+    
+    }
+  
+    .app-icon-header{
+      position: relative;
+      text-align: center;
+      border-bottom: none;
+      overflow: hidden;
+      padding: 0px 5px;
+      height: 13px;
+
+      .triangle{
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 0px;
+        height: 0px;
+        border-style: solid;
+        border-width: 50px 48px 0 0;
+        border-color: rgba(255,255,255,0.3) transparent transparent transparent;
+      }
+    }
+
+    .label{
+      line-height: 8px;
+      color: #fff;
+      font-size: 8px;
+      position: relative;
+      top: -3px;
+      text-transform: capitalize;
+      text-shadow: none;
+    }
+
+      .text
+      {
+        margin: 0px auto;
+        color: @gray;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 25px;
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 100;
+      }
+  }
+  
+  .side-icon{
+    border: none !important;
+    width: 34px !important;
+    margin: 5px auto;
+    position: relative;
+    
+    &.active{
+      .app-icon-header{
+        float: right;
+        position: relative;
+        left: 7px;
+      }
+    &:hover {
+      .app-icon-header {
+        left: 7px;
+      }
+    }
+      
+    }
+    
+    .app-icon-header{
+      padding: 0px !important;
+      position: absolute;
+      left: -8px;
+      width: 8px !important;
+      height: 32px !important;
+      transition: all .2s ease-in-out;
+    }
+    &:hover {
+      .app-icon-header {
+        left: 4px;
+      }
+    }
+    
+    .text{
+      width: 26px;
+      font-size: 13px;
+      text-align: right;
+      float: left;
+      .text-header{
+        height: 10px;
+        overflow: hidden;
+        display: block;
+        font-size: 7px;
+        font-family: 'roboto';
+        text-align: right;
+        line-height: 10px;
+      }
+    }
+    
+  }
+  
+}

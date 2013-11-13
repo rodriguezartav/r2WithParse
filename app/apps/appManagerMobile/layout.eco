@@ -2,19 +2,6 @@
   <div class="header purple" style="position: relative;">
     <span class="triangle"></span>
     <span class="large-title">Apps by Profile</span>
-    <span class="" style="position: absolute;
-    top: 18px;
-    left: 22px;
-    width: 34px;
-    height: 34px;
-    border: 3px solid #fff;
-    padding: 4px;
-    fill: #fff;">
-      <% require "rspine" %>
-      <%- RSpine.icons.menu %>
-      
-    
-    </span>
   </div>
   <div class="sub-header">
     <div class="sub-title text-center">-</div>

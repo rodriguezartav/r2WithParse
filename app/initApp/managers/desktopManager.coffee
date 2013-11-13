@@ -40,8 +40,8 @@ class DesktopManager extends RSpine.Controller
     RSpine.currentApp = app
     RSpine.currentAppPath = appPath;
     
-    RSpine.trigger "platform:app-current-changed"
-    RSpine.trigger "platform-app-launch-complete"
+    RSpine.trigger "platform:app-current-changed", app
+    RSpine.trigger "platform-app-launch-complete", app
 
   shutdownApp: (appPath) =>
     index = RSpine.liveAppPaths.indexOf appPath

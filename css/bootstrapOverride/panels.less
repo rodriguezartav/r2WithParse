@@ -1,0 +1,67 @@
+.panel{
+  margin-bottom: 0px;
+  
+  .panel-heading{
+    padding: 20px 15px;
+    position: relative;
+    
+    .bg{
+      position: absolute;
+      left: 0px;
+      right: 0px;
+      top: 0px;
+      bottom: 0px;
+      background: url("/images/panel-bg.svg")
+    }
+    
+    .panel-title{
+      font-family: @font-family-serif;
+      font-weight: 100;
+      font-size: 15px;
+    }
+    
+    .btn{
+      position: absolute;
+      background-color: inherit;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      width: 66px;
+      color: #fff;
+      text-align: center;
+      line-height: 66px;
+      font-size: @font-size-base;
+      padding: 0px;
+      border: none;
+      border-left: 1px solid #fff;
+      cursor: pointer;
+      &:hover{
+        background-color: rgba(255,255,255,0.3);
+      }
+    }
+  }
+  
+  .panel-sub-heading{
+    border-top: 1px solid @gray-lightest;
+    border-bottom: 1px solid @gray-lightest;
+    border-left: 2px solid @gray-lighter;
+    border-right: 2px solid @gray-lighter;
+    padding: 10px;
+    background-color: #fff;
+    panel-sub-subtitle{
+      
+    }
+  }
+  
+  .panel-stretch{
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+
+  
+  svg.r2{
+    position: absolute;top: -13px;left: 15px;
+  }
+  
+}

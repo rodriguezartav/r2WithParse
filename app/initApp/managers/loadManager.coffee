@@ -8,6 +8,10 @@ class LoadMananger
       "breadcrum": ".breadcrum"
       "menu": ".menu"    
 
+  orbitStage:
+    mobile:
+      "mobileMenu" : ".mobile-menu"
+
   constructor: ->
     @requireApps()
     #@requireComponents( @ignitionStage[RSpine.device] )  
@@ -26,6 +30,7 @@ class LoadMananger
     LazyLoad.js "#{RSpine.jsPath}orbitStage_#{RSpine.device}.js", =>
       for lib in moduleList
         require(lib.path)
+      @requireComponents( @orbitStage[RSpine.device] )
 
   requireApps: =>
     for app in moduleList   

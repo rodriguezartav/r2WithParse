@@ -26,8 +26,6 @@ class App extends RSpine.Controller
       initApp = new InitApp(el: ("body"))        
       RSpine.trigger "platform:initApp_loaded"
 
-
-
   RSpine.getImage= (url) ->
     return RSpine.Model.salesforceHost + "/photo?url=" + url
 

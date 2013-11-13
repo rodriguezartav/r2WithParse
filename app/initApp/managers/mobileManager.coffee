@@ -1,7 +1,7 @@
 RSpine= require "rspine"
-
+ 
 class DesktopManager extends RSpine.Controller
-
+ 
   elements:
     ".mobile-platform-canvas" : "pCanvas"
 
@@ -70,16 +70,19 @@ class DesktopManager extends RSpine.Controller
     
 
   registerTouch: =>
-    Hammer(@pCanvas).on "dragdown dragup", (ev) =>
+    Hammer(@pCanvas).on "dragleft dragright", (ev) =>
 
       timeNow = new Date().getTime();
-      if(timeNow - @lastMoveAnimation < 1000) 
+      if(timeNow - @lastMoveAnimation.time < 500 and @lastMoveAnimation.type == ev.type) 
         event.preventDefault();
         return;
 
-      @lastMoveAnimation = timeNow;
+      @lastMoveAnimation = 
+        time: timeNow;
+        type: ev.type
+      
 
-      @moveDown() if ev.type == "dragup"
-      @moveUp() if ev.type == "dragdown"
+      @moveDown() if ev.type == "dragleft"
+      @moveUp() if ev.type == "dragright"
 
 module.exports = DesktopManager

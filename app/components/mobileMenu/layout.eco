@@ -1,0 +1,10 @@
+<% require "rspine" %>
+
+<div class="mobile-menu-icon" data-toggle="popover" data-animation="false" title="" data-html="true" data-placement="bottom">
+
+  <%- RSpine.icons.menu %>
+  
+</div>
+
+
+

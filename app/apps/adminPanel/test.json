@@ -1,0 +1,7 @@
+{
+  "name": "adminPanel",
+  "pathsToCompile": ["./app/r2", "./app/apps/adminPanel","./app/libraries/bootstrapFramework","./app/libraries/modalFramework"],
+  "dependenciesToCompile": ["jqueryify","rspine","rspine/lib/ajax","rspine/lib/salesforceAjax","rspine/lib/salesforceModel","rspine/lib/offlineModel"],
+  "filesToInclude": [],
+  "specs": "test_spec.coffee"
+}

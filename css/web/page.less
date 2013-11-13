@@ -1,0 +1,286 @@
+.page{
+  background-color: #fff;
+  background: #ffffff;
+  background: -moz-linear-gradient(top, #f1f2f2 0%, #ffffff 50%, #ffffff 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f1f2f2), color-stop(50%,#ffffff), color-stop(100%,#ffffff)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #f1f2f2 0%,#ffffff 50%,#ffffff 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #f1f2f2 0%,#ffffff 50%,#ffffff 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #f1f2f2 0%,#ffffff 50%,#ffffff 100%); /* IE10+ */
+  background: linear-gradient(to bottom, #f1f2f2 0%,#ffffff 50%,#ffffff 100%); /* W3C */
+  background-repeat: no-repeat;
+
+
+  h1{
+   font-size: 35px;
+    &.uppercase{
+      text-transform: uppercase;
+    }
+  }
+  h2{
+    font-size: 30px;   
+    text-align: center;
+  }
+  h3{
+    margin-top: 5px;
+    font-size: 12px;
+    color: @gray;      
+    text-align: center;
+  }
+  
+  p{
+    font-family: "Roboto";
+    font-weight: 100;
+  
+  }
+  
+
+  .headline{
+    h1,h2{
+      text-align: center;
+    }
+  }
+  
+  
+  .secondary-headline{
+    h1,h2{
+      text-align: center;
+    }
+    
+    h1{
+      border-bottom: 1px solid @gray-lighter;
+      padding-bottom: 15px;
+    }
+    
+    h2{
+      margin-top: 8px;
+      font-size: 24px;
+    }
+  }
+  
+  .divider{
+    height: 1px;
+    border: 1px solid @gray-lightest;
+  }
+
+  header{
+    height: 50px;
+    background:#f5f5f6;
+    box-shadow: inset 0 -5px 5px rgba(204,204,204,.5);
+    border-bottom: 2px solid #fff;
+    img{
+      display: inline-block;
+      height: 35px;
+      margin-top: 5px;
+      margin-left: 10px;
+    }
+  }
+
+  .navigation{
+    a{
+      display: block;
+      text-align: center;
+      font-size: 15px;
+      color: @gray;
+      text-transform: uppercase;
+      &:hover{
+         text-decoration: none;
+         color: @brand-primary;
+         cursor: pointer;
+       }
+    }
+  }
+
+  .feature{
+    margin-top: 80px;
+    margin-bottom: 10px;
+  
+    h3{
+      color: @gray-dark;
+      text-align: left;
+      text-transform: uppercase;
+      font-size: 30px;
+      margin-bottom: 30px;
+    }
+  
+    p{
+      margin-top: 85px;
+      color: @gray-dark;
+      font-size: 20px;
+      font-family: @font-family-serif;
+      font-weight: 100;
+      &.smallMargin{
+        margin-top: 55px;
+      }
+    }
+  
+    img{
+      max-width: 100%;
+    }
+
+  }  
+
+
+  .inspiration{
+    #gradient.vertical(#fff,#f1f2f2,0%,100%);
+    padding-top: 60px;
+    padding-bottom: 80px;
+    
+    h1, h2{
+      text-align: center;
+    }
+    
+    h2{
+      font-size: 24px;
+      
+    }
+    
+  }
+
+  footer{
+    padding-top: 90px;
+    padding-bottom: 40px;
+    position: relative;
+    background-color: @brand-primary;
+    .icon{
+      position: absolute;
+      top: -56px;
+      left: 30%;
+    }
+    
+    h2{
+      color: #fff;
+      margin-bottom: 80px;
+    }
+  
+    p{ color: #fff; }
+    a{ padding: 10px;  }
+    
+  }
+
+  // SMALL SMALL SMALL SMALL
+  //ADJUSTEMENTS FOR SMALL SCREENS
+
+
+  @media (max-width: 991px){
+  
+      .headline{
+        margin-top: 20px;
+        h2{
+          margin-top: 10px;
+        }
+      }
+  
+    .navigation{
+      a{
+        line-height: 40px;
+        border-bottom: 1px solid @brand-primary;
+        &:hover{
+          background-color: @brand-primary;
+          color: #fff;
+        }
+      }
+      
+      img{
+        width: 100px;
+        margin-top: 10px;
+      }
+    }
+    
+    
+    .inspiration{
+       p{
+          text-align: center;
+          margin-bottom: 10px;
+        }
+    
+      h2{
+        margin-bottom: 25px;
+        margin-top: 25px;
+      }
+    
+      img{
+        
+        display: block;
+        margin: 0 auto;
+      
+      }
+    
+    }
+    
+    footer{
+      .icon{
+        position: absolute;
+        top: -56px;
+        left: 5%;
+      }
+      
+      h2{
+        margin-bottom: 30px;
+      }
+      
+      p{
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      
+      a{
+        display: block;
+        margin: 0 auto;
+      }
+      
+    }    
+ }
+
+
+ //ADJUSTEMENTS FOR LARGE SCREENS
+
+
+
+  @media (min-width: 992px){
+    .container{
+      width: 100%;
+      max-width: 1024px !important;
+    }
+    
+    .headline{
+      margin-top: 0px;
+      h1{
+      }
+      h2{
+        margin-top: 20px;
+        width: 50%;      
+      }
+    }
+
+    .navigation{
+      a{
+        margin-top: 15px;
+        &.twoLines{
+          margin-top: 5px;
+        }
+        &.logo{
+          margin-top: 0px; 
+          position: relative;
+          top: -45px;
+          img{
+            width: 100px;
+          }
+        }
+ 
+      }
+    }
+  
+    .inspiration{
+    
+      h2{
+        max-width: 50%;
+        display: block;
+        margin: 31px auto;
+      }
+    
+    }
+   
+ 
+  }
+
+}
