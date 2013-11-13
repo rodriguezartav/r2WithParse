@@ -12,6 +12,7 @@
 
   h1{
    font-size: 35px;
+   font-weight: 300;
     &.uppercase{
       text-transform: uppercase;
     }
@@ -112,13 +113,21 @@
       font-size: 20px;
       font-family: @font-family-serif;
       font-weight: 100;
+      -webkit-text-shadow: 0px 0px 1px #636466;
+      -moz-text-shadow: 0px 0px 1px #636466;
+      -ms-text-shadow: 0px 0px 1px #636466;
+      text-shadow: 0px 0px 1px #636466;
       &.smallMargin{
         margin-top: 55px;
       }
     }
   
     img{
-      max-width: 100%;
+      max-width: 90%;
+      height: auto;
+      max-height: 240px;
+      margin: auto;
+      display: block
     }
 
   }  
@@ -129,7 +138,7 @@
     padding-top: 60px;
     padding-bottom: 80px;
     
-    h1 { font-weight: bold}
+    h1 { font-weight: 300}
     h1, h2{
       text-align: center;
     }
@@ -150,7 +159,9 @@
     background-color: @brand-primary;
     .icon{
       position: relative;
-      width:312px;
+      width: 314px;
+      margin: auto;
+      top: -52px;
       img {
         width: 100%;
       }
