@@ -1,12 +1,13 @@
 RSpine= require "rspine"
- 
+User = require("models/user") 
+
 class LoadMananger
 
   launchStage:  
     desktop:
       "appMetrics": ".app-metrics" 
-      "breadcrum": ".breadcrum"
       "menu": ".menu"    
+      "newsFeed" : [".news-feed",".small-news-feed"]
 
   orbitStage:
     mobile:
@@ -14,17 +15,18 @@ class LoadMananger
 
   constructor: ->
     @requireApps()
-    #@requireComponents( @ignitionStage[RSpine.device] )  
-    @initLaunchStage()
-    RSpine.bind "platform:ajax-idle", @initOrbitStage
+    if User.count() > 0 then @initIgnitionStage() else User.one("refresh" , @initIgnitionStage)
+    RSpine.one "platform:ajax-idle", @initOrbitStage
+
+  initIgnitionStage: =>
+    LazyLoad.js "#{RSpine.jsPath}#{User.first().getProfile()}_#{RSpine.device}.js", =>
+      @requireApps(moduleList)  
+      RSpine.trigger "platform:apps_loaded"
+      @initLaunchStage()
 
   initLaunchStage: ->  
     LazyLoad.js "#{RSpine.jsPath}launchStage_#{RSpine.device}.js", =>
       @requireComponents( @launchStage[RSpine.device] )
-
-    LazyLoad.js "#{RSpine.jsPath}vendedores_#{RSpine.device}.js", =>
-      @requireApps(moduleList)  
-      RSpine.trigger "platform:apps_loaded"
 
   initOrbitStage: =>
     LazyLoad.js "#{RSpine.jsPath}orbitStage_#{RSpine.device}.js", =>

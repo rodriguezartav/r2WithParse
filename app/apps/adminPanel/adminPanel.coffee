@@ -17,7 +17,7 @@ class AdminPanel extends RSpine.Controller
     "click .app-item" : "onEditApp"
     "click .add-profile" : "onAddProfile"
     "click .btn-remove-app-from-permission" : "onRemoveAppFromPermission"
-    "click .btn-save-profiles" : "onSaveProfiles"
+    "click .btn-save-profiles" : "onSaveAppPemissions"
 
   constructor: ->
     super
@@ -63,13 +63,16 @@ class AdminPanel extends RSpine.Controller
           destination = destination.parent() until destination.hasClass "app-permission-item"
           appPermissionId = destination.data "app-permission"
           appPermission = AppPermission.find appPermissionId
-          @onAddToProfile(app, appPermission)
+          @onAddPathToPermission(app, appPermission)
 
   render: ->
     @html require("app/adminPanel/layout")()
 
   renderApps: =>
-    list = require("app/adminPanel/layout_item_app")(App.all())
+    apps = []
+    for app in App.all()
+      apps.push app if !app.home
+    list = require("app/adminPanel/layout_item_app")(apps)
     @appList.html list
     AppPermission.fetch()
 
@@ -88,7 +91,8 @@ class AdminPanel extends RSpine.Controller
     profileId = target.data "profile"
     profile = Profile.find profileId
     $(".btn-add-profile").popover("hide")
-    ap = AppPermission.create type: "app", name: profile.Name, device: device, appPaths: []
+    profileName = profile.Name.split(' ').join('_').toLowerCase()
+    ap = AppPermission.create type: "app", name: profileName, device: device, appPaths: []
 
   onCreateApp: ->
     RSpine.trigger "modal:show", EditApp , data: { isNewApp: true }
@@ -111,7 +115,7 @@ class AdminPanel extends RSpine.Controller
     permission.appPaths.splice(index,1)
     permission.save()
 
-  onSaveProfiles: (e) ->
+  onSaveAppPemissions: (e) ->
     AppPermission.custom( AppPermission.toJSON() , { method: "POST" })
 
   shutdown: (e) =>

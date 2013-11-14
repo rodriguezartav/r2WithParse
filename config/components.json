@@ -10,7 +10,7 @@
         "name":"initApp",
         "device":"desktop",
         "type": "lib,app,component",
-        "appPaths": ["./app/initApp", "./app/apps/webHome", "./app/components/menu", "./app/components/newsFeed","./app/components/appMenu"]
+        "appPaths": ["./app/initApp", "./app/apps/webHome", "./app/components/menu", "./app/components/appMenu"]
       },
       {
         "name":"initApp",
@@ -22,7 +22,7 @@
         "name":"launchStage",
         "device":"desktop",
         "type": "component",
-        "appPaths": ["./app/components/appMetrics","./app/components/breadcrum"]
+        "appPaths": ["./app/components/appMetrics","./app/components/newsFeed"]
       },
 
       {

@@ -1,6 +1,7 @@
 RSpine = require("rspine")     
 require("lib/setup") 
 Session = require("models/session")
+User = require("models/user")
 
 class App extends RSpine.Controller
 
@@ -20,6 +21,8 @@ class App extends RSpine.Controller
     for check in $(".responsiveCheck")
       check = $(check)
       if check.css("display") != "none" then RSpine.device = check.data "device"
+
+    User.query({id: Session.first().userId});
 
     LazyLoad.js "#{RSpine.jsPath}initApp_#{RSpine.device}.js", =>
       InitApp = require("initApp")

@@ -8,8 +8,6 @@ class DataManager
   constructor: ->
     RSpine.datamanager = @
     
-    User.fetch({id: Session.first().userId}, query: true);
-    
     User.bind "refresh" , =>
       session = Session.first()
       session.user = User.first();
