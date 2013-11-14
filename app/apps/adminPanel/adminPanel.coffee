@@ -24,6 +24,7 @@ class AdminPanel extends RSpine.Controller
     @render()
     @bind()
     Profile.query()
+    App.destroyAll()
     App.fetch()
     
     RSpine.one "platform:library-loaded-bootstrap", =>
@@ -37,18 +38,18 @@ class AdminPanel extends RSpine.Controller
 
     Profile.bind "refresh", @renderProfiles
     App.bind "refresh destroy", @renderApps
-    AppPermission.bind "refresh create update", @renderPermissions
+    AppPermission.bind "refresh create update destroy", @renderPermissions
 
   unbind: ->
     Profile.unbind "refresh", @renderProfiles
-    Profile.unbind "refresh", @renderApps    
-    AppPermission.unbind "refresh create", @renderPermissions
+    App.unbind "refresh destroy", @renderApps
+    AppPermission.bind "refresh create update destroy", @renderPermissions
 
   registerDragDrop: => 
-    console.log "registering dragdrop"
     dragableElements = $(".app-item .drag-handle")
     if dragableElements.dragdrop and !@dragdropRegistered
       @dragdropRegistered = true
+      console.log "registering drag drop"
       $(dragableElements).dragdrop
         makeClone: true,
         sourceHide: false,
@@ -114,6 +115,8 @@ class AdminPanel extends RSpine.Controller
     index = permission.appPaths.indexOf appPath
     permission.appPaths.splice(index,1)
     permission.save()
+    
+    permission.destroy() if permission.appPaths.length == 0
 
   onSaveAppPemissions: (e) ->
     AppPermission.custom( AppPermission.toJSON() , { method: "POST" })

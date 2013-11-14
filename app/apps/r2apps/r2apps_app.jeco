@@ -1,6 +1,0 @@
-<li data-app="<%= @id %>"  class="app">
-  
-  <span data-app="<%= @id %>" class="drag-handle"></span>
-  <%= @name %>
-  
-</li>
