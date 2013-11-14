@@ -145,8 +145,8 @@
     
     h2{
       font-size: 24px;
-      
     }
+
     img {
       max-width: 70%;
       height: auto;
@@ -159,13 +159,12 @@
   }
 
   footer{
-    padding-bottom: 40px;
     position: relative;
     background-color: @brand-primary;
     .icon{
       position: relative;
       width: 314px;
-      margin: auto;
+      margin: 0 auto -52px;
       top: -52px;
       img {
         width: 100%;
@@ -174,11 +173,39 @@
     
     h2{
       color: #fff;
-      margin-bottom: 80px;
+      margin-bottom: 25px;
     }
   
     p{ color: #fff; }
-    a{ padding: 10px;  }
+    a{ padding: 10px; }
+
+    .contact {
+      text-align: center;
+      a{ 
+        color: #fff;
+        text-decoration: none;
+        display: inline-block;
+        transition: all .2s ease-in-out;
+        img {
+          max-height: 140px;
+          margin-bottom: 16px;
+          position: relative;
+          transition: all .2s ease-in-out;
+        }
+        p {font-size: 20px;}
+        &:hover {
+          text-shadow: 0px 0px 2px rgba(255,255,255,.5);
+          img {
+            top: -2px;
+          }
+        }
+        
+      }
+      
+    }
+    .legal {
+      margin-top: 20px;
+    }
     
   }
 
