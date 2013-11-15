@@ -1,9 +1,5 @@
 .gettingStarted{
 
-  img{
-    max-width: 100%;
-  }
-
   .videos{
   
     margin-top: 50px;
@@ -17,10 +13,26 @@
     color: @gray;
     font-size: 15px;
     line-height: 25px;
+    margin-bottom: 20px;
     transition: all .2s ease-in-out;
     &:hover{
       color: @brand-primary
     }
+    img{
+      max-width: 100%;
+    }
+
+  }
+  // SMALL SMALL SMALL SMALL
+  //ADJUSTEMENTS FOR SMALL SCREENS
+
+
+  @media (max-width: 991px){
+
+    .video {
+      font-size:20px;
+    }
+
   }
 
 }
