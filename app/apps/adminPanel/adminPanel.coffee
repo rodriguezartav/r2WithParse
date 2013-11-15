@@ -32,7 +32,7 @@ class AdminPanel extends RSpine.Controller
       
     RSpine.one "platform:library-loaded-dragdrop", =>
       @registerDragDrop()
-
+  
   bind: ->
     @registerDragDrop()
 
