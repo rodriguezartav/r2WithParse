@@ -4,6 +4,9 @@ html
     include includes/web-head
   
   body.page.talkToUs
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id))return;js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script>
     
     include includes/web-header
 
@@ -31,14 +34,14 @@ html
     .section.contactOption.blue
       .container
         .row
-          .col-md-1.col-md-offset-2
+          .col-md-1.col-md-offset-1
             img(src="/images/twitter-logo.svg")
           .col-md-8
-            .title.
-              <a href="https://twitter.com/intent/tweet?screen_name=3vot" class="twitter-mention-button" data-size="large">Tweet to @3vot</a>
-              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            .title Twitter
             .text.
               <a href="https://twitter.com/3vot" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @3vot</a>
+              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+              <a href="https://twitter.com/intent/tweet?screen_name=3vot" class="twitter-mention-button" data-size="large">Tweet to @3vot</a>
               <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
           
       
@@ -46,7 +49,7 @@ html
     .section.contactOption.purple
       .container
         .row
-          .col-md-1.col-md-offset-2
+          .col-md-1.col-md-offset-1
             img(src="/images/mail-icon.svg")
           .col-md-8
             .title Phone
@@ -55,30 +58,30 @@ html
     .section.contactOption.red
       .container
         .row
-          .col-md-1.col-md-offset-2
+          .col-md-1.col-md-offset-1
             img(src="/images/mail-icon.svg")
           .col-md-8
             .title Email
-            .text  Roberto: <strong>one@3vot.com</strong> Arnoldo: <strong>a3@3vot.com</strong>
+            .text  Roberto: <strong><a href="mailto:one@3vot.com?Subject=Hello%20Roberto">one@3vot.com</a></strong> Arnoldo: <strong><a href="mailto:a3@3vot.com?Subject=Hello%20Arnoldo">a3@3vot.com</a></strong>
       
     .section.contactOption.yellow
       .container
         .row
-          .col-md-1.col-md-offset-2
+          .col-md-1.col-md-offset-1
             img(src="/images/skype-logo.svg")
-          .col-md-4
+          .col-md-8
             .title Skype
-            .text  Contact: <strong>3vot</strong>
+            .text  Contact: <strong>roberto.rodriguez.artavia</strong> or <strong>arnoldomora79</strong>
       
     .section.contactOption.blue
       .container
         .row
-          .col-md-1.col-md-offset-2
+          .col-md-1.col-md-offset-1
             img(src="/images/facebook-logo.svg")
-          .col-md-4
-            .title Facebook 
-            .text  Write on our <strong>wall</strong>
-          
+          .col-md-8
+            .title 
+              <a href="https://www.facebook.com/3VOTCORP" target="_blank"> Facebook</a> 
+            
       
     include includes/web-footer
       

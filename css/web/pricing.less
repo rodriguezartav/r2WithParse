@@ -1,7 +1,7 @@
 .pricing{
   .pricing-free{
     position: relative;
-    padding-bottom: 80px;
+    padding-bottom: 20px;
     
     .free{ margin-top: 20px; padding-bottom: 20px; min-height: 200px; }
     .paid{ margin-top: 20px; }
@@ -20,6 +20,7 @@
       position: absolute;
       top: 50px;
       left: 0px;
+      box-shadow: 0px 5px 5px rgba(0,0,0,.2);
       &:first-child{ top: 15px; left: 100px; }
       &:last-child{ top: 100px; left: 80px; }
     }
@@ -37,9 +38,17 @@
     .app-icon-extended{
       width: 90%;
       margin-top: 20px;
+      box-shadow: 2px 2px 0px rgba(0,0,0,.2);
+      position: relative;
+      transition: all .2s ease-in-out;
       .text{
         font-size: 20px;
         line-height: 40px;
+      }
+      &:hover {
+        box-shadow: 0 0 0 #fff;
+        top: 2px;
+        left: 2px;
       }
     }
   
@@ -54,5 +63,9 @@
     
   }
   
+  }
+  .questions {
+    padding: 50px 0px 0px;
+    text-align: center;
   }
 }
