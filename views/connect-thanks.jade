@@ -1,0 +1,61 @@
+doctype 5
+html
+  head
+    include includes/web-head
+    script.
+      mixpanel.track("Visted Home Page");
+    
+  body.page.connect
+    
+    include includes/web-header
+
+    section.container.headline
+      h1.color-gray R2 <span class="color-purple">INSTALLATION</span> <span class="color-blue">INSTRUCTIONS</span>
+      br/
+      
+      .row
+        .col-md-4.col-md-offset-4
+          a.btn.btn-primary.btn-lg.btn-block.btn-installing-r2(href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04ti0000000KZAr") Click to Install R2
+
+    br/
+    section.container
+    
+      .row
+        .col-md-5.col-md-offset-1.panel(style="padding: 15px 30px;")
+          h2(style="font-size: 20px;") Installing the App Store
+
+          p When you click on Install R2 you'll be taken to Salesforce.com Sandbox Login, you'll need to login with you Sandbox Credentials
+
+          p Salesforce Connected Apps we'll show you several screens asking for permission to enable R2 for your SANDBOX users.
+          
+          p After that your users will be able to login with salesforce into your own App Store
+          
+          p The first time each users log's in the Connected App Permission Box will appear in order to Allow Access.
+
+        .col-md-5.col-md-offset-1.panel(style="padding: 15px 30px;")
+          h2(style="font-size: 20px;") Creating the App Store
+          p In order to setup your Dev Environment you need NODEJS and GIT
+          
+          p <a target="_blank" href="http://github.com/3vot/r2">Clone the App Store from github</a>
+          
+          p Install all dependencies with $ npm install .
+          
+          p Edit ./config/organization.json and add your Salesforce.com Sandbox ORG_ID 
+          
+          p On the R2's root path in terminal run $ grunt server
+          
+          p R2's is running on the Web Browser at <a href="http://localhost:7770/">localhost:7770</a>
+          
+      .row
+        .panel.col-md-8.col-md-offset-2
+          p If you can complete this steps then let's schedule a Free Skype Session.<a href="/talkToUs.html"> Contact our founders</a> for Free Training Session.
+          
+          p On the other hand, if there's a problem just get in <a href="/talkToUs.html">touch</a> and we'll explain your options on how to go on.
+          
+          
+          
+          
+      
+
+    include includes/web-footer
+      

@@ -19,7 +19,7 @@ html
       
       var request = $.ajax( {
         type: 'GET',
-        url:"#{apiServer}/sessions/salesforce/login?app_url=#{app_url}&state=ok" 
+        url:"#{apiServer}/salesforce/login?app_url=#{app_url}&state=ok" 
       }).success(function(data){
         window.location.href = data;
       });

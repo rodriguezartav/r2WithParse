@@ -11,31 +11,13 @@ html
     include includes/web-header
 
     section.container.secondary-headline
-      h1.color-gray.uppercase We are easy to talk to
-      h2 Just type your <span class="color-purple">name</span>  and <span class="color-green">number</span>, we'll get back to you
-
-    .section.container.form
-      form.form-horizontal.form-talk-by-phone(role="form",action="#{marketingServer}/register/talk", method="POST")
-        .row
-          .col-md-3.col-md-offset-1.
-            <label for="inputEmail3" class="control-label">Name</label>
-            <label for="inputPassword3" class="control-label">Mobile</label>
+      h1.color-purple.uppercase Thanks, we'll call you right now
+      h2 if for some reason we don't, always call 1-800-363-8078
+      br/
+      br/
             
-          .col-md-4.
-            <input type="text" required name="CustomerName " class="form-control input-lg" placeholder="Jenny">
-            <input type="phone" required name="CustomerPhone" class="form-control  input-lg" placeholder="+1 800 867 5309">
-            <input type="hidden" name="Action" value="Talk"/>
-            <input type="hidden" name="to" value="8085460736"/>
-            <input type="hidden" name="from" value="8083540011"/>
-            <input type="hidden" name="redirectTo" value="/talkToUs-thanks.html"/>
-
-
-            <span class="help-block">Include country code. EJ USA: <strong>+1</strong> 546 123 3344</span>
-            
-            <button type="submit" class="btn btn-primary btn-lg btn-block">Call me back</button>
-
       .row
-        h2 or you can also....
+        h2 Tell us about your experience in: 
         
     .section.contactOption.blue
       .container

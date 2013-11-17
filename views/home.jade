@@ -2,41 +2,57 @@ doctype 5
 html
   head
     include includes/web-head
-  
+    script.
+      mixpanel.track("Visted Home Page");
+    
+    script
+      jQuery(function(){ 
+        if(cloud == undefined){
+          $(".drop-cloud").html(cloud);
+        }
+      });
+    
   body.page.home
     
     include includes/web-header
 
     section.container.headline
-      h1.color-gray Build <span class="color-purple">Apps</span> in javascript for Salesforce.com
-      h2.center-block.color-gray Simply make them available in <br/>your own <span class="color-blue"> App Store</span>
-
+      h1.color-gray TO TURN <span class="color-purple">BUSINESS IDEAS</span> INTO <span class="color-blue">APPS</span>
+      h2.center-block.color-gray That's the definition of <span class="color-purple">Innovation</span>, simply build & publish apps with R2  
 
     section.container.video
       img(src="./images/video-screenshot.jpg")
-      
-    section.container.callToAction
-      .row
-        a.btn.btn-primary TRY R2 FOR FREE
-        h3 Connected to your <span class="color-blue">Salesforce Sandbox</span>
-      
+
     .section.explanation
       .span.drop-cloud.cloud-lg
       .span.drop-cloud.cloud-md
       .span.drop-cloud.cloud-sm
       .container
-        h1.text-center
-          span.color-blue DESIGNED FOR SALESFORCE
-          
-        .row
-          h2 R2 <span class="color-purple">connects instantly to your Salesforce Data</span>
-          p.col-md-8.col-md-offset-2  Be able to display and manipulate your Salesforce Data and processes through your own apps. R2 connects to your Salesforce via the REST API.
+        .row.col-md-9
+          h1.text-center
+            span.color-blue DESIGNED FOR SALESFORCE.COM
+            p R2 is an App Store that works out of the box with Salesforce.com
         
-      
-        .row
-          h2 R2 uses <span class="color-purple">Salesforce Connected App</span> Technology
-          p.col-md-8.col-md-offset-2 To enable your organization's users to Login to R2 with their Salesforce.com Account and use Apps you enable for them.
+          .row
+            h2 <span class="color-purple">Connect</span>
+            p.col-md-8.col-md-offset-2 User's login with salesforce and connect via the Rest API which enforces all security settings.
           
+          .row
+            h2 <span class="color-purple">Build</span>
+            p.col-md-8.col-md-offset-2 Javascript Developers build apps in hours, <br/> be amazed of R2's technological innovations.
+          
+          .row
+            h2 <span class="color-purple">Publish</span>
+            p.col-md-8.col-md-offset-2 Deploy Apps in seconds for everybody on every device; <br/>Choose which apps each user can use based on their profile.
+
+        .row.col-md-3.callToAction
+
+          h2.color-purple Registration is Limited
+          a.btn.btn-primary.btn-register.btn-register-early-adopter(href="/connect.html") Connect Today
+          h3 <span class="color-purple">Click to become an R2 Early Adopter</span>
+          
+          p We are rolling R2 to a few early adopters, <span class="color-blue">be first to discover</span> R2's magic like Web Components, Modular Testing, Improved Responsive Design
+           
 
     section.features
 
@@ -44,7 +60,7 @@ html
       .container
         .row.feature
           .col-md-7
-            h3 Turn your ideas into Apps
+            h3 Ideas become Apps
             
             .row
               .col-md-3.col-xs-3
@@ -76,15 +92,19 @@ html
                   .text S
 
           .col-md-5
-            p.lead.smallMargin In hours, build apps that easily query, create and update objects as if you were running inside Salesforce.com <br/> Example: Account.query({ name: "like 3VOT" }).
-      
+            p.lead.smallMargin When your organization is ready to build it's own software it's ready to change the world. 
+            
+            p.lead Build software in terms of Apps with R2 
+            
         .row.feature
           
           .col-md-5
-            p With the R2 Security Panel, you can enable access by simply drag & dropping Apps into each user profile. It's so powerfull, you can enable apps by Profile depending on each user's Device.
+            p R2 inherits all of Salesforce Security Settings via the Rest API.
+            
+            p Admins can choose which apps are available just by dragging them to a Profile.
 
           .col-md-7
-            h3 Enable Apps by Profile
+            h3 Smart & Secure
             img(src="/images/app-by-profile.png")
 
         .row.feature
@@ -93,8 +113,11 @@ html
             img(src="/images/app-publish-factory.png")
             
           .col-md-5
-            p The secret sauce to constantly improve and launch new apps to your Private App Store is: easy of use, develop and deploy. With R2, you can deploy ideas, apps and improvements with the click of a button.
-      
+            p R2's Web Components Technology allows him to act as a robot; assembling different versions for each user, profile and internet connection. 
+            p Automatically off course...
+
+
+
     include includes/web-footer
       
     script.

@@ -143,12 +143,16 @@ module.exports = (grunt) ->
           "./public/features.html": ["./views/features.jade"]
           "./public/gettingStarted.html": ["./views/gettingStarted.jade"]
           "./public/talkToUs.html": ["./views/talkToUs.jade"]
+          "./public/talkToUs-thanks.html": ["./views/talkToUs-thanks.jade"]
+          "./public/connect.html": ["./views/connect.jade"]
+          "./public/connect-thanks.html": ["./views/connect-thanks.jade"]          
           
           
         options: 
           data: 
             path: ""
             apiServer: apiServer
+            marketingServer: "http://peaceful-anchorage-9756.herokuapp.com"
             app_url: "http://r2.3vot.com"
 
       dev:
@@ -160,11 +164,16 @@ module.exports = (grunt) ->
           "./public/features.html": ["./views/features.jade"]
           "./public/gettingStarted.html": ["./views/gettingStarted.jade"]
           "./public/talkToUs.html": ["./views/talkToUs.jade"]
+          "./public/talkToUs-thanks.html": ["./views/talkToUs-thanks.jade"]
+          "./public/connect.html": ["./views/connect.jade"]
+          "./public/connect-thanks.html": ["./views/connect-thanks.jade"]
+
 
         options:
           data:
             path: ""
             apiServer: apiServer
+            marketingServer: "http://localhost:3001"
             app_url: "http://localhost:7770"
 
       test: 
@@ -176,11 +185,15 @@ module.exports = (grunt) ->
           "./public/features.html": ["./views/features.jade"]
           "./public/gettingStarted.html": ["./views/gettingStarted.jade"]
           "./public/talkToUs.html": ["./views/talkToUs.jade"]
-
+          "./public/talkToUs-thanks.html": ["./views/talkToUs-thanks.jade"]
+          "./public/connect.html": ["./views/connect.jade"]
+          "./public/connect-thanks.html": ["./views/connect-thanks.jade"]
+          
         options:
           data:
             path: ""
             apiServer: apiServer
+            marketingServer: "http://localhost:3001"
             app_url: "http://localhost:7770"
 
     express:
