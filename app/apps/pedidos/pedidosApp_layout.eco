@@ -1,124 +1,49 @@
-<% RSpine = require("rspine") %>
-
 <div class="row">
-  <div class="col-md-9">
-    <div class="app-header">Pedidos</div>
-  </div>
-  
-  <div class="col-md-3">
-    <div class="btn-square">
-      <span class="original-text">Crear Nuevo Pedido</span>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 33" class="icon-large icon-create">
-          <polygon points="33.1,15.6 17.6,15.6 17.6,0.1 15.6,0.1 15.6,15.6 0.1,15.6 0.1,17.6 15.6,17.6 15.6,33.1 17.6,33.1 17.6,17.6 33.1,17.6">
-          </polygon>
-        </svg>
-      <span class="hover-text">Cancelar Pedido</span>
-    </div>
-  </div>
+	<div class="col-md-3">
+		 <div class="panel panel-primary">
+			 <div class="panel-heading">
+				 <span class="bg"></span>
+				 <span class="panel-title">Proformas</span>
+			 </div>
+			 <div data-offset="200"  class="panel-body  panel-stretch">
+				 
+			 </div>
+			
+		 </div>
+	</div>
+	
+	<div class="col-md-3">
+		 <div class="panel panel-danger">
+			 <div class="panel-heading">
+				 <span class="bg"></span>
+				 <span class="panel-title">Guardados</span>
+			 </div>
+			 <div data-offset="190"  class="panel-body  panel-stretch">
+			 </div>
+			
+		 </div>
+	</div>
+	
+	<div class="col-md-3">
+		 <div class="panel panel-info">
+			 <div class="panel-heading">
+				 <span class="bg"></span>
+				 <span class="panel-title">Pendientes</span>
+			 </div>
+			 <div  class="panel-body  panel-stretch">
+			 </div>
+			
+		 </div>
+	</div>
+	
+	<div class="col-md-3">
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<span class="bg"></span>
+				<span class="panel-title">Aprobados</span>
+			</div>
+		 	<div data-offset="200"  class="panel-body  panel-stretch">
+		 	</div>
+		</div> 
+	</div>
 </div>
-   
-  <div class="row full-height">
-    <div class="col-md-3 color-column">
-      <div class="header blue">
-        <span class="triangle"></span>
-        <span class="large-title">Proformas</span>
-      </div>
-      
-      <div class="sub-header">
-        <div class="sub-title">Cliente</div>
-      </div>
-      
-      <div class="content-body noPadding">
-        <div class="list-item">
-          <div class="text">Hogar y Ferreteria</div>
-        </div>
-        <div class="list-item">
-          <div class="text">Taller Industrial</div>
-        </div>
-        <div class="list-item">
-          <div class="text">Ferreteria y Materiales Orosi</div>
-        </div>
-        <div class="list-item">
-          <div class="text">Mundillaves</div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-md-3 color-column">
-      <div class="header red">
-        <span class="triangle"></span>
-        <span class="large-title">Guardados</span>
-      </div>
-      
-      <div class="sub-header">
-        <div class="sub-title">Cliente</div>
-      </div>
-      
-      <div class="content-body noPadding">
-        <div class="list-item">
-          <div class="text">Hogar y Ferreteria</div>
-        </div>
-        <div class="list-item">
-          <div class="text">Taller Industrial</div>
-        </div>
-        <div class="list-item">
-          <div class="text">Ferreteria y Materiales Orosi</div>
-        </div>
-        <div class="list-item">
-          <div class="text">Mundillaves</div>
-        </div>
-      </div>
-    </div>
-    
-    
-    <div class="col-md-3 color-column">
-      <div class="header purple">
-        <span class="triangle"></span>
-        <span class="large-title">Pendientes</span>
-      </div>
-      <div class="sub-header">
-        <div class="sub-title">Todos los Clientes</div>
-      </div>
-      <div class="content-body noPadding scrollable">
-        <div class="list-item">
-          <div class="text">Hogar y Ferreteria</div>
-        </div>
-        <div class="list-item">
-          <div class="text">Taller Industrial</div>
-        </div>
-        <div class="list-item">
-          <div class="text">Ferreteria y Materiales Orosi</div>
-        </div>
-        <div class="list-item">
-          <div class="text">Mundillaves</div>
-        </div>
-      </div>
-    </div>
-    
-    
-    
-    <div class="col-md-3 color-column">
-      <div class="header green">
-        <span class="triangle"></span>
-        <span class="large-title">Aprobados</span>
-      
-      </div><div class="sub-header">
-        <div class="sub-title">Todos los Clientes</div>
-      </div>
-      
-      <div class="content-body scrollable noPadding">
-        <div class="list-item">
-          <div class="text">Hogar y Ferreteria</div>
-        </div>
-        <div class="list-item">
-          <div class="text">Taller Industrial</div>
-        </div>
-        <div class="list-item">
-          <div class="text">Ferreteria y Materiales Orosi</div>
-        </div>
-        <div class="list-item">
-          <div class="text">Mundillaves</div>
-        </div>
-      </div>
-    </div>
-  </div>

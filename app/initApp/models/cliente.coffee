@@ -1,15 +1,13 @@
 RSpine = require('rspine') 
 
 class Cliente extends RSpine.Model
-  @configure 'Cliente', 'Name', 'CodigoExterno' , "Activo" , "Saldo" , "DiasCredito" , "CreditoAsignado" , "Rating_Crediticio",
+  @configure 'Cliente', 'Name', 'CodigoExterno' , "Activo" , "Saldo" , "DiasCredito" , "CreditoAsignado" ,
   "Negociacion" , "LastModifiedDate" , "Ruta" , "Transporte" , "Direccion" , "Telefono"  , "RutaTransporte" 
 
   @extend RSpine.Model.SalesforceModel
-  @extend RSpine.Model.SalesforceAjax 
-
-  #@querySinceLastUpdate = true
-
-  @avoidInsertList = ["Name","Rating_Crediticio","CodigoExterno","Activo","Saldo","DiasCredito" , "LastModifiedDate" , "Meta" , "Ventas" , "PlazoRecompra","PlazoPago"]
+  @extend RSpine.Model.SalesforceAjax
+  
+  @avoidInsertList = ["Name","Rating_Crediticio","CodigoExterno","Activo","Saldo","DiasCredito" , "LastModifiedDate" , "Meta" , "Ventas"]
 
   @filters:
     "" : " Activo__c = true"
@@ -23,15 +21,6 @@ class Cliente extends RSpine.Model
     for cliente in clientes
       names.push cliente.Name
     return names
-
-  validate: ->
-    unless @Name
-      "El nombre del cliente es obligatorio"
-
-  willOverDraft: (monto) ->
-    od = false
-    od = true if monto + @Saldo > @CreditoAsignado
-    return od
 
   filterByName: (query,item) =>
     return false if item.Activo == false
