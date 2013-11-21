@@ -1,12 +1,11 @@
 RSpine = require('rspine')
 
-
 class Account extends RSpine.Model
-  @configure 'Account', 'Name' 
+  @configure 'Oportunidad', 'Estado', 'Cliente' 
 
   @extend RSpine.Model.SalesforceModel
   @extend RSpine.Model.SalesforceAjax
 
   @custumObject= true;
 
-module.exports = Account
+module.exports = Oportunidad

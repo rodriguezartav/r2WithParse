@@ -1,31 +1,22 @@
 RSpine = require("rspine")
-CreateApp = require("app/pedidos/createApp")
 
 class Name extends RSpine.Controller
   className: "app-canvas"
 
   elements:
-    ".create-placeholder" : "createPlaceholder"
-   
-  events:
-    "click .js-create-pedido" : "onCreatePedido"
-   
+    ".proformas-list" : "proformasList"
+    ".guardados-list" : "guardadosList"
+    ".pendientes-list" : "pendientesList"
+    ".aprobados-list" : "aprobadosList"
+    ".facturados-list" : "facturadosList"
+      
   constructor: ->
-    super    
-    @html require("app/pedidos/pedidosApp_layout")() 
-    @createPlaceholder.hide()
-
-
-  onShutdownPedido: ->
-    @createPlaceholder.hide()
-    @createApp = null
-
-  onCreatePedido: (e) =>
-    if @createApp 
-      @createPlaceholder.hide()
-      @createApp = null
-    else
-      @createPlaceholder.show()
-      @createApp = new CreateApp(el: @createPlaceholder)
+    super
+    @html require("app/pedidos/pedidosApp_layout")()
+    @proformasList.html require ("app/pedidos/proformasItem")
+    @guardadosList.html require ("app/pedidos/guardadosItem")
+    @pendientesList.html require ("app/pedidos/pendientesItem")
+    @aprobadosList.html require ("app/pedidos/aprobadosItem")
+    @facturadosList.html require ("app/pedidos/facturadosItem")
 
 module.exports = Name
