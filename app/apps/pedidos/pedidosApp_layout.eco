@@ -1,6 +1,6 @@
-<div class="row">
+<div class="row pedidos">
   <div class="col-md-3">
-    <div class="panel panel-primary">
+    <div class="panel panel-danger">
       <div class="panel-heading">
         <span class="bg"></span>
         <span class="panel-title">Proformas</span>
@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="col-md-3">
-    <div class="panel panel-danger">
+    <div class="panel panel-success">
       <div class="panel-heading">
         <span class="bg"></span>
         <span class="panel-title">Guardados</span>
@@ -30,7 +30,7 @@
     </div>
   </div>
   <div class="col-md-3">
-    <div class="panel panel-success">
+    <div class="panel panel-primary">
       <div class="panel-heading">
         <span class="bg"></span>
         <span class="panel-title">Aprobados</span>
