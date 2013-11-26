@@ -137,6 +137,7 @@ module.exports = (grunt) ->
       production:
         files:
           "./public/login.html": ["./views/login.jade"] 
+          "./public/index.html": ["./views/index.jade"]
           
         options: 
           data: 
@@ -148,6 +149,7 @@ module.exports = (grunt) ->
       dev:
         files:
           "./public/login.html": ["./views/login.jade"]
+          "./public/index.html": ["./views/index.jade"]
           
         options:
           data:
@@ -159,6 +161,7 @@ module.exports = (grunt) ->
       test: 
         files:
           "./public/login.html": ["./views/login.jade"]
+          "./public/index.html": ["./views/index.jade"]
           
         options:
           data:
