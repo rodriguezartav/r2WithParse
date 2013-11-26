@@ -135,7 +135,9 @@ module.exports = (grunt) ->
 
     jade:
       production:
-        
+        files:
+          "./public/login.html": ["./views/login.jade"] 
+          
         options: 
           data: 
             path: ""
@@ -144,7 +146,9 @@ module.exports = (grunt) ->
             app_url: "http://r2.3vot.com"
 
       dev:
-        
+        files:
+          "./public/login.html": ["./views/login.jade"]
+          
         options:
           data:
             path: ""
@@ -153,6 +157,8 @@ module.exports = (grunt) ->
             app_url: "http://localhost:7770"
 
       test: 
+        files:
+          "./public/login.html": ["./views/login.jade"]
           
         options:
           data:
