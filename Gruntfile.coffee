@@ -135,19 +135,7 @@ module.exports = (grunt) ->
 
     jade:
       production:
-        files:
-          "./public/pricing.html": ["./views/pricing.jade"]
-          "./public/index.html": ["./views/index.jade"]
-          "./public/login.html": ["./views/login.jade"]
-          "./public/home.html": ["./views/home.jade"]
-          "./public/features.html": ["./views/features.jade"]
-          "./public/gettingStarted.html": ["./views/gettingStarted.jade"]
-          "./public/talkToUs.html": ["./views/talkToUs.jade"]
-          "./public/talkToUs-thanks.html": ["./views/talkToUs-thanks.jade"]
-          "./public/connect.html": ["./views/connect.jade"]
-          "./public/connect-thanks.html": ["./views/connect-thanks.jade"]          
-          
-          
+        
         options: 
           data: 
             path: ""
@@ -156,19 +144,7 @@ module.exports = (grunt) ->
             app_url: "http://r2.3vot.com"
 
       dev:
-        files:
-          "./public/pricing.html": ["./views/pricing.jade"]
-          "./public/home.html": ["./views/home.jade"]
-          "./public/login.html": ["./views/login.jade"]
-          "./public/index.html": ["./views/index.jade"]
-          "./public/features.html": ["./views/features.jade"]
-          "./public/gettingStarted.html": ["./views/gettingStarted.jade"]
-          "./public/talkToUs.html": ["./views/talkToUs.jade"]
-          "./public/talkToUs-thanks.html": ["./views/talkToUs-thanks.jade"]
-          "./public/connect.html": ["./views/connect.jade"]
-          "./public/connect-thanks.html": ["./views/connect-thanks.jade"]
-
-
+        
         options:
           data:
             path: ""
@@ -177,17 +153,6 @@ module.exports = (grunt) ->
             app_url: "http://localhost:7770"
 
       test: 
-        files:
-          "./public/pricing.html": ["./views/pricing.jade"]
-          "./public/home.html": ["./views/home.jade"]
-          "./public/login.html": ["./views/login.jade"]
-          "./public/index.html": ["./views/index.jade"]
-          "./public/features.html": ["./views/features.jade"]
-          "./public/gettingStarted.html": ["./views/gettingStarted.jade"]
-          "./public/talkToUs.html": ["./views/talkToUs.jade"]
-          "./public/talkToUs-thanks.html": ["./views/talkToUs-thanks.jade"]
-          "./public/connect.html": ["./views/connect.jade"]
-          "./public/connect-thanks.html": ["./views/connect-thanks.jade"]
           
         options:
           data:
