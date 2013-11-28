@@ -1,5 +1,6 @@
 RSpine   = require('rspine')
 
+
 # Modal receves a Controller
 # Options include title, data and isWrapper
 # withWrapper means that the whole dialog is rendered by the controller.
@@ -20,7 +21,6 @@ class ModalFramework extends RSpine.Controller
     @modal.hide()
 
     RSpine.trigger "platform:library-loaded-modal"
-    
 
   show: (Controller, options = {data: {}}) =>
     @hide()

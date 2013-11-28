@@ -56,7 +56,6 @@ class DesktopManager extends RSpine.Controller
     if app.shutdown then app.shutdown() else console.error appPath + " does not have Shutdown Function - Warning Memory Leak Anti-Pattern"
 
     @pCanvas.find(".#{appMetadata.name}").remove()
-    @calculatePositionIndex()
 
     RSpine.trigger "platform:app-shutdown-complete"
 

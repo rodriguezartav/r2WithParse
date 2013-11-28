@@ -1,0 +1,9 @@
+<li data-account="<%= @id %>" class="list-group-item account-item">
+  
+  <h3>
+    <%= @Name %>
+  </h3>
+
+  <p class="list-group-item-text"><%= @Description %></p>
+  
+</li>

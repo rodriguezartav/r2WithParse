@@ -27,6 +27,7 @@ html
           el: $("body"), 
           layout: layout, 
           apiServer: apiServer,
+          appUrl: "#{app_url}",
           path: "#{path}"
           }
         ); 
@@ -34,7 +35,9 @@ html
 
 
   body
-    .visible-xs.responsiveCheck(data-device="mobile") a
-    .visible-sm.responsiveCheck(data-device="mobile") a
-    .visible-md.responsiveCheck(data-device="desktop") a 
-    .visible-lg.responsiveCheck(data-device="desktop") a
+    .responsiveCheckWrapper
+      .visible-xs.responsiveCheck(data-device="mobile") a
+      .visible-sm.responsiveCheck(data-device="mobile") a
+      .visible-md.responsiveCheck(data-device="desktop") a 
+      .visible-lg.responsiveCheck(data-device="desktop") a
+    .appWrapper

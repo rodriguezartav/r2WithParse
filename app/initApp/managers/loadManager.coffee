@@ -19,20 +19,23 @@ class LoadMananger
     RSpine.one "platform:ajax-idle", @initOrbitStage
 
   initIgnitionStage: =>
-    LazyLoad.js "#{RSpine.jsPath}#{User.first().getProfile()}_#{RSpine.device}.js", =>
-      @requireApps(moduleList)  
-      RSpine.trigger "platform:apps_loaded"
-      @initLaunchStage()
+    $.getScript("#{RSpine.jsPath}/#{User.first().getProfile()}_#{RSpine.device}.js")
+      .done ( script, textStatus ) =>    
+        @requireApps(moduleList)  
+        RSpine.trigger "platform:apps_loaded"
+        @initLaunchStage()
 
   initLaunchStage: ->  
-    LazyLoad.js "#{RSpine.jsPath}launchStage_#{RSpine.device}.js", =>
-      @requireComponents( @launchStage[RSpine.device] )
+    $.getScript( "#{RSpine.jsPath}/launchStage_#{RSpine.device}.js" )
+      .done ( script, textStatus ) =>
+        @requireComponents( @launchStage[RSpine.device] )
 
   initOrbitStage: =>
-    LazyLoad.js "#{RSpine.jsPath}orbitStage_#{RSpine.device}.js", =>
-      for lib in moduleList
-        require(lib.path)
-      @requireComponents( @orbitStage[RSpine.device] )
+    $.getScript( "#{RSpine.jsPath}/orbitStage_#{RSpine.device}.js" )
+      .done ( script, textStatus ) =>
+        for lib in moduleList
+          require(lib.path)
+        @requireComponents( @orbitStage[RSpine.device] )
 
   requireApps: =>
     for app in moduleList   

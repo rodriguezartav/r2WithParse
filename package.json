@@ -1,5 +1,5 @@
 {
-  "name": "r2-rodco",
+  "name": "R2",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -28,9 +28,7 @@
     "grunt": "~0.4.1",
     "coffee-script": "1.6.3",
     "walk": "~2.2.1",
-    "express": "~3.3.1"
-  },
-  "devDependencies": {
+    "express": "~3.3.1",
     "chai": "~1.8.1",
     "mocha": "~1.13.0",
     "should": "~1.2.2",

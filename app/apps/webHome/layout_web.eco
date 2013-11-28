@@ -32,7 +32,7 @@
         <span class="panel-title">The Social Network</span>
       </div>
       <div class="panel-sub-heading">
-        <div class="panel-sub-title">Que hay de nuevo?</div>
+        <div class="sub-title">What's going on?</div>
       </div>
       <div data-offset="145" class="panel-body panel-stretch news-feed "></div>
     </div>
@@ -49,7 +49,7 @@
     
       <span class="panel-title">App Menu</span></div>
       <div class="panel-sub-heading">
-        <div class="panel-title text-center">Home</div>
+      <div class="sub-title">Click on an App to Start</div>
       </div>
       
       <div  data-offset="145"  class="panel-body panel-stretch">
@@ -62,10 +62,10 @@
     <div class="panel panel-info">
       <div class="panel-heading">
         <span class="bg"></span>
-        <span class="panel-title">Que paso con el cliente </span>
+        <span class="panel-title">The Action Center</span>
       </div>
       <div class="panel-sub-heading">
-        <div class="sub-title">Todos los Clientes</div>
+        <div class="sub-title">Earn points by doing tasks</div>
       </div>
 
       <div data-offset="145" class="panel-body panel-stretch">

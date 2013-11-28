@@ -4,8 +4,6 @@ require('rspine/lib/ajax')
 require('rspine/lib/salesforceAjax')
 require('rspine/lib/salesforceModel')
 
-require("lib/lazyload")
-
 
 Date.prototype.toGMT = ->
   hours = this.getUTCHours()

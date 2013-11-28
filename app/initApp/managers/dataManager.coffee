@@ -1,7 +1,6 @@
 RSpine = require("rspine")
 Session = require("models/session")
 User = require("models/user")
-Cliente = require("models/cliente")
 
 class DataManager
 
@@ -21,7 +20,6 @@ class DataManager
       DataManager.onAjax()
   
   initializeData: ->
-    Cliente.autoQuery=true;
     RSpine.Model.SalesforceModel.initialize()
   
   @onAjax: ->

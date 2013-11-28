@@ -42,14 +42,11 @@ module.exports = (grunt) ->
         files:
           [ {expand: true, src: ['./config/*.*'], dest: "./public/#{org.id}"} ]
 
-      images:
-        files:
-          [ {expand: true, src: ['./images/*.*'], dest: "./public"} ]
-
     less:
       development:
         files:
           "./public/r2.css" : "./css/index.less"
+
 
     threevot_compiler: {
       apps:{
@@ -136,39 +133,24 @@ module.exports = (grunt) ->
     jade:
       production:
         files:
-          "./public/login.html": ["./views/login.jade"] 
           "./public/index.html": ["./views/index.jade"]
           
         options: 
           data: 
             path: ""
             apiServer: apiServer
-            marketingServer: "http://peaceful-anchorage-9756.herokuapp.com"
             app_url: "http://r2.3vot.com"
 
       dev:
         files:
-          "./public/login.html": ["./views/login.jade"]
           "./public/index.html": ["./views/index.jade"]
           
         options:
           data:
             path: ""
             apiServer: apiServer
-            marketingServer: "http://localhost:3001"
             app_url: "http://localhost:7770"
 
-      test: 
-        files:
-          "./public/login.html": ["./views/login.jade"]
-          "./public/index.html": ["./views/index.jade"]
-          
-        options:
-          data:
-            path: ""
-            apiServer: apiServer
-            marketingServer: "http://localhost:3001"
-            app_url: "http://localhost:7770"
 
     express:
       all: 
@@ -194,22 +176,7 @@ module.exports = (grunt) ->
         upload: 
           [
              { src: './public/*.*', dest: "", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=1" }
-             { src: './public/images/*.*', dest: "images", gzip: false, access: 'public-read', headers: "Cache-Control": "max-age=500" }
              { src: './public/' + org.id  + '/*.*', dest: org.id , gzip: false, access: 'public-read', headers: "Cache-Control": "max-age=1" }
-          ]
-
-      site:
-        options:
-          bucket: "3vot.com",
-          encodePaths: true,
-          maxOperations: 20
-
-        upload: 
-          [
-            { src: './public/*.js', dest: "", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=1" }
-            { src: './public/*.css', dest: "", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=1" }              
-            { src: './public/*.html', dest: "", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=1" }
-            { src: './public/images/*.*', dest: "images", gzip: false, access: 'public-read', headers: "Cache-Control": "max-age=500" }
           ]
 
   grunt.loadNpmTasks('grunt-contrib-watch');
