@@ -12,4 +12,7 @@ routes = require("./routes")
 routes(app)
 
 
+app.get "/" , (req,res) =>
+  res.redirect "/#{app.organization.id}/index.html"
+
 module.exports = app;

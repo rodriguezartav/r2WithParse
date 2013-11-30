@@ -11,7 +11,7 @@ class HomeView extends RSpine.Controller
 
   constructor: ->
     super    
-    @html require("app/webHome/layout_#{RSpine.app.layout}")()                               
+    @html require("app/webHome/layout")()                               
 
 
     new AppMenu el: @appMenu

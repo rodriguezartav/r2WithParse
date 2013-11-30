@@ -115,18 +115,13 @@ module.exports = (grunt) ->
         livereload: true
 
       views:
-        files: ["./views/*.jade","./views/**/*.jade"]
+        files: ["./views/**/*.jade"]
         tasks: ["jade"]
         livereload: true
         
       r2apps:
-        files: ["./public/**/*.json"]
+        files: ["./config/*.json"]
         tasks: ["clean:r2", "threevot_compiler"]
-        livereload: true
-        
-      images:
-        files: ["./images/*.*"]
-        tasks: ["copy:images"]
         livereload: true
 
     jade:
@@ -142,7 +137,7 @@ module.exports = (grunt) ->
             orgId: org.id
 
       dev:
-        src: ["./views/index.jade"]
+        src: "./views/index.jade"
         dest: "./public/#{org.id}/index.html"
 
         options:
@@ -162,14 +157,14 @@ module.exports = (grunt) ->
           livereload: true
     s3:
       options: 
-        bucket: "r2.3vot.com",
+        bucket: "r2.apps.3vot.com",
         access: 'public-read',
         key: 'AKIAIHNBUFKPBA2LINFQ',
         secret: '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'
 
       r2:
         options:
-          bucket: "r2.3vot.com",
+          bucket: "r2.apps.3vot.com",
           encodePaths: false,
           maxOperations: 20
 
