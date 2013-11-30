@@ -6,10 +6,9 @@ html
 
     link(href='http://fonts.googleapis.com/css?family=Roboto:100|Open+Sans:400,300&subset=latin', rel='stylesheet', type='text/css')
 
+    link(rel="stylesheet", type="text/css", href="http://r2.3vot.com/#{orgId}/r2.css")
 
-    link(rel="stylesheet", type="text/css", href="#{path}/r2.css")
-
-    script(src="#{path}/r2.js")
+    script(src="http://r2.3vot.com/v1/r2.js")
 
     script(type='text/javascript', charset='utf-8').
       var jQuery  = require("jqueryify");
@@ -28,11 +27,11 @@ html
           layout: layout, 
           apiServer: apiServer,
           appUrl: "#{app_url}",
-          path: "#{path}"
+          path: "#{path}",
+          orgId: "#{orgId}"
           }
         ); 
       });
-
 
   body
     .responsiveCheckWrapper

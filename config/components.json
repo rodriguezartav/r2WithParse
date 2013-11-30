@@ -1,10 +1,4 @@
 [
-    {
-        "name":"r2",
-        "type": "lib",
-        "appPaths": ["./app/r2","./app/libraries/modalFramework"],
-        "dependencyPaths": ["jqueryify","rspine","rspine/lib/ajax","rspine/lib/salesforceAjax","rspine/lib/salesforceModel","rspine/lib/offlineModel"]
-        },      
 
       {
         "name":"initApp",

@@ -1,0 +1,21 @@
+<!DOCTYPE html><html><head><title></title><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link href="http://fonts.googleapis.com/css?family=Roboto:100|Open+Sans:400,300&amp;subset=latin" rel="stylesheet" type="text/css"><link rel="stylesheet" type="text/css" href="http://r2.3vot.com/{orgId}/r2.css"><script src="http://r2.3vot.com/v1/r2.js"></script><script type="text/javascript" charset="utf-8">var jQuery  = require("jqueryify");
+
+var apiServer= "http://quiet-atoll-3343.herokuapp.com";
+
+var layout = "web";
+
+var exports = this;
+jQuery(function(){
+
+  var App = require("r2");
+  exports.app =  new App(
+    { 
+    el: $("body"), 
+    layout: layout, 
+    apiServer: apiServer,
+    appUrl: "http://localhost:7770",
+    path: ""
+    }
+  ); 
+});
+</script></head><body><div class="responsiveCheckWrapper"><div data-device="mobile" class="visible-xs responsiveCheck">a</div><div data-device="mobile" class="visible-sm responsiveCheck">a</div><div data-device="desktop" class="visible-md responsiveCheck">a </div><div data-device="desktop" class="visible-lg responsiveCheck">a</div></div><div class="appWrapper"></div></body></html>

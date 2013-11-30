@@ -44,9 +44,8 @@ module.exports = (grunt) ->
 
     less:
       development:
-        files:
-          "./public/r2.css" : "./css/index.less"
-
+        dest: "./public/#{org.id}/r2.css"
+        src: "./css/index.less"
 
     threevot_compiler: {
       apps:{
@@ -132,25 +131,26 @@ module.exports = (grunt) ->
 
     jade:
       production:
-        files:
-          "./public/index.html": ["./views/index.jade"]
+        src: "./views/index.jade"
+        dest: "./public/#{org.id}/index.html"
           
         options: 
           data: 
             path: ""
             apiServer: apiServer
             app_url: "http://r2.3vot.com"
+            orgId: org.id
 
       dev:
-        files:
-          "./public/index.html": ["./views/index.jade"]
-          
+        src: ["./views/index.jade"]
+        dest: "./public/#{org.id}/index.html"
+
         options:
           data:
             path: ""
             apiServer: apiServer
             app_url: "http://localhost:7770"
-
+            orgId: org.id
 
     express:
       all: 
@@ -170,13 +170,12 @@ module.exports = (grunt) ->
       r2:
         options:
           bucket: "r2.3vot.com",
-          encodePaths: true,
+          encodePaths: false,
           maxOperations: 20
 
         upload: 
           [
-             { src: './public/*.*', dest: "", gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=1" }
-             { src: './public/' + org.id  + '/*.*', dest: org.id , gzip: false, access: 'public-read', headers: "Cache-Control": "max-age=1" }
+             { src: './public/' + org.id  + '/*.*', dest: org.id , gzip: true, access: 'public-read', headers: "Cache-Control": "max-age=1" }
           ]
 
   grunt.loadNpmTasks('grunt-contrib-watch');
@@ -200,8 +199,6 @@ module.exports = (grunt) ->
 
   grunt.registerTask("test" , ['clean:testUnit', 'threevot_tester:allTest', 'mocha'] )
 
-  grunt.registerTask("server_test" , ['mochaTest'] )
+  grunt.registerTask('build', ["threevot_compiler" , "jade:production" ,"s3"]);   
 
-  grunt.registerTask('build', ["threevot_compiler" , "jade:production", "copy" ,"s3"]);   
-
-  grunt.registerTask('server', ["copy:images" , "clean:r2", "threevot_compiler", "less", "jade:dev" ,'express', 'watch']);
+  grunt.registerTask('server', ["threevot_compiler", "less", "jade:dev" ,'express', 'watch']);
