@@ -12,7 +12,7 @@ class Menu extends RSpine.Controller
   constructor: ->
     super    
 
-    @append require("components/menu/menu_layout")()
+    @html require("components/menu/menu_layout")()
     @extra = $(".extra-menu")
     
 

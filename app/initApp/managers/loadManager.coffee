@@ -1,6 +1,6 @@
 RSpine= require "rspine"
 User = require("models/user") 
-
+ 
 class LoadMananger
 
   launchStage:  

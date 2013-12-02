@@ -1,12 +1,12 @@
 doctype 5
 html
   head
-    title= R2
+    title R2
     meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
 
     link(href='http://fonts.googleapis.com/css?family=Roboto:100|Open+Sans:400,300&subset=latin', rel='stylesheet', type='text/css')
 
-    link(rel="stylesheet", type="text/css", href="http://r2.apps.3vot.com/#{orgId}/r2.css")
+    link(rel="stylesheet", type="text/css", href="/#{orgId}/r2.css")
 
     script(src="http://r2.apps.3vot.com/v1/r2.js")
 
@@ -14,8 +14,6 @@ html
       var jQuery  = require("jqueryify");
 
       var apiServer= "#{apiServer}";
-      
-      var layout = "web";
 
       var exports = this;
       jQuery(function(){
@@ -24,7 +22,6 @@ html
         exports.app =  new App(
           { 
           el: $("body"), 
-          layout: layout, 
           apiServer: apiServer,
           appUrl: "#{app_url}",
           path: "#{path}",

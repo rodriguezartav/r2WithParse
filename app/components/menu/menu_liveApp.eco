@@ -113,3 +113,25 @@
     
   </div>
 </li>
+
+<li class="">
+<span class="menu-title shortcut">
+  Profile
+</span>
+</li>
+
+<li class="app-icon live-app-icon unselectable">
+
+<a href="<%= RSpine.app.apiServer %>/logout">
+
+  <div class="app-icon-header red">
+    <span class="label">EXIT</span>
+  </div>
+
+  <div class="text">
+    Ex
+  </div>
+  
+</a>
+  
+</li>

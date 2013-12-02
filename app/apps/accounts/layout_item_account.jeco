@@ -2,8 +2,13 @@
   
   <h3>
     <%= @Name %>
+    
+    <span class="btn-edit-app badge btn btn-primary pull-right">edit</span>
+    
   </h3>
 
   <p class="list-group-item-text"><%= @Description %></p>
+  
+  <span
   
 </li>

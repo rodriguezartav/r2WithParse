@@ -29,12 +29,12 @@ module.exports = (grunt) ->
 
   org = grunt.file.readJSON("./config/organization.json")
 
-  apiServer = "http://quiet-atoll-3343.herokuapp.com"
+  apiServer = "http://r2.3vot.com"
 
   grunt.initConfig
     
     clean:
-      r2: ["public/**/*.js"]
+      r2: ["public/#{org.id}/*.*"]
       testUnit: ['./test/unit/*.html']
 
     copy:
@@ -105,23 +105,28 @@ module.exports = (grunt) ->
 
     watch:
       css:
-        files: ["./css/**/*.less"]
-        tasks: ["less"]
+        files: ["./css/*.less","./css/**/*.less"]
+        tasks: ["compile"]
+        livereload: true
+
+      layouts:
+        files: ["./app/**/*.eco", "./app/**/*.jeco"]
+        tasks: ["compile"]
         livereload: true
 
       apps:
-        files: ["./app/**/*.coffee", "./app/**/*.eco", "./app/**/*.jeco", "./app/**/*.less"]
-        tasks: ["clean:r2", "threevot_compiler"]
+        files: ["./app/**/*.coffee", "./app/**/*.less"]
+        tasks: ["compile"]
         livereload: true
 
       views:
         files: ["./views/**/*.jade"]
-        tasks: ["jade"]
+        tasks: ["compile"]
         livereload: true
         
       r2apps:
         files: ["./config/*.json"]
-        tasks: ["clean:r2", "threevot_compiler"]
+        tasks: ["compile"]
         livereload: true
 
     jade:
@@ -131,7 +136,7 @@ module.exports = (grunt) ->
           
         options: 
           data: 
-            path: ""
+            path: "r2.apps.3vot.com"
             apiServer: apiServer
             app_url: "http://r2.3vot.com"
             orgId: org.id
@@ -194,6 +199,9 @@ module.exports = (grunt) ->
 
   grunt.registerTask("test" , ['clean:testUnit', 'threevot_tester:allTest', 'mocha'] )
 
-  grunt.registerTask('build', ["threevot_compiler" , "jade:production" ,"s3"]);   
+  grunt.registerTask('build', ["threevot_compiler" , "less" ,"jade:production" ,"s3"]);   
 
   grunt.registerTask('server', ["threevot_compiler", "less", "jade:dev" ,'express', 'watch']);
+
+  grunt.registerTask('compile', ["clean:r2","threevot_compiler", "less", "jade:dev"]);
+

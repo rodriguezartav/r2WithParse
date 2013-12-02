@@ -1,1 +1,1 @@
-{"namespace":"app","name":"accounts","iconColor":"blue","iconLabel":"nA","label":"accounts"}
+{"namespace":"app","name":"accounts","path":"./app/apps/accounts","iconColor":"red","iconLabel":"nA","label":"accounts","type":"app","id":"c-3"}

@@ -47,6 +47,7 @@ class AdminPanel extends RSpine.Controller
 
   registerDragDrop: => 
     dragableElements = $(".app-item .drag-handle")
+    console.log dragableElements
     if dragableElements.dragdrop and !@dragdropRegistered
       @dragdropRegistered = true
       console.log "registering drag drop"
