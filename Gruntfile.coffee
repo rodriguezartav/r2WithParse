@@ -203,5 +203,5 @@ module.exports = (grunt) ->
 
   grunt.registerTask('server', ["threevot_compiler", "less", "jade:dev" ,'express', 'watch']);
 
-  grunt.registerTask('compile', ["clean:r2","threevot_compiler", "less", "jade:dev", "copy"]);
+  grunt.registerTask('compile', ["threevot_compiler", "less", "jade:dev", "copy"]);
 

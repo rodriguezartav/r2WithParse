@@ -16,6 +16,8 @@ class NewsFeed extends RSpine.Controller
   constructor: ->
     super  
     
+    @html require("components/newsFeed/newsFeed_layout")()
+
     #only load on launch once
     if !ChatterNews.launchQueryInvoked
       endpoint = "/services/data/v24.0/chatter/feeds/news/#{ Session.first().userId }/feed-items"
@@ -33,8 +35,9 @@ class NewsFeed extends RSpine.Controller
     @render()
 
   render: =>
-    @html require("components/newsFeed/newsFeed_item")(ChatterNews.all())
-    @el.scrollTop(NewsFeed.lastScrollPosition) if NewsFeed.lastScrollPosition
+    if ChatterNews.count() > 0
+      @html require("components/newsFeed/newsFeed_item")(ChatterNews.all())
+      @el.scrollTop(NewsFeed.lastScrollPosition) if NewsFeed.lastScrollPosition
     
 
   onPostClick: (e) ->

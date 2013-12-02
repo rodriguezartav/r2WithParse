@@ -1,9 +1,14 @@
 # Modules
 express = require 'express'
+fs = require("fs")
+grunt = require('grunt')
+
+
 app = express()
 
 app.use express.bodyParser()
 app.use app.router
+
 
 app.organization = organization = require("../config/organization.json")
 
@@ -15,7 +20,8 @@ routes(app)
 app.get "/" , (req,res) =>
   res.redirect "/#{app.organization.id}/index.html"
 
-app.use (req, res) ->
-  res.send "<h1>Welcome to R2</h1> <p>Edit the file located in config/organization.json to add your organizationId, then restart grunt server to get the Platform running</p>"
+app.get "/:orgId/index.html", (req, res) ->
+  grunt.file.write "./config/organization.json" , '{"name": "", "id": "' + req.params.orgId + '" }'
+  res.send "<h1>Welcome to R2</h1> <p>We have created the required files, please stop and restart the development server. $ grunt server</p>"
 
 module.exports = app;
