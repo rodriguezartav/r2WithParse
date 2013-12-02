@@ -125,7 +125,7 @@ module.exports = (grunt) ->
         livereload: true
         
       r2apps:
-        files: ["./config/*.json"]
+        files: ["./config/apps.json"]
         tasks: ["compile"]
         livereload: true
 

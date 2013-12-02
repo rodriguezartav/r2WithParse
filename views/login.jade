@@ -1,0 +1,42 @@
+doctype 5
+html
+  head
+    title R2
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+
+    link(href='http://fonts.googleapis.com/css?family=Roboto:100|Open+Sans:400,300&subset=latin', rel='stylesheet', type='text/css')
+
+    link(rel="stylesheet", type="text/css", href="http://r2.apps.3vot.com/demo/r2.css")
+
+    script(src="http://r2.apps.3vot.com/v1/r2.js")
+
+  body.
+  
+    <div class="modal fade in" tabindex="-1" role="dialog" style="display: block;">
+      <div class="modal-dialog">
+        <div class="modal-content"><div>
+
+          <div class="modal-header">
+            <h2 class="modal-title">HI, Welcome to R2</h2>
+          </div>
+
+          <div class="modal-body">
+
+            <input type="hidden" name="type" value="app">
+
+            <h2>Connect with Salesforce</h2>    
+
+            <p>It's easy, we'll take you to Salesforce, click Approve. Then you'll be logged in to R2</p>
+
+          </div>
+
+          <div class="modal-footer"> 
+             <a href="/salesforce/login?login_server=https://login.salesforce.com" class="btn btn-primary btn-action-save-app btn-third btn-block">Login</a>
+             <a href="/salesforce/login?login_server=https://test.salesforce.com" class="pull-left">Sandbox</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+
