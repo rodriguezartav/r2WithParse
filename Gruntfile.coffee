@@ -40,7 +40,7 @@ module.exports = (grunt) ->
     copy:
       config: 
         files:
-          [ {expand: true, src: ['./config/*.*'], dest: "./public/#{org.id}"} ]
+          [ {expand: true, src: ['./config/*.*'], dest: "./public/#{org.id}/config"} ]
 
     less:
       development:
@@ -199,9 +199,9 @@ module.exports = (grunt) ->
 
   grunt.registerTask("test" , ['clean:testUnit', 'threevot_tester:allTest', 'mocha'] )
 
-  grunt.registerTask('build', ["threevot_compiler" , "less" ,"jade:production" ,"s3"]);   
+  grunt.registerTask('build', ["threevot_compiler", "less" ,"jade:production","copy" ,"s3"]);   
 
   grunt.registerTask('server', ["threevot_compiler", "less", "jade:dev" ,'express', 'watch']);
 
-  grunt.registerTask('compile', ["clean:r2","threevot_compiler", "less", "jade:dev"]);
+  grunt.registerTask('compile', ["clean:r2","threevot_compiler", "less", "jade:dev", "copy"]);
 

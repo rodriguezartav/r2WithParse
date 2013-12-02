@@ -1,14 +1,14 @@
 <li data-account="<%= @id %>" class="list-group-item account-item">
   
-  <h3>
-    <%= @Name %>
+  <div class="row">
+    <div class="col-md-11">
+      <h3><%= @Name %></h3>
+      <p class="list-group-item-text"><%= @Description %></p>
+    </div>
     
-    <span class="btn-edit-app badge btn btn-primary pull-right">edit</span>
+    <div class="col-md-1 btn-edit-app badge btn btn-primary" style="display:none;">
+      Edit
+    </div>  
     
-  </h3>
-
-  <p class="list-group-item-text"><%= @Description %></p>
-  
-  <span
-  
+  </div>
 </li>

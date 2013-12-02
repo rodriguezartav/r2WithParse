@@ -3,8 +3,7 @@ Account = require("app/accounts/account")
 Contact = require("app/accounts/contact")
 EditAccount = require("app/accounts/accounts_edit")
 EditContact = require("app/accounts/accounts_edit_contact")
-          
-                 
+
 class Accounts extends RSpine.Controller
   className: "app-canvas accounts"
     
@@ -13,6 +12,7 @@ class Accounts extends RSpine.Controller
     ".contact-list" : "contactList"
     ".lbl-contacts-title" : "lblContactsTitle"
     ".account-item" : "allAccountItems"
+    ".btn-edit-app" : "accountEditButtons"
 
   events:
     "click .btn-create-account" : "onCreateAccount"
@@ -21,7 +21,6 @@ class Accounts extends RSpine.Controller
     "click .contact-item" :  "onEditContact"
     "click .btn-edit-app" : "onEditAccount"
 
-  
   constructor: ->
     super    
     @bind()
@@ -61,6 +60,7 @@ class Accounts extends RSpine.Controller
   onShowContacts: (e) =>
     target = $(e.target)
     target = target.parent() until target.hasClass "account-item"
+    @el.find(".btn-edit-app").hide();
     if target.hasClass "active"
       target.removeClass "active"
       @currentAccountId = null
@@ -68,6 +68,7 @@ class Accounts extends RSpine.Controller
     else
       @el.find(".account-item").removeClass("active")
       target.addClass "active"
+      target.find(".btn-edit-app").show()
       accountId = target.data "account"
       @currentAccountId = accountId
       @renderContacts()
