@@ -4,6 +4,7 @@ class BootstrapFramework
   
   constructor: ->
     require("library/bootstrapFramework/tooltip")
+    require("library/bootstrapFramework/dropdown")
     require("library/bootstrapFramework/popover")
     
     RSpine.trigger "platform:library-loaded-bootstrap"

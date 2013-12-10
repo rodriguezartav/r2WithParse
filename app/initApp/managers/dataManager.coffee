@@ -1,17 +1,10 @@
 RSpine = require("rspine")
 Session = require("models/session")
-User = require("models/user")
 
 class DataManager
 
   constructor: ->
     RSpine.datamanager = @
-    
-    User.bind "refresh" , =>
-      session = Session.first()
-      session.user = User.first();
-      session.save()
-      @initializeData()
 
     $(document).bind "ajaxSend", ->
       DataManager.onAjax()

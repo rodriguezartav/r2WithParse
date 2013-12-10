@@ -1,5 +1,4 @@
 RSpine= require "rspine"
-User = require("models/user") 
  
 class LoadMananger
 
@@ -15,27 +14,34 @@ class LoadMananger
 
   constructor: ->
     @requireApps()
-    if User.count() > 0 then @initIgnitionStage() else User.one("refresh" , @initIgnitionStage)
+    @requireLibs()
+    #if User.count() > 0 then @initIgnitionStage() else User.one("refresh" , @initIgnitionStage)
     RSpine.one "platform:ajax-idle", @initOrbitStage
 
   initIgnitionStage: =>
-    $.getScript("#{RSpine.jsPath}/#{User.first().getProfile()}_#{RSpine.device}.js")
-      .done ( script, textStatus ) =>    
-        @requireApps(moduleList)  
+    $.getScript("/#{User.first().getProfile()}_#{RSpine.device}.js")
+      .done ( script, textStatus ) => 
+        @requireApps(moduleList)
+        @requireLibs(moduleList)
         RSpine.trigger "platform:apps_loaded"
         @initLaunchStage()
 
   initLaunchStage: ->  
-    $.getScript( "#{RSpine.jsPath}/launchStage_#{RSpine.device}.js" )
+    $.getScript( "/launchStage_#{RSpine.device}.js" )
       .done ( script, textStatus ) =>
+        @requireLibs(moduleList)
         @requireComponents( @launchStage[RSpine.device] )
 
   initOrbitStage: =>
-    $.getScript( "#{RSpine.jsPath}/orbitStage_#{RSpine.device}.js" )
+    $.getScript( "/orbitStage_#{RSpine.device}.js" )
       .done ( script, textStatus ) =>
-        for lib in moduleList
-          require(lib.path)
+        @requireLibs(moduleList)
         @requireComponents( @orbitStage[RSpine.device] )
+
+  requireLibs: =>
+    for lib in moduleList
+      if lib.namespace == "library"
+        require(lib.path)
 
   requireApps: =>
     for app in moduleList   
@@ -43,6 +49,7 @@ class LoadMananger
         RSpine.appsMetadata.push app
         RSpine.appsByPath[app.path] = app
         RSpine.trigger("platform:app-launch", app.path) if app.home
+      
 
   requireComponents: (stage) =>
     for component, elements of stage

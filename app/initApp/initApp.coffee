@@ -2,7 +2,7 @@ RSpine = require("rspine")
 require("lib/initSetup")
   
 Session = require("models/session")
-User = require("models/user")
+Demo = require("models/demo")
 DataManager = require "managers/dataManager"
 LoadManager = require "managers/loadManager"
  

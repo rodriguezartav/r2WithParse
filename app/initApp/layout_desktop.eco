@@ -1,46 +1,13 @@
-<% RSpine = require("rspine") %>
 
-<div class="menu">
+<div class="row">
 
-  <div class="liveAppMenu">
+  <div class="menu col-md-2"></div>
 
-    <ul class="liveApps list-unstyled">
-
-      <li>
-        <span class="menu-title"> 
-          Menu
-        </span>
-
-      </li>
-
-      <li class="app-icon live-app-icon unselectable active" data-path="app/webHome/webHome">
-
-      <a href="<%= RSpine.app.apiServer %>/logout">
-
-        <div class="app-icon-header red">
-          <span class="label">EXIT</span>
-        </div>
-
-        <div class="text">
-          Ex
-        </div>
-        
-      </a>
-        
-      </li>
-
-
-      <li class="">
-      <span class="menu-title shortcut">
-        Shortcuts
-      </span>
-
-      </li>
-
-  </ul>
-
-  </div>
+  <div class="platform-canvas col-md-10">
   
-</div>
+  
 
-<div class="platform-canvas"></div>
+  
+  </div>
+
+</div>

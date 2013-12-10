@@ -29,7 +29,7 @@ module.exports = (grunt) ->
 
   org = grunt.file.readJSON("./config/organization.json")
 
-  apiServer = "http://r2.3vot.com"
+  apiServer = "http://nosara-water-proxy.herokuapp.com"
 
   grunt.initConfig
     
@@ -51,14 +51,14 @@ module.exports = (grunt) ->
       apps:{
         parts: "./config/apps.json",
         lessVariables: "./css/base/variables.less",
-        organizationId: org.id,
+        organizationId: "",
         destination: "./public"
       }
       
       components:{
         parts: "./config/components.json",
         lessVariables: "./css/base/variables.less",
-        organizationId: org.id,
+        organizationId: "",
         destination: "./public"
       }
     },
@@ -132,7 +132,7 @@ module.exports = (grunt) ->
     jade:
       production:
         src: "./views/index.jade"
-        dest: "./public/#{org.id}/index.html"
+        dest: "./public/index.html"
           
         options: 
           data: 

@@ -1,7 +1,0 @@
-<div class="col-sm-6 col-md-4">
-  <div class="thumbnail contact-item" data-contact="<%= @id %>">
-    <h1><%= @Title %></h1>
-    <h3><%= @FirstName %> <%= @LastName %></h3>    
-    <h4><%= @Email %></h4>    
-  </div>
-</div>

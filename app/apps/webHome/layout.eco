@@ -1,78 +1,23 @@
 <% RSpine = require("rspine") %>
 
-<div class="extra-menu">
-  
-  <div class="color-column .small-menu-app-menu onOnApp-menu extra-menu-view">
-    <div class="header red"><span class="triangle"></span><span class="large-title">The App Menu</span></div>
-    <div class="panel-sub-heading">
-      <div class="-title text-center">Home</div>
-    </div>
-    <div class="content-body  full-height  app-menu-content-body">
-      <div class="small-app-menu full-height"></div>
-    </div>
-  </div>
 
-  <div class="color-column .small-menu-news-feed onOnSocial extra-menu-view">
-     <div class="header blue"><span class="triangle"></span><span class="large-title">The Social Network</span></div>
-     <div class="sub-header">
-       <div class="sub-title">Que hay de nuevo?</div>
-     </div>
-     <div class="content-body full-height small-news-feed scrollable"></div>
-   </div>  
 
+
+<div class="dropdown">
+  <button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+    Dropdown
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+    <li role="presentation" class="divider"></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+  </ul>
 </div>
 
-<div class="row ">
-  
-  <div class="col-md-4 home-column home-column-large">
-    <div class="panel panel-primary ">
-      <div class="panel-heading ">
-        <span class="bg">
-        </span>
-        <span class="panel-title">The Social Network</span>
-      </div>
-      <div class="panel-sub-heading">
-        <div class="sub-title">What's going on?</div>
-      </div>
-      <div data-offset="145" class="panel-body panel-stretch news-feed "></div>
-    </div>
-  </div>
-
-  
-  <div class="col-md-4 home-column">
-    <div class=" panel panel-danger">
-
-      <div class="panel-heading red">
-
-        
-      <span class="bg"></span>
-    
-      <span class="panel-title">App Menu</span></div>
-      <div class="panel-sub-heading">
-      <div class="sub-title">Click on an App to Start</div>
-      </div>
-      
-      <div  data-offset="145"  class="panel-body panel-stretch">
-        <div class="app-menu"></div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="col-md-4 home-column home-column-large">
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <span class="bg"></span>
-        <span class="panel-title">The Action Center</span>
-      </div>
-      <div class="panel-sub-heading">
-        <div class="sub-title">Earn points by doing tasks</div>
-      </div>
-
-      <div data-offset="145" class="panel-body panel-stretch">
-        <div class="content-body-wrapper app-metrics">
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<button class="btn " type="button" id="dropdownMenu1" data-toggle="dropdown">
+  Dropdown
+  <span class="caret"></span>
+</button>

@@ -1,16 +1,23 @@
 [
 
+     {
+      "name":"r2",
+      "type": "lib",
+      "appPaths": ["./app/r2", "./app/rspine", "./app/libraries/modalFramework"],
+      "dependencyPaths": ["jqueryify"]
+      },
+
       {
         "name":"initApp",
         "device":"desktop",
         "type": "lib,app,component",
-        "appPaths": ["./app/initApp", "./app/apps/webHome", "./app/components/menu", "./app/components/appMenu"]
+        "appPaths": ["./app/initApp", "./app/apps/webHome", "./app/components/menu", "./app/components/appMenu","./app/libraries/bootstrapFramework"]
       },
       {
         "name":"initApp",
         "device":"mobile",
         "type": "lib,app,component",
-        "appPaths": ["./app/initApp","./app/apps/mobileHome","./app/components/appMenu"]
+        "appPaths": ["./app/initApp","./app/apps/mobileHome","./app/components/appMenu","./app/components/menu", "./app/components/appMenu","./app/libraries/bootstrapFramework"]
       },
       {
         "name":"launchStage",
@@ -30,13 +37,13 @@
         "name":"orbitStage",
         "device":"desktop",
         "type": "lib",
-        "appPaths": ["./app/libraries/keyboardFramework","./app/libraries/dragdropFramework","./app/libraries/touchFramework","./app/libraries/bootstrapFramework"]
+        "appPaths": ["./app/libraries/keyboardFramework","./app/libraries/dragdropFramework","./app/libraries/touchFramework"]
       },
       {
         "name":"orbitStage",
         "device":"mobile",
         "type": "lib,component",
-        "appPaths": ["./app/libraries/dragdropFramework","./app/libraries/touchFramework","./app/libraries/bootstrapFramework", "./app/components/mobileMenu"]
+        "appPaths": ["./app/libraries/dragdropFramework","./app/libraries/touchFramework", "./app/components/mobileMenu"]
       }
 
 ]
